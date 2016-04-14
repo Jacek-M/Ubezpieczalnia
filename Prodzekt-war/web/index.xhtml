@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Tiles</title>
+    </h:head>
+    <h:body>
+
+        <h:dataTable value="#{adresController.adresList}" var="emp"  border="1">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Miejscowosc"/>
+                </f:facet>
+                <h:outputText value="#{emp.adresMiejscowosc}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Ulica"/>
+                </f:facet>
+                <h:outputText value="#{emp.adresUlica}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Poczta"/>
+                </f:facet>
+                <h:outputText value="#{emp.adresPoczta}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Kod pocztowy"/>
+                </f:facet>
+                <h:outputText value="#{emp.adresKodPocztowy}"/>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
+
