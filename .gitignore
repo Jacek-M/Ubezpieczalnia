@@ -10,3 +10,6 @@ Prodzekt-war/nbproject/private/private.properties
 *.properties
 *.MF
 *.war
+Prodzekt-war/build/web/*
+Prodzekt-ejb/build/*
+Prodzekt/build/*
