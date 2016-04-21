@@ -13,6 +13,8 @@ Prodzekt-war/nbproject/private/private.properties
 Prodzekt-war/build/web/*
 Prodzekt-ejb/build/*
 Prodzekt/build/*
+Prodzekt-war/nbproject/private/*
 Prodzekt-war/nbproject/build-impl.xml
 Prodzekt-war/nbproject/private/private.xml
 Prodzekt-war/nbproject/project.xml
+
