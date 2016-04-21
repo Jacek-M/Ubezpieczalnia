@@ -1,0 +1,12 @@
+Prodzekt-ejb/dist/Prodzekt-ejb.jar
+Prodzekt-ejb/nbproject/private/private.properties
+Prodzekt-war/build/web/META-INF/MANIFEST.MF
+Prodzekt-war/dist/Prodzekt-war.war
+Prodzekt-war/nbproject/private/private.properties
+
+
+# dodanie rozszerzeń jakby co
+*.jar
+*.properties
+*.MF
+*.war
