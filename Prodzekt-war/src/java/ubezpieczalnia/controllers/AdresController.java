@@ -13,7 +13,6 @@ import javax.faces.bean.RequestScoped;
 import ubezpieczalnia.entities.Adres;
 import ubezpieczalnia.model.AdresEJB;
 
-
 /**
  *
  * @author layfl
