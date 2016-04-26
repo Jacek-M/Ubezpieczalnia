@@ -12,53 +12,68 @@
             <ui:define name="content">
                 <div class="crud">
                     <h:dataTable value="#{adresController.adresList}" var="emp"  border="1">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Miejscowosc"/>
-                        </f:facet>
-                        <h:outputText value="#{emp.adresMiejscowosc}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Ulica"/>
-                        </f:facet>
-                        <h:outputText value="#{emp.adresUlica}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Poczta"/>
-                        </f:facet>
-                        <h:outputText value="#{emp.adresPoczta}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Kod pocztowy"/>
-                        </f:facet>
-                        <h:outputText value="#{emp.adresKodPocztowy}"/>
-                    </h:column>
-                </h:dataTable>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Miejscowosc"/>
+                            </f:facet>
+                            <h:outputText value="#{emp.adresMiejscowosc}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ulica"/>
+                            </f:facet>
+                            <h:outputText value="#{emp.adresUlica}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Poczta"/>
+                            </f:facet>
+                            <h:outputText value="#{emp.adresPoczta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Kod pocztowy"/>
+                            </f:facet>
+                            <h:outputText value="#{emp.adresKodPocztowy}"/>
+                        </h:column>
+                    </h:dataTable>
+
+                    <br/>    
+                    <h3>Dodanie:</h3>
+                    <h:form id="addContact">
+                        <h:outputLabel>Podaj miejscowość: </h:outputLabel>
+                        <h:inputText id="adresMiejscowosc" value="#{adresController.adres.adresMiejscowosc}"/>
+                        <br/>
+                        <h:outputLabel>Podaj ulica: </h:outputLabel>
+                        <h:inputText id="adresUlica" value="#{adresController.adres.adresUlica}"/>
+                        <br/>
+                        <h:outputLabel>Podaj kod-pocztowy: </h:outputLabel>
+                        <h:inputText id="adresKodPocztowy" value="#{adresController.adres.adresKodPocztowy}"/>
+                        <br/>
+                        <h:outputLabel>Podaj adres-poczta: </h:outputLabel>
+                        <h:inputText id="adresPoczta" value="#{adresController.adres.adresPoczta}"/>
+                        <br/>
+                        <h:outputLabel>Podaj telefon: </h:outputLabel>
+                        <h:inputText id="adresTelefon" value="#{adresController.adres.adresTelefon}"/>
+                        <br/>
+                        <h:commandButton value="Wyślij" action="#{adresController.addAdress()}"/>
+
+                    </h:form>
+
+
+                    <h3> Szukanie: </h3>
+                    <h:form id="searchForm">
+                        <h:outputLabel>Podaj id: </h:outputLabel>
+                        <h:inputText id="adresid" value="#{adresController.adres.adresId}"/>
+                        <h:commandButton value="Wyślij" action="#{adresController.findAdresById()}"/>
+                        <br/>
+                    </h:form>
                     
-                <br/>    
-                <h3>Dodanie:</h3>
-                <h:form id="addContact">
-                    <h:outputLabel>Podaj miejscowość: </h:outputLabel>
-                    <h:inputText id="adresMiejscowosc" value="#{adresController.adres.adresMiejscowosc}"/>
-                    <br/>
-                    <h:outputLabel>Podaj ulica: </h:outputLabel>
-                    <h:inputText id="adresUlica" value="#{adresController.adres.adresUlica}"/>
-                    <br/>
-                    <h:outputLabel>Podaj kod-pocztowy: </h:outputLabel>
-                    <h:inputText id="adresKodPocztowy" value="#{adresController.adres.adresKodPocztowy}"/>
-                    <br/>
-                    <h:outputLabel>Podaj adres-poczta: </h:outputLabel>
-                    <h:inputText id="adresPoczta" value="#{adresController.adres.adresPoczta}"/>
-                    <br/>
-                    <h:outputLabel>Podaj telefon: </h:outputLabel>
-                    <h:inputText id="adresTelefon" value="#{adresController.adres.adresTelefon}"/>
-                    <br/>
-                    <h:commandButton value="Wyślij" action="#{adresController.addAdress()}"/>
                     
-                </h:form>
+                    Adres: <h:outputText value="#{adresController.adres.adresMiejscowosc}"/>
+
+                    
+
                 </div>
             </ui:define>
         </ui:composition>

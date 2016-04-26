@@ -29,6 +29,14 @@ public class AdresEJB {
         return query.getResultList();
     }
     
+    public Adres findAdresById(int id) throws Exception {
+        List<Adres> query = em.createNamedQuery("Adres.findByAdresId", Adres.class).setParameter("adresId", id).getResultList();
+        if(query.get(0) != null) {
+            return query.get(0);
+        }
+        else throw new Exception("SIALALA");
+    }
+    
     
     public Adres addNewAdres(Adres adr) {
         em.persist(adr);
