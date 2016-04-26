@@ -1,0 +1,77 @@
+@font-face {
+    font-family: sansation-light;
+    src: url("fonts/SansationLight.woff");
+}
+@font-face {
+    font-family: railway;
+    src: url("fonts/railway.woff");
+}
+
+/*************container***************/
+#container{
+    background-color: rgb(235, 235, 235);
+}
+/*************header***************/
+
+#header{
+  border-bottom: solid;
+}
+#header .menu{
+    font-size: 20px;
+    text-align: center;
+    padding: 0.5em 0em 0.2em 0em;
+}
+#header .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+#header .menu li {
+    float: left;
+}
+#header .menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+#header .menu li a:hover:not(.active) {
+    background-color: #111;
+}
+#header .menu .active {
+    background-color: #4CAF50;
+}
+
+#header .logo{
+}
+
+/*************footer***************/
+#footer {
+    clear: both;
+    position: relative;
+    margin: 2em 0em 2em 0em;
+}
+
+#footer p {
+    text-align: center;
+    padding: 1em;
+    font-size: 1.1em;
+    color: black;
+    font-family: sansation-light;
+    border-top: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
+}
+
+/*************content***************/
+#content{
+    margin-top: 10px;
+}
+
+/*************contact***************/
+.contact{
+    text-align: center;
+}

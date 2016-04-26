@@ -57,11 +57,14 @@ public class Klient implements Serializable {
     private String klientNazwisko;
     @Column(name = "klient_procent_znizki")
     private Integer klientProcentZnizki;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ubezpieczenieKlientIdFk")
-    private Collection<Ubezpieczenie> ubezpieczenieCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "umowaKlientIdFk")
+    private Collection<Umowa> umowaCollection;
     @JoinColumn(name = "klient_adres_id_fk", referencedColumnName = "adres_id")
     @ManyToOne(optional = false)
     private Adres klientAdresIdFk;
+    @JoinColumn(name = "klient_konto_id_fk", referencedColumnName = "konto_id")
+    @ManyToOne(optional = false)
+    private Konto klientKontoIdFk;
 
     public Klient() {
     }
@@ -109,12 +112,12 @@ public class Klient implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Ubezpieczenie> getUbezpieczenieCollection() {
-        return ubezpieczenieCollection;
+    public Collection<Umowa> getUmowaCollection() {
+        return umowaCollection;
     }
 
-    public void setUbezpieczenieCollection(Collection<Ubezpieczenie> ubezpieczenieCollection) {
-        this.ubezpieczenieCollection = ubezpieczenieCollection;
+    public void setUmowaCollection(Collection<Umowa> umowaCollection) {
+        this.umowaCollection = umowaCollection;
     }
 
     public Adres getKlientAdresIdFk() {
@@ -123,6 +126,14 @@ public class Klient implements Serializable {
 
     public void setKlientAdresIdFk(Adres klientAdresIdFk) {
         this.klientAdresIdFk = klientAdresIdFk;
+    }
+
+    public Konto getKlientKontoIdFk() {
+        return klientKontoIdFk;
+    }
+
+    public void setKlientKontoIdFk(Konto klientKontoIdFk) {
+        this.klientKontoIdFk = klientKontoIdFk;
     }
 
     @Override

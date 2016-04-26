@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Szkoda.findAll", query = "SELECT s FROM Szkoda s"),
     @NamedQuery(name = "Szkoda.findBySzkodaId", query = "SELECT s FROM Szkoda s WHERE s.szkodaId = :szkodaId"),
+    @NamedQuery(name = "Szkoda.findBySzkodaUmowaIdFk", query = "SELECT s FROM Szkoda s WHERE s.szkodaUmowaIdFk = :szkodaUmowaIdFk"),
     @NamedQuery(name = "Szkoda.findBySzkodaDataZdarzenia", query = "SELECT s FROM Szkoda s WHERE s.szkodaDataZdarzenia = :szkodaDataZdarzenia"),
     @NamedQuery(name = "Szkoda.findBySzkodaDataZakonczenia", query = "SELECT s FROM Szkoda s WHERE s.szkodaDataZakonczenia = :szkodaDataZakonczenia"),
     @NamedQuery(name = "Szkoda.findBySzkodaStatus", query = "SELECT s FROM Szkoda s WHERE s.szkodaStatus = :szkodaStatus"),
@@ -46,6 +47,10 @@ public class Szkoda implements Serializable {
     @Basic(optional = false)
     @Column(name = "szkoda_id")
     private Integer szkodaId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "szkoda_umowa_id_fk")
+    private int szkodaUmowaIdFk;
     @Basic(optional = false)
     @NotNull
     @Column(name = "szkoda_data_zdarzenia")
@@ -72,9 +77,6 @@ public class Szkoda implements Serializable {
     @JoinColumn(name = "szkoda_samochod_zastepczy_id_fk", referencedColumnName = "samochod_zastepczy_id")
     @ManyToOne
     private SamochodZastepczy szkodaSamochodZastepczyIdFk;
-    @JoinColumn(name = "szkoda_ubezpieczenie_id_fk", referencedColumnName = "ubezpieczenie_id")
-    @ManyToOne(optional = false)
-    private Ubezpieczenie szkodaUbezpieczenieIdFk;
     @JoinColumn(name = "szkoda_uczestnik_id_fk", referencedColumnName = "uczestnik_id")
     @ManyToOne
     private Uczestnik szkodaUczestnikIdFk;
@@ -92,8 +94,9 @@ public class Szkoda implements Serializable {
         this.szkodaId = szkodaId;
     }
 
-    public Szkoda(Integer szkodaId, Date szkodaDataZdarzenia, String szkodaStatus, String szkodaTyp, String szkodaOpis) {
+    public Szkoda(Integer szkodaId, int szkodaUmowaIdFk, Date szkodaDataZdarzenia, String szkodaStatus, String szkodaTyp, String szkodaOpis) {
         this.szkodaId = szkodaId;
+        this.szkodaUmowaIdFk = szkodaUmowaIdFk;
         this.szkodaDataZdarzenia = szkodaDataZdarzenia;
         this.szkodaStatus = szkodaStatus;
         this.szkodaTyp = szkodaTyp;
@@ -106,6 +109,14 @@ public class Szkoda implements Serializable {
 
     public void setSzkodaId(Integer szkodaId) {
         this.szkodaId = szkodaId;
+    }
+
+    public int getSzkodaUmowaIdFk() {
+        return szkodaUmowaIdFk;
+    }
+
+    public void setSzkodaUmowaIdFk(int szkodaUmowaIdFk) {
+        this.szkodaUmowaIdFk = szkodaUmowaIdFk;
     }
 
     public Date getSzkodaDataZdarzenia() {
@@ -154,14 +165,6 @@ public class Szkoda implements Serializable {
 
     public void setSzkodaSamochodZastepczyIdFk(SamochodZastepczy szkodaSamochodZastepczyIdFk) {
         this.szkodaSamochodZastepczyIdFk = szkodaSamochodZastepczyIdFk;
-    }
-
-    public Ubezpieczenie getSzkodaUbezpieczenieIdFk() {
-        return szkodaUbezpieczenieIdFk;
-    }
-
-    public void setSzkodaUbezpieczenieIdFk(Ubezpieczenie szkodaUbezpieczenieIdFk) {
-        this.szkodaUbezpieczenieIdFk = szkodaUbezpieczenieIdFk;
     }
 
     public Uczestnik getSzkodaUczestnikIdFk() {

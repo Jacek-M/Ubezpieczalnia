@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "RodzajUbezpieczenia.findByRodzajUbezpieczeniaRodzaj", query = "SELECT r FROM RodzajUbezpieczenia r WHERE r.rodzajUbezpieczeniaRodzaj = :rodzajUbezpieczeniaRodzaj"),
     @NamedQuery(name = "RodzajUbezpieczenia.findByRodzajUbezpieczeniaCena", query = "SELECT r FROM RodzajUbezpieczenia r WHERE r.rodzajUbezpieczeniaCena = :rodzajUbezpieczeniaCena"),
     @NamedQuery(name = "RodzajUbezpieczenia.findByRodzajUbezpieczeniaCzyZastepczy", query = "SELECT r FROM RodzajUbezpieczenia r WHERE r.rodzajUbezpieczeniaCzyZastepczy = :rodzajUbezpieczeniaCzyZastepczy"),
-    @NamedQuery(name = "RodzajUbezpieczenia.findByRodzajUbezpieczeniaNazwa", query = "SELECT r FROM RodzajUbezpieczenia r WHERE r.rodzajUbezpieczeniaNazwa = :rodzajUbezpieczeniaNazwa")})
+    @NamedQuery(name = "RodzajUbezpieczenia.findByRodzajUbezpieczeniaNazwa", query = "SELECT r FROM RodzajUbezpieczenia r WHERE r.rodzajUbezpieczeniaNazwa = :rodzajUbezpieczeniaNazwa"),
+    @NamedQuery(name = "RodzajUbezpieczenia.findByRodzajUbezpieczeniaOpis", query = "SELECT r FROM RodzajUbezpieczenia r WHERE r.rodzajUbezpieczeniaOpis = :rodzajUbezpieczeniaOpis")})
 public class RodzajUbezpieczenia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -63,8 +64,11 @@ public class RodzajUbezpieczenia implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "rodzaj_ubezpieczenia_nazwa")
     private String rodzajUbezpieczeniaNazwa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ubezpieczenieRodzajUbezpieczeniaIdFk")
-    private Collection<Ubezpieczenie> ubezpieczenieCollection;
+    @Size(max = 200)
+    @Column(name = "rodzaj_ubezpieczenia_opis")
+    private String rodzajUbezpieczeniaOpis;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "umowaRodzajUbezpieczeniaIdFk")
+    private Collection<Umowa> umowaCollection;
 
     public RodzajUbezpieczenia() {
     }
@@ -121,13 +125,21 @@ public class RodzajUbezpieczenia implements Serializable {
         this.rodzajUbezpieczeniaNazwa = rodzajUbezpieczeniaNazwa;
     }
 
-    @XmlTransient
-    public Collection<Ubezpieczenie> getUbezpieczenieCollection() {
-        return ubezpieczenieCollection;
+    public String getRodzajUbezpieczeniaOpis() {
+        return rodzajUbezpieczeniaOpis;
     }
 
-    public void setUbezpieczenieCollection(Collection<Ubezpieczenie> ubezpieczenieCollection) {
-        this.ubezpieczenieCollection = ubezpieczenieCollection;
+    public void setRodzajUbezpieczeniaOpis(String rodzajUbezpieczeniaOpis) {
+        this.rodzajUbezpieczeniaOpis = rodzajUbezpieczeniaOpis;
+    }
+
+    @XmlTransient
+    public Collection<Umowa> getUmowaCollection() {
+        return umowaCollection;
+    }
+
+    public void setUmowaCollection(Collection<Umowa> umowaCollection) {
+        this.umowaCollection = umowaCollection;
     }
 
     @Override

@@ -62,13 +62,13 @@ public class Zaklad implements Serializable {
     @Column(name = "zaklad_data_zakonczenia_wsp")
     @Temporal(TemporalType.TIMESTAMP)
     private Date zakladDataZakonczeniaWsp;
+    @OneToMany(mappedBy = "szkodaZakladIdFk")
+    private Collection<Szkoda> szkodaCollection;
     @OneToMany(mappedBy = "pracownikZakladIdFk")
     private Collection<Pracownik> pracownikCollection;
     @JoinColumn(name = "zaklad_adres_id_fk", referencedColumnName = "adres_id")
     @ManyToOne(optional = false)
     private Adres zakladAdresIdFk;
-    @OneToMany(mappedBy = "szkodaZakladIdFk")
-    private Collection<Szkoda> szkodaCollection;
 
     public Zaklad() {
     }
@@ -117,6 +117,15 @@ public class Zaklad implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Szkoda> getSzkodaCollection() {
+        return szkodaCollection;
+    }
+
+    public void setSzkodaCollection(Collection<Szkoda> szkodaCollection) {
+        this.szkodaCollection = szkodaCollection;
+    }
+
+    @XmlTransient
     public Collection<Pracownik> getPracownikCollection() {
         return pracownikCollection;
     }
@@ -131,15 +140,6 @@ public class Zaklad implements Serializable {
 
     public void setZakladAdresIdFk(Adres zakladAdresIdFk) {
         this.zakladAdresIdFk = zakladAdresIdFk;
-    }
-
-    @XmlTransient
-    public Collection<Szkoda> getSzkodaCollection() {
-        return szkodaCollection;
-    }
-
-    public void setSzkodaCollection(Collection<Szkoda> szkodaCollection) {
-        this.szkodaCollection = szkodaCollection;
     }
 
     @Override
