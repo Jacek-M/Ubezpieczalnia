@@ -14,7 +14,9 @@
 /*************header***************/
 
 #header{
-  border-bottom: solid;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
 }
 #header .menu{
     font-size: 20px;
@@ -45,9 +47,6 @@
     background-color: #4CAF50;
 }
 
-#header .logo{
-}
-
 /*************footer***************/
 #footer {
     clear: both;
@@ -71,7 +70,89 @@
     margin-top: 10px;
 }
 
+/*************index***************/
+.index {
+    text-align: center;
+    font-family: sansation-light;
+}
+.index h2 {
+    color: rgb(84, 84, 84);
+    font-weight: bolder;
+    font-size: 2.5em;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
+    padding-bottom: 0.5em;
+}
+.index p {
+    font-size: 1.5em;
+}
+.index .row {
+    border: groove;
+    border-width: 1px;
+    border-color: rgb(245, 245, 245);
+    background-color:  rgb(245, 245, 245);
+    margin: 2em 2em 2em 2em;
+}
+.index .row .col-sm-3 {
+    text-align: center;
+    font-size: 1.2em;
+    padding: 1em 1em 1em 1em;
+}
+.index .social a {
+    padding: 1em 0em 1em 0em;
+}
+
+.index .social p {
+    padding: 2em 0em 0em 2em;
+}
+.index .social a:hover {
+    text-decoration: none;
+}
+
+
+/*************offer***************/
+.offer {
+    font-size: 16px;
+}
+.offer .listed_products .img-thumbnail {
+    align-content: center;
+}
+.offer .listed_products .row .col-md-6:hover {
+    border: 1px solid #393939; 
+    background-color: #e0dedf;
+}
+.offer .listed_products .row a {
+    text-decoration: none; 
+    color: black; 
+}
+.offer .listed_products .row h2 {
+    text-align: center;
+}
+.offer .listed_products .row .col-md-3:hover {
+    border: 1px solid #393939; 
+    background-color: #e0dedf;
+}
+.offer .listed_products .row .col-md-3 h2 {
+    font-size: 16px; 
+    font-weight: bold;
+}
+.offer .listed_products h1 { 
+    text-align: center;  
+    color: white; 
+    background-color: #0E2447; 
+    padding: 5px;
+}
+.offer h2 { 
+    font-family: sansation-light; 
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
+}
+
 /*************contact***************/
 .contact{
     text-align: center;
 }
+
+

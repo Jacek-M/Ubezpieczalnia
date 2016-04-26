@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jacek
+ * @author layfl
  */
 @Entity
 @Table(name = "wycena")
@@ -125,7 +125,7 @@ public class Wycena implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.entities.Wycena[ wycenaId=" + wycenaId + " ]";
+        return "ubezpieczalnia.model.Wycena[ wycenaId=" + wycenaId + " ]";
     }
     
 }

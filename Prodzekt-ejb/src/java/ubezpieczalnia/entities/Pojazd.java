@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jacek
+ * @author layfl
  */
 @Entity
 @Table(name = "pojazd")
@@ -181,7 +181,7 @@ public class Pojazd implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.entities.Pojazd[ pojazdId=" + pojazdId + " ]";
+        return "ubezpieczalnia.model.Pojazd[ pojazdId=" + pojazdId + " ]";
     }
     
 }

@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Jacek
+ * @author layfl
  */
 @Entity
 @Table(name = "umowa")
@@ -186,7 +186,7 @@ public class Umowa implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.entities.Umowa[ umowaId=" + umowaId + " ]";
+        return "ubezpieczalnia.model.Umowa[ umowaId=" + umowaId + " ]";
     }
     
 }

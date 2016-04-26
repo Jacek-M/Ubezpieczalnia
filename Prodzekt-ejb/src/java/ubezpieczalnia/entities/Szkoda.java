@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Jacek
+ * @author layfl
  */
 @Entity
 @Table(name = "szkoda")
@@ -213,7 +213,7 @@ public class Szkoda implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.entities.Szkoda[ szkodaId=" + szkodaId + " ]";
+        return "ubezpieczalnia.model.Szkoda[ szkodaId=" + szkodaId + " ]";
     }
     
 }

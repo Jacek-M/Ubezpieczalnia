@@ -11,32 +11,48 @@
 
         <ui:composition template="templates/pageTemplate.xhtml">
             <ui:define name="content">
-                <h:dataTable value="#{adresController.adresList}" var="emp"  border="1">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Miejscowosc"/>
-                        </f:facet>
-                        <h:outputText value="#{emp.adresMiejscowosc}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Ulica"/>
-                        </f:facet>
-                        <h:outputText value="#{emp.adresUlica}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Poczta"/>
-                        </f:facet>
-                        <h:outputText value="#{emp.adresPoczta}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Kod pocztowy"/>
-                        </f:facet>
-                        <h:outputText value="#{emp.adresKodPocztowy}"/>
-                    </h:column>
-                </h:dataTable>
+                <div class="index">
+                    <div class="logo">
+                        <img src="resources/images/a.png" alt="" width="100%" />
+                    </div>
+
+
+                    <h2>UBEZPIECZENIA OD ZARAZ NA DOWOLNY POJAZD</h2>
+                    <p>
+                        Ubezpiecz już teraz swój pojazd a dostaniesz 10 % zniżki na najbliższe 3 miesiące.
+                        <br/>Wybierz swoją ofertę już teraz!
+                    </p>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="resources/images/transport.png" alt="" />
+                            <br/> Jeśli kochasz swoje auto, ubezpiecz je!
+                        </div>
+
+                        <div class="col-sm-3">
+                            <img src="resources/images/repair.png" alt="" />
+                            <br/> Załatwimy szybką naprawę u mechanika!
+                        </div>
+
+                        <div class="col-sm-3">
+                            <img src="resources/images/crash.png" alt="" />
+                            <br/> Szybka pomoc drogowa w razie wypadku!
+                        </div>
+
+                        <div class="col-sm-3">
+                            <img src="resources/images/bonus.png" alt="" />
+                            <br/> Dla stałych klientów opony <b>GRATIS</b>
+                        </div>
+                    </div>
+
+                    <div class="social">
+                        <p>Dołącz do nas na: <br/>
+                            <a href="http://facebook.com/"><i class="fa fa-facebook">Facebook</i></a>&nbsp;
+                            <a href="http://twitter.com/"><i class="fa fa-twitter">Twitter</i></a>&nbsp;
+                            <a href="http://facebook.com/"><i class="fa fa-flickr">Flickr</i></a>
+                        </p>
+                    </div>
+                </div>
             </ui:define>
         </ui:composition>
 
