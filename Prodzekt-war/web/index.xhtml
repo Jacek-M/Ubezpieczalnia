@@ -37,6 +37,28 @@
                         <h:outputText value="#{emp.adresKodPocztowy}"/>
                     </h:column>
                 </h:dataTable>
+                
+                <h:link value="Login page" outcome="#{adresController.redirect('contact.xhtml')}" />
+                
+                <h:form id="addContact">
+                    <h:outputLabel>Podaj miejscowość: </h:outputLabel>
+                    <h:inputText id="adresMiejscowosc" value="#{adresController.adres.adresMiejscowosc}"/>
+                    <br/>
+                    <h:outputLabel>Podaj ulica: </h:outputLabel>
+                    <h:inputText id="adresUlica" value="#{adresController.adres.adresUlica}"/>
+                    <br/>
+                    <h:outputLabel>Podaj kod-pocztowy: </h:outputLabel>
+                    <h:inputText id="adresKodPocztowy" value="#{adresController.adres.adresKodPocztowy}"/>
+                    <br/>
+                    <h:outputLabel>Podaj adres-poczta: </h:outputLabel>
+                    <h:inputText id="adresPoczta" value="#{adresController.adres.adresPoczta}"/>
+                    <br/>
+                    <h:outputLabel>Podaj telefon: </h:outputLabel>
+                    <h:inputText id="adresTelefon" value="#{adresController.adres.adresTelefon}"/>
+                    <br/>
+                    <h:commandButton value="Wyślij" action="#{adresController.addAdress()}"/>
+                    
+                </h:form>
             </ui:define>
         </ui:composition>
 

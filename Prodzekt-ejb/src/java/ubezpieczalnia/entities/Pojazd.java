@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jacek
+ * @author layfl
  */
 @Entity
 @Table(name = "pojazd")
@@ -74,8 +74,8 @@ public class Pojazd implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "pojazd_paliwo")
     private String pojazdPaliwo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ubezpieczeniePojazdIdFk")
-    private Collection<Ubezpieczenie> ubezpieczenieCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "umowaPojazdIdFk")
+    private Collection<Umowa> umowaCollection;
 
     public Pojazd() {
     }
@@ -151,12 +151,12 @@ public class Pojazd implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Ubezpieczenie> getUbezpieczenieCollection() {
-        return ubezpieczenieCollection;
+    public Collection<Umowa> getUmowaCollection() {
+        return umowaCollection;
     }
 
-    public void setUbezpieczenieCollection(Collection<Ubezpieczenie> ubezpieczenieCollection) {
-        this.ubezpieczenieCollection = ubezpieczenieCollection;
+    public void setUmowaCollection(Collection<Umowa> umowaCollection) {
+        this.umowaCollection = umowaCollection;
     }
 
     @Override
@@ -181,7 +181,7 @@ public class Pojazd implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.entities.Pojazd[ pojazdId=" + pojazdId + " ]";
+        return "ubezpieczalnia.model.Pojazd[ pojazdId=" + pojazdId + " ]";
     }
     
 }

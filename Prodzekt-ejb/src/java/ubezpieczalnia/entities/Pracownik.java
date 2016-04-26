@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jacek
+ * @author layfl
  */
 @Entity
 @Table(name = "pracownik")
@@ -76,17 +76,20 @@ public class Pracownik implements Serializable {
     @Column(name = "pracownik_data_zwolnienia")
     @Temporal(TemporalType.TIMESTAMP)
     private Date pracownikDataZwolnienia;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "umowaPracownikIdFk")
+    private Collection<Umowa> umowaCollection;
     @JoinColumn(name = "pracownik_adres_id_fk", referencedColumnName = "adres_id")
     @ManyToOne(optional = false)
     private Adres pracownikAdresIdFk;
+    @JoinColumn(name = "pracownik_konto_id_fk", referencedColumnName = "konto_id")
+    @ManyToOne(optional = false)
+    private Konto pracownikKontoIdFk;
     @JoinColumn(name = "pracownik_oddzial_id_fk", referencedColumnName = "oddzial_id")
     @ManyToOne
     private Oddzial pracownikOddzialIdFk;
     @JoinColumn(name = "pracownik_zaklad_id_fk", referencedColumnName = "zaklad_id")
     @ManyToOne
     private Zaklad pracownikZakladIdFk;
-    @OneToMany(mappedBy = "ubezpieczeniePracownikIdFk")
-    private Collection<Ubezpieczenie> ubezpieczenieCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "wycenaPracownikIdFk")
     private Collection<Wycena> wycenaCollection;
 
@@ -161,12 +164,29 @@ public class Pracownik implements Serializable {
         this.pracownikDataZwolnienia = pracownikDataZwolnienia;
     }
 
+    @XmlTransient
+    public Collection<Umowa> getUmowaCollection() {
+        return umowaCollection;
+    }
+
+    public void setUmowaCollection(Collection<Umowa> umowaCollection) {
+        this.umowaCollection = umowaCollection;
+    }
+
     public Adres getPracownikAdresIdFk() {
         return pracownikAdresIdFk;
     }
 
     public void setPracownikAdresIdFk(Adres pracownikAdresIdFk) {
         this.pracownikAdresIdFk = pracownikAdresIdFk;
+    }
+
+    public Konto getPracownikKontoIdFk() {
+        return pracownikKontoIdFk;
+    }
+
+    public void setPracownikKontoIdFk(Konto pracownikKontoIdFk) {
+        this.pracownikKontoIdFk = pracownikKontoIdFk;
     }
 
     public Oddzial getPracownikOddzialIdFk() {
@@ -183,15 +203,6 @@ public class Pracownik implements Serializable {
 
     public void setPracownikZakladIdFk(Zaklad pracownikZakladIdFk) {
         this.pracownikZakladIdFk = pracownikZakladIdFk;
-    }
-
-    @XmlTransient
-    public Collection<Ubezpieczenie> getUbezpieczenieCollection() {
-        return ubezpieczenieCollection;
-    }
-
-    public void setUbezpieczenieCollection(Collection<Ubezpieczenie> ubezpieczenieCollection) {
-        this.ubezpieczenieCollection = ubezpieczenieCollection;
     }
 
     @XmlTransient
@@ -225,7 +236,7 @@ public class Pracownik implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.entities.Pracownik[ pracownikId=" + pracownikId + " ]";
+        return "ubezpieczalnia.model.Pracownik[ pracownikId=" + pracownikId + " ]";
     }
     
 }

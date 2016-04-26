@@ -36,6 +36,21 @@ public class AdresController {
         this.adres = adres;
     }
     
+    public String addAdress() {
+        adresEJB.addNewAdres(this.adres);
+        return "contact.xhtml?faces-redirect=true";
+    }
+    
+    
+    public String goToContact() {
+        return "contact.xhtml?faces-redirect=true";
+    }
+    
+    public String redirect(String aaa) {
+        System.out.println(aaa);
+        return aaa + "?faces-redirect=true";
+    }
+    
     
     public List<Adres> getAdresList() {
         adresList = adresEJB.findAdresy();
