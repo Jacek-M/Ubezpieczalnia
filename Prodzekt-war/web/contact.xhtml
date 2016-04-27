@@ -11,7 +11,44 @@
         <ui:composition template="templates/pageTemplate.xhtml">
             <ui:define name="content">
                 <div class="contact">
-                    Kontakt
+                    <h2> SKONTAKTUJ SIĘ Z NAMI </h2>
+                    <div class="contacBox">
+                        
+                        
+                            <form id="contactForm">
+                                <table id="contactGrid">
+                                    <tr>
+                                        <td><label>Podaj imię: </label></td>
+                                        <td><input type="text" name="name" id="iname" class="inputs" size="40" placeholder="Podaj imię"/><br/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Podaj nazwisko: </label></td>
+                                        <td><input type="text" name="surname" id="isurname" class="inputs" size="40" placeholder="Podaj nazwisko"/> </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Podaj mail: </label></td>
+                                        <td><input type="text" name="mail" id="imail" class="inputs" size="40" placeholder="Podaj email"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Wiadomość: </label></td>
+                                        <br/><td><textarea id="imsg" rows="5" cols="40" class="inputs" placeholder="Wiadomość do właściciela"></textarea></td>
+                                    </tr>
+                                    <tr><td></td><td><input type="button" id="valButton" value="Wyślij" onclick="validate()"/></td></tr>
+                                </table>
+                            </form>
+                        </div>
+
+                        <div class="social">
+                            <p>Skontaktuj się z nami na:<br/>
+                                <a href="http://facebook.com/"><i class="fa fa-facebook"> Facebook</i></a>&nbsp; 
+                                <a href="http://twitter.com/"><i class="fa fa-twitter"> Twitter</i></a>&nbsp; 
+                                <a href="http://facebook.com/"><i class="fa fa-flickr"> Flickr</i></a>
+                                <br/>
+                                Lub zadzwoń do nast pod numer <br/>
+                                <a href="http://facebook.com/"><i class="fa fa-phone" aria-hidden="true">758-958-698</i></a>
+                            </p>
+                        </div>
+                    
                 </div>
             </ui:define>
         </ui:composition>

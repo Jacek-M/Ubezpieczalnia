@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Konto.findByKontoId", query = "SELECT k FROM Konto k WHERE k.kontoId = :kontoId"),
     @NamedQuery(name = "Konto.findByKontoLogin", query = "SELECT k FROM Konto k WHERE k.kontoLogin = :kontoLogin"),
     @NamedQuery(name = "Konto.findByKontoHaslo", query = "SELECT k FROM Konto k WHERE k.kontoHaslo = :kontoHaslo"),
-    @NamedQuery(name = "Konto.findByKontoUprawnienia", query = "SELECT k FROM Konto k WHERE k.kontoUprawnienia = :kontoUprawnienia")})
+    @NamedQuery(name = "Konto.findByKontoUprawnienia", query = "SELECT k FROM Konto k WHERE k.kontoUprawnienia = :kontoUprawnienia"),
+    @NamedQuery(name = "Konto.checkoutLogin", query = "SELECT k FROM Konto k WHERE k.kontoLogin = :kontoLogin AND k.kontoHaslo = :kontoHaslo")})
 public class Konto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

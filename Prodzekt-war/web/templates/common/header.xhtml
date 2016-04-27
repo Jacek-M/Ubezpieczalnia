@@ -13,9 +13,17 @@
                     <li><h:link value="Kontakt" outcome="#{pageController.getPage('contact.xhtml')}"/></li>
                     <li><h:link value="Oferta" outcome="#{pageController.getPage('offer.xhtml')}"/></li>
                     <li><h:link value="Crud" outcome="#{pageController.getPage('crud.xhtml')}"/></li>
+
+                    <h:panelGroup rendered="#{konto==null}">
+                        <li style="float:right"><h:link value="Zaloguj" outcome="#{pageController.getPage('login.xhtml')}"/></li>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{konto!=null}">
+                        <li><h:link value="Admin" outcome="#{pageController.getPage('admin.xhtml')}"/></li>
+                        <li style="float:right"><h:link value="Wyloguj" outcome="#{pageController.getPage('login.xhtml')}"/></li>
+                    </h:panelGroup>
                 </ul>
             </div>
-            
+
         </ui:composition>
     </body>
 </html>
