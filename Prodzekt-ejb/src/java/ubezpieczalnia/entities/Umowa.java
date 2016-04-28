@@ -6,8 +6,10 @@
 package ubezpieczalnia.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,16 +19,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author layfl
+ * @author Jacek
  */
 @Entity
 @Table(name = "umowa")
@@ -76,6 +80,8 @@ public class Umowa implements Serializable {
     @JoinColumn(name = "umowa_rodzaj_ubezpieczenia_id_fk", referencedColumnName = "rodzaj_ubezpieczenia_id")
     @ManyToOne(optional = false)
     private RodzajUbezpieczenia umowaRodzajUbezpieczeniaIdFk;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "szkodaUmowaIdFk")
+    private Collection<Szkoda> szkodaCollection;
 
     public Umowa() {
     }
@@ -164,6 +170,15 @@ public class Umowa implements Serializable {
         this.umowaRodzajUbezpieczeniaIdFk = umowaRodzajUbezpieczeniaIdFk;
     }
 
+    @XmlTransient
+    public Collection<Szkoda> getSzkodaCollection() {
+        return szkodaCollection;
+    }
+
+    public void setSzkodaCollection(Collection<Szkoda> szkodaCollection) {
+        this.szkodaCollection = szkodaCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -186,7 +201,7 @@ public class Umowa implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.model.Umowa[ umowaId=" + umowaId + " ]";
+        return "ubezpieczalnia.entities.Umowa[ umowaId=" + umowaId + " ]";
     }
     
 }

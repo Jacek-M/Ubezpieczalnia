@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author layfl
+ * @author Jacek
  */
 @Entity
 @Table(name = "rodzaj_ubezpieczenia")
@@ -164,7 +164,7 @@ public class RodzajUbezpieczenia implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.model.RodzajUbezpieczenia[ rodzajUbezpieczeniaId=" + rodzajUbezpieczeniaId + " ]";
+        return "ubezpieczalnia.entities.RodzajUbezpieczenia[ rodzajUbezpieczeniaId=" + rodzajUbezpieczeniaId + " ]";
     }
     
 }

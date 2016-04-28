@@ -49,6 +49,7 @@ public class loginController {
             if (konto != null) {
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.getExternalContext().getSessionMap().put("konto", konto);
+                context.getExternalContext().getSessionMap().put("permission", konto.getKontoUprawnienia());
                 return "index.xhtml?faces-redirect=true";
             }
                 

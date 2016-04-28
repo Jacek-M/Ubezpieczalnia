@@ -6,7 +6,6 @@
 package ubezpieczalnia.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,16 +17,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author layfl
+ * @author Jacek
  */
 @Entity
 @Table(name = "wycena")
@@ -49,11 +46,12 @@ public class Wycena implements Serializable {
     @Column(name = "wycena_data")
     @Temporal(TemporalType.TIMESTAMP)
     private Date wycenaData;
-    @OneToMany(mappedBy = "szkodaWycenaIdFk")
-    private Collection<Szkoda> szkodaCollection;
     @JoinColumn(name = "wycena_pracownik_id_fk", referencedColumnName = "pracownik_id")
     @ManyToOne(optional = false)
     private Pracownik wycenaPracownikIdFk;
+    @JoinColumn(name = "wycena_szkoda_id_fk", referencedColumnName = "szkoda_id")
+    @ManyToOne(optional = false)
+    private Szkoda wycenaSzkodaIdFk;
 
     public Wycena() {
     }
@@ -86,21 +84,20 @@ public class Wycena implements Serializable {
         this.wycenaData = wycenaData;
     }
 
-    @XmlTransient
-    public Collection<Szkoda> getSzkodaCollection() {
-        return szkodaCollection;
-    }
-
-    public void setSzkodaCollection(Collection<Szkoda> szkodaCollection) {
-        this.szkodaCollection = szkodaCollection;
-    }
-
     public Pracownik getWycenaPracownikIdFk() {
         return wycenaPracownikIdFk;
     }
 
     public void setWycenaPracownikIdFk(Pracownik wycenaPracownikIdFk) {
         this.wycenaPracownikIdFk = wycenaPracownikIdFk;
+    }
+
+    public Szkoda getWycenaSzkodaIdFk() {
+        return wycenaSzkodaIdFk;
+    }
+
+    public void setWycenaSzkodaIdFk(Szkoda wycenaSzkodaIdFk) {
+        this.wycenaSzkodaIdFk = wycenaSzkodaIdFk;
     }
 
     @Override
@@ -125,7 +122,7 @@ public class Wycena implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.model.Wycena[ wycenaId=" + wycenaId + " ]";
+        return "ubezpieczalnia.entities.Wycena[ wycenaId=" + wycenaId + " ]";
     }
     
 }

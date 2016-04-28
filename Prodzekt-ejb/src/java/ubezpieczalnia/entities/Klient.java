@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author layfl
+ * @author Jacek
  */
 @Entity
 @Table(name = "klient")
@@ -158,7 +158,7 @@ public class Klient implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.model.Klient[ klientId=" + klientId + " ]";
+        return "ubezpieczalnia.entities.Klient[ klientId=" + klientId + " ]";
     }
     
 }

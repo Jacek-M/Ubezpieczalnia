@@ -6,8 +6,10 @@
 package ubezpieczalnia.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,16 +19,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author layfl
+ * @author Jacek
  */
 @Entity
 @Table(name = "szkoda")
@@ -34,7 +38,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Szkoda.findAll", query = "SELECT s FROM Szkoda s"),
     @NamedQuery(name = "Szkoda.findBySzkodaId", query = "SELECT s FROM Szkoda s WHERE s.szkodaId = :szkodaId"),
-    @NamedQuery(name = "Szkoda.findBySzkodaUmowaIdFk", query = "SELECT s FROM Szkoda s WHERE s.szkodaUmowaIdFk = :szkodaUmowaIdFk"),
     @NamedQuery(name = "Szkoda.findBySzkodaDataZdarzenia", query = "SELECT s FROM Szkoda s WHERE s.szkodaDataZdarzenia = :szkodaDataZdarzenia"),
     @NamedQuery(name = "Szkoda.findBySzkodaDataZakonczenia", query = "SELECT s FROM Szkoda s WHERE s.szkodaDataZakonczenia = :szkodaDataZakonczenia"),
     @NamedQuery(name = "Szkoda.findBySzkodaStatus", query = "SELECT s FROM Szkoda s WHERE s.szkodaStatus = :szkodaStatus"),
@@ -47,10 +50,6 @@ public class Szkoda implements Serializable {
     @Basic(optional = false)
     @Column(name = "szkoda_id")
     private Integer szkodaId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "szkoda_umowa_id_fk")
-    private int szkodaUmowaIdFk;
     @Basic(optional = false)
     @NotNull
     @Column(name = "szkoda_data_zdarzenia")
@@ -69,9 +68,7 @@ public class Szkoda implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "szkoda_typ")
     private String szkodaTyp;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "szkoda_opis")
     private String szkodaOpis;
     @JoinColumn(name = "szkoda_samochod_zastepczy_id_fk", referencedColumnName = "samochod_zastepczy_id")
@@ -80,12 +77,14 @@ public class Szkoda implements Serializable {
     @JoinColumn(name = "szkoda_uczestnik_id_fk", referencedColumnName = "uczestnik_id")
     @ManyToOne
     private Uczestnik szkodaUczestnikIdFk;
-    @JoinColumn(name = "szkoda_wycena_id_fk", referencedColumnName = "wycena_id")
-    @ManyToOne
-    private Wycena szkodaWycenaIdFk;
+    @JoinColumn(name = "szkoda_umowa_id_fk", referencedColumnName = "umowa_id")
+    @ManyToOne(optional = false)
+    private Umowa szkodaUmowaIdFk;
     @JoinColumn(name = "szkoda_zaklad_id_fk", referencedColumnName = "zaklad_id")
     @ManyToOne
     private Zaklad szkodaZakladIdFk;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wycenaSzkodaIdFk")
+    private Collection<Wycena> wycenaCollection;
 
     public Szkoda() {
     }
@@ -94,13 +93,11 @@ public class Szkoda implements Serializable {
         this.szkodaId = szkodaId;
     }
 
-    public Szkoda(Integer szkodaId, int szkodaUmowaIdFk, Date szkodaDataZdarzenia, String szkodaStatus, String szkodaTyp, String szkodaOpis) {
+    public Szkoda(Integer szkodaId, Date szkodaDataZdarzenia, String szkodaStatus, String szkodaTyp) {
         this.szkodaId = szkodaId;
-        this.szkodaUmowaIdFk = szkodaUmowaIdFk;
         this.szkodaDataZdarzenia = szkodaDataZdarzenia;
         this.szkodaStatus = szkodaStatus;
         this.szkodaTyp = szkodaTyp;
-        this.szkodaOpis = szkodaOpis;
     }
 
     public Integer getSzkodaId() {
@@ -109,14 +106,6 @@ public class Szkoda implements Serializable {
 
     public void setSzkodaId(Integer szkodaId) {
         this.szkodaId = szkodaId;
-    }
-
-    public int getSzkodaUmowaIdFk() {
-        return szkodaUmowaIdFk;
-    }
-
-    public void setSzkodaUmowaIdFk(int szkodaUmowaIdFk) {
-        this.szkodaUmowaIdFk = szkodaUmowaIdFk;
     }
 
     public Date getSzkodaDataZdarzenia() {
@@ -175,12 +164,12 @@ public class Szkoda implements Serializable {
         this.szkodaUczestnikIdFk = szkodaUczestnikIdFk;
     }
 
-    public Wycena getSzkodaWycenaIdFk() {
-        return szkodaWycenaIdFk;
+    public Umowa getSzkodaUmowaIdFk() {
+        return szkodaUmowaIdFk;
     }
 
-    public void setSzkodaWycenaIdFk(Wycena szkodaWycenaIdFk) {
-        this.szkodaWycenaIdFk = szkodaWycenaIdFk;
+    public void setSzkodaUmowaIdFk(Umowa szkodaUmowaIdFk) {
+        this.szkodaUmowaIdFk = szkodaUmowaIdFk;
     }
 
     public Zaklad getSzkodaZakladIdFk() {
@@ -189,6 +178,15 @@ public class Szkoda implements Serializable {
 
     public void setSzkodaZakladIdFk(Zaklad szkodaZakladIdFk) {
         this.szkodaZakladIdFk = szkodaZakladIdFk;
+    }
+
+    @XmlTransient
+    public Collection<Wycena> getWycenaCollection() {
+        return wycenaCollection;
+    }
+
+    public void setWycenaCollection(Collection<Wycena> wycenaCollection) {
+        this.wycenaCollection = wycenaCollection;
     }
 
     @Override
@@ -213,7 +211,7 @@ public class Szkoda implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.model.Szkoda[ szkodaId=" + szkodaId + " ]";
+        return "ubezpieczalnia.entities.Szkoda[ szkodaId=" + szkodaId + " ]";
     }
     
 }

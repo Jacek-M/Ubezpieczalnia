@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author layfl
+ * @author Jacek
  */
 @Entity
 @Table(name = "konto")
@@ -147,7 +147,7 @@ public class Konto implements Serializable {
 
     @Override
     public String toString() {
-        return "ubezpieczalnia.model.Konto[ kontoId=" + kontoId + " ]";
+        return "ubezpieczalnia.entities.Konto[ kontoId=" + kontoId + " ]";
     }
     
 }

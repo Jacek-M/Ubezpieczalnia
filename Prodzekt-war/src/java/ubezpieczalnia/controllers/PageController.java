@@ -7,6 +7,7 @@ package ubezpieczalnia.controllers;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -15,9 +16,13 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class PageController {
-    
-    public String getPage(String page){
-        return  page + "?faces-redirect=true";
+
+    public String getPage(String page) {
+        return page + "?faces-redirect=true";
     }
-    
+
+    public void noPermission() {
+        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "index.xhtml?faces-redirect=true");
+    }
+
 }
