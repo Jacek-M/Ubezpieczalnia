@@ -28,12 +28,16 @@ public class KontoEJB {
         TypedQuery<Konto> query = em.createNamedQuery("Konto.findAll", Konto.class);
         return query.getResultList();
     }
-    
+
     public Konto checkoutLogin(String login, String pass) throws Exception {
-        List<Konto> query = em.createNamedQuery("Konto.checkoutLogin", Konto.class).setParameter("kontoLogin", login).setParameter("kontoHaslo", pass).getResultList();
-        if(query.get(0) != null) {
-            return query.get(0);
+        if (login == null || pass == null || login.length() <= 0 || pass.length() <= 0) {
+            return null;
         }
-        else throw new Exception("login error");
+        List<Konto> query = em.createNamedQuery("Konto.checkoutLogin", Konto.class).setParameter("kontoLogin", login).setParameter("kontoHaslo", pass).getResultList();
+        if (query.get(0) != null) {
+            return query.get(0);
+        } else {
+            throw new Exception("login error");
+        }
     }
 }

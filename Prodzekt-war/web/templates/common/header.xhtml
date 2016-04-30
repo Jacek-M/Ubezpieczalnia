@@ -21,7 +21,9 @@
                         <c:if test="#{loginController.checkPermission() == 'Super'}">
                             <li><h:link value="Admin" outcome="#{pageController.getPage('admin.xhtml')}"/></li>
                         </c:if>
-                        <li style="float:right"><h:link value="Wyloguj" outcome="#{pageController.getPage('login.xhtml')}"/></li>
+                        <li style="float:right">
+                            <h:link value ="Wyloguj" outcome="#{pageController.getPageParams('login.xhtml', 'faces-redirect=true&amp;logout=true')}"/>
+                        </li>
                     </c:if>
                 </ul>
             </div>

@@ -5,7 +5,6 @@
  */
 package ubezpieczalnia.controllers;
 
-import Utils.SessionManager;
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -19,8 +18,36 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class PageController {
 
+    private static String[] pages = {
+        "index.xhtml", "contact.xhtml", "offer.xhtml", "crud.xhtml", "login.xhtml", "admin.xhtml"
+    };
+    
+    public static boolean isPageExist(String page) {
+        for (String tmp : pages) {
+            if (tmp.equals(page)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String getPage(String page) {
-        return page + "?faces-redirect=true";
+        if (isPageExist(page)) {
+            return (page + "?faces-redirect=true");
+        }
+        return "index.xhtml?faces-redirect=true";
+    }
+
+    public String getPageParams(String page, String params) {
+        StringBuilder pageUrlBuilder = new StringBuilder();
+        pageUrlBuilder.append(page);
+        pageUrlBuilder.append("?");
+        pageUrlBuilder.append(params);
+
+        if (isPageExist(page)) {
+            return pageUrlBuilder.toString();
+        }
+        return "index.xhtml?faces-redirect=true";
     }
 
     public void redirect(String url) {
