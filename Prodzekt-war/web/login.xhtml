@@ -10,27 +10,26 @@
         <ui:composition template="templates/pageTemplate.xhtml">
             <ui:define name="content">
                 <div class="login">
-
                     <h1>Logowanie</h1>
                     <br/>
                     
-                    <h:panelGroup rendered="#{konto!=null}">
+                    <h:panelGroup rendered="#{loginController.checkLogged() == true}">
                         #{loginController.logout()}
                     </h:panelGroup>
 
-                    <h:panelGroup rendered="#{konto==null}">
+                    <h:panelGroup rendered="#{loginController.checkLogged() == false}">
                         <h:form id="loginForm">
                             <h:outputLabel style="margin-right: 20px" value="Login:" />
-                            <h:inputText value="#{loginController.username}" />
+                            <h:inputText id="kontoLogin" value="#{loginController.konto.kontoLogin}"/>
                             <br />
                             <h:outputLabel style="margin-right: 20px" value="Hasło:" />
-                            <h:inputSecret value="#{loginController.password}"></h:inputSecret>
+                            <h:inputText id="kontoHaslo" value="#{loginController.konto.kontoHaslo}"/>
                             <br /><br />
-                            <h:commandButton value="Zaloguj" action="#{loginController.login}"></h:commandButton>
+                            <h:commandButton value="Wyślij" action="#{loginController.login()}"/>
                         </h:form>
-                        <h:panelGroup rendered="#{LoginError!=null}">
+                        <h:panelGroup rendered="#{LOGIN_ERROR != null}">
                             <br/>
-                            <h2>Błędne hasło lub login</h2>
+                            <h2><h:outputLabel value="#{loginController.error}"/></h2>
                         </h:panelGroup>
                     </h:panelGroup>
                 </div>

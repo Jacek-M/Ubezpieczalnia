@@ -7,7 +7,6 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <body>
         <ui:composition>
-            
             <div class="menu">
                 <ul>
                     <li><h:link value="Index" outcome="#{pageController.getPage('index.xhtml')}"/></li>
@@ -15,11 +14,11 @@
                     <li><h:link value="Oferta" outcome="#{pageController.getPage('offer.xhtml')}"/></li>
                     <li><h:link value="Crud" outcome="#{pageController.getPage('crud.xhtml')}"/></li>
 
-                    <c:if test="#{konto==null}">
+                    <c:if test="#{loginController.checkLogged() == false}">
                         <li style="float:right"><h:link value="Zaloguj" outcome="#{pageController.getPage('login.xhtml')}"/></li>
                     </c:if>
-                    <c:if test="#{konto!=null}">
-                        <c:if test="#{permission=='Super'}">
+                    <c:if test="#{loginController.checkLogged() == true}">
+                        <c:if test="#{loginController.checkPermission() == 'Super'}">
                             <li><h:link value="Admin" outcome="#{pageController.getPage('admin.xhtml')}"/></li>
                         </c:if>
                         <li style="float:right"><h:link value="Wyloguj" outcome="#{pageController.getPage('login.xhtml')}"/></li>

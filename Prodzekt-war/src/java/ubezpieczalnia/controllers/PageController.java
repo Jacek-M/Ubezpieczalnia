@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.controllers;
 
+import Utils.SessionManager;
+import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -21,8 +23,9 @@ public class PageController {
         return page + "?faces-redirect=true";
     }
 
-    public void noPermission() {
-        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "index.xhtml?faces-redirect=true");
+    public void redirect(String url) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        NavigationHandler myNav = facesContext.getApplication().getNavigationHandler();
+        myNav.handleNavigation(facesContext, null, getPage(url));
     }
-
 }

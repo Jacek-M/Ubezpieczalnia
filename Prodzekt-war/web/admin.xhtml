@@ -13,8 +13,8 @@
 
         <ui:composition template="templates/pageTemplate.xhtml">
             <ui:define name="content">
-                <c:if test="#{permission!='Super'}">
-                    #{pageController.noPermission()};
+                <c:if test="#{loginController.checkPermission() != 'Super'}">
+                    #{pageController.redirect('login.xhtml')}
                 </c:if>
                 
 
@@ -29,8 +29,7 @@
                     </div>
                     <div class="contentAdmin">
                         Panel Admina
-                        <h:outputText value="#{permission}"/>
-
+                        <h:outputText value="#{loginController.checkPermission()}"/>
                     </div>
                 </div>
             </ui:define>
