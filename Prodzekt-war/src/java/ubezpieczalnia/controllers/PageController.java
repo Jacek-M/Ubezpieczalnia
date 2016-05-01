@@ -18,8 +18,9 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class PageController {
 
-    private static String[] pages = {
-        "index.xhtml", "contact.xhtml", "offer.xhtml", "crud.xhtml", "login.xhtml", "admin.xhtml"
+    private static final String[] pages = {
+        "index.xhtml", "contact.xhtml", "offer.xhtml", "crud.xhtml", "login.xhtml", "admin.xhtml",
+        "register.xhtml"
     };
     
     public static boolean isPageExist(String page) {
@@ -31,14 +32,14 @@ public class PageController {
         return false;
     }
 
-    public String getPage(String page) {
+    public static String getPage(String page) {
         if (isPageExist(page)) {
             return (page + "?faces-redirect=true");
         }
         return "index.xhtml?faces-redirect=true";
     }
 
-    public String getPageParams(String page, String params) {
+    public static String getPageParams(String page, String params) {
         StringBuilder pageUrlBuilder = new StringBuilder();
         pageUrlBuilder.append(page);
         pageUrlBuilder.append("?");
@@ -50,7 +51,7 @@ public class PageController {
         return "index.xhtml?faces-redirect=true";
     }
 
-    public void redirect(String url) {
+    public static void redirect(String url) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         NavigationHandler myNav = facesContext.getApplication().getNavigationHandler();
         myNav.handleNavigation(facesContext, null, getPage(url));

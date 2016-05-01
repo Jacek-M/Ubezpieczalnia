@@ -40,10 +40,6 @@ public class LoginController implements Serializable {
         return SessionManager.getObjectFromSession("logged") != null;
     }
 
-    public String getError() {
-        return (String) SessionManager.removeObjectFromSession("LOGIN_ERROR");
-    }
-
     public String checkPermission() {
         String permissions = (String) SessionManager.getObjectFromSession("permission");
         if (permissions != null) {
@@ -81,11 +77,7 @@ public class LoginController implements Serializable {
 
     public void logout() {
         if (SessionManager.getObjectFromSession("logged") != null) {
-
             SessionManager.destroySession();
-            SessionManager.redirect("login.xhtml?faces-redirect=true");
-
         }
     }
-
 }

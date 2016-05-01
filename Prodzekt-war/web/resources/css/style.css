@@ -194,8 +194,29 @@
     text-align: left;
 }
 
-
 /*************contact***************/
+
+
+/*************register*************/
+
+.register {
+    text-align: center;
+    font-family: sansation-light;
+}
+.register h2 {
+    color: rgb(84, 84, 84);
+    font-weight: bolder;
+    font-size: 2.5em;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
+    padding-bottom: 0.5em;
+}
+
+
+/*************END register*************/
+
+
 .login{
     font-family: sansation-light;
     font-size: 1.5em;

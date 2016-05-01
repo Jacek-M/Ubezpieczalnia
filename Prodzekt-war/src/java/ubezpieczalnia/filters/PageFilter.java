@@ -25,8 +25,10 @@ public class PageFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String uri = ((HttpServletRequest) request).getRequestURI();
         String[] uris = uri.split("/");
+        String splitPattern = "\\?";
+        String[] finalUris = uris[uris.length - 1].split(splitPattern);
         
-        if (!PageController.isPageExist(uris[uris.length - 1])) {
+        if (!PageController.isPageExist(finalUris[0])) {
             ((HttpServletResponse) response).sendRedirect("/Prodzekt-war/faces/index.xhtml?faces-redirect=true");
         }
         else chain.doFilter(request, response);

@@ -24,7 +24,7 @@ public class KontoEJB {
     @PersistenceContext(unitName = "Prodzekt-ejbPU")
     private EntityManager em;
 
-    public List<Konto> findKonto() {
+    public List<Konto> findKonta() {
         TypedQuery<Konto> query = em.createNamedQuery("Konto.findAll", Konto.class);
         return query.getResultList();
     }
@@ -40,4 +40,10 @@ public class KontoEJB {
             throw new Exception("login error");
         }
     }
+
+    public Konto addNewKonto(Konto konto) {
+        em.persist(konto);
+        return konto;
+    }
+
 }

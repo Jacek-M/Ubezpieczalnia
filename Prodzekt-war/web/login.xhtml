@@ -10,15 +10,21 @@
     <h:body>
         <ui:composition template="templates/pageTemplate.xhtml">
             <ui:define name="content">
+
+                <h:panelGroup rendered="#{loginController.checkLogged() == true}">
+                    <c:if test="#{loginController.checkParam('logout') == true}">
+                        #{loginController.logout()}
+                        #{pageController.redirect('login.xhtml')}
+                    </c:if>
+                    <c:if test="#{loginController.checkParam('logout') != true}">
+                        #{pageController.redirect('index.xhtml')}
+                    </c:if>
+                </h:panelGroup>
+
+
                 <div class="login">
                     <h1>Logowanie</h1>
                     <br/>
-                    <h:panelGroup rendered="#{loginController.checkLogged() == true}">
-                        <c:if test="#{loginController.checkParam('logout')== true}">
-                            #{loginController.logout()}
-                        </c:if>
-                        #{pageController.redirect('index.xhtml')}
-                    </h:panelGroup>
 
                     <h:panelGroup rendered="#{loginController.checkLogged() == false}">
                         <h:form id="loginForm">
@@ -30,9 +36,9 @@
                             <br /><br />
                             <h:commandButton value="Wyślij" action="#{loginController.login()}"/>
                         </h:form>
-                        <h:panelGroup rendered="#{LOGIN_ERROR != null}">
+                        <h:panelGroup rendered="#{errorController.hasError('LOGIN_ERROR') == true}">
                             <br/>
-                            <h2><h:outputLabel value="#{loginController.error}"/></h2>
+                            <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
                         </h:panelGroup>
                     </h:panelGroup>
                 </div>

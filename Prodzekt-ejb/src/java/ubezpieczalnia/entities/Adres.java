@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Adres.findByAdresMiejscowosc", query = "SELECT a FROM Adres a WHERE a.adresMiejscowosc = :adresMiejscowosc"),
     @NamedQuery(name = "Adres.findByAdresKodPocztowy", query = "SELECT a FROM Adres a WHERE a.adresKodPocztowy = :adresKodPocztowy"),
     @NamedQuery(name = "Adres.findByAdresPoczta", query = "SELECT a FROM Adres a WHERE a.adresPoczta = :adresPoczta"),
-    @NamedQuery(name = "Adres.findByAdresTelefon", query = "SELECT a FROM Adres a WHERE a.adresTelefon = :adresTelefon")})
+    @NamedQuery(name = "Adres.findByAdresTelefon", query = "SELECT a FROM Adres a WHERE a.adresTelefon = :adresTelefon"),
+    @NamedQuery(name = "Adres.findAdresByCityAdnStreet", query = "SELECT a FROM Adres a where a.adresUlica = :adresUlica AND a.adresMiejscowosc = :adresMiejscowosc AND a.adresKodPocztowy = :adresKodPocztowy")})
 public class Adres implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

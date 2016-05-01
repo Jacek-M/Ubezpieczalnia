@@ -10,37 +10,35 @@ import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import ubezpieczalnia.entities.Adres;
+
 /**
  *
  * @author layfl
  */
 @Stateless
 @LocalBean
-public class AdresEJB {
-   
+public class AdresEJB extends AbstractModel<Adres> {
+    
     @PersistenceContext(unitName = "Prodzekt-ejbPU")
-    private EntityManager em; 
+    private EntityManager em;
     
+    public AdresEJB() {
+        super(Adres.class);
+    }
     
-    public List<Adres> findAdresy() {
-        TypedQuery<Adres> query = em.createNamedQuery("Adres.findAll", Adres.class);
-        return query.getResultList();
+    public List<Adres> findAllAdres() {
+        
+        return super.findAll();
     }
     
     public Adres findAdresById(int id) throws Exception {
-        List<Adres> query = em.createNamedQuery("Adres.findByAdresId", Adres.class).setParameter("adresId", id).getResultList();
-        if(query.get(0) != null) {
-            return query.get(0);
-        }
-        else throw new Exception("SIALALA");
+        return super.findById(id);
     }
-    
-    
-    public Adres addNewAdres(Adres adr) {
-        em.persist(adr);
-        return adr;
+
+
+    @Override
+    public void update(Adres object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

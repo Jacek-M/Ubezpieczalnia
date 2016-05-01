@@ -21,7 +21,7 @@ import ubezpieczalnia.model.AdresEJB;
  */
 @ManagedBean
 @RequestScoped
-public class AdresController {
+public class AdresController extends AbstractController<Adres> {
 
     @EJB
     private AdresEJB adresEJB;
@@ -37,13 +37,8 @@ public class AdresController {
         this.adres = adres;
     }
 
-    public String addAdress() {
-        adresEJB.addNewAdres(this.adres);
-        return "crud.xhtml?faces-redirect=true";
-    }
-
     public List<Adres> getAdresList() {
-        adresList = adresEJB.findAdresy();
+        adresList = adresEJB.findAll();
         return adresList;
     }
 
@@ -58,6 +53,11 @@ public class AdresController {
             Logger.getLogger(AdresController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "crud.xhtml";
+    }
+
+    public String addAdress() {
+        adresEJB.addNew(this.adres);
+        return PageController.getPage("crud.xhtml");
     }
 
 }

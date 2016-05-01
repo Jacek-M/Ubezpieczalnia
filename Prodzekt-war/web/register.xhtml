@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/pageTemplate.xhtml">
+            <ui:define name="content">
+
+                <h:panelGroup rendered="#{loginController.checkLogged() == true}">
+                    #{pageController.redirect("index.xhtml")}
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{errorController.hasError('REGISER_ERROR') == true}">
+                    <br/>
+                    ERROR_REGISTER:
+                    <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
+                </h:panelGroup>
+
+
+                <div class="register">
+                    <h2> REJESTRACJA </h2>
+                    <div class="registeBox">
+                        <h:form id="registerForm">
+                            <h:outputLabel  value="Login: " />
+                            <h:inputText id="kontoLogin" value="#{registerController.konto.kontoLogin}"/>
+                            <br />
+                            <h:outputLabel  value="Hasło: " />
+                            <h:inputText id="kontoHaslo" value="#{registerController.konto.kontoHaslo}"/>
+                            <br />
+                            <h:outputLabel  value="Imię: " />
+                            <h:inputText id="imie" value="#{registerController.klient.klientImie}"/>
+                            <br />
+                            <h:outputLabel  value="Nazwisko: " />
+                            <h:inputText id="nazwisko" value="#{registerController.klient.klientNazwisko}"/>
+                            <br />
+                            <h:outputLabel  value="Miejscowość: " />
+                            <h:inputText id="miasto" value="#{adresController.adres.adresMiejscowosc}"/>
+                            <br />
+                            <h:outputLabel  value="Ulica: " />
+                            <h:inputText id="ulica" value="#{adresController.adres.adresUlica}"/>
+                            <br />
+                            <h:outputLabel  value="Kod pocztowy: " />
+                            <h:inputText id="kodPocztowy" value="#{adresController.adres.adresKodPocztowy}"/>
+                            <br />
+                            <h:outputLabel  value="Poczta " />
+                            <h:inputText id="poczta" value="#{adresController.adres.adresPoczta}"/>
+                            <br />
+                            <br />
+                            <h:commandButton value="Zarejestruj" action="#{loginController.register()}"/>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
