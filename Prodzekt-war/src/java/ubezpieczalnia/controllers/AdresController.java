@@ -42,9 +42,7 @@ public class AdresController implements AbstractController<Adres> {
         return adresList;
     }
 
-    
-    
-    public String findAdresByCityAndStreet(){
+    public String findAdresByCityAndStreet() {
         try {
             this.adres = adresEJB.findByCityAndStreet(this.adres.getAdresUlica(), this.adres.getAdresMiejscowosc(), this.adres.getAdresKodPocztowy());
         } catch (Exception ex) {

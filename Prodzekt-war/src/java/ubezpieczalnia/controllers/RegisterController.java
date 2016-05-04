@@ -25,7 +25,7 @@ import ubezpieczalnia.utils.SessionManager;
  */
 @ManagedBean
 @RequestScoped
-public class RegisterController {
+public class RegisterController implements AbstractController<Klient> {
 
     @ManagedProperty(value = "#{adresController}")
     private AdresController adresController;
@@ -71,15 +71,7 @@ public class RegisterController {
         this.klient = klient;
     }
 
-    public List<Klient> findAllKlienci() {
-        klienci = klientEJB.findAll();
-        return klienci;
-    }
 
-    public Klient findKlientById(int id) throws Exception {
-        klient = klientEJB.findById(id);
-        return klient;
-    }
 
     public String registerAccount() {
         Konto konto = loginController.getKonto();
@@ -109,5 +101,41 @@ public class RegisterController {
         }
         SessionManager.addToSession("REGISTER_ERROR", "Błąd podczas rejestracji");
         return PageController.getPage("register.xhtml");
+    }
+
+    @Override
+    public List<Klient> findAll() {
+        klienci = klientEJB.findAll();
+        return klienci;
+    }
+
+    @Override
+    public Klient findById() throws Exception {
+        klient = klientEJB.findById(this.klient.getKlientId());
+        return klient;
+    }
+
+    @Override
+    public String addNew() {
+        return PageController.getCurrentUrl();
+    }
+
+    @Override
+    public String update() {
+        return PageController.getCurrentUrl();
+    }
+
+    @Override
+    public String delete() {
+        
+        
+        
+        loginController.setKonto(klient.getKlientKontoIdFk());
+        adresController.setAdres(klient.getKlientAdresIdFk());
+        
+        loginController.delete();
+        adresController.delete();
+        klientEJB.delete(this.klient);
+        return PageController.getCurrentUrl();
     }
 }

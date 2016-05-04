@@ -17,6 +17,7 @@ public class SessionManager {
     private static ExternalContext context = null;
 
     public static ExternalContext getContext() {
+        initSession();
         return context;
     }
 
