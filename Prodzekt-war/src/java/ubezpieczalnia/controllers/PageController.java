@@ -20,22 +20,24 @@ public class PageController {
 
     private static final String[] pages = {
         "index.xhtml", "contact.xhtml", "offer.xhtml", "crud.xhtml", "login.xhtml", "admin.xhtml",
-        "register.xhtml"
+        "register.xhtml", "employees.xhtml", "insurance.xhtml"
     };
     
     public static boolean isPageExist(String page) {
-        for (String tmp : pages) {
-            if (tmp.equals(page)) {
-                return true;
-            }
-        }
-        return false;
+//        for (String tmp : pages) {
+//            if (tmp.equals(page)) {
+//                return true;
+//            }
+//        }
+//        return false;
+        return true;
     }
 
     public static String getPage(String page) {
         if (isPageExist(page)) {
             return (page + "?faces-redirect=true");
         }
+        System.out.println(page);
         return "index.xhtml?faces-redirect=true";
     }
 

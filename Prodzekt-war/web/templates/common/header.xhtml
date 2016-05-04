@@ -9,21 +9,23 @@
         <ui:composition>
             <div class="menu">
                 <ul>
-                    <li><h:link value="Index" outcome="#{pageController.getPage('index.xhtml')}"/></li>
-                    <li><h:link value="Kontakt" outcome="#{pageController.getPage('contact.xhtml')}"/></li>
-                    <li><h:link value="Oferta" outcome="#{pageController.getPage('offer.xhtml')}"/></li>
-                    <li><h:link value="Crud" outcome="#{pageController.getPage('crud.xhtml')}"/></li>
+                    <li><h:link value="Index" outcome="#{pageController.getPage('/index.xhtml')}"/></li>
+                    <li><h:link value="Kontakt" outcome="#{pageController.getPage('/contact.xhtml')}"/></li>
+                    <li><h:link value="Oferta" outcome="#{pageController.getPage('/offer.xhtml')}"/></li>
+                    <!--<li><h:link value="Crud" outcome="#{pageController.getPage('/crud.xhtml')}"/></li>-->
 
                     <c:if test="#{loginController.checkLogged() == false}">
-                        <li style="float:right"><h:link value="Rejestracja" outcome="#{pageController.getPage('register.xhtml')}"/></li>
-                        <li style="float:right"><h:link value="Zaloguj" outcome="#{pageController.getPage('login.xhtml')}"/></li>
+                        <li style="float:right"><h:link value="Rejestracja" outcome="#{pageController.getPage('/register.xhtml')}"/></li>
+                        <li style="float:right"><h:link value="Zaloguj" outcome="#{pageController.getPage('/login.xhtml')}"/></li>
                     </c:if>
                     <c:if test="#{loginController.checkLogged() == true}">
+                        <li><h:link value="Klient" outcome="#{pageController.getPage('/customerPages/insurance.xhtml')}"/></li>
+                        
                         <c:if test="#{loginController.checkPermission() == 'Super'}">
-                            <li><h:link value="Admin" outcome="#{pageController.getPage('admin.xhtml')}"/></li>
+                            <li><h:link value="Admin" outcome="#{pageController.getPage('/adminPages/employees.xhtml')}"/></li>
                         </c:if>
                         <li style="float:right">
-                            <h:link value ="Wyloguj" outcome="#{pageController.getPageParams('login.xhtml', 'faces-redirect=true&amp;logout=true')}"/>
+                            <h:link value ="Wyloguj" outcome="#{pageController.getPageParams('/login.xhtml', 'faces-redirect=true&amp;logout=true')}"/>
                         </li>
                     </c:if>
                 </ul>
