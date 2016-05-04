@@ -9,6 +9,8 @@ import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import ubezpieczalnia.utils.SessionManager;
 
 /**
  *
@@ -19,13 +21,15 @@ import javax.faces.context.FacesContext;
 public class PageController {
 
     private static final String[] pages = {
-        "index.xhtml", "contact.xhtml", "offer.xhtml", "crud.xhtml", "login.xhtml", "admin.xhtml",
-        "register.xhtml"
+        "/index.xhtml", "/contact.xhtml", "/offer.xhtml", "/crud.xhtml", "/login.xhtml", "/admin.xhtml",
+        "/register.xhtml", "/admin/test.xhtml"
     };
     
     public static boolean isPageExist(String page) {
+        System.out.println("page= " + page);
         for (String tmp : pages) {
             if (tmp.equals(page)) {
+                System.out.println("PAGE EXIST");
                 return true;
             }
         }
@@ -49,6 +53,11 @@ public class PageController {
             return pageUrlBuilder.toString();
         }
         return "index.xhtml?faces-redirect=true";
+    }
+    
+    public static String getCurrentUrl() {
+        HttpServletRequest req = (HttpServletRequest)SessionManager.getContext().getRequest();
+        return req.getRequestURI();
     }
 
     public static void redirect(String url) {
