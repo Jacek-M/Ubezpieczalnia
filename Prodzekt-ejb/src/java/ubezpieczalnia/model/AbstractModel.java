@@ -47,20 +47,22 @@ public abstract class AbstractModel<T> {
         TypedQuery<T> queryResult = em.createNamedQuery(query, (Class<T>) objectClass.getClass()).setParameter(paramName, id);
         if (queryResult.getResultList().get(0) != null) {
             return queryResult.getResultList().get(0);
-        } else {
-            throw new Exception("Cannot find " + objectClass.getClass().getSimpleName() + " with id = " + id);
         }
+        throw new Exception("Cannot find " + objectClass.getClass().getSimpleName() + "with id = " + id);
     }
 
     public void addNew(T object) {
         em.persist(object);
     }
 
-    /***
-     * Update abstract bo każda klasa ma inne pola i nie wiadomo jakie chcemy zmienić
-     * @param object 
+    /**
+     * *
+     * Update abstract bo każda klasa ma inne pola i nie wiadomo jakie chcemy
+     * zmienić
+     *
+     * @param object
      */
-    public abstract void update(T object); 
+    public abstract void update(T object);
 
     public void delete(T object) {
         em.remove(object);

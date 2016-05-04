@@ -21,7 +21,7 @@ import ubezpieczalnia.model.AdresEJB;
  */
 @ManagedBean
 @RequestScoped
-public class AdresController extends AbstractController<Adres> {
+public class AdresController implements AbstractController<Adres> {
 
     @EJB
     private AdresEJB adresEJB;
@@ -42,21 +42,43 @@ public class AdresController extends AbstractController<Adres> {
         return adresList;
     }
 
-    public String findAdresById() {
-        Adres adr;
+    
+    
+    public String findAdresByCityAndStreet(){
         try {
-            adr = adresEJB.findAdresById(this.adres.getAdresId());
-            if (adr != null) {
-                this.adres = adr;
-            }
+            this.adres = adresEJB.findByCityAndStreet(this.adres.getAdresUlica(), this.adres.getAdresMiejscowosc(), this.adres.getAdresKodPocztowy());
         } catch (Exception ex) {
             Logger.getLogger(AdresController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "crud.xhtml";
+        return "";
     }
 
-    public String addAdress() {
+    @Override
+    public List<Adres> findAll() {
+        this.adresList = adresEJB.findAll();
+        return adresList;
+    }
+
+    @Override
+    public Adres findById() throws Exception {
+        this.adres = adresEJB.findById(this.adres.getAdresId());
+        return adres;
+    }
+
+    @Override
+    public String addNew() {
         adresEJB.addNew(this.adres);
+        return PageController.getPage("crud.xhtml");
+    }
+
+    @Override
+    public String update() {
+        return PageController.getPage("crud.xhtml");
+    }
+
+    @Override
+    public String delete() {
+        adresEJB.delete(this.adres);
         return PageController.getPage("crud.xhtml");
     }
 

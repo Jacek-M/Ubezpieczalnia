@@ -14,9 +14,8 @@
                     #{pageController.redirect("index.xhtml")}
                 </h:panelGroup>
 
-                <h:panelGroup rendered="#{errorController.hasError('REGISER_ERROR') == true}">
+                <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
                     <br/>
-                    ERROR_REGISTER:
                     <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
                 </h:panelGroup>
 
@@ -26,10 +25,10 @@
                     <div class="registeBox">
                         <h:form id="registerForm">
                             <h:outputLabel  value="Login: " />
-                            <h:inputText id="kontoLogin" value="#{registerController.konto.kontoLogin}"/>
+                            <h:inputText id="kontoLogin" value="#{registerController.loginController.konto.kontoLogin}"/>
                             <br />
                             <h:outputLabel  value="Hasło: " />
-                            <h:inputText id="kontoHaslo" value="#{registerController.konto.kontoHaslo}"/>
+                            <h:inputText id="kontoHaslo" value="#{registerController.loginController.konto.kontoHaslo}"/>
                             <br />
                             <h:outputLabel  value="Imię: " />
                             <h:inputText id="imie" value="#{registerController.klient.klientImie}"/>
@@ -38,19 +37,19 @@
                             <h:inputText id="nazwisko" value="#{registerController.klient.klientNazwisko}"/>
                             <br />
                             <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{adresController.adres.adresMiejscowosc}"/>
+                            <h:inputText id="miasto" value="#{registerController.adresController.adres.adresMiejscowosc}"/>
                             <br />
                             <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{adresController.adres.adresUlica}"/>
+                            <h:inputText id="ulica" value="#{registerController.adresController.adres.adresUlica}"/>
                             <br />
                             <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{adresController.adres.adresKodPocztowy}"/>
+                            <h:inputText id="kodPocztowy" value="#{registerController.adresController.adres.adresKodPocztowy}"/>
                             <br />
                             <h:outputLabel  value="Poczta " />
-                            <h:inputText id="poczta" value="#{adresController.adres.adresPoczta}"/>
+                            <h:inputText id="poczta" value="#{registerController.adresController.adres.adresPoczta}"/>
                             <br />
                             <br />
-                            <h:commandButton value="Zarejestruj" action="#{loginController.register()}"/>
+                            <h:commandButton value="Zarejestruj" action="#{registerController.registerAccount()}"/>
                         </h:form>
                     </div>
                 </div>

@@ -5,35 +5,23 @@
  */
 package ubezpieczalnia.controllers;
 
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ManagedBean;
+import java.util.List;
 
 /**
  *
  * @author layfl
  */
-@ManagedBean
-@RequestScoped
-public abstract class AbstractController<T> {
 
-    public T findAll() {
-        return null;
-    }
+public interface AbstractController<T> {
 
-    public T findById(int id) {
-        return null;
-    }
+    public List<T> findAll();
 
-    public void addNew(T object) {
+    public T findById() throws Exception;
 
-    }
+    public String addNew();
 
-    public void update(T object) {
+    public String update();
 
-    }
-
-    public void delete(T object) {
-
-    }
+    public String delete();
 
 }

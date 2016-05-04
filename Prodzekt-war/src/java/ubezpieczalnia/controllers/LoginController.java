@@ -7,7 +7,11 @@ package ubezpieczalnia.controllers;
 
 import ubezpieczalnia.utils.SessionManager;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,6 +28,7 @@ import ubezpieczalnia.model.KontoEJB;
 public class LoginController implements Serializable {
 
     private Konto konto = new Konto();
+    private List<Konto> kontaList = new ArrayList<>();
 
     @EJB
     private KontoEJB kontoEJB;
@@ -34,6 +39,21 @@ public class LoginController implements Serializable {
 
     public void setKonto(Konto konto) {
         this.konto = konto;
+    }
+
+    public List<Konto> findAllKonta() {
+        kontaList = kontoEJB.findAll();
+        return kontaList;
+    }
+
+    public Konto findKondoById(int id) throws Exception {
+        konto = kontoEJB.findById(id);
+        return konto;
+    }
+
+    public Konto addNewKonto() {
+        kontoEJB.addNew(this.konto);
+        return konto;
     }
 
     public boolean checkLogged() {
@@ -48,24 +68,25 @@ public class LoginController implements Serializable {
         return "";
     }
 
+    public Konto findKontoByLoginAndPassword() throws Exception {
+        konto = kontoEJB.checkoutLogin(this.konto.getKontoLogin(), this.konto.getKontoHaslo());
+        return konto;
+    }
+
     public String login() throws Exception {
-        try {
-            if (konto == null) {
-                return "";
-            }
+
+        if (konto != null && konto.getKontoLogin() != null && konto.getKontoHaslo() != null) {
             konto = kontoEJB.checkoutLogin(konto.getKontoLogin(), konto.getKontoHaslo());
             if (konto != null) {
                 if (checkLogged() == false) {
                     SessionManager.addToSession("logged", true);
                     SessionManager.addToSession("permission", konto.getKontoUprawnienia());
                 }
-                return "index.xhtml?faces-redirect=true";
+                return PageController.getPage("index.xhtml");
             }
-        } catch (Exception ex) {
-            SessionManager.addToSession("LOGIN_ERROR", "Błędny login lub hasło");
-            return "login.xhtml?faces-redirect=true";
         }
-        return "index.xhtml?faces-redirect=true";
+        SessionManager.addToSession("LOGIN_ERROR", "Błędny login lub hasło");
+        return PageController.getPage("login.xhtml");
     }
 
     public String checkParam(String param) {

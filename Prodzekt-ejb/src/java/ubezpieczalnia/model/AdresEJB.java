@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import ubezpieczalnia.entities.Adres;
 
 /**
@@ -27,18 +28,19 @@ public class AdresEJB extends AbstractModel<Adres> {
         super(Adres.class);
     }
     
-    public List<Adres> findAllAdres() {
-        
-        return super.findAll();
-    }
-    
-    public Adres findAdresById(int id) throws Exception {
-        return super.findById(id);
-    }
-
-
     @Override
     public void update(Adres object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public Adres findByCityAndStreet(String street, String city, String code) throws Exception  {
+        
+        TypedQuery<Adres> query = em.createNamedQuery("Adres.findAdresByCityAndStreet", Adres.class)
+                .setParameter("adresUlica", street)
+                .setParameter("adresMiejscowosc", city)
+                .setParameter("adresKodPocztowy", code);
+        if(query.getResultList().get(0) != null) {
+            return query.getResultList().get(0);
+        }
+        throw new Exception("Cannot findByCityAndStreet(" + street + "," + city + "," + code + ")");
     }
 }

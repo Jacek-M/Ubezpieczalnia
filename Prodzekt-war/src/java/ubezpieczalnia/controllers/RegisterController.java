@@ -5,18 +5,18 @@
  */
 package ubezpieczalnia.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import ubezpieczalnia.entities.Konto;
-import ubezpieczalnia.entities.Adres;
 import ubezpieczalnia.entities.Klient;
-import ubezpieczalnia.model.AdresEJB;
+import ubezpieczalnia.entities.Konto;
 import ubezpieczalnia.model.KlientEJB;
-import ubezpieczalnia.model.KontoEJB;
 import ubezpieczalnia.utils.SessionManager;
 
 /**
@@ -27,31 +27,40 @@ import ubezpieczalnia.utils.SessionManager;
 @RequestScoped
 public class RegisterController {
 
-    @EJB
-    private AdresEJB adresEJB;
-    @EJB
-    private KontoEJB kontoEJB;
+    @ManagedProperty(value = "#{adresController}")
+    private AdresController adresController;
+
+    @ManagedProperty(value = "#{loginController}")
+    private LoginController loginController;
+
     @EJB
     private KlientEJB klientEJB;
 
-    private Konto konto = new Konto();
-    private Adres adres = new Adres();
     private Klient klient = new Klient();
+    private List<Klient> klienci = new ArrayList<>();
 
-    public Konto getKonto() {
-        return konto;
+    public AdresController getAdresController() {
+        return adresController;
     }
 
-    public void setKonto(Konto konto) {
-        this.konto = konto;
+    public void setAdresController(AdresController adresController) {
+        this.adresController = adresController;
     }
 
-    public Adres getAdres() {
-        return adres;
+    public LoginController getLoginController() {
+        return loginController;
     }
 
-    public void setAdres(Adres adres) {
-        this.adres = adres;
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+
+    public List<Klient> getKlienci() {
+        return klienci;
+    }
+
+    public void setKlienci(List<Klient> klienci) {
+        this.klienci = klienci;
     }
 
     public Klient getKlient() {
@@ -62,30 +71,43 @@ public class RegisterController {
         this.klient = klient;
     }
 
-//    public String registerAccount() {
-//
-//        if (this.konto != null && this.adres != null && this.klient != null) {
-//
-//            try {
-//                this.konto = this.kontoEJB.addNewKonto(this.konto);
-//                this.adres = this.adresEJB.addNewAdres(this.adres);
-//
-//                this.konto = kontoEJB.checkoutLogin(this.konto.getKontoLogin(), this.konto.getKontoHaslo());
-//                this.adres = adresEJB.findAdresByCityAndStreet(this.adres.getAdresMiejscowosc(), this.adres.getAdresUlica(), this.adres.getAdresKodPocztowy());
-//
-//                this.klient.setKlientKontoIdFk(this.konto);
-//                this.klient.setKlientAdresIdFk(this.adres);
-//
-//                this.klient = this.klientEJB.addNewKlient(this.klient);
-//
-//                return PageController.getPage("login.xhtml");
-//
-//            } catch (Exception ex) {
-//                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//        SessionManager.addToSession("REGISTER_ERROR", "Błąd podczas rejestracji. Spróbuj ponownie");
-//        return PageController.getPage("register.xhtml");
-//    }
+    public List<Klient> findAllKlienci() {
+        klienci = klientEJB.findAll();
+        return klienci;
+    }
 
+    public Klient findKlientById(int id) throws Exception {
+        klient = klientEJB.findById(id);
+        return klient;
+    }
+
+    public String registerAccount() {
+        Konto konto = loginController.getKonto();
+        try {
+            loginController.findKontoByLoginAndPassword();
+            SessionManager.addToSession("REGISTER_ERROR", "Błędny login");
+            return PageController.getPage("register.xhtml");
+        } catch (Exception ex) {
+            loginController.setKonto(konto);
+            loginController.getKonto().setKontoUprawnienia("KLIENT");
+            adresController.addNew();
+            loginController.addNewKonto();
+
+            try {
+                loginController.findKontoByLoginAndPassword();
+                adresController.findAdresByCityAndStreet();
+
+                klient.setKlientAdresIdFk(adresController.getAdres());
+                klient.setKlientKontoIdFk(loginController.getKonto());
+
+                klientEJB.addNew(klient);
+                return PageController.getPage("login.xhtml");
+
+            } catch (Exception ex1) {
+                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        SessionManager.addToSession("REGISTER_ERROR", "Błąd podczas rejestracji");
+        return PageController.getPage("register.xhtml");
+    }
 }

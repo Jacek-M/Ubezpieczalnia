@@ -56,8 +56,7 @@
                         <h:outputLabel>Podaj telefon: </h:outputLabel>
                         <h:inputText id="adresTelefon" value="#{adresController.adres.adresTelefon}"/>
                         <br/>
-                        <h:commandButton value="Wyślij" action="#{adresController.addAdress()}"/>
-
+                        <h:commandButton value="Wyślij" action="#{adresController.addNew()}"/>
                     </h:form>
 
 
@@ -65,15 +64,11 @@
                     <h:form id="searchForm">
                         <h:outputLabel>Podaj id: </h:outputLabel>
                         <h:inputText id="adresid" value="#{adresController.adres.adresId}"/>
-                        <h:commandButton value="Wyślij" action="#{adresController.findAdresById()}"/>
+                        <h:commandButton value="Wyślij" action="#{adresController.findById()}"/>
                         <br/>
                     </h:form>
-                    
-                    
+
                     Adres: <h:outputText value="#{adresController.adres.adresMiejscowosc}"/>
-
-                    
-
                 </div>
             </ui:define>
         </ui:composition>

@@ -19,31 +19,31 @@ import ubezpieczalnia.entities.Konto;
  */
 @Stateless
 @LocalBean
-public class KontoEJB {
+public class KontoEJB extends AbstractModel<Konto> {
 
     @PersistenceContext(unitName = "Prodzekt-ejbPU")
     private EntityManager em;
-
-    public List<Konto> findKonta() {
-        TypedQuery<Konto> query = em.createNamedQuery("Konto.findAll", Konto.class);
-        return query.getResultList();
+    
+    public KontoEJB() {
+        super(Konto.class);
     }
 
     public Konto checkoutLogin(String login, String pass) throws Exception {
         if (login == null || pass == null || login.length() <= 0 || pass.length() <= 0) {
             return null;
         }
-        List<Konto> query = em.createNamedQuery("Konto.checkoutLogin", Konto.class).setParameter("kontoLogin", login).setParameter("kontoHaslo", pass).getResultList();
-        if (query.get(0) != null) {
+        List<Konto> query = em.createNamedQuery("Konto.checkoutLogin", Konto.class).
+                setParameter("kontoLogin", login).
+                setParameter("kontoHaslo", pass).getResultList();
+        if (query != null && query.size() > 0 && query.get(0) != null) {
             return query.get(0);
-        } else {
-            throw new Exception("login error");
-        }
+        } 
+        throw new Exception("Cannot find login");
     }
 
-    public Konto addNewKonto(Konto konto) {
-        em.persist(konto);
-        return konto;
+    @Override
+    public void update(Konto object) {
+        
     }
 
 }
