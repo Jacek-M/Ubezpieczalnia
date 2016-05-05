@@ -14,10 +14,10 @@
                 <h:panelGroup rendered="#{loginController.checkLogged() == true}">
                     <c:if test="#{loginController.checkParam('logout') == true}">
                         #{loginController.logout()}
-                        #{pageController.redirect('login.xhtml')}
+                        #{pageController.redirect('/login.xhtml')}
                     </c:if>
                     <c:if test="#{loginController.checkParam('logout') != true}">
-                        #{pageController.redirect('index.xhtml')}
+                        #{pageController.redirect('/index.xhtml')}
                     </c:if>
                 </h:panelGroup>
 

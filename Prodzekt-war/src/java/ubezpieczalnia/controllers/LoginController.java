@@ -72,8 +72,8 @@ public class LoginController implements Serializable, AbstractController<Konto> 
             }
         } catch (Exception ex) {
             Logger.getLogger("EXCEPTIONS").log(Level.WARNING, "Błędne dane logowania dla użytkownika=" + konto.getKontoLogin());
-
         }
+
         SessionManager.addToSession("LOGIN_ERROR", "Błędny login lub hasło");
         return PageController.getPage("/login.xhtml");
     }

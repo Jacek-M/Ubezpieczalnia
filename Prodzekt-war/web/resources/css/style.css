@@ -73,7 +73,7 @@
 /*************content***************/
 #content{
     margin: 10px 3% 0 3%;
-    min-height: 400px;
+    min-height: 500px;
 }
 
 /*************index***************/
@@ -239,16 +239,17 @@
 
 /*************admin***************/
 #content{
-    
+
 }
 #content .menuAdmin, .contentAdmin{
     display: inline-table;
     position: relative;
 }
 #content .menuAdmin {
+    width: 13%;
     margin-right: 10px;
     font-size: 1.3em;
-    
+
 }
 #content .menuAdmin ul {
     list-style-type: none;
@@ -256,7 +257,17 @@
     background-color: #f1f1f1;
     position: static;
     height: 100%;
-   
+
+}
+#content .menuAdmin ul h2{
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-family: sansation-light;
+    padding-bottom: 1%;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
 }
 #content .menuAdmin li a {
     display: block;
@@ -273,18 +284,23 @@
     color: white;
 }
 
+#content .contentAdmin{
+    width: 85%;
+}
+
 /*************customer***************/
 #content{
-    
+
 }
 #content .menuCustomer, .contentCustomer{
     display: inline-table;
     position: relative;
 }
 #content .menuCustomer {
+
     margin-right: 10px;
     font-size: 1.3em;
-    
+
 }
 #content .menuCustomer ul {
     list-style-type: none;
@@ -292,7 +308,7 @@
     background-color: #f1f1f1;
     position: static;
     height: 100%;
-   
+
 }
 #content .menuCustomer li a {
     display: block;
@@ -309,5 +325,93 @@
     color: white;
 }
 
+/*************contentAdmin***************/
+.contentAdmin h1{
+    text-align: center;
+    font-family: sansation-light;
+    padding-bottom: 2%;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
+}
+.contentAdmin #tableALL {
+    padding-top: 10px;
+    border: 0;
+    border-collapse: collapse;
+    width: 100%;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
+
+}
+.contentAdmin #tableALL th, td {
+    text-align: center;
+    font-size: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
+.contentAdmin #tableALL td{
+    font-size: 15px;
+    padding: 3px;
+}
+
+.contentAdmin #tableALL tr:nth-child(even){background-color: #f2f2f2}
+
+.contentAdmin #tableALL th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 3px;
+}
+/***********/
+.contentAdmin #panelAdd table, #panelAdd {
+    padding-top: 2%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dataTables_filter {
+    padding-bottom: 5px;
+}
+
+.table-header {
+    border: solid 1px;
+    position: relative;
+    border-color: rgb(76, 175, 80);
+    background-color: rgb(76, 175, 80);
+    color : white;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.table-header p {
+    margin: 0;
+    padding: 3px 0px 3px 10px;
+}
 
 
+.table-content {
+    border: solid 1px;
+    position: relative;
+    border-color: rgb(76, 175, 80);
+    padding: 10px 0px 10px 0px;
+
+}
+
+.action-cell i {
+    padding: 0px 5px 0px 5px;
+}
+
+.action-cell a, a:active, a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.table-data tr:hover {
+    background-color: #FCF59A;
+}
+
+.contentAdmin #tableALL tr:nth-child(even):hover {
+    background-color: #FCF59A
+}
