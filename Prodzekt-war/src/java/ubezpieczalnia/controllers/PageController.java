@@ -22,7 +22,7 @@ public class PageController {
 
     private static final String[] pages = {
         "/index.xhtml", "/contact.xhtml", "/offer.xhtml", "/crud.xhtml", "/login.xhtml", "/admin.xhtml",
-        "/register.xhtml", "/admin/test.xhtml", "/adminPages/employees.xhtml", "/customerPages/insurance.xhtml"
+        "/register.xhtml", "/admin/test.xhtml", "/adminPages/employees.xhtml", "/customerPages/insurance.xhtml", "/adminPages/employeesAdd.xhtml", "/adminPages/employeesSearch.xhtml"
     };
     
     public static boolean isPageExist(String page) {

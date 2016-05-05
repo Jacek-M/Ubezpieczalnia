@@ -73,7 +73,7 @@
 /*************content***************/
 #content{
     margin: 10px 3% 0 3%;
-    min-height: 400px;
+    min-height: 500px;
 }
 
 /*************index***************/
@@ -246,6 +246,7 @@
     position: relative;
 }
 #content .menuAdmin {
+    width: 13%;
     margin-right: 10px;
     font-size: 1.3em;
     
@@ -257,6 +258,16 @@
     position: static;
     height: 100%;
    
+}
+#content .menuAdmin ul h2{
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-family: sansation-light;
+    padding-bottom: 1%;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
 }
 #content .menuAdmin li a {
     display: block;
@@ -273,6 +284,10 @@
     color: white;
 }
 
+#content .contentAdmin{
+    width: 85%;
+}
+
 /*************customer***************/
 #content{
     
@@ -282,6 +297,7 @@
     position: relative;
 }
 #content .menuCustomer {
+    
     margin-right: 10px;
     font-size: 1.3em;
     
@@ -307,6 +323,50 @@
 #content .menuCustomer li a:hover:not(.active) {
     background-color: #555;
     color: white;
+}
+
+/*************contentAdmin***************/
+.contentAdmin h1{
+    text-align: center;
+    font-family: sansation-light;
+    padding-bottom: 2%;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
+}
+.contentAdmin #tableALL {
+    padding-top: 10px;
+    border: 0;
+    border-collapse: collapse;
+    width: 100%;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
+    
+}
+.contentAdmin #tableALL th, td {
+    text-align: center;
+    padding: 8px;
+}
+.contentAdmin #tableALL th{
+    font-size: 26px;
+    font-family: railway;
+}
+.contentAdmin #tableALL td{
+    font-size: 16px;
+}
+
+.contentAdmin #tableALL tr:nth-child(even){background-color: #f2f2f2}
+
+.contentAdmin #tableALL th {
+    background-color: #4CAF50;
+    color: white;
+}
+/***********/
+.contentAdmin #panelAdd table, #panelAdd {
+    padding-top: 2%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 

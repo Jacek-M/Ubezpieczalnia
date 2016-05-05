@@ -12,8 +12,29 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="employees">
+
+                  <h1>Dodaj nowego pracownika</h1>
+                        
+                  <h:form id="panelAdd">
+                            <h:panelGrid  columns="2">
+                                <h:outputLabel value="AdresId:" for="adresId" />
+                                <h:inputText id="adresId" value="#{adresController.adres.adresId}" title="AdresId" required="true" requiredMessage="The AdresId field is required."/>
+                                <h:outputLabel value="AdresUlica:" for="adresUlica" />
+                                <h:inputText id="adresUlica" value="#{adresController.adres.adresUlica}" title="AdresUlica" />
+                                <h:outputLabel value="AdresMiejscowosc:" for="adresMiejscowosc" />
+                                <h:inputText id="adresMiejscowosc" value="#{adresController.adres.adresMiejscowosc}" title="AdresMiejscowosc" required="true" requiredMessage="The AdresMiejscowosc field is required."/>
+                                <h:outputLabel value="AdresKodPocztowy:" for="adresKodPocztowy" />
+                                <h:inputText id="adresKodPocztowy" value="#{adresController.adres.adresKodPocztowy}" title="AdresKodPocztowy" required="true" requiredMessage="The AdresKodPocztowy field is required."/>
+                                <h:outputLabel value="AdresPoczta:" for="adresPoczta" />
+                                <h:inputText id="adresPoczta" value="#{adresController.adres.adresPoczta}" title="AdresPoczta" required="true" requiredMessage="The AdresPoczta field is required."/>
+                                <h:outputLabel value="AdresTelefon:" for="adresTelefon" />
+                                <h:inputText id="adresTelefon" value="#{adresController.adres.adresTelefon}" title="AdresTelefon" />
+                            </h:panelGrid>
+                            <br/>
+                            <h:commandButton value="Dodaj" action="#{adresController.addNew()}"/>
+                        </h:form>
                     
-                    dodanie
+
                 </div>
             </ui:define>
         </ui:composition>

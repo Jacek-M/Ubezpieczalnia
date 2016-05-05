@@ -12,10 +12,25 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="employees">
-                    <h:link value="Dodaj Pracownika" outcome="#{pageController.getPage('/adminPages/employeesAdd.xhtml')}"/>
+                    <h1> Pracownicy </h1>
                     
+                    <h3> Opcje:</h3>
+                    <h:link value="Dodaj Pracownika" outcome="#{pageController.getPage('/adminPages/employeesAdd.xhtml')}"/>
+                    <br/>
+                    <h:link value="Szukaj Pracownika" outcome="#{pageController.getPage('/adminPages/employeesSearch.xhtml')}"/>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#button").click(function () {
+                                alert("asdasd");
+                            });
+                        });
+                    </script>
+
+                    <h:button id="button" value="test"/>
                     <br/><br/>
-                    <h:dataTable value="#{adresController.adresList}" var="emp"  border="1">
+                    
+                         <h:dataTable id="tableALL" value="#{adresController.adresList}" var="emp"  border="1">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Miejscowosc"/>
@@ -44,15 +59,13 @@
                             <f:facet name="header">
                                 <h:outputText value="Info"/>
                             </f:facet>
-                            <h:commandButton value="Info" action="#{adresController.addNew()}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Usuń"/>
+                                <h:outputText value="Usun"/>
                             </f:facet>
-                            <h:commandButton value="Usuń" action="#{adresController.addNew()}"/>
                         </h:column>
-                     
+
                     </h:dataTable>
                 </div>
             </ui:define>
