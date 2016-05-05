@@ -66,18 +66,18 @@ public class AdresController implements AbstractController<Adres> {
     @Override
     public String addNew() {
         adresEJB.addNew(this.adres);
-        return PageController.getPage("crud.xhtml");
+        return PageController.getCurrentUrl();
     }
 
     @Override
     public String update() {
-        return PageController.getPage("crud.xhtml");
+        return PageController.getCurrentUrl();
     }
 
     @Override
     public String delete() {
         adresEJB.delete(this.adres);
-        return PageController.getPage("crud.xhtml");
+        return PageController.getCurrentUrl();
     }
 
 }

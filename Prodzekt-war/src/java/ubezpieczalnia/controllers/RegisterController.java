@@ -78,12 +78,12 @@ public class RegisterController implements AbstractController<Klient> {
         try {
             loginController.findKontoByLoginAndPassword();
             SessionManager.addToSession("REGISTER_ERROR", "Błędny login");
-            return PageController.getPage("register.xhtml");
+            return PageController.getPage("/register.xhtml");
         } catch (Exception ex) {
             loginController.setKonto(konto);
             loginController.getKonto().setKontoUprawnienia("KLIENT");
             adresController.addNew();
-            loginController.addNewKonto();
+            loginController.addNew();
 
             try {
                 loginController.findKontoByLoginAndPassword();
@@ -93,14 +93,14 @@ public class RegisterController implements AbstractController<Klient> {
                 klient.setKlientKontoIdFk(loginController.getKonto());
 
                 klientEJB.addNew(klient);
-                return PageController.getPage("login.xhtml");
+                return PageController.getPage("/login.xhtml");
 
             } catch (Exception ex1) {
                 Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
         SessionManager.addToSession("REGISTER_ERROR", "Błąd podczas rejestracji");
-        return PageController.getPage("register.xhtml");
+        return PageController.getPage("/register.xhtml");
     }
 
     @Override
@@ -127,8 +127,6 @@ public class RegisterController implements AbstractController<Klient> {
 
     @Override
     public String delete() {
-        
-        
         
         loginController.setKonto(klient.getKlientKontoIdFk());
         adresController.setAdres(klient.getKlientAdresIdFk());

@@ -26,30 +26,25 @@ import ubezpieczalnia.model.KontoEJB;
 @ManagedBean
 @SessionScoped
 public class LoginController implements Serializable, AbstractController<Konto> {
-    
+
     private Konto konto = new Konto();
     private List<Konto> kontaList = new ArrayList<>();
-    
+
     @EJB
     private KontoEJB kontoEJB;
-    
+
     public Konto getKonto() {
         return konto;
     }
-    
+
     public void setKonto(Konto konto) {
         this.konto = konto;
     }
-    
-    public Konto addNewKonto() {
-        kontoEJB.addNew(this.konto);
-        return konto;
-    }
-    
+
     public boolean checkLogged() {
         return SessionManager.getObjectFromSession("logged") != null;
     }
-    
+
     public String checkPermission() {
         String permissions = (String) SessionManager.getObjectFromSession("permission");
         if (permissions != null) {
@@ -57,64 +52,68 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         }
         return "";
     }
-    
+
     public Konto findKontoByLoginAndPassword() throws Exception {
         konto = kontoEJB.checkoutLogin(this.konto.getKontoLogin(), this.konto.getKontoHaslo());
         return konto;
     }
-    
-    public String login() throws Exception {
-        
-        if (konto != null && konto.getKontoLogin() != null && konto.getKontoHaslo() != null) {
-            konto = kontoEJB.checkoutLogin(konto.getKontoLogin(), konto.getKontoHaslo());
-            if (konto != null) {
-                if (checkLogged() == false) {
-                    SessionManager.addToSession("logged", true);
-                    SessionManager.addToSession("permission", konto.getKontoUprawnienia());
+
+    public String login() {
+        try {
+            if (konto != null && konto.getKontoLogin() != null && konto.getKontoHaslo() != null) {
+                konto = kontoEJB.checkoutLogin(konto.getKontoLogin(), konto.getKontoHaslo());
+                if (konto != null) {
+                    if (checkLogged() == false) {
+                        SessionManager.addToSession("logged", true);
+                        SessionManager.addToSession("permission", konto.getKontoUprawnienia());
+                    }
+                    return PageController.getPage("/index.xhtml");
                 }
-                return PageController.getPage("index.xhtml");
             }
+        } catch (Exception ex) {
+            Logger.getLogger("EXCEPTIONS").log(Level.WARNING, "Błędne dane logowania dla użytkownika=" + konto.getKontoLogin());
+
         }
         SessionManager.addToSession("LOGIN_ERROR", "Błędny login lub hasło");
-        return PageController.getPage("login.xhtml");
+        return PageController.getPage("/login.xhtml");
     }
-    
+
     public String checkParam(String param) {
         Map<String, String> params = FacesContext.getCurrentInstance().
                 getExternalContext().getRequestParameterMap();
-        
+
         return params.get(param);
     }
-    
+
     public void logout() {
         if (SessionManager.getObjectFromSession("logged") != null) {
             SessionManager.destroySession();
         }
     }
-    
+
     @Override
     public List<Konto> findAll() {
         kontaList = kontoEJB.findAll();
         return kontaList;
     }
-    
+
     @Override
     public Konto findById() throws Exception {
         konto = kontoEJB.findById(this.konto.getKontoId());
         return konto;
     }
-    
+
     @Override
     public String addNew() {
         kontoEJB.addNew(this.konto);
         return PageController.getCurrentUrl();
     }
-    
+
     @Override
     public String update() {
         return PageController.getCurrentUrl();
     }
-    
+
     @Override
     public String delete() {
         kontoEJB.delete(this.konto);

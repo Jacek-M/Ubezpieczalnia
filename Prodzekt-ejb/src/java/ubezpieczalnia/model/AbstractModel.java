@@ -15,6 +15,7 @@ import javax.persistence.TypedQuery;
 /**
  *
  * @author layfl
+ * @param <T> - klasa z ubezpieczalnia.entities
  */
 public abstract class AbstractModel<T> {
 
@@ -55,13 +56,7 @@ public abstract class AbstractModel<T> {
         em.persist(object);
     }
 
-    /**
-     * *
-     * Update abstract bo każda klasa ma inne pola i nie wiadomo jakie chcemy
-     * zmienić
-     *
-     * @param object
-     */
+
     public abstract void update(T object);
 
     public void delete(T object) {

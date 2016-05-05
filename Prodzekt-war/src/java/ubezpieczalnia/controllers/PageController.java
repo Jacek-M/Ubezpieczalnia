@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.controllers;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -26,10 +28,10 @@ public class PageController {
     };
     
     public static boolean isPageExist(String page) {
-        System.out.println("page= " + page);
+        
+        Logger.getLogger("INFO").log(Level.INFO, "RECIVED PAGE[isPageExist] = " + page);
         for (String tmp : pages) {
             if (tmp.equals(page)) {
-                System.out.println("PAGE EXIST");
                 return true;
             }
         }
@@ -40,8 +42,7 @@ public class PageController {
         if (isPageExist(page)) {
             return (page + "?faces-redirect=true");
         }
-        System.out.println(page);
-        return "index.xhtml?faces-redirect=true";
+        return "/index.xhtml?faces-redirect=true";
     }
 
     public static String getPageParams(String page, String params) {
@@ -53,7 +54,7 @@ public class PageController {
         if (isPageExist(page)) {
             return pageUrlBuilder.toString();
         }
-        return "index.xhtml?faces-redirect=true";
+        return "/index.xhtml?faces-redirect=true";
     }
     
     public static String getCurrentUrl() {
@@ -62,6 +63,7 @@ public class PageController {
     }
 
     public static void redirect(String url) {
+        Logger.getLogger("INFO").log(Level.INFO, url);
         FacesContext facesContext = FacesContext.getCurrentInstance();
         NavigationHandler myNav = facesContext.getApplication().getNavigationHandler();
         myNav.handleNavigation(facesContext, null, getPage(url));

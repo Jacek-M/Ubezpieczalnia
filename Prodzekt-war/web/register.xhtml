@@ -11,7 +11,7 @@
             <ui:define name="content">
 
                 <h:panelGroup rendered="#{loginController.checkLogged() == true}">
-                    #{pageController.redirect("index.xhtml")}
+                    #{pageController.redirect("/index.xhtml")}
                 </h:panelGroup>
 
                 <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">

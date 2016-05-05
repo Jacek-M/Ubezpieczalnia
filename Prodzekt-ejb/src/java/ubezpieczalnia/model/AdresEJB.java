@@ -5,7 +5,6 @@
  */
 package ubezpieczalnia.model;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
