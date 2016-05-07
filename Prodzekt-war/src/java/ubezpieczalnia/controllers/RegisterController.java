@@ -56,6 +56,7 @@ public class RegisterController implements AbstractController<Klient> {
     }
 
     public List<Klient> getKlienci() {
+        findAll();
         return klienci;
     }
 

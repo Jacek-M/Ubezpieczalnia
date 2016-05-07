@@ -6,7 +6,6 @@
 package ubezpieczalnia.controllers;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +14,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import ubezpieczalnia.entities.Klient;
 import ubezpieczalnia.entities.Konto;
 import ubezpieczalnia.entities.Pracownik;
 import ubezpieczalnia.model.PracownikEJB;
@@ -38,6 +36,9 @@ public class PracownikController implements AbstractController<Pracownik> {
     @ManagedProperty(value = "#{oddzialController}")
     private OddzialController oddzialController;
 
+    @ManagedProperty(value = "#{zakladController}")
+    private ZakladController zakladController;
+
     @EJB
     private PracownikEJB pracownikEJB;
 
@@ -51,6 +52,16 @@ public class PracownikController implements AbstractController<Pracownik> {
     public void setOddzialController(OddzialController oddzialController) {
         this.oddzialController = oddzialController;
     }
+
+    public ZakladController getZakladController() {
+        return zakladController;
+    }
+
+    public void setZakladController(ZakladController zakladController) {
+        this.zakladController = zakladController;
+    }
+    
+    
 
     public Pracownik getPracownik() {
         return pracownik;
@@ -93,18 +104,22 @@ public class PracownikController implements AbstractController<Pracownik> {
             return PageController.getCurrentUrl();
         } catch (Exception ex) {
             loginController.setKonto(konto);
-            loginController.getKonto().setKontoUprawnienia("PRACOWNIK");
+            loginController.getKonto().setKontoUprawnienia(this.pracownik.getPracownikTyp());
             adresController.addNew();
             loginController.addNew();
             try {
 
-                if (this.oddzialController.getOddzial().getOddzialId() != null) {
+                if (this.oddzialController.getOddzial().getOddzialId() != null && this.oddzialController.getOddzial().getOddzialId() != -1) {
                     oddzialController.findById();
                     pracownik.setPracownikOddzialIdFk(this.oddzialController.getOddzial());
                     pracownik.setPracownikZakladIdFk(null);
                 }
-
-                // else zaklad
+                
+                else if(this.zakladController.getZaklad().getZakladId() != null && this.zakladController.getZaklad().getZakladId() != -1) {
+                    zakladController.findById();
+                    pracownik.setPracownikZakladIdFk(this.zakladController.getZaklad());
+                    pracownik.setPracownikOddzialIdFk(null);
+                }
                 loginController.findKontoByLoginAndPassword();
                 adresController.findAdresByCityAndStreet();
 

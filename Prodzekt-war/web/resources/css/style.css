@@ -334,30 +334,30 @@
     border-width: 1px;
     border-color: rgb(214, 217, 211);
 }
-.contentAdmin #tableALL {
+.contentAdmin .table-data {
     padding-top: 10px;
     border: 0;
     border-collapse: collapse;
     width: 100%;
-    border-width: 1px;
+    border-width: 0px;
     border-color: rgb(214, 217, 211);
 
 }
-.contentAdmin #tableALL th, td {
+.contentAdmin .table-data th, td {
     text-align: center;
     font-size: 18px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
 }
 
-.contentAdmin #tableALL td{
+.contentAdmin .table-data td{
     font-size: 15px;
     padding: 3px;
 }
 
-.contentAdmin #tableALL tr:nth-child(even){background-color: #f2f2f2}
+.contentAdmin .table-data tr:nth-child(even){background-color: #f2f2f2}
 
-.contentAdmin #tableALL th {
+.contentAdmin .table-data th {
     background-color: #4CAF50;
     color: white;
     padding: 3px;
@@ -417,6 +417,6 @@
     background-color: #FCF59A;
 }
 
-.contentAdmin #tableALL tr:nth-child(even):hover {
+.contentAdmin .table-data tr:nth-child(even):hover {
     background-color: #FCF59A
 }

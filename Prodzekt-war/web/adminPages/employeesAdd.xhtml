@@ -54,6 +54,11 @@
                                 <f:selectItems value="#{oddzialController.oddzialSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                             </h:selectOneMenu>
 
+                            <h:outputLabel  value="Zakład " />
+                            <h:selectOneMenu value="#{pracownikController.zakladController.zaklad.zakladId}">
+                                <f:selectItems value="#{zakladController.zakladSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                            </h:selectOneMenu>
+
                             <h:outputLabel  value="Miejscowość: " />
                             <h:inputText id="miasto" value="#{pracownikController.adresController.adres.adresMiejscowosc}"/>
 

@@ -11,17 +11,15 @@
     <h:body>
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
-                <div class="employees">
-                    <h1> Pracownicy </h1>
-                    <div id="tablePracownicy" class="table-pracownicy">
-                        <h:link id="addWorker" class="add-worker" value="Dodaj pracownika" outcome="#{pageController.getPage('/adminPages/employeesAdd.xhtml')}"/>
-
+                <div class="clients">
+                    <h1> Klienci </h1>
+                    <div id="tableKlienci" class="table-klienci">
                         <div id="tableHeader" class="table-header">
                             <p></p>
                         </div>
 
-                        <div id="tableEmployeeContent" class="table-content">
-                            <h:dataTable id="tableALL" class="table-data" value="#{pracownikController.pracownikList}" var="emp"  border="1">
+                        <div id="tableClientContent" class="table-content">
+                            <h:dataTable id="tableClient" class="table-data" value="#{registerController.klienci}" var="emp"  border="1">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Lp"/>
@@ -32,50 +30,27 @@
                                     <f:facet name="header">
                                         <h:outputText value="Login"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.pracownikKontoIdFk.kontoLogin}"/>
+                                    <h:outputText value="#{emp.klientKontoIdFk.kontoLogin}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Imię"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.pracownikImie}"/>
+                                    <h:outputText value="#{emp.klientImie}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Nazwisko"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.pracownikNazwisko}"/>
+                                    <h:outputText value="#{emp.klientNazwisko}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Typ"/>
+                                        <h:outputText value="% zniżki"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.pracownikTyp}"/>
+                                    <h:outputText value="#{emp.klientProcentZnizki}"/>
                                 </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Wynagrodzenie"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.pracownikWynagrodzenie}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Data zatrudnienia"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.pracownikDataZatrudnienia}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Oddzial"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.pracownikOddzialIdFk.oddzialAdresIdFk.adresMiejscowosc}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Zaklad"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.pracownikZakladIdFk.zakladNazwa}"/>
-                                </h:column>
+
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Akcja"/>

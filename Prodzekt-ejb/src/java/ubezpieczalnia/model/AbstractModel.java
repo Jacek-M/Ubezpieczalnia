@@ -69,7 +69,7 @@ public abstract class AbstractModel<T> {
         String query = simpleName + ".findBy" + simpleName + "Id";
         String paramName = objectClass.getClass().getSimpleName().toLowerCase() + "Id";
         TypedQuery<T> queryResult = em.createNamedQuery(query, (Class<T>) objectClass.getClass()).setParameter(paramName, id);
-        if (queryResult.getResultList().get(0) != null) {
+        if (queryResult.getResultList().size() > 0 && queryResult.getResultList().get(0) != null) {
             return queryResult.getResultList().get(0);
         }
         throw new Exception("Cannot find " + objectClass.getClass().getSimpleName() + "with id = " + id);
