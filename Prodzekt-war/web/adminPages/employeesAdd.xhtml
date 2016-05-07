@@ -12,29 +12,63 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="employees">
+                    <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
+                        <br/>
+                        <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
+                    </h:panelGroup>
 
-                  <h1>Dodaj nowego pracownika</h1>
-                        
-                  <h:form id="panelAdd">
-                            <h:panelGrid  columns="2">
-                                <h:outputLabel value="AdresId:" for="adresId" />
-                                <h:inputText id="adresId" value="#{adresController.adres.adresId}" title="AdresId" required="true" requiredMessage="The AdresId field is required."/>
-                                <h:outputLabel value="AdresUlica:" for="adresUlica" />
-                                <h:inputText id="adresUlica" value="#{adresController.adres.adresUlica}" title="AdresUlica" />
-                                <h:outputLabel value="AdresMiejscowosc:" for="adresMiejscowosc" />
-                                <h:inputText id="adresMiejscowosc" value="#{adresController.adres.adresMiejscowosc}" title="AdresMiejscowosc" required="true" requiredMessage="The AdresMiejscowosc field is required."/>
-                                <h:outputLabel value="AdresKodPocztowy:" for="adresKodPocztowy" />
-                                <h:inputText id="adresKodPocztowy" value="#{adresController.adres.adresKodPocztowy}" title="AdresKodPocztowy" required="true" requiredMessage="The AdresKodPocztowy field is required."/>
-                                <h:outputLabel value="AdresPoczta:" for="adresPoczta" />
-                                <h:inputText id="adresPoczta" value="#{adresController.adres.adresPoczta}" title="AdresPoczta" required="true" requiredMessage="The AdresPoczta field is required."/>
-                                <h:outputLabel value="AdresTelefon:" for="adresTelefon" />
-                                <h:inputText id="adresTelefon" value="#{adresController.adres.adresTelefon}" title="AdresTelefon" />
-                            </h:panelGrid>
-                            <br/>
-                            <h:commandButton value="Dodaj" action="#{adresController.addNew()}"/>
-                        </h:form>
-                    
+                    <h1>Dodaj nowego pracownika</h1>
 
+                    <h:form id="panelAdd">
+                        <h:panelGrid  columns="2">
+
+
+                            <h:outputLabel  value="Login: " />
+                            <h:inputText id="kontoLogin" value="#{pracownikController.loginController.konto.kontoLogin}"/>
+
+                            <h:outputLabel  value="Hasło: " />
+                            <h:inputText id="kontoHaslo" value="#{pracownikController.loginController.konto.kontoHaslo}"/>
+
+                            <h:outputLabel  value="Imię: " />
+                            <h:inputText id="imie" value="#{pracownikController.pracownik.pracownikImie}"/>
+
+                            <h:outputLabel  value="Nazwisko: " />
+                            <h:inputText id="nazwisko" value="#{pracownikController.pracownik.pracownikNazwisko}"/>
+
+                            <h:outputLabel  value="Wynagrodzenie " />
+                            <h:inputText id="wynagrodzenie" value="#{pracownikController.pracownik.pracownikWynagrodzenie}"/>
+
+                            <h:outputLabel  value="Data zatrudnienia: " />
+                            <h:inputText id="dataZatrudnienia" value="#{pracownikController.pracownik.pracownikDataZatrudnienia}">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                            </h:inputText>
+                            <h:outputLabel  value="Uprawnienia: " />
+                            <h:selectOneMenu value="#{pracownikController.pracownik.pracownikTyp}">
+                                <f:selectItem itemValue="Rzeczoznawca" itemLabel="Rzeczoznawca" />
+                                <f:selectItem itemValue="Super" itemLabel="Administrator" />
+                                <f:selectItem itemValue="Konsultant" itemLabel="Konsultant" />
+                            </h:selectOneMenu>
+
+                            <h:outputLabel  value="Oddział " />
+                            <h:selectOneMenu value="#{pracownikController.oddzialController.oddzial.oddzialId}">
+                                <f:selectItems value="#{oddzialController.oddzialSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                            </h:selectOneMenu>
+
+                            <h:outputLabel  value="Miejscowość: " />
+                            <h:inputText id="miasto" value="#{pracownikController.adresController.adres.adresMiejscowosc}"/>
+
+                            <h:outputLabel  value="Ulica: " />
+                            <h:inputText id="ulica" value="#{pracownikController.adresController.adres.adresUlica}"/>
+
+                            <h:outputLabel  value="Kod pocztowy: " />
+                            <h:inputText id="kodPocztowy" value="#{pracownikController.adresController.adres.adresKodPocztowy}"/>
+
+                            <h:outputLabel  value="Poczta " />
+                            <h:inputText id="poczta" value="#{pracownikController.adresController.adres.adresPoczta}"/>
+                        </h:panelGrid>
+
+                        <h:commandButton value="Dodaj nowego pracownika" action="#{pracownikController.registerWorker()}"/>
+                    </h:form>
                 </div>
             </ui:define>
         </ui:composition>

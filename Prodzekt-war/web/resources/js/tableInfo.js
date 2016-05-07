@@ -67,7 +67,6 @@
             $("." + this.content + ' .table-header').html(this.tableName);
         },
         _initActionCell: function () {
-            console.log("_initActionCell");
             $('.action-cell').append(this._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły"));
             $('.action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
 //            $('.action-cell').append(this._createOsomIcon("trashIcon", "trash-icon", "fa fa-trash", "Usuń"));
