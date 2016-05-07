@@ -10,6 +10,14 @@
         <h:outputStylesheet name="style.css" library="css" />
         <h:outputStylesheet name="/bs/css/bootstrap.css" library="css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+
+
+
+        <h:panelGroup rendered="#{loginController.checkLogged() == false}">
+            #{pageController.redirect('/index.xhtml')}
+        </h:panelGroup>
+
+
     </h:head>
 
     <h:body>

@@ -403,9 +403,14 @@
     padding: 0px 5px 0px 5px;
 }
 
-.action-cell a, a:active, a:visited {
+.action-cell a, .action-cell a:active, .action-cell a:visited, .action-cell a:focus {
     text-decoration: none;
     color: black;
+}
+
+.action-cell a:hover {
+    text-decoration: none;
+    color : #66afe9;
 }
 
 .table-data tr:hover {
