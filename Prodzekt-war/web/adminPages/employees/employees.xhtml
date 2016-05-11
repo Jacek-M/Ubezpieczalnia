@@ -13,9 +13,12 @@
             <ui:define name="contentAdmin">
                 <div class="employees">
                     <h1> Pracownicy </h1>
+                    <div class="actions">
+                        <ul>
+                            <li><h:link id="addWorker" class="add-worker" value="Dodaj pracownika" outcome="#{pageController.getPage('/adminPages/employees/employeesAdd.xhtml')}"/></li>
+                        </ul>
+                    </div>
                     <div id="tablePracownicy" class="table-pracownicy">
-                        <h:link id="addWorker" class="add-worker" value="Dodaj pracownika" outcome="#{pageController.getPage('/adminPages/employeesAdd.xhtml')}"/>
-
                         <div id="tableHeader" class="table-header">
                             <p></p>
                         </div>
@@ -27,6 +30,12 @@
                                         <h:outputText value="Lp"/>
                                     </f:facet>
                                     <h:outputText id="displayCell" class="display-cell" value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikId}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

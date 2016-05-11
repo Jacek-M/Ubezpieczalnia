@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -27,9 +29,7 @@ public class AdresEJB extends AbstractModel<Adres> {
         super(Adres.class);
     }
     
-    @Override
-    public void update(Adres object) {
-    }
+
     
     public Adres findByCityAndStreet(String street, String city, String code) throws Exception  {
         
@@ -41,5 +41,20 @@ public class AdresEJB extends AbstractModel<Adres> {
             return query.getResultList().get(0);
         }
         throw new Exception("Cannot findByCityAndStreet(" + street + "," + city + "," + code + ")");
+    }
+    
+    @Override
+    public void update(Adres object) {
+        try {
+//            this.findById(object.getPracownikId());
+            Adres tmp = em.find(object.getClass(), object.getAdresId());
+            if(tmp != null){
+                tmp.setAdresMiejscowosc("asdjashfashgf");
+                em.flush();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(AdresEJB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

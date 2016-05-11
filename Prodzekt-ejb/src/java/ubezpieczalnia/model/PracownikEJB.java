@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -27,6 +29,15 @@ public class PracownikEJB extends AbstractModel<Pracownik> {
    
     @Override
     public void update(Pracownik object) {
+        try {
+//            this.findById(object.getPracownikId());
+            Pracownik tmp = em.find(object.getClass(), object.getPracownikId());
+            if(tmp != null){
+                tmp = object;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(PracownikEJB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 }

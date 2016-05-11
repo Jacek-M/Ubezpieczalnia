@@ -28,7 +28,8 @@
                     cell.innerHTML = i + 1;
                 });
             }).draw();
-
+                    
+            this.table.column(1).visible(false);
 
         },
         _onCliclListener: function () {
@@ -43,6 +44,13 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.content + "View.xhtml");
+                var url = self.content + "View.xhtml";
+                var form = $('<form action="' + url + '" method="post">' +
+                        '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
+                        '</form>');
+                $('body').append(form);
+                form.submit();
+
             });
         },
         _onClickEditListener: function () {
@@ -52,6 +60,13 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.content + "Edit.xhtml");
+                var url = self.content + "Edit.xhtml";
+                var form = $('<form action="' + url + '" method="post">' +
+                        '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
+                        '</form>');
+                $('body').append(form);
+                form.submit();
+
             });
         },
         _onClickDeleteListener: function () {

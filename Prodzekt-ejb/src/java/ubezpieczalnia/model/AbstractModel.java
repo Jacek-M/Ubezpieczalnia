@@ -86,5 +86,7 @@ public abstract class AbstractModel<T> {
     public void delete(T object) {
         em.remove(object);
     }
+    
+
 
 }

@@ -29,7 +29,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #3b5998;
 }
 #header .menu li {
     float: left;
@@ -45,11 +45,11 @@
     padding: 14px 16px;
     text-decoration: none;
 }
-#header .menu li a:hover:not(.active) {
-    background-color: #111;
+#header .menu li:hover:not(.active) {
+    background-color: #8b9dc3;
 }
 #header .menu .active {
-    background-color: #4CAF50;
+    background-color: #052059;
 }
 
 /*************footer***************/
@@ -249,39 +249,35 @@
     width: 13%;
     margin-right: 10px;
     font-size: 1.3em;
-
 }
 #content .menuAdmin ul {
     list-style-type: none;
     padding: 0;
-    background-color: #f1f1f1;
+    background-color: #3b5998;
     position: static;
     height: 100%;
+}
 
-}
-#content .menuAdmin ul h2{
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    font-family: sansation-light;
-    padding-bottom: 1%;
-    border-bottom: groove;
-    border-width: 1px;
-    border-color: rgb(214, 217, 211);
-}
 #content .menuAdmin li a {
     display: block;
-    color: #000;
+    color: white;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
 }
-#content .menuAdmin li a.active {
-    background-color: #4CAF50;
-    color: white;
+#content .menuAdmin li:hover:not(.active) {
+    background-color: #8b9dc3;
 }
-#content .menuAdmin li a:hover:not(.active) {
-    background-color: #555;
+#content .menuAdmin .active {
+    background-color: #052059;
+}
+#content .menuAdmin ul h2{
+    background-color: #001E5C;
     color: white;
+    text-align: center;
+    font-family: sansation-light;
+    border-bottom: rgb(235, 235, 235)solid;
+    border-width: 8px;
+    margin-bottom: 0;
 }
 
 #content .contentAdmin{
@@ -358,7 +354,7 @@
 .contentAdmin .table-data tr:nth-child(even){background-color: #f2f2f2}
 
 .contentAdmin .table-data th {
-    background-color: #4CAF50;
+    background-color: #3b5998;
     color: white;
     padding: 3px;
 }
@@ -369,16 +365,23 @@
     margin-left: auto;
     margin-right: auto;
 }
+.contentAdmin #panelAdd table tr.spaceUnder > td
+{
+  padding-bottom: 5em;
+}
+.contentAdmin #panelAdd table td{
+    text-align: left;
+}
 
 .dataTables_filter {
     padding-bottom: 5px;
 }
 
 .table-header {
-    border: solid 1px;
+    /*border: solid 1px;*/
     position: relative;
     border-color: rgb(76, 175, 80);
-    background-color: rgb(76, 175, 80);
+    background-color: #3b5998;
     color : white;
     font-size: 20px;
     padding: 0;
@@ -392,7 +395,7 @@
 
 
 .table-content {
-    border: solid 1px;
+    /*border: solid 1px;*/
     position: relative;
     border-color: rgb(76, 175, 80);
     padding: 10px 0px 10px 0px;
@@ -419,4 +422,23 @@
 
 .contentAdmin .table-data tr:nth-child(even):hover {
     background-color: #FCF59A
+}
+
+.contentAdmin .actions{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.contentAdmin .actions ul{
+    list-style-type: none;
+    display: inline-flex;
+    padding-left: 0;
+}
+.contentAdmin .actions li{
+    padding-right: 10px;
+}
+
+/*******************/
+.row .col-md-3 ul{
+    list-style-type: none;
+    padding-left: 0;
 }

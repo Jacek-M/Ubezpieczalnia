@@ -24,9 +24,9 @@ public class PageController {
 
     private static final String[] pages = {
         "/index.xhtml", "/contact.xhtml", "/offer.xhtml", "/crud.xhtml", "/login.xhtml", "/admin.xhtml",
-        "/register.xhtml", "/admin/test.xhtml", "/adminPages/employees.xhtml", "/customerPages/insurance.xhtml", 
-        "/adminPages/employeesAdd.xhtml", "/adminPages/employeesSearch.xhtml", "/adminPages/clients.xhtml",
-        "/adminPages/clientsView.xhtml"
+        "/register.xhtml", "/admin/test.xhtml", "/adminPages/employees/employees.xhtml", "/customerPages/insurance.xhtml", 
+        "/adminPages/employees/employeesAdd.xhtml", "/adminPages/employees/employeesEdit.xhtml", "/adminPages/employees/employeesView.xhtml", 
+        "/adminPages/clients/clients.xhtml", "/adminPages/clients/clientsView.xhtml"
     };
     
     public static boolean isPageExist(String page) {
@@ -52,8 +52,9 @@ public class PageController {
         pageUrlBuilder.append(page);
         pageUrlBuilder.append("?");
         pageUrlBuilder.append(params);
-
-        if (isPageExist(page)) {
+        
+        
+        if (isPageExist(page))  {
             return pageUrlBuilder.toString();
         }
         return "/index.xhtml?faces-redirect=true";

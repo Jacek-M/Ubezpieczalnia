@@ -71,6 +71,7 @@ public class AdresController implements AbstractController<Adres> {
 
     @Override
     public String update() {
+        adresEJB.update(this.adres);
         return PageController.getCurrentUrl();
     }
 
@@ -79,5 +80,6 @@ public class AdresController implements AbstractController<Adres> {
         adresEJB.delete(this.adres);
         return PageController.getCurrentUrl();
     }
+
 
 }

@@ -23,7 +23,7 @@
                         <li><h:link value="Klient" outcome="#{pageController.getPage('/customerPages/insurance.xhtml')}"/></li>
                         
                         <c:if test="#{loginController.checkPermission() == 'Super'}">
-                            <li><h:link value="Admin" outcome="#{pageController.getPage('/adminPages/employees.xhtml')}"/></li>
+                            <li><h:link value="Admin" outcome="#{pageController.getPage('/adminPages/employees/employees.xhtml')}"/></li>
 
                         </c:if>
                         <li style="float:right">
