@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/adminTemplate.xhtml">
+            <ui:define name="contentAdmin">
+                <div class="employees">
+                    <h1> Serwis edycja</h1>
+
+                    <h:form id="panelAdd">
+                        <h:panelGrid  columns="2">
+
+
+                           <h:outputLabel  value="Login: " />
+                           <h:inputText id="kontoLogin" value="#{zakladController.zaklad.zakladNazwa}"/>
+
+                            <h:outputLabel  value="Hasło: " />
+                            <h:inputText id="kontoHaslo" value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}"/>
+
+                            <h:outputLabel  value="Imię: " />
+                            <h:inputText id="imie" value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}"/>
+
+                            <h:outputLabel  value="Telefon: " />
+                            <h:inputText id="telefon" value="#{zakladController.zaklad.zakladAdresIdFk.adresTelefon}"/>
+                            
+                            <h:outputLabel  value="Ulica: " />
+                            <h:inputText id="ulica" value="#{zakladController.zaklad.zakladAdresIdFk.adresUlica}"/>
+                            
+                            <h:outputLabel  value="Miejscowość: " />
+                            <h:inputText id="miasto" value="#{zakladController.zaklad.zakladAdresIdFk.adresMiejscowosc}"/>
+
+                            <h:outputLabel  value="Kod pocztowy: " />
+                            <h:inputText id="kodPocztowy" value="#{zakladController.zaklad.zakladAdresIdFk.adresKodPocztowy}"/>
+
+                            <h:outputLabel  value="Poczta: " />
+                            <h:inputText id="poczta" value="#{zakladController.zaklad.zakladAdresIdFk.adresPoczta}"/>
+
+                        </h:panelGrid>
+                        <br/>
+                        <h:commandButton value="Zapisz" action="#{zakladController.update()}"/>
+                    </h:form>
+
+
+
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

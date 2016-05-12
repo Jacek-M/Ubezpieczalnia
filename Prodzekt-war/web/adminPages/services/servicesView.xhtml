@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/adminTemplate.xhtml">
+            <ui:define name="contentAdmin">
+                <div class="services">
+                    <h1> Serwis info</h1>
+
+                    <div class="data-view">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Dane serwisu </h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Nazwa: " />
+                                        <h:outputText value="#{zakladController.zaklad.zakladNazwa}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Data rozpoczęcia: " />
+                                        <h:outputText value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Data zakończenia: " />
+                                        <h:outputText value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}"/>
+                                    </li>
+                                    
+                                </ul>
+
+                            </div>
+                           
+                            <div class="col-md-3">
+                                <h4>Adres</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Telefon: " />
+                                        <h:outputText value="#{zakladController.zaklad.zakladAdresIdFk.adresTelefon}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Ulica: " />
+                                        <h:outputText value="#{zakladController.zaklad.zakladAdresIdFk.adresUlica}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Miejscowość: " />
+                                        <h:outputText value="#{zakladController.zaklad.zakladAdresIdFk.adresMiejscowosc}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Kod pocztowy: " />
+                                        <h:outputText value="#{zakladController.zaklad.zakladAdresIdFk.adresKodPocztowy}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Poczta: " />
+                                        <h:outputText value="#{zakladController.zaklad.zakladAdresIdFk.adresPoczta}"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="tablePracownicy" class="table-pracownicy">
+                        <div id="tableHeader" class="table-header">
+                            <p></p>
+                        </div>
+
+                        <div id="tableServiceViewContent" class="table-content">
+                            <h:dataTable id="tableServiceView" class="table-data" value="#{zakladController.zaklad.pracownikCollection}" var="emp"  border="1">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Lp"/>
+                                    </f:facet>
+                                    <h:outputText id="displayCell" class="display-cell" value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Login"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikKontoIdFk.kontoLogin}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Imię"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikImie}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nazwisko"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikNazwisko}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Typ"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikTyp}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Wynagrodzenie"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikWynagrodzenie}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data zatrudnienia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikDataZatrudnienia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Oddzial"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikOddzialIdFk.oddzialAdresIdFk.adresMiejscowosc}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Zaklad"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.pracownikZakladIdFk.zakladNazwa}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Akcja"/>
+                                    </f:facet>
+                                    <h:outputText id="actionCell" class="action-cell" value=""/>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -7,9 +7,14 @@ package ubezpieczalnia.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import ubezpieczalnia.entities.Zaklad;
@@ -40,6 +45,7 @@ public class ZakladController implements AbstractController<Zaklad> {
     }
 
     public List<Zaklad> getZakladList() {
+        this.findAll();
         return zakladList;
     }
 
@@ -95,6 +101,26 @@ public class ZakladController implements AbstractController<Zaklad> {
         zakladEJB.delete(zaklad);
         return PageController.getPage("/adminPages/employees.xhtml"); // zmienic na liste zakladow :d
 
+    }
+    
+    public String registerService(){
+        //TODO
+        return "";
+    }
+    
+    @PostConstruct
+    public void receivedPost() {
+        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        
+        if (requestParams.get("post_id") != null) {
+            System.out.println(requestParams.get("post_id"));
+            this.zaklad.setZakladId(Integer.parseInt(requestParams.get("post_id")));
+            try {
+                this.findById();
+            } catch (Exception ex) {
+                Logger.getLogger(ZakladController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }
