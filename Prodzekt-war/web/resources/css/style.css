@@ -73,7 +73,6 @@
 /*************content***************/
 #content{
     margin: 10px 3% 0 3%;
-    min-height: 500px;
 }
 
 /*************index***************/
@@ -242,7 +241,6 @@
 
 }
 #content .menuAdmin, .contentAdmin{
-    display: inline-table;
     position: relative;
 }
 
@@ -251,7 +249,9 @@
     margin-top: 4%;
 }
 .contentAdmin {
-    float : right;
+    position: relative;
+    margin-left: 1%;
+    overflow: hidden;
 }
 #content .menuAdmin {
     width: 13%;
@@ -287,14 +287,9 @@
     margin-bottom: 0;
 }
 
-#content .contentAdmin{
-    width: 85%;
-}
 
 /*************customer***************/
-#content{
 
-}
 #content .menuCustomer, .contentCustomer{
     display: inline-table;
     position: relative;
@@ -397,7 +392,7 @@
     position: relative;
     border-color: rgb(59, 89, 152);
     padding: 10px 0px 10px 0px;
-
+    width: 100%;
 }
 
 .action-cell i {
@@ -413,11 +408,14 @@
     text-decoration: none;
     color : #66afe9;
 }
-
+.table-data {
+    overflow: hidden;
+    width: 100%;
+}
 .table-data tr:hover {
     background-color: #FCF59A;
 }
-
+                
 .contentAdmin .table-data tr:nth-child(even):hover {
     background-color: #FCF59A
 }

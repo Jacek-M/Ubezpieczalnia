@@ -12,6 +12,8 @@
             this.table = null;
             console.log("_create() TableInfo with OPTIONS[" + this.tableId + " " + this.tableName + " " + this.content + "]");
             this._initTableHeader();
+            
+            $(".table-content").hide();
             this._createTable();
             this._initActionCell();
 
@@ -20,7 +22,11 @@
         _createTable: function () {
             var self = this;
             this.table = $('#' + this.tableId).DataTable({
-                "language": self._getLanguage()
+                "language": self._getLanguage(),
+                "initComplete": function (settings, json) {
+                    $(".table-content").show();
+                }
+
             });
 
             this.table.on('order.dt search.dt', function () {
@@ -28,7 +34,7 @@
                     cell.innerHTML = i + 1;
                 });
             }).draw();
-                    
+
             this.table.column(1).visible(false);
 
         },
