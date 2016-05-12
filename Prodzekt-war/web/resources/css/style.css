@@ -245,6 +245,14 @@
     display: inline-table;
     position: relative;
 }
+
+.menuAdmin {
+    float: left;
+    margin-top: 4%;
+}
+.contentAdmin {
+    float : right;
+}
 #content .menuAdmin {
     width: 13%;
     margin-right: 10px;
@@ -254,8 +262,7 @@
     list-style-type: none;
     padding: 0;
     background-color: #3b5998;
-    position: static;
-    height: 100%;
+    position: relative;
 }
 
 #content .menuAdmin li a {
@@ -334,29 +341,23 @@
     padding-top: 10px;
     border: 0;
     border-collapse: collapse;
-    width: 100%;
     border-width: 0px;
     border-color: rgb(214, 217, 211);
 
 }
-.contentAdmin .table-data th, td {
-    text-align: center;
-    font-size: 18px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
-}
+
 
 .contentAdmin .table-data td{
-    font-size: 15px;
+    font-size: 14px;
     padding: 3px;
 }
 
 .contentAdmin .table-data tr:nth-child(even){background-color: #f2f2f2}
-
-.contentAdmin .table-data th {
+ .table-data th {
     background-color: #3b5998;
     color: white;
     padding: 3px;
+    
 }
 /***********/
 .contentAdmin #panelAdd table, #panelAdd {
@@ -378,26 +379,23 @@
 }
 
 .table-header {
-    /*border: solid 1px;*/
+/*    border: solid 1px;*/
     position: relative;
     border-color: rgb(76, 175, 80);
     background-color: #3b5998;
     color : white;
     font-size: 20px;
-    padding: 0;
+    padding: 4px;
+    padding-left: 10px;
     margin: 0;
 }
 
-.table-header p {
-    margin: 0;
-    padding: 3px 0px 3px 10px;
-}
 
 
 .table-content {
-    /*border: solid 1px;*/
+    border: solid 1px;
     position: relative;
-    border-color: rgb(76, 175, 80);
+    border-color: rgb(59, 89, 152);
     padding: 10px 0px 10px 0px;
 
 }
@@ -442,3 +440,38 @@
     list-style-type: none;
     padding-left: 0;
 }
+
+.actions a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+
+.add-worker  {
+    color: white;
+    text-decoration: none;
+    background-color: #3b5998;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.add-worker:hover {
+    background-color: rgb(139, 157, 195);
+}
+
+
+
+/* DATATABLES */
+
+.dataTables_length, .dataTables_filter {
+    padding: 0px 5px 5px 5px;
+}
+
+.dataTables_info {
+    margin: 0;
+    padding: 5px 0px 5px 5px;
+}
+
+
+
+/* END OF DATATABLES */

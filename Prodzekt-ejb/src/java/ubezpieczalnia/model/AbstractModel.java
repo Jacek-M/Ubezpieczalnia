@@ -48,7 +48,7 @@ public abstract class AbstractModel<T> {
         return queryResult.getResultList();
     }
 
-    private boolean constraintValidationsDetected(T entity) {
+    public boolean constraintValidationsDetected(T entity) {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = (Validator) factory.getValidator();
         Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);

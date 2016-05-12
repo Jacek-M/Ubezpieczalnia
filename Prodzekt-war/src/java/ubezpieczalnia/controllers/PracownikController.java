@@ -157,9 +157,8 @@ public class PracownikController implements AbstractController<Pracownik> {
     
     @Override
     public String update() {
-        //adresController.setAdres(this.pracownik.getPracownikAdresIdFk());
-        adresController.update();
-        //pracownikEJB.update(this.pracownik);
+        this.pracownik.setPracownikAdresIdFk(adresController.getAdres());
+        pracownikEJB.update(this.pracownik);
         return PageController.getPage("/adminPages/employees.xhtml");
         
     }

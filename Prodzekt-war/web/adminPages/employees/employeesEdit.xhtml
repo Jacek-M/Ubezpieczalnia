@@ -16,15 +16,25 @@
 
                     <h:form id="panelAdd">
                         <h:panelGrid  columns="2">
-
-
-                            <h:outputLabel  value="Imie" />
+                            <h:panelGroup>
+                                <h:outputLabel  value="" />
+                                <h:inputHidden id="hidden_value1" value="#{pracownikController.pracownik.pracownikId}"/>
+                                <h:outputLabel  value="Imię: " />
+                            </h:panelGroup>
                             <h:inputText id="imie" value="#{pracownikController.pracownik.pracownikImie}"/>
 
-                            <h:outputLabel  value="Nazwisko" />
+                            <h:outputLabel  value="Nazwisko: " />
                             <h:inputText id="nazwisko" value="#{pracownikController.pracownik.pracownikNazwisko}"/>
-                            <h:outputLabel  value="miejscowosc " />
+                            
+                            <h:panelGroup>
+                                <h:outputLabel value="" />    
+                                <h:inputHidden id="hidden_value2" value="#{pracownikController.adresController.adres.adresId}"/>
+                                <h:outputLabel  value="Miejscowość: " />
+                            </h:panelGroup>
+
+
                             <h:inputText id="miejscowosc" value="#{pracownikController.adresController.adres.adresMiejscowosc}"/>
+
 
                         </h:panelGrid>
                         <br/>

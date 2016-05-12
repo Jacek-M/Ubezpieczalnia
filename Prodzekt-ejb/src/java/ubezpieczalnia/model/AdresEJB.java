@@ -21,40 +21,28 @@ import ubezpieczalnia.entities.Adres;
 @Stateless
 @LocalBean
 public class AdresEJB extends AbstractModel<Adres> {
-    
+
     @PersistenceContext(unitName = "Prodzekt-ejbPU")
     private EntityManager em;
-    
+
     public AdresEJB() {
         super(Adres.class);
     }
-    
 
-    
-    public Adres findByCityAndStreet(String street, String city, String code) throws Exception  {
-        
+    public Adres findByCityAndStreet(String street, String city, String code) throws Exception {
+
         TypedQuery<Adres> query = em.createNamedQuery("Adres.findAdresByCityAndStreet", Adres.class)
                 .setParameter("adresUlica", street)
                 .setParameter("adresMiejscowosc", city)
                 .setParameter("adresKodPocztowy", code);
-        if(query.getResultList().get(0) != null) {
+        if (query.getResultList().get(0) != null) {
             return query.getResultList().get(0);
         }
         throw new Exception("Cannot findByCityAndStreet(" + street + "," + city + "," + code + ")");
     }
-    
+
     @Override
     public void update(Adres object) {
-        try {
-//            this.findById(object.getPracownikId());
-            Adres tmp = em.find(object.getClass(), object.getAdresId());
-            if(tmp != null){
-                tmp.setAdresMiejscowosc("asdjashfashgf");
-                em.flush();
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(AdresEJB.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
     }
 }

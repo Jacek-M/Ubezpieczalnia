@@ -20,24 +20,22 @@ import ubezpieczalnia.entities.Pracownik;
 @Stateless
 @LocalBean
 public class PracownikEJB extends AbstractModel<Pracownik> {
+
     @PersistenceContext(unitName = "Prodzekt-ejbPU")
     private EntityManager em;
-    
+
     public PracownikEJB() {
         super(Pracownik.class);
     }
-   
+
     @Override
     public void update(Pracownik object) {
-        try {
-//            this.findById(object.getPracownikId());
-            Pracownik tmp = em.find(object.getClass(), object.getPracownikId());
-            if(tmp != null){
-                tmp = object;
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(PracownikEJB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+            Logger.getLogger("INFO").log(Level.INFO, "EDYTUJE PRACOWNIKA");
+            Pracownik found = em.find(Pracownik.class, object.getPracownikId());
+            found.setPracownikImie(object.getPracownikImie());
+            found.setPracownikNazwisko(object.getPracownikNazwisko());
+            found.getPracownikAdresIdFk().setAdresMiejscowosc(object.getPracownikAdresIdFk().getAdresMiejscowosc());
+            em.flush();
     }
+
 }

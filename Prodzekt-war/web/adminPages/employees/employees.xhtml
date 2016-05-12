@@ -12,7 +12,7 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="employees">
-                    <h1> Pracownicy </h1>
+                    <h1> Pracownik</h1>
                     <div class="actions">
                         <ul>
                             <li><h:link id="addWorker" class="add-worker" value="Dodaj pracownika" outcome="#{pageController.getPage('/adminPages/employees/employeesAdd.xhtml')}"/></li>
@@ -71,7 +71,10 @@
                                     <f:facet name="header">
                                         <h:outputText value="Data zatrudnienia"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.pracownikDataZatrudnienia}"/>
+                                    <h:outputText value="#{emp.pracownikDataZatrudnienia}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
+                                    
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
