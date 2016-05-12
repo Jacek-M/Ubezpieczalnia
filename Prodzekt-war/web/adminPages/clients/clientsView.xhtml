@@ -11,12 +11,77 @@
     <h:body>
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
-                <div class="clientsView">
-                    <h:outputLabel  value="Login: " />
-                    <h:inputText id="klientLogin" value="#{registerController.loginController.konto.kontoLogin}"/>
-                    <br/>
-                    <h:outputLabel  value="Imię " />
-                    <h:inputText id="klientLogin" value="#{registerController.klient.klientImie}"/>
+                <div class="clients">
+                    <h1> Klient info</h1>
+
+                    <div class="data-view">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Dane pracownika </h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Imie: " />
+                                        <h:outputText value="#{registerController.klient.klientImie}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Nazwisko: " />
+                                        <h:outputText value="#{registerController.klient.klientNazwisko}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Procent zniżki: " />
+                                        <h:outputText value="#{registerController.klient.klientProcentZnizki}"/>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <div class="col-md-3">
+
+                                <h4>Konto</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Login: " />
+                                        <h:outputText value="#{registerController.klient.klientKontoIdFk.kontoLogin}"/>
+                                    </li>
+
+                                    <li>
+                                        <h:outputLabel  value="Uprawnienia: " />
+                                        <h:outputText value="#{registerController.klient.klientKontoIdFk.kontoUprawnienia}"/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Adres</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Telefon: " />
+                                        <h:outputText value="#{registerController.klient.klientAdresIdFk.adresTelefon}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Ulica: " />
+                                        <h:outputText value="#{registerController.klient.klientAdresIdFk.adresUlica}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Miejscowość: " />
+                                        <h:outputText value="#{registerController.klient.klientAdresIdFk.adresMiejscowosc}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Kod pocztowy: " />
+                                        <h:outputText value="#{registerController.klient.klientAdresIdFk.adresKodPocztowy}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Poczta: " />
+                                        <h:outputText value="#{registerController.klient.klientAdresIdFk.adresPoczta}"/>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
             </ui:define>
         </ui:composition>

@@ -12,20 +12,32 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="employees">
-                    <h1> Pracownik edycja</h1>
+                    <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
+                        <br/>
+                        <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
+                    </h:panelGroup>
+
+                    <h1>Dodaj nowego pracownika</h1>
 
                     <h:form id="panelAdd">
                         <h:panelGrid  columns="2">
-                            <h:panelGroup>
-                                <h:outputLabel  value="" />
-                                <h:inputHidden id="hidden_value1" value="#{pracownikController.pracownik.pracownikId}"/>
-                                <h:outputLabel  value="Imię: " />
-                            </h:panelGroup>
+
+
+                            <h:outputLabel  value="Login: " />
+                            <h:inputText id="kontoLogin" value="#{pracownikController.loginController.konto.kontoLogin}"/>
+
+                            <h:outputLabel  value="Hasło: " />
+                            <h:inputText id="kontoHaslo" value="#{pracownikController.loginController.konto.kontoHaslo}"/>
+
+                            <h:outputLabel  value="Imię: " />
                             <h:inputText id="imie" value="#{pracownikController.pracownik.pracownikImie}"/>
+
                             <h:outputLabel  value="Nazwisko: " />
                             <h:inputText id="nazwisko" value="#{pracownikController.pracownik.pracownikNazwisko}"/>
+
                             <h:outputLabel  value="Wynagrodzenie " />
                             <h:inputText id="wynagrodzenie" value="#{pracownikController.pracownik.pracownikWynagrodzenie}"/>
+
                             <h:outputLabel  value="Data zatrudnienia: " />
                             <h:inputText id="dataZatrudnienia" value="#{pracownikController.pracownik.pracownikDataZatrudnienia}">
                                 <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
@@ -47,28 +59,20 @@
                                 <f:selectItems value="#{zakladController.zakladSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                             </h:selectOneMenu>
 
-                            <h:panelGroup>
-                                <h:outputLabel value="" />    
-                                <h:inputHidden id="hidden_value2" value="#{pracownikController.adresController.adres.adresId}"/>
-                                <h:outputLabel  value="Telefon: " />
-                            </h:panelGroup>
-                            <h:inputText id="telefon" value="#{pracownikController.adresController.adres.adresTelefon}"/>
+                            <h:outputLabel  value="Miejscowość: " />
+                            <h:inputText id="miasto" value="#{pracownikController.adresController.adres.adresMiejscowosc}"/>
 
                             <h:outputLabel  value="Ulica: " />
                             <h:inputText id="ulica" value="#{pracownikController.adresController.adres.adresUlica}"/>
-
-                            <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{pracownikController.adresController.adres.adresMiejscowosc}"/>
 
                             <h:outputLabel  value="Kod pocztowy: " />
                             <h:inputText id="kodPocztowy" value="#{pracownikController.adresController.adres.adresKodPocztowy}"/>
 
                             <h:outputLabel  value="Poczta " />
                             <h:inputText id="poczta" value="#{pracownikController.adresController.adres.adresPoczta}"/>
-
                         </h:panelGrid>
                         <br/>
-                        <h:commandButton value="Dodaj nowego pracownika" action="#{pracownikController.update()}"/>
+                        <h:commandButton value="Dodaj nowego pracownika" action="#{pracownikController.registerWorker()}"/>
                     </h:form>
                 </div>
             </ui:define>

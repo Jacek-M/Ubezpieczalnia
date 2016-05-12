@@ -3,12 +3,14 @@
         options: {
             tableId: null,
             tableName: null,
-            content: null
+            content: null,
+            link: null
         },
         _create: function () {
             this.tableId = this.options.tableId;
             this.tableName = this.options.tableName;
             this.content = this.options.content;
+            this.link = this.options.link;
             this.table = null;
             console.log("_create() TableInfo with OPTIONS[" + this.tableId + " " + this.tableName + " " + this.content + "]");
             this._initTableHeader();
@@ -49,8 +51,8 @@
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
-                console.log("_onClickShowListener() go to ->" + self.content + "View.xhtml");
-                var url = self.content + "View.xhtml";
+                console.log("_onClickShowListener() go to ->" + self.link + "View.xhtml");
+                var url = "/Prodzekt-war/faces/adminPages/" + self.link +"/" + self.link + "View.xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
@@ -65,9 +67,10 @@
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
-                console.log("_onClickShowListener() go to ->" + self.content + "Edit.xhtml");
-                var url = self.content + "Edit.xhtml";
-                var form = $('<form action="' + url + '" method="post">' +
+                console.log("_onClickShowListener() go to ->" + self.link + "Edit.xhtml");
+                var url = "/Prodzekt-war/faces/adminPages/" + self.link +"/" + self.link + "Edit.xhtml";
+                
+                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
                 $('body').append(form);

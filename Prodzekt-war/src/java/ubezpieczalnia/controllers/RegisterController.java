@@ -7,12 +7,15 @@ package ubezpieczalnia.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import ubezpieczalnia.entities.Klient;
 import ubezpieczalnia.entities.Konto;
@@ -136,5 +139,20 @@ public class RegisterController implements AbstractController<Klient> {
         adresController.delete();
         klientEJB.delete(this.klient);
         return PageController.getCurrentUrl();
+    }
+    
+    @PostConstruct
+    public void receivedPost() {
+        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        
+        if (requestParams.get("post_id") != null) {
+            System.out.println(requestParams.get("post_id"));
+            this.klient.setKlientId(Integer.parseInt(requestParams.get("post_id")));
+            try {
+                this.findById();
+            } catch (Exception ex) {
+                Logger.getLogger(PracownikController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

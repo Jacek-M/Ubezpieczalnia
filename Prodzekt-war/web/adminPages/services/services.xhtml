@@ -11,20 +11,20 @@
     <h:body>
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
-                <div class="clients">
-                    <h1> Klienci </h1>
+                <div class="services">
+                    <h1> Serwisy </h1>
                     <div class="actions">
                         <ul>
-                            <!--<li><h:link id="addWorker" class="add-worker" value="Dodaj klienta" outcome="#{pageController.getPage('/adminPages/clients/clientsAdd.xhtml')}"/></li>-->
+                            <li><h:link id="addWorker" class="add-worker" value="Dodaj serwis" outcome="#{pageController.getPage('/adminPages/services/servicesAdd.xhtml')}"/></li>
                         </ul>
                     </div>
-                    <div id="tableKlienci" class="table-klienci">
+                    <div id="tableSerwisy" class="table-serwisy">
                         <div id="tableHeader" class="table-header">
                             <p></p>
                         </div>
 
-                        <div id="tableClientContent" class="table-content">
-                            <h:dataTable id="tableClient" class="table-data" value="#{registerController.klienci}" var="emp"  border="1" style="width:100%">
+                        <div id="tableServiceContent" class="table-content">
+                            <h:dataTable id="tableService" class="table-data" value="#{zakladController.zakladList}" var="emp"  border="1">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Lp"/>
@@ -35,49 +35,43 @@
                                     <f:facet name="header">
                                         <h:outputText value="ID"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.klientId}"/>
+                                    <h:outputText value="#{emp.zakladId}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Login"/>
+                                        <h:outputText value="Nazwa"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.klientKontoIdFk.kontoLogin}"/>
+                                    <h:outputText value="#{emp.zakladNazwa}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Imię"/>
+                                        <h:outputText value="Data rozpoczęcia współpracy"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.klientImie}"/>
+                                    <h:outputText value="#{emp.zakladDataRozpoczeciaWsp}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Nazwisko"/>
+                                        <h:outputText value="Data zakończenia współpracy"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.klientNazwisko}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Procent Zniżki"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.klientProcentZnizki}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Ulica"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.klientAdresIdFk.adresUlica}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Miejscowość"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.klientAdresIdFk.adresMiejscowosc}"/>
+                                    <h:outputText value="#{emp.zakladDataZakonczeniaWsp}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Telefon"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.klientAdresIdFk.adresTelefon}"/>
+                                    <h:outputText value="#{emp.zakladAdresIdFk.adresTelefon}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Ulica"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.zakladAdresIdFk.adresUlica}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data Miejscowość"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.zakladAdresIdFk.adresMiejscowosc}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
