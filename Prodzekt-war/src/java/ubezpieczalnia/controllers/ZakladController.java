@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
@@ -29,6 +30,9 @@ import ubezpieczalnia.model.ZakladEJB;
 @RequestScoped
 public class ZakladController implements AbstractController<Zaklad> {
 
+    @ManagedProperty(value = "#{adresController}")
+    private AdresController adresController;
+    
     @EJB
     private ZakladEJB zakladEJB;
 
@@ -36,6 +40,15 @@ public class ZakladController implements AbstractController<Zaklad> {
     private List<Zaklad> zakladList = new ArrayList<>();
     private List<SelectItem> zakladSelectList = new ArrayList<>();
 
+    public AdresController getAdresController() {
+        return adresController;
+    }
+
+    public void setAdresController(AdresController adresController) {
+        this.adresController = adresController;
+    }
+
+    
     public Zaklad getZaklad() {
         return zaklad;
     }
@@ -91,6 +104,7 @@ public class ZakladController implements AbstractController<Zaklad> {
 
     @Override
     public String update() {
+        this.zaklad.setZakladAdresIdFk(adresController.getAdres());
         zakladEJB.update(this.zaklad);
         return PageController.getPage("/adminPages/employees.xhtml"); // zmienic na liste zakladow :d
 
@@ -117,6 +131,7 @@ public class ZakladController implements AbstractController<Zaklad> {
             this.zaklad.setZakladId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();
+                adresController.setAdres(this.zaklad.getZakladAdresIdFk());
             } catch (Exception ex) {
                 Logger.getLogger(ZakladController.class.getName()).log(Level.SEVERE, null, ex);
             }

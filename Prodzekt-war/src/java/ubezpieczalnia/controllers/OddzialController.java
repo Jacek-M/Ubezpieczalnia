@@ -7,10 +7,16 @@ package ubezpieczalnia.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import ubezpieczalnia.entities.Oddzial;
 import ubezpieczalnia.model.OddzialEJB;
@@ -24,12 +30,23 @@ import ubezpieczalnia.model.OddzialEJB;
 @RequestScoped
 public class OddzialController implements AbstractController<Oddzial> {
 
+    @ManagedProperty(value = "#{adresController}")
+    private AdresController adresController;
+
     @EJB
     private OddzialEJB oddzialEJB;
 
     private Oddzial oddzial = new Oddzial();
     private List<Oddzial> oddzialList = new ArrayList<>();
     private List<SelectItem> oddzialSelectList = new ArrayList<>();
+
+    public AdresController getAdresController() {
+        return adresController;
+    }
+
+    public void setAdresController(AdresController adresController) {
+        this.adresController = adresController;
+    }
 
     public Oddzial getOddzial() {
         return oddzial;
@@ -40,6 +57,7 @@ public class OddzialController implements AbstractController<Oddzial> {
     }
 
     public List<Oddzial> getOddzialList() {
+        this.findAll();
         return oddzialList;
     }
 
@@ -86,6 +104,7 @@ public class OddzialController implements AbstractController<Oddzial> {
 
     @Override
     public String update() {
+        this.oddzial.setOddzialAdresIdFk(adresController.getAdres());
         oddzialEJB.update(this.oddzial);
         return PageController.getCurrentUrl();
     }
@@ -94,6 +113,27 @@ public class OddzialController implements AbstractController<Oddzial> {
     public String delete() {
         oddzialEJB.delete(this.oddzial);
         return PageController.getCurrentUrl();
+    }
+
+    public String registerBranche() {
+        //TODO
+        return "";
+    }
+
+    @PostConstruct
+    public void receivedPost() {
+        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+
+        if (requestParams.get("post_id") != null) {
+            System.out.println(requestParams.get("post_id"));
+            this.oddzial.setOddzialId(Integer.parseInt(requestParams.get("post_id")));
+            try {
+                this.findById();
+                adresController.setAdres(this.oddzial.getOddzialAdresIdFk());
+            } catch (Exception ex) {
+                Logger.getLogger(OddzialController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }

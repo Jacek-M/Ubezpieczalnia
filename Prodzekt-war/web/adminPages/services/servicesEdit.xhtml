@@ -16,31 +16,37 @@
 
                     <h:form id="panelAdd">
                         <h:panelGrid  columns="2">
+                            <h:panelGroup>
+                                <h:outputLabel  value="" />
+                                <h:inputHidden id="hidden_value1" value="#{zakladController.zaklad.zakladId}"/>
+                                <h:outputLabel  value="Nazwa: " />
+                            </h:panelGroup>
+                            <h:inputText id="kontoLogin" value="#{zakladController.zaklad.zakladNazwa}"/>
 
-
-                           <h:outputLabel  value="Login: " />
-                           <h:inputText id="kontoLogin" value="#{zakladController.zaklad.zakladNazwa}"/>
-
-                            <h:outputLabel  value="Hasło: " />
+                            <h:outputLabel  value="Data rozpoczęcia: " />
                             <h:inputText id="kontoHaslo" value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}"/>
 
-                            <h:outputLabel  value="Imię: " />
+                            <h:outputLabel  value="Data zakończenia: " />
                             <h:inputText id="imie" value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}"/>
 
-                            <h:outputLabel  value="Telefon: " />
-                            <h:inputText id="telefon" value="#{zakladController.zaklad.zakladAdresIdFk.adresTelefon}"/>
-                            
+                            <h:panelGroup>
+                                <h:outputLabel value="" />    
+                                <h:inputHidden id="hidden_value2" value="#{zakladController.adresController.adres.adresId}"/>
+                                <h:outputLabel  value="Telefon: " />
+                            </h:panelGroup>
+                            <h:inputText id="telefon" value="#{zakladController.adresController.adres.adresTelefon}"/>
+
                             <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{zakladController.zaklad.zakladAdresIdFk.adresUlica}"/>
-                            
+                            <h:inputText id="ulica" value="#{zakladController.adresController.adres.adresUlica}"/>
+
                             <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{zakladController.zaklad.zakladAdresIdFk.adresMiejscowosc}"/>
+                            <h:inputText id="miasto" value="#{zakladController.adresController.adres.adresMiejscowosc}"/>
 
                             <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{zakladController.zaklad.zakladAdresIdFk.adresKodPocztowy}"/>
+                            <h:inputText id="kodPocztowy" value="#{zakladController.adresController.adres.adresKodPocztowy}"/>
 
-                            <h:outputLabel  value="Poczta: " />
-                            <h:inputText id="poczta" value="#{zakladController.zaklad.zakladAdresIdFk.adresPoczta}"/>
+                            <h:outputLabel  value="Poczta " />
+                            <h:inputText id="poczta" value="#{zakladController.adresController.adres.adresPoczta}"/>
 
                         </h:panelGrid>
                         <br/>

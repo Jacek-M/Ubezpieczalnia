@@ -29,6 +29,27 @@ $(document).ready(function () {
         content: "services",
         link: "employees"
     });
+    
+    $('#tableBrancheContent').TableInfo({
+        tableName: "Oddziały",
+        tableId: "tableBranche",
+        content: "branches",
+        link: "branches"
+    });
+    
+    $('#tableBrancheViewContent').TableInfo({
+        tableName: "Pracownicy-oddziału",
+        tableId: "tableBrancheView",
+        content: "branches",
+        link: "employees"
+    });
+    
+    $('#tableRepCarContent').TableInfo({
+        tableName: "Samochody-zastepcze",
+        tableId: "tableRepCar",
+        content: "repCars",
+        link: "repCars"
+    });
 
 });
 
