@@ -90,9 +90,7 @@ public class RegisterController implements AbstractController<Klient> {
             loginController.addNew();
 
             try {
-                loginController.findKontoByLoginAndPassword();
-                adresController.findAdresByCityAndStreet();
-
+                
                 klient.setKlientAdresIdFk(adresController.getAdres());
                 klient.setKlientKontoIdFk(loginController.getKonto());
 

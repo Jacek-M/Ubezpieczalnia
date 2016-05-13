@@ -112,7 +112,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
 
     @Override
     public String addNew() {
-        kontoEJB.addNew(this.konto);
+        this.konto = kontoEJB.addNew(this.konto);
         return PageController.getCurrentUrl();
     }
 

@@ -75,10 +75,13 @@ public abstract class AbstractModel<T> {
         throw new Exception("Cannot find " + objectClass.getClass().getSimpleName() + "with id = " + id);
     }
 
-    public void addNew(T object) {
+    public T addNew(T object) {
         if (!constraintValidationsDetected(object)) {
             em.persist(object);
+            em.flush();
+            return object;
         }
+        return null;
     }
 
     public abstract void update(T object);

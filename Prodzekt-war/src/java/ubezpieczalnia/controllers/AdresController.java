@@ -65,7 +65,8 @@ public class AdresController implements AbstractController<Adres> {
 
     @Override
     public String addNew() {
-        adresEJB.addNew(this.adres);
+        this.adres = adresEJB.addNew(this.adres);
+        Logger.getLogger("INFO").log(Level.INFO, "ID DODANEGO OBIEKTU TO: {0}", this.adres.getAdresId());
         return PageController.getCurrentUrl();
     }
 
