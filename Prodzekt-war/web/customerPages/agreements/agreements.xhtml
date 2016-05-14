@@ -3,22 +3,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentCustomer">
-                <div class="insurances">
-                    <h1> Ubezpieczenia </h1>
-                    <div id="tableUbezpieczenia" class="table-ubezpieczenia">
+                <div class="agreements">
+                    <h1> Moje umowy </h1>
+                    <div id="tableUmowa" class="table-umowa">
                         <div id="tableHeader" class="table-header">
                             <p></p>
                         </div>
 
-                        <div id="tableUbezpieczeniaContent" class="table-content">
-                            <h:dataTable id="tableInsurances" class="table-data" value="#{loginController.klientAccount.umowaCollection}" var="emp"  border="1" style="width:100%">
+                        <div id="tableUmowaContent" class="table-content">
+                            <h:dataTable id="tableAgreements" class="table-data" value="#{loginController.klientAccount.umowaCollection}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Lp"/>
@@ -29,7 +30,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="ID"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaId}"/>
+                                    <h:outputText value="#{emp.umowaId}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
@@ -53,19 +54,26 @@
                                     <f:facet name="header">
                                         <h:outputText value="Cena"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCena}"/>
+                                    <h:outputText value="#{emp.umowaKwota}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Samochód zastępczy"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                    <c:if test="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy == 0}">
+                                        <h:outputText value="NIE"/>
+                                    </c:if>
+                                    <c:if test="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy != 0}">
+                                        <h:outputText value="TAK"/>
+                                    </c:if>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Data zakończenia"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaDataZakonczenia}"/>
+                                    <h:outputText value="#{emp.umowaDataZakonczenia}"> 
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
@@ -77,8 +85,9 @@
                                     <f:facet name="header">
                                         <h:outputText value="Pojazd"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaPojazdIdFk.pojazdMarka}"/>
+                                    <h:outputText value="#{emp.umowaPojazdIdFk.pojazdMarka} "/>
                                     <h:outputText value="#{emp.umowaPojazdIdFk.pojazdModel}"/>
+                                    
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

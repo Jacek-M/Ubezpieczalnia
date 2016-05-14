@@ -16,7 +16,7 @@
             this.table = null;
             console.log("_create() TableInfo with OPTIONS[" + this.tableId + " " + this.tableName + " " + this.content + "]");
             this._initTableHeader();
-            
+
             $(".table-content").hide();
             this._createTable();
             this._initActionCell();
@@ -30,7 +30,6 @@
                 "initComplete": function (settings, json) {
                     $(".table-content").show();
                 }
-
             });
 
             this.table.on('order.dt search.dt', function () {
@@ -54,7 +53,8 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.link + "View.xhtml");
-                var url = "/Prodzekt-war/faces/adminPages/" + self.link +"/" + self.link + "View.xhtml";
+                var pagesContent = self.tableActions === "admin" ? "adminPages" : "customerPages";
+                var url = "/Prodzekt-war/faces/"+ pagesContent +"/" + self.link + "/" + self.link + "View.xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
@@ -70,9 +70,9 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.link + "Edit.xhtml");
-                var url = "/Prodzekt-war/faces/adminPages/" + self.link +"/" + self.link + "Edit.xhtml";
-                
-                 var form = $('<form action="' + url + '" method="post">' +
+                var url = "/Prodzekt-war/faces/adminPages/" + self.link + "/" + self.link + "Edit.xhtml";
+
+                var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
                 $('body').append(form);
@@ -94,7 +94,8 @@
         },
         _initActionCell: function () {
             $('.action-cell').append(this._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły"));
-            if(this.tableActions === "admin") $('.action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
+            if (this.tableActions === "admin")
+                $('.action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
 //            $('.action-cell').append(this._createOsomIcon("trashIcon", "trash-icon", "fa fa-trash", "Usuń"));
         },
         _createOsomIcon: function (id, className, osomClass, tooltip) {

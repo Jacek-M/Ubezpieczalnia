@@ -100,7 +100,7 @@ public class RodzajUbezController implements AbstractController<RodzajUbezpiecze
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         
         if (requestParams.get("post_id") != null) {
-            System.out.println(requestParams.get("post_id"));
+            System.out.println("PARAAAAAAAAAAAMMMMMMMM ============" + requestParams.get("post_id"));
             this.rodzajUbez.setRodzajUbezpieczeniaId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();

@@ -74,17 +74,24 @@ $(document).ready(function () {
         link: "insurances"
     });
 
-    $('#tableUbezpieczeniaContent').TableInfo({
-        tableName: "Ubezpieczenia",
-        tableId: "tableInsurances",
-        content: "insurances",
+    $('#tableUmowaContent').TableInfo({
+        tableName: "Moje umowy",
+        tableId: "tableAgreements",
+        content: "agreements",
         tableActions: "client",
-        link: "insurances"
+        link: "agreements"
     });
     
     $('#tableAgreementContent').TableInfo({
         tableName: "Umowy",
         tableId: "tableAgreement",
+        content: "agreements",
+        link: "agreements"
+    });
+    
+        $('#tableAgreementViewContent').TableInfo({
+        tableName: "Szkody w umowie",
+        tableId: "tableAgreementView",
         content: "agreements",
         link: "agreements"
     });
