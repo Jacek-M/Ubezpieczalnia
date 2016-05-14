@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import ubezpieczalnia.entities.Konto;
 import ubezpieczalnia.entities.Pracownik;
@@ -48,6 +49,17 @@ public class PracownikController implements AbstractController<Pracownik> {
     
     private Pracownik pracownik = new Pracownik();
     private List<Pracownik> pracownikList = new ArrayList<>();
+    private List<SelectItem> pracownikSelectList = new ArrayList<>();
+
+    public List<SelectItem> getPracownikSelectList() {
+        return pracownikSelectList;
+    }
+
+    public void setPracownikSelectList(List<SelectItem> pracownikSelectList) {
+        this.pracownikSelectList = pracownikSelectList;
+    }
+    
+    
     
     public OddzialController getOddzialController() {
         return oddzialController;

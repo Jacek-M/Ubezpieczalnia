@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import ubezpieczalnia.entities.Klient;
 import ubezpieczalnia.entities.Konto;
@@ -41,6 +42,17 @@ public class RegisterController implements AbstractController<Klient> {
 
     private Klient klient = new Klient();
     private List<Klient> klienci = new ArrayList<>();
+    private List<SelectItem> klientSelectList = new ArrayList<>();
+
+    public List<SelectItem> getKlientSelectList() {
+        return klientSelectList;
+    }
+
+    public void setKlientSelectList(List<SelectItem> klientSelectList) {
+        this.klientSelectList = klientSelectList;
+    }
+    
+    
 
     public AdresController getAdresController() {
         return adresController;

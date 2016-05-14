@@ -81,6 +81,13 @@ $(document).ready(function () {
         tableActions: "client",
         link: "insurances"
     });
+    
+    $('#tableAgreementContent').TableInfo({
+        tableName: "Umowy",
+        tableId: "tableAgreement",
+        content: "agreements",
+        link: "agreements"
+    });
 
 });
 
