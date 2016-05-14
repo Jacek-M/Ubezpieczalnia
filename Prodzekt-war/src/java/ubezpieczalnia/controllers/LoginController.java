@@ -17,7 +17,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import ubezpieczalnia.entities.Adres;
 import ubezpieczalnia.entities.Klient;
 import ubezpieczalnia.entities.Konto;
 import ubezpieczalnia.model.KontoEJB;
@@ -32,12 +31,6 @@ public class LoginController implements Serializable, AbstractController<Konto> 
 
     private Konto konto = new Konto();
     private List<Konto> kontaList = new ArrayList<>();
-
-    @PostConstruct
-    public void init() {
-        konto = new Konto();
-        kontaList = new ArrayList<>();
-    }
 
     @EJB
     private KontoEJB kontoEJB;
@@ -73,8 +66,10 @@ public class LoginController implements Serializable, AbstractController<Konto> 
                 konto = kontoEJB.checkoutLogin(konto.getKontoLogin(), konto.getKontoHaslo());
                 if (konto != null) {
                     if (checkLogged() == false) {
+                        
                         SessionManager.addToSession("logged", true);
                         SessionManager.addToSession("permission", konto.getKontoUprawnienia());
+                        System.out.println("KONTOOOOOOOOOOOOOOOOO SIZE = " + konto.getKlientCollection().size());
                     }
                     return PageController.getPage("/index.xhtml");
                 }
@@ -101,6 +96,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
     }
 
     public Klient getKlientAccount() {
+        if(this.konto.getKlientCollection() == null) return null;
         for (Klient klient : this.konto.getKlientCollection()) {
             if (klient != null) {
                 System.out.println("IN NULL");

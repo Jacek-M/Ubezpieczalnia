@@ -94,7 +94,7 @@ public class RegisterController implements AbstractController<Klient> {
                 klient.setKlientAdresIdFk(adresController.getAdres());
                 klient.setKlientKontoIdFk(loginController.getKonto());
 
-                klientEJB.addNew(klient);
+                this.klient = klientEJB.addNew(klient);
                 return PageController.getPage("/login.xhtml");
 
             } catch (Exception ex1) {

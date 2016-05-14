@@ -112,21 +112,18 @@ public class PracownikController implements AbstractController<Pracownik> {
             try {
                 
                 if (this.oddzialController.getOddzial().getOddzialId() != null && this.oddzialController.getOddzial().getOddzialId() != -1) {
-                    oddzialController.findById();
                     pracownik.setPracownikOddzialIdFk(this.oddzialController.getOddzial());
                     pracownik.setPracownikZakladIdFk(null);
                 } else if (this.zakladController.getZaklad().getZakladId() != null && this.zakladController.getZaklad().getZakladId() != -1) {
-                    zakladController.findById();
                     pracownik.setPracownikZakladIdFk(this.zakladController.getZaklad());
                     pracownik.setPracownikOddzialIdFk(null);
                 }
-                loginController.findKontoByLoginAndPassword();
-                adresController.findAdresByCityAndStreet();
+
                 
                 pracownik.setPracownikAdresIdFk(adresController.getAdres());
                 pracownik.setPracownikKontoIdFk(loginController.getKonto());
                 
-                pracownikEJB.addNew(this.pracownik);
+                this.pracownik = pracownikEJB.addNew(this.pracownik);
                 return PageController.getPage("/adminPages/employees.xhtml");
                 
             } catch (Exception ex1) {

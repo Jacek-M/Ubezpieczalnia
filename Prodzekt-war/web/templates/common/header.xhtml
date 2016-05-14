@@ -27,7 +27,7 @@
 
                         </c:if>
 
-                        <c:if test="#{loginController.klientAccount.klientImie.length() > 0}">
+                        <c:if test="#{loginController.klientAccount != null}">
 
                             <div class="client-name-header">
                                 <a href="/Prodzekt-war/faces/customerPages/customerView.xhtml" title="Pokaż mój profil">
