@@ -17,53 +17,50 @@
                         <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
                     </h:panelGroup>
 
-                    <h1>Dodaj nową umowe</h1>
+                    <h1>Dodaj umowe</h1>
+                    
+                    Tego chyba niebedzie
 
-                    <f:view>
-
-
-                        <h:form id="panelAdd">
-                            <h:panelGrid  columns="2">
-                                <h:outputLabel value="UmowaDataWystawienia:" for="umowaDataWystawienia" />
-                                <h:inputText id="umowaDataWystawienia" value="#{umowaController.umowa.umowaDataWystawienia}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:inputText>
-                                <h:outputLabel value="UmowaDataZakonczenia:" for="umowaDataZakonczenia" />
-                                <h:inputText id="umowaDataZakonczenia" value="#{umowaController.umowa.umowaDataZakonczenia}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:inputText>
-                                <h:outputLabel value="UmowaKwota:" for="umowaKwota" />
-                                <h:inputText id="umowaKwota" value="#{umowaController.umowa.umowaKwota}"/>
-                                <h:outputLabel value="UmowaStatus:" for="umowaStatus" />
-                                <h:inputText id="umowaStatus" value="#{umowaController.umowa.umowaStatus}"/>
-                                
-                                <h:outputLabel value="UmowaKlientIdFk:" for="umowaKlientIdFk" />
-                                <h:selectOneMenu value="#{umowaController.registerController.klient.klientId}">
-                                    <f:selectItems value="#{registerController.klientSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                </h:selectOneMenu>
-
-                                <h:outputLabel value="UmowaPojazdIdFk:" for="umowaPojazdIdFk" />
-                                <h:selectOneMenu value="#{umowaController.pojazdController.pojazd.pojazdId}">
-                                    <f:selectItems value="#{pojazdController.pojazdSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                </h:selectOneMenu>
-                                
-                                <h:outputLabel value="UmowaPracownikIdFk:" for="umowaPracownikIdFk" />
-                                <h:selectOneMenu value="#{umowaController.pracownikController.pracownik.pracownikId}">
-                                    <f:selectItems value="#{pracownikController.pracownikSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                </h:selectOneMenu>
-                                
-                                <h:outputLabel value="UmowaRodzajUbezpieczeniaIdFk:" for="umowaRodzajUbezpieczeniaIdFk" />
-                                <h:selectOneMenu value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaId}">
-                                    <f:selectItems value="#{rodzajUbezController.rodzajUbezSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-                            <br/>
-                        <h:commandButton value="Dodaj nowego pracownika" action="#{pracownikController.registerWorker()}"/>
-                        </h:form>
-                    </f:view>
-
-
-
+                    <!--                    <f:view>
+                                            <h:form id="panelAdd">
+                                                <h:panelGrid  columns="2">
+                                                    <h:outputLabel value="UmowaDataWystawienia:" for="umowaDataWystawienia" />
+                                                    <h:inputText id="umowaDataWystawienia" value="#{umowaController.umowa.umowaDataWystawienia}">
+                                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                    </h:inputText>
+                                                    <h:outputLabel value="UmowaDataZakonczenia:" for="umowaDataZakonczenia" />
+                                                    <h:inputText id="umowaDataZakonczenia" value="#{umowaController.umowa.umowaDataZakonczenia}">
+                                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                    </h:inputText>
+                                                    <h:outputLabel value="UmowaKwota:" for="umowaKwota" />
+                                                    <h:inputText id="umowaKwota" value="#{umowaController.umowa.umowaKwota}"/>
+                                                    <h:outputLabel value="UmowaStatus:" for="umowaStatus" />
+                                                    <h:inputText id="umowaStatus" value="#{umowaController.umowa.umowaStatus}"/>
+                    
+                                                    <h:outputLabel value="UmowaKlientIdFk:" for="umowaKlientIdFk" />
+                                                    <h:selectOneMenu value="#{umowaController.registerController.klient.klientId}">
+                                                        <f:selectItems value="#{registerController.klientSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                                    </h:selectOneMenu>
+                    
+                                                    <h:outputLabel value="UmowaPojazdIdFk:" for="umowaPojazdIdFk" />
+                                                    <h:selectOneMenu value="#{umowaController.pojazdController.pojazd.pojazdId}">
+                                                        <f:selectItems value="#{pojazdController.pojazdSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                                    </h:selectOneMenu>
+                    
+                                                    <h:outputLabel value="UmowaPracownikIdFk:" for="umowaPracownikIdFk" />
+                                                    <h:selectOneMenu value="#{umowaController.pracownikController.pracownik.pracownikId}">
+                                                        <f:selectItems value="#{pracownikController.pracownikSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                                    </h:selectOneMenu>
+                    
+                                                    <h:outputLabel value="UmowaRodzajUbezpieczeniaIdFk:" for="umowaRodzajUbezpieczeniaIdFk" />
+                                                    <h:selectOneMenu value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaId}">
+                                                        <f:selectItems value="#{rodzajUbezController.rodzajUbezSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                                    </h:selectOneMenu>
+                                                </h:panelGrid>
+                                                <br/>
+                                                <h:commandButton value="Dodaj nową umowe" action="#{umowaController.registerAgreement()}"/>
+                                            </h:form>
+                                        </f:view>-->
                 </div>
             </ui:define>
         </ui:composition>

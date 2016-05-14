@@ -86,7 +86,40 @@ $(document).ready(function () {
         tableName: "Umowy",
         tableId: "tableAgreement",
         content: "agreements",
+        tableActions: "admin",
         link: "agreements"
+    });
+    
+    $('#tableAgreementViewContent').TableInfo({
+        tableName: "Szkody",
+        tableId: "tableAgreementView",
+        content: "agreements",
+        tableActions: "admin",
+        link: "incidents"
+    });
+    
+    $('#tableIncidentContent').TableInfo({
+        tableName: "Szkody",
+        tableId: "tableIncident",
+        content: "incidents",
+        tableActions: "admin",
+        link: "incidents"
+    });
+    
+    $('#tableIncidentViewContent').TableInfo({
+        tableName: "Wyceny",
+        tableId: "tableIncidentView",
+        content: "incidents",
+        tableActions: "admin",
+        link: "valuations"
+    });
+    
+    $('#tableValuationContent').TableInfo({
+        tableName: "Wyceny",
+        tableId: "tableValuation",
+        content: "valuations",
+        tableActions: "admin",
+        link: "valuations"
     });
 
 });

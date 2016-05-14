@@ -14,62 +14,53 @@
                 <div class="agreements">
                     <h1> Pracownik edycja</h1>
 
-                    <h:form id="panelAdd">
-                        <h:panelGrid  columns="2">
-                            <h:panelGroup>
-                                <h:outputLabel  value="" />
-                                <h:inputHidden id="hidden_value1" value="#{pracownikController.pracownik.pracownikId}"/>
-                                <h:outputLabel  value="Imię: " />
-                            </h:panelGroup>
-                            <h:inputText id="imie" value="#{pracownikController.pracownik.pracownikImie}"/>
-                            <h:outputLabel  value="Nazwisko: " />
-                            <h:inputText id="nazwisko" value="#{pracownikController.pracownik.pracownikNazwisko}"/>
-                            <h:outputLabel  value="Wynagrodzenie " />
-                            <h:inputText id="wynagrodzenie" value="#{pracownikController.pracownik.pracownikWynagrodzenie}"/>
-                            <h:outputLabel  value="Data zatrudnienia: " />
-                            <h:inputText id="dataZatrudnienia" value="#{pracownikController.pracownik.pracownikDataZatrudnienia}">
-                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                            </h:inputText>
-                            <h:outputLabel  value="Uprawnienia: " />
-                            <h:selectOneMenu value="#{pracownikController.pracownik.pracownikTyp}">
-                                <f:selectItem itemValue="Rzeczoznawca" itemLabel="Rzeczoznawca" />
-                                <f:selectItem itemValue="Super" itemLabel="Administrator" />
-                                <f:selectItem itemValue="Konsultant" itemLabel="Konsultant" />
-                            </h:selectOneMenu>
+                    <f:view>
 
-                            <h:outputLabel  value="Oddział " />
-                            <h:selectOneMenu value="#{pracownikController.oddzialController.oddzial.oddzialId}">
-                                <f:selectItems value="#{oddzialController.oddzialSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                            </h:selectOneMenu>
 
-                            <h:outputLabel  value="Zakład " />
-                            <h:selectOneMenu value="#{pracownikController.zakladController.zaklad.zakladId}">
-                                <f:selectItems value="#{zakladController.zakladSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                            </h:selectOneMenu>
+                        <h:form id="panelAdd">
+                            <h:panelGrid  columns="2">
+                                <h:panelGroup>
+                                    <h:outputLabel  value="" />
+                                    <h:inputHidden id="hidden_value1" value="#{umowaController.umowa.umowaId}"/>
+                                    <h:outputLabel value="UmowaDataWystawienia:" for="umowaDataWystawienia" />
+                                </h:panelGroup>
+                                
+                                <h:inputText id="umowaDataWystawienia" value="#{umowaController.umowa.umowaDataWystawienia}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:inputText>
+                                <h:outputLabel value="UmowaDataZakonczenia:" for="umowaDataZakonczenia" />
+                                <h:inputText id="umowaDataZakonczenia" value="#{umowaController.umowa.umowaDataZakonczenia}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:inputText>
+                                <h:outputLabel value="UmowaKwota:" for="umowaKwota" />
+                                <h:inputText id="umowaKwota" value="#{umowaController.umowa.umowaKwota}"/>
+                                <h:outputLabel value="UmowaStatus:" for="umowaStatus" />
+                                <h:inputText id="umowaStatus" value="#{umowaController.umowa.umowaStatus}"/>
 
-                            <h:panelGroup>
-                                <h:outputLabel value="" />    
-                                <h:inputHidden id="hidden_value2" value="#{pracownikController.adresController.adres.adresId}"/>
-                                <h:outputLabel  value="Telefon: " />
-                            </h:panelGroup>
-                            <h:inputText id="telefon" value="#{pracownikController.adresController.adres.adresTelefon}"/>
+                                <h:outputLabel value="UmowaKlientIdFk:" for="umowaKlientIdFk" />
+                                <h:selectOneMenu value="#{umowaController.registerController.klient.klientId}">
+                                    <f:selectItems value="#{registerController.klientSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
 
-                            <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{pracownikController.adresController.adres.adresUlica}"/>
+                                <h:outputLabel value="UmowaPojazdIdFk:" for="umowaPojazdIdFk" />
+                                <h:selectOneMenu value="#{umowaController.pojazdController.pojazd.pojazdId}">
+                                    <f:selectItems value="#{pojazdController.pojazdSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
 
-                            <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{pracownikController.adresController.adres.adresMiejscowosc}"/>
+                                <h:outputLabel value="UmowaPracownikIdFk:" for="umowaPracownikIdFk" />
+                                <h:selectOneMenu value="#{umowaController.pracownikController.pracownik.pracownikId}">
+                                    <f:selectItems value="#{pracownikController.pracownikSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
 
-                            <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{pracownikController.adresController.adres.adresKodPocztowy}"/>
-
-                            <h:outputLabel  value="Poczta " />
-                            <h:inputText id="poczta" value="#{pracownikController.adresController.adres.adresPoczta}"/>
-
-                        </h:panelGrid>
-                        <br/>
-                        <h:commandButton value="Dodaj nowego pracownika" action="#{pracownikController.update()}"/>
-                    </h:form>
+                                <h:outputLabel value="UmowaRodzajUbezpieczeniaIdFk:" for="umowaRodzajUbezpieczeniaIdFk" />
+                                <h:selectOneMenu value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaId}">
+                                    <f:selectItems value="#{rodzajUbezController.rodzajUbezSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <br/>
+                            <h:commandButton value="Zapisz" action="#{umowaController.update()}"/>
+                        </h:form>
+                    </f:view>
                 </div>
             </ui:define>
         </ui:composition>

@@ -72,7 +72,7 @@ public class WycenaController implements AbstractController<Wycena>{
         this.wycenaList = wycenaList;
     }
     
-    public String registerIncident() {
+    public String registerValuation() {
         return "";
     }
 

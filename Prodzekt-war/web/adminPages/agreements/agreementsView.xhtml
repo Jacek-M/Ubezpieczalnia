@@ -12,142 +12,195 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="agreements">
-                    <h1> Pracownik info</h1>
+                    <h1> Umowa info</h1>
 
                     <div class="data-view">
                         <div class="row">
                             <div class="col-md-3">
-                                <h4>Dane pracownika </h4>
+                                <h4>Dane umowy </h4>
                                 <br/>
                                 <ul>
                                     <li>
-                                        <h:outputLabel  value="Imie: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikImie}"/>
+                                        <h:outputLabel  value="Data wrozpoczęcia: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaDataWystawienia}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Data zakończenia: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaDataZakonczenia}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Kwota: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaKwota}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Status: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaStatus}"/>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <div class="col-md-3">
+
+                                <h4>Klient</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Imię: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaKlientIdFk.klientImie}"/>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Nazwisko: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikNazwisko}"/>
+                                        <h:outputText value="#{umowaController.umowa.umowaKlientIdFk.klientNazwisko}"/>
                                     </li>
                                     <li>
-                                        <h:outputLabel  value="Data zatrudnienia: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikDataZatrudnienia}"/>
+                                        <h:outputLabel  value="Procent zniżki: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaKlientIdFk.klientProcentZnizki}"/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Pojazd</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Marka: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaPojazdIdFk.pojazdMarka}"/>
                                     </li>
                                     <li>
-                                        <h:outputLabel  value="Data zwolnienia: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikDataZwolnienia}"/>
+                                        <h:outputLabel  value="Model: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaPojazdIdFk.pojazdModel}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Numer vin: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaPojazdIdFk.pojazdNrVin}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Pojemność: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaPojazdIdFk.pojazdPojemnosc}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Rok produkcji: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaPojazdIdFk.pojazdRokProdukcji}"/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Pracownik</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Imię: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaPracownikIdFk.pracownikImie}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Nazwisko: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaPracownikIdFk.pracownikNazwisko}"/>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Typ: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikTyp}"/>
+                                        <h:outputText value="#{umowaController.umowa.umowaPracownikIdFk.pracownikTyp}"/>
                                     </li>
-                                    <li>
-                                        <h:outputLabel  value="Wynagrodzenie: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikWynagrodzenie}"/>
-                                    </li>
-                                </ul>
-
-                            </div>
-                            <div class="col-md-3">
-
-                                <h4>Konto</h4>
-                                <br/>
-                                <ul>
-                                    <li>
-                                        <h:outputLabel  value="Login: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikKontoIdFk.kontoLogin}"/>
-                                    </li>
-                                    <li>
-                                        <h:outputLabel  value="Hasło: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikKontoIdFk.kontoHaslo}"/>
-                                    </li>
-                                    <li>
-                                        <h:outputLabel  value="Uprawnienia: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikKontoIdFk.kontoUprawnienia}"/>
-                                    </li>
+                                   
                                 </ul>
                             </div>
-                            <div class="col-md-3">
-                                <h4>Adres</h4>
-                                <br/>
-                                <ul>
-                                    <li>
-                                        <h:outputLabel  value="Telefon: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikAdresIdFk.adresTelefon}"/>
-                                    </li>
-                                    <li>
-                                        <h:outputLabel  value="Ulica: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikAdresIdFk.adresUlica}"/>
-                                    </li>
-                                    <li>
-                                        <h:outputLabel  value="Miejscowość: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikAdresIdFk.adresMiejscowosc}"/>
-                                    </li>
-                                    <li>
-                                        <h:outputLabel  value="Kod pocztowy: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikAdresIdFk.adresKodPocztowy}"/>
-                                    </li>
-                                    <li>
-                                        <h:outputLabel  value="Poczta: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikAdresIdFk.adresPoczta}"/>
-                                    </li>
-                                </ul>
-                            </div>
-                            <c:if test="#{pracownikController.pracownik.pracownikOddzialIdFk != null}">
                                 <div class="col-md-3">
-                                    <h4>Oddział</h4>
-                                    <br/>
-                                    <ul>
-                                        <li>
-                                            <h:outputLabel  value="Telefon: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikOddzialIdFk.oddzialTelefon}"/>
-                                        </li>
-                                        <li>
-                                            <h:outputLabel  value="Ulica: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikOddzialIdFk.oddzialAdresIdFk.adresUlica}"/>
-                                        </li>
-                                        <li>
-                                            <h:outputLabel  value="Miejscowość: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikOddzialIdFk.oddzialAdresIdFk.adresMiejscowosc}"/>
-                                        </li>
-                                        <li>
-                                            <h:outputLabel  value="Kod pocztowy: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikOddzialIdFk.oddzialAdresIdFk.adresKodPocztowy}"/>
-                                        </li>
-                                        <li>
-                                            <h:outputLabel  value="Poczta: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikOddzialIdFk.oddzialAdresIdFk.adresPoczta}"/>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </c:if>
-                            <c:if test="#{pracownikController.pracownik.pracownikZakladIdFk != null}">
-                                <div class="col-md-3">
-                                    <h4>Zakład</h4>
+                                    <h4>Ubezpieczenie:</h4>
                                     <br/>
                                     <ul>
 
                                         <li>
                                             <h:outputLabel  value="Nazwa: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikZakladIdFk.zakladNazwa}"/>
+                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaNazwa}"/>
                                         </li>
                                         <li>
-                                            <h:outputLabel  value="Data rozpoczęcia współpracy: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikZakladIdFk.zakladDataRozpoczeciaWsp}"/>
+                                            <h:outputLabel  value="Cena: " />
+                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCena}"/>
                                         </li>
                                         <li>
-                                            <h:outputLabel  value="Data zakończenia współpracy: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikZakladIdFk.zakladDataZakonczeniaWsp}"/>
+                                            <h:outputLabel  value="Rodzaj: " />
+                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaRodzaj}"/>
                                         </li>
                                         <li>
-                                            <h:outputLabel  value="Adres: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikZakladIdFk.zakladAdresIdFk.adresMiejscowosc}"/>
+                                            <h:outputLabel  value="Czy zastępczy: " />
+                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                        </li>
+                                        <li>
+                                            <h:outputLabel  value="Opis: " />
+                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaOpis}"/>
                                         </li>
                                     </ul>
                                 </div>
-                            </c:if>
                         </div>
 
                     </div>
+                    
+                    
+                    <div id="tableSzkody" class="table-szkody">
+                        <div id="tableHeader" class="table-header">
+                            <p></p>
+                        </div>
+
+                        <div id="tableAgreementViewContent" class="table-content">
+                            <h:dataTable id="tableAgreementView" class="table-data" value="#{umowaController.umowa.szkodaCollection}" var="emp"  border="1" style="width:100%">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Lp"/>
+                                    </f:facet>
+                                    <h:outputText id="displayCell" class="display-cell" value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data zdarzenia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaDataZdarzenia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data zakończenia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaDataZakonczenia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Status"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaStatus}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Typ"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaTyp}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Umowa numer"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Samochód zastępczy"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Akcja"/>
+                                    </f:facet>
+                                    <h:outputText id="actionCell" class="action-cell" value=""/>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                    
                 </div>
             </ui:define>
         </ui:composition>
