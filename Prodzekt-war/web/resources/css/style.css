@@ -348,11 +348,11 @@
 }
 
 .contentAdmin .table-data tr:nth-child(even){background-color: #f2f2f2}
- .table-data th {
+.table-data th {
     background-color: #3b5998;
     color: white;
     padding: 3px;
-    
+
 }
 /***********/
 .contentAdmin #panelAdd table, #panelAdd {
@@ -363,7 +363,7 @@
 }
 .contentAdmin #panelAdd table tr.spaceUnder > td
 {
-  padding-bottom: 5em;
+    padding-bottom: 5em;
 }
 .contentAdmin #panelAdd table td{
     text-align: left;
@@ -374,7 +374,7 @@
 }
 
 .table-header {
-/*    border: solid 1px;*/
+    /*    border: solid 1px;*/
     position: relative;
     border-color: rgb(76, 175, 80);
     background-color: #3b5998;
@@ -415,7 +415,7 @@
 .table-data tr:hover {
     background-color: #FCF59A;
 }
-                
+
 .contentAdmin .table-data tr:nth-child(even):hover {
     background-color: #FCF59A
 }
@@ -456,6 +456,43 @@
 .add-worker:hover {
     background-color: rgb(139, 157, 195);
 }
+
+/* client name in header */
+
+.client-name-header {
+    display: inline;
+    padding: 5px;
+    margin-left: 45%;
+}
+
+.client-name-header label {
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    padding-right: 5px;
+    padding-top: 17px;
+}
+
+.client-name-header i {
+    padding-right: 10px;
+    color: whitesmoke;
+}
+
+
+
+.client-detail, .client-stats, .client-adres {
+    position: relative;
+    float: left;
+    padding: 15px;
+}
+
+.client-detail p label {
+    padding-right: 10px;
+}
+.client-detail p {
+    margin-left: 13%;
+}
+
 
 
 

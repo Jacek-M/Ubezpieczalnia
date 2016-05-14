@@ -17,6 +17,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import ubezpieczalnia.entities.Adres;
+import ubezpieczalnia.entities.Klient;
 import ubezpieczalnia.entities.Konto;
 import ubezpieczalnia.model.KontoEJB;
 
@@ -97,6 +99,19 @@ public class LoginController implements Serializable, AbstractController<Konto> 
             SessionManager.destroySession();
         }
     }
+
+    public Klient getKlientAccount() {
+        for (Klient klient : this.konto.getKlientCollection()) {
+            if (klient != null) {
+                System.out.println("IN NULL");
+                Logger.getLogger("INFO").log(Level.INFO, "CLIENT FROM ACCOUNT: {0}", klient.getKlientImie());
+                return klient;
+            }
+        }
+        return null;
+    }
+    
+    
 
     @Override
     public List<Konto> findAll() {

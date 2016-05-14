@@ -21,11 +21,22 @@
                     </c:if>
                     <c:if test="#{loginController.checkLogged() == true}">
                         <li><h:link value="Klient" outcome="#{pageController.getPage('/customerPages/insurance.xhtml')}"/></li>
-                        
+
                         <c:if test="#{loginController.checkPermission() == 'Super'}">
                             <li><h:link value="Admin" outcome="#{pageController.getPage('/adminPages/employees/employees.xhtml')}"/></li>
 
                         </c:if>
+
+                        <c:if test="#{loginController.klientAccount.klientImie.length() > 0}">
+
+                            <div class="client-name-header">
+                                <a href="/Prodzekt-war/faces/customerPages/customerView.xhtml" title="Pokaż mój profil">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <h:outputLabel value="#{loginController.klientAccount.klientImie}"/>
+                                    <h:outputLabel value="#{loginController.klientAccount.klientNazwisko}"/>
+                                </a>
+                            </div>
+                        </c:if> 
                         <li style="float:right">
                             <h:link value ="Wyloguj" outcome="#{pageController.getPageParams('/login.xhtml', 'faces-redirect=true&amp;logout=true')}"/>
                         </li>
