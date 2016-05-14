@@ -4,6 +4,7 @@
             tableId: null,
             tableName: null,
             content: null,
+            tableActions: null,
             link: null
         },
         _create: function () {
@@ -11,6 +12,7 @@
             this.tableName = this.options.tableName;
             this.content = this.options.content;
             this.link = this.options.link;
+            this.tableActions = this.options.tableActions;
             this.table = null;
             console.log("_create() TableInfo with OPTIONS[" + this.tableId + " " + this.tableName + " " + this.content + "]");
             this._initTableHeader();
@@ -92,7 +94,7 @@
         },
         _initActionCell: function () {
             $('.action-cell').append(this._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły"));
-            $('.action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
+            if(this.tableActions === "admin") $('.action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
 //            $('.action-cell').append(this._createOsomIcon("trashIcon", "trash-icon", "fa fa-trash", "Usuń"));
         },
         _createOsomIcon: function (id, className, osomClass, tooltip) {

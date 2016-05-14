@@ -76,7 +76,6 @@ public class RegisterController implements AbstractController<Klient> {
     }
 
 
-
     public String registerAccount() {
         Konto konto = loginController.getKonto();
         try {

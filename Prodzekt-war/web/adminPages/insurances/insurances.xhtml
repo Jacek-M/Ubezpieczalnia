@@ -9,68 +9,10 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/templates/adminTemplate.xhtml">
+        <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="insurances">
-                    <h1> Ubezpieczenia </h1>
-                    <div class="actions">
-                        <ul>
-                            <li><h:link id="addWorker" class="add-worker" value="Dodaj ubezpieczenie" outcome="#{pageController.getPage('/adminPages/insurances/insurancesAdd.xhtml')}"/></li>
-                        </ul>
-                    </div>
-                    <div id="tableUbezpieczenia" class="table-ubezpieczenia">
-                        <div id="tableHeader" class="table-header">
-                            <p></p>
-                        </div>
-
-                        <div id="tableInsuranceContent" class="table-content">
-                            <h:dataTable id="tableInsurance" class="table-data" value="#{rodzajUbezController.rodzajUbezList}" var="emp"  border="1" style="width:100%">
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Lp"/>
-                                    </f:facet>
-                                    <h:outputText id="displayCell" class="display-cell" value=""/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="ID"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.rodzajUbezpieczeniaId}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Nazwa"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.rodzajUbezpieczeniaNazwa}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Rodzaj"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.rodzajUbezpieczeniaRodzaj}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Cena"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.rodzajUbezpieczeniaCena}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Czy zastępczy"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.rodzajUbezpieczeniaCzyZastepczy}"/>
-                                </h:column>
-                                
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Akcja"/>
-                                    </f:facet>
-                                    <h:outputText id="actionCell" class="action-cell" value=""/>
-                                </h:column>
-                            </h:dataTable>
-                        </div>
-                    </div>
+                    
                 </div>
             </ui:define>
         </ui:composition>

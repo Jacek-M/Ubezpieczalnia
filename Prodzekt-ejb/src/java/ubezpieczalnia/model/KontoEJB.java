@@ -44,5 +44,12 @@ public class KontoEJB extends AbstractModel<Konto> {
     public void update(Konto object) {
         
     }
+    
+    public Konto refresh(Konto konto) {
+        konto  = em.find(Konto.class, konto.getKontoId());
+        em.refresh(konto);
+        em.flush();    
+        return konto;
+    }
 
 }

@@ -19,6 +19,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import ubezpieczalnia.entities.Klient;
 import ubezpieczalnia.entities.Konto;
+import ubezpieczalnia.entities.Umowa;
 import ubezpieczalnia.model.KontoEJB;
 
 /**
@@ -54,7 +55,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         }
         return "";
     }
-
+    
     public Konto findKontoByLoginAndPassword() throws Exception {
         konto = kontoEJB.checkoutLogin(this.konto.getKontoLogin(), this.konto.getKontoHaslo());
         return konto;
@@ -66,10 +67,9 @@ public class LoginController implements Serializable, AbstractController<Konto> 
                 konto = kontoEJB.checkoutLogin(konto.getKontoLogin(), konto.getKontoHaslo());
                 if (konto != null) {
                     if (checkLogged() == false) {
-                        
+                        this.konto = kontoEJB.refresh(this.konto);
                         SessionManager.addToSession("logged", true);
-                        SessionManager.addToSession("permission", konto.getKontoUprawnienia());
-                        System.out.println("KONTOOOOOOOOOOOOOOOOO SIZE = " + konto.getKlientCollection().size());
+                        SessionManager.addToSession("permission", konto.getKontoUprawnienia()); 
                     }
                     return PageController.getPage("/index.xhtml");
                 }
@@ -106,6 +106,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         }
         return null;
     }
+    
     
     
 

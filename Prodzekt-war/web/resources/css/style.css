@@ -247,10 +247,8 @@
 }
 
 /*************admin***************/
-#content{
 
-}
-#content .menuAdmin, .contentAdmin{
+.menuAdmin{
     position: relative;
 }
 
@@ -300,17 +298,18 @@
 
 /*************customer***************/
 
-#content .menuCustomer, .contentCustomer{
+.menuCustomer, .contentCustomer{
     display: inline-table;
     position: relative;
 }
-#content .menuCustomer {
-
+.menuCustomer {
     margin-right: 10px;
+    margin-top: 6.5%;
+    float : left;
     font-size: 1.3em;
 
 }
-#content .menuCustomer ul {
+.menuCustomer ul {
     list-style-type: none;
     padding: 0;
     background-color: #f1f1f1;
@@ -318,17 +317,17 @@
     height: 100%;
 
 }
-#content .menuCustomer li a {
+.menuCustomer li a {
     display: block;
     color: #000;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
 }
-#content .menuCustomer li a.active {
+.menuCustomer li a.active {
     background-color: #4CAF50;
     color: white;
 }
-#content .menuCustomer li a:hover:not(.active) {
+.menuCustomer li a:hover:not(.active) {
     background-color: #555;
     color: white;
 }
@@ -379,9 +378,7 @@
     text-align: left;
 }
 
-.dataTables_filter {
-    padding-bottom: 5px;
-}
+
 
 .table-header {
     /*    border: solid 1px;*/
@@ -507,6 +504,7 @@
     float : left;
 }
 
+
 .profile-image {
     text-align: center;
 }
@@ -534,18 +532,25 @@
     margin-right: 20px;
 }
 
-
+.stats-details h2, .adres-details h2 {
+    padding-bottom: 35px;
+    margin:0;
+}
 
 .customerView {
     min-height: 200px;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 12%;
+    margin-right: 12%;
     border: 1px solid rgb(200, 219, 244);
-    background-color: rgb(214, 217, 211);
+    background-color: whitesmoke;
 }
 
 .customerView div {
     max-width: 400px;
+}
+
+.customerView div:not(:first-of-type) {
+    margin-left: 25px;
 }
 
 
@@ -594,6 +599,9 @@
     padding: 5px 0px 5px 5px;
 }
 
+.dataTables_filter {
+    padding-bottom: 5px;
+}
 
 
 /* END OF DATATABLES */

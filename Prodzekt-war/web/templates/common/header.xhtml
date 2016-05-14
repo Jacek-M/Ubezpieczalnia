@@ -20,7 +20,7 @@
                         <li style="float:right"><h:link value="Zaloguj" outcome="#{pageController.getPage('/login.xhtml')}"/></li>
                     </c:if>
                     <c:if test="#{loginController.checkLogged() == true}">
-                        <li><h:link value="Klient" outcome="#{pageController.getPage('/customerPages/customerView.xhtml')}"/></li>
+                        <li><h:link value="Klient" outcome="#{pageController.getPage('/customerPages/customer/customerView.xhtml')}"/></li>
 
                         <c:if test="#{loginController.checkPermission() == 'Super'}">
                             <li><h:link value="Admin" outcome="#{pageController.getPage('/adminPages/employees/employees.xhtml')}"/></li>
@@ -30,7 +30,7 @@
                         <c:if test="#{loginController.klientAccount != null}">
 
                             <div class="client-name-header">
-                                <a href="/Prodzekt-war/faces/customerPages/customerView.xhtml" title="Pokaż mój profil">
+                                <a href="/Prodzekt-war/faces/customerPages/customer/customerView.xhtml" title="Pokaż mój profil">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     <h:outputLabel value="#{loginController.klientAccount.klientImie}"/>
                                     <h:outputLabel value="#{loginController.klientAccount.klientNazwisko}"/>

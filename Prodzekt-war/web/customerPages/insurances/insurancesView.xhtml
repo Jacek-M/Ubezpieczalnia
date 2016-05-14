@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/customerTemplate.xhtml">
+            <ui:define name="contentCustomer">
+                <div class="insurance">
+                    <h1> Ubezpieczenie info</h1>
+
+                    <div class="data-view">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Dane ubezpieczenia</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Nazwa: " />
+                                        <h:outputText value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaNazwa}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Rodzaj: " />
+                                        <h:outputText value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaRodzaj}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Opis: " />
+                                        <h:outputText value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaOpis}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Cena: " />
+                                        <h:outputText value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCena}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Czy zastępczy: " />
+                                        <h:outputText value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

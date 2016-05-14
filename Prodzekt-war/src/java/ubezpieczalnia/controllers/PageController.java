@@ -24,7 +24,7 @@ public class PageController {
 
     private static final String[] pages = {
         "/index.xhtml", "/contact.xhtml", "/offer.xhtml", "/crud.xhtml", "/login.xhtml", "/admin.xhtml",
-        "/register.xhtml", "/admin/test.xhtml", "/customerPages/insurance.xhtml", "/customerPages/customerView.xhtml", "/customerPages/customerEdit.xhtml",
+        "/register.xhtml", "/admin/test.xhtml", "/customerPages/insurances/insurances.xhtml", "/customerPages/customer/customerView.xhtml", "/customerPages/customer/customerEdit.xhtml",
         "/adminPages/employees/employees.xhtml", "/adminPages/employees/employeesAdd.xhtml", "/adminPages/employees/employeesEdit.xhtml", "/adminPages/employees/employeesView.xhtml",
         "/adminPages/clients/clients.xhtml", "/adminPages/clients/clientsAdd.xhtml", "/adminPages/clients/clientsEdit.xhtml", "/adminPages/clients/clientsView.xhtml",
         "/adminPages/services/services.xhtml", "/adminPages/services/servicesAdd.xhtml", "/adminPages/services/servicesEdit.xhtml", "/adminPages/services/servicesView.xhtml",
