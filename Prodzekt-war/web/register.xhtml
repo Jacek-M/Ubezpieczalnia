@@ -24,32 +24,28 @@
                     <h2> REJESTRACJA </h2>
                     <div class="registeBox">
                         <h:form id="registerForm">
-                            <h:outputLabel  value="Login: " />
-                            <h:inputText id="kontoLogin" value="#{registerController.loginController.konto.kontoLogin}"/>
-                            <br />
-                            <h:outputLabel  value="Hasło: " />
-                            <h:inputText id="kontoHaslo" value="#{registerController.loginController.konto.kontoHaslo}"/>
-                            <br />
-                            <h:outputLabel  value="Imię: " />
-                            <h:inputText id="imie" value="#{registerController.klient.klientImie}"/>
-                            <br />
-                            <h:outputLabel  value="Nazwisko: " />
-                            <h:inputText id="nazwisko" value="#{registerController.klient.klientNazwisko}"/>
-                            <br />
-                            <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{registerController.adresController.adres.adresMiejscowosc}"/>
-                            <br />
-                            <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{registerController.adresController.adres.adresUlica}"/>
-                            <br />
-                            <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{registerController.adresController.adres.adresKodPocztowy}"/>
-                            <br />
-                            <h:outputLabel  value="Poczta " />
-                            <h:inputText id="poczta" value="#{registerController.adresController.adres.adresPoczta}"/>
-                            <br />
-                            <br />
-                            <h:commandButton value="Zarejestruj" action="#{registerController.registerAccount()}"/>
+                            <h:panelGrid columns="2">
+                                <h:outputLabel  value="Login: " />
+                                <h:inputText id="kontoLogin" value="#{registerController.loginController.konto.kontoLogin}"/>
+                                <h:outputLabel  value="Hasło: " />
+                                <h:inputText id="kontoHaslo" value="#{registerController.loginController.konto.kontoHaslo}"/>
+                                <h:outputLabel  value="Imię: " />
+                                <h:inputText id="imie" value="#{registerController.klient.klientImie}"/>
+                                <h:outputLabel  value="Nazwisko: " />
+                                <h:inputText id="nazwisko" value="#{registerController.klient.klientNazwisko}"/>
+                                <h:outputLabel  value="Miejscowość: " />
+                                <h:inputText id="miasto" value="#{registerController.adresController.adres.adresMiejscowosc}"/>
+                                <h:outputLabel  value="Ulica: " />
+                                <h:inputText id="ulica" value="#{registerController.adresController.adres.adresUlica}"/>
+                                <h:outputLabel  value="Kod pocztowy: " />
+                                <h:inputText id="kodPocztowy" value="#{registerController.adresController.adres.adresKodPocztowy}"/>
+                                <h:outputLabel  value="Poczta: " />
+                                <h:inputText id="poczta" value="#{registerController.adresController.adres.adresPoczta}"/>
+                                <h:outputLabel  value="Telefon: " />
+                                <h:inputText id="telefon" value="#{registerController.adresController.adres.adresTelefon}"/>
+                                  <h:outputLabel  value="" />
+                                <h:commandButton value="Zarejestruj" action="#{registerController.registerAccount()}"/>
+                            </h:panelGrid>
                         </h:form>
                     </div>
                 </div>

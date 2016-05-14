@@ -9,9 +9,59 @@
     <h:body>
         <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentCustomer">
+                <h1>Profil</h1>
                 <div class="customerView">
-                    <h1>Profil</h1>
-                    sadsada
+
+                    <div class="box-client-wrapper">
+
+                        <div class="profile-image">
+                            <i class="fa fa-user fa-5x" aria-hidden="true"></i>
+                            <p><h:outputLabel value="#{loginController.konto.kontoUprawnienia}"/></p>
+                        </div>
+
+                        <div class="profile-details">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Imię:"/>
+                                <h:outputLabel value="#{loginController.klientAccount.klientImie}"/>
+                                <h:outputLabel value="Nazwisko:"/>
+                                <h:outputLabel value="#{loginController.klientAccount.klientNazwisko}"/>
+                            </h:panelGrid>  
+                        </div>
+                    </div>
+
+                    <div class="box-adres-wrapper">
+                        <div class="adres-details">
+                            <h2> Kontakt </h2>
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Miejscowość:"/>
+                                <h:outputLabel value="#{loginController.klientAccount.klientAdresIdFk.adresMiejscowosc}"/>
+                                <h:outputLabel value="Ulica:"/>
+                                <h:outputLabel value="#{loginController.klientAccount.klientAdresIdFk.adresUlica}"/>
+                                <h:outputLabel value="Poczta:"/>
+                                <h:panelGroup>
+                                    <h:outputLabel value="#{loginController.klientAccount.klientAdresIdFk.adresKodPocztowy}"/>
+                                    <h:outputLabel value="#{loginController.klientAccount.klientAdresIdFk.adresPoczta}"/>
+                                </h:panelGroup>
+
+                                <h:outputLabel value="Telefon:"/>
+                                <h:outputLabel value="#{loginController.klientAccount.klientAdresIdFk.adresTelefon}"/>
+                            </h:panelGrid>
+                        </div>
+                    </div>
+
+
+                    <div class="box-stats-wrapper">
+                        <div class="stats-details">
+                            <h2> Umowy i zniżki </h2>
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Ilość zawartych umów: "/>
+                                <h:outputLabel value="#{loginController.klientAccount.umowaCollection.size()}"/>
+                                <h:outputLabel value="Procent zniżki: "/>
+                                <h:outputLabel value="#{loginController.klientAccount.klientProcentZnizki}"/>
+                            </h:panelGrid>
+                            <h:link value="Edytuj profil" outcome="#{pageController.getPage('/customerPages/customerEdit.xhtml')}"/>
+                        </div>
+                    </div>
                 </div>
             </ui:define>
         </ui:composition>

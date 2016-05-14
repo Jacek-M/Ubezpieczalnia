@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/customerTemplate.xhtml">
+            <ui:define name="contentCustomer">
+                <h1>Edytuj profil</h1>
+                <h:form id="customerEditForm">
+                    <div class="customerEdit">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel  value="Miejscowość: " />
+                            <h:panelGroup>
+                                <c:set value="#{loginController.klientAccount.klientAdresIdFk}" target="#{adresController}" property="adres" />
+                                <h:inputHidden id="hidden_value1" value="#{adresController.adres.adresId}"/>
+                                <h:inputText id="miasto" value="#{adresController.adres.adresMiejscowosc}"/>
+
+                            </h:panelGroup>
+                            <h:outputLabel  value="Ulica: " />
+                            <h:inputText id="ulica" value="#{adresController.adres.adresUlica}"/>
+
+                            <h:outputLabel  value="Kod pocztowy: " />
+                            <h:inputText id="kodPocztowy" value="#{adresController.adres.adresKodPocztowy}"/>
+
+                            <h:outputLabel  value="Poczta " />
+                            <h:inputText id="poczta" value="#{adresController.adres.adresPoczta}"/>
+                            <h:outputLabel  value="Telefon " />
+                            <h:inputText id="telefon" value="#{adresController.adres.adresTelefon}"/>
+
+
+                        </h:panelGrid>
+                        <h:commandButton value="Zapisz" action="#{adresController.update()}"/>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

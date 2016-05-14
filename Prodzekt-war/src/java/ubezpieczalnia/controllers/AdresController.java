@@ -73,7 +73,7 @@ public class AdresController implements AbstractController<Adres> {
     @Override
     public String update() {
         adresEJB.update(this.adres);
-        return PageController.getCurrentUrl();
+        return PageController.getCurrentUrl().split("faces")[1].split("Edit.xhtml")[0] + "View.xhtml";
     }
 
     @Override

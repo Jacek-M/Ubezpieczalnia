@@ -198,6 +198,16 @@
 
 /*************register*************/
 
+
+.registeBox {
+    margin-left: 40%;
+}
+.registeBox label {
+    padding: 5px 10px 5px 0px;
+}
+
+
+
 .register {
     text-align: center;
     font-family: sansation-light;
@@ -459,6 +469,20 @@
 
 /* client name in header */
 
+.contentCustomer {
+    width: 85%;
+}
+
+.contentCustomer h1 {
+    text-align: center;
+    font-family: sansation-light;
+    padding-bottom: 2%;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: black;
+
+}
+
 .client-name-header {
     display: inline;
     padding: 5px;
@@ -478,20 +502,83 @@
     color: whitesmoke;
 }
 
+.box-client-wrapper {
+    padding: 25px;
+    float : left;
+}
 
+.profile-image {
+    text-align: center;
+}
 
-.client-detail, .client-stats, .client-adres {
-    position: relative;
+.profile-image label {
+    padding: 2px 15px 2px 15px;
+    background-color: #3b5998;
+    color: white;
+}
+
+.box-adres-wrapper {
     float: left;
-    padding: 15px;
 }
 
-.client-detail p label {
-    padding-right: 10px;
+.box-stats-wrapper {
+    float:left;
 }
-.client-detail p {
-    margin-left: 13%;
+
+.adres-details, .stats-details {
+    padding: 15px;
+    margin-top: 5px;
 }
+
+.adres-details label, .profile-details label, .stats-details label {
+    margin-right: 20px;
+}
+
+
+
+.customerView {
+    min-height: 200px;
+    margin-left: 15%;
+    margin-right: 15%;
+    border: 1px solid rgb(200, 219, 244);
+    background-color: rgb(214, 217, 211);
+}
+
+.customerView div {
+    max-width: 400px;
+}
+
+
+.stats-details a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.stats-details a {
+    color: white;
+    text-decoration: none;
+    float:right;
+    background-color: #3b5998;
+    padding: 5px;
+    border-radius: 25px;
+    margin-top: 25px;
+}
+
+
+.customerEdit {
+    margin-left: 38%;
+}
+
+.customerEdit label {
+    margin-right: 20px;
+    padding-top: 10px;
+}
+
+.customerEdit input[type="submit"] {
+    text-align: center;
+    margin: 10px 0px 0px 120px;
+}
+
 
 
 

@@ -20,7 +20,7 @@
                         <li style="float:right"><h:link value="Zaloguj" outcome="#{pageController.getPage('/login.xhtml')}"/></li>
                     </c:if>
                     <c:if test="#{loginController.checkLogged() == true}">
-                        <li><h:link value="Klient" outcome="#{pageController.getPage('/customerPages/insurance.xhtml')}"/></li>
+                        <li><h:link value="Klient" outcome="#{pageController.getPage('/customerPages/customerView.xhtml')}"/></li>
 
                         <c:if test="#{loginController.checkPermission() == 'Super'}">
                             <li><h:link value="Admin" outcome="#{pageController.getPage('/adminPages/employees/employees.xhtml')}"/></li>

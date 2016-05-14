@@ -43,6 +43,16 @@ public class AdresEJB extends AbstractModel<Adres> {
 
     @Override
     public void update(Adres object) {
-        
+        Adres found = em.find(Adres.class, object.getAdresId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [ADRES]");
+        if(found != null) {
+            Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
+            found.setAdresMiejscowosc(object.getAdresMiejscowosc());
+            found.setAdresKodPocztowy(object.getAdresKodPocztowy());
+            found.setAdresUlica(object.getAdresUlica());
+            found.setAdresPoczta(object.getAdresPoczta());
+            found.setAdresTelefon(object.getAdresTelefon());
+            em.flush();
+        }
     }
 }
