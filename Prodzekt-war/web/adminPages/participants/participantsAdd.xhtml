@@ -11,69 +11,27 @@
     <h:body>
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
-                <div class="employees">
-                    <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
-                        <br/>
-                        <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
-                    </h:panelGroup>
-
-                    <h1>Dodaj nowego pracownika</h1>
+                <div class="participants">
+                    <h1> Uczestnik dodanie</h1>
 
                     <h:form id="panelAdd">
                         <h:panelGrid  columns="2">
 
 
-                            <h:outputLabel  value="Login: " />
-                            <h:inputText id="kontoLogin" value="#{pracownikController.loginController.konto.kontoLogin}"/>
-
-                            <h:outputLabel  value="Hasło: " />
-                            <h:inputText id="kontoHaslo" value="#{pracownikController.loginController.konto.kontoHaslo}"/>
-
-                            <h:outputLabel  value="Imię: " />
-                            <h:inputText id="imie" value="#{pracownikController.pracownik.pracownikImie}"/>
+                           <h:outputLabel  value="Imię: " />
+                           <h:inputText id="marka" value="#{uczestnikController.uczestnik.uczestnikImie}"/>
 
                             <h:outputLabel  value="Nazwisko: " />
-                            <h:inputText id="nazwisko" value="#{pracownikController.pracownik.pracownikNazwisko}"/>
+                            <h:inputText id="model" value="#{uczestnikController.uczestnik.uczestnikNazwisko}"/>
 
-                            <h:outputLabel  value="Wynagrodzenie " />
-                            <h:inputText id="wynagrodzenie" value="#{pracownikController.pracownik.pracownikWynagrodzenie}"/>
+                            <h:outputLabel  value="Numer konta: " />
+                            <h:inputText id="czyDostepny" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}"/>
 
-                            <h:outputLabel  value="Data zatrudnienia: " />
-                            <h:inputText id="dataZatrudnienia" value="#{pracownikController.pracownik.pracownikDataZatrudnienia}">
-                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                            </h:inputText>
-                            <h:outputLabel  value="Uprawnienia: " />
-                            <h:selectOneMenu value="#{pracownikController.pracownik.pracownikTyp}">
-                                <f:selectItem itemValue="Rzeczoznawca" itemLabel="Rzeczoznawca" />
-                                <f:selectItem itemValue="Super" itemLabel="Administrator" />
-                                <f:selectItem itemValue="Konsultant" itemLabel="Konsultant" />
-                            </h:selectOneMenu>
-
-                            <h:outputLabel  value="Oddział " />
-                            <h:selectOneMenu value="#{pracownikController.oddzialController.oddzial.oddzialId}">
-                                <f:selectItems value="#{oddzialController.oddzialSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                            </h:selectOneMenu>
-
-                            <h:outputLabel  value="Zakład " />
-                            <h:selectOneMenu value="#{pracownikController.zakladController.zaklad.zakladId}">
-                                <f:selectItems value="#{zakladController.zakladSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                            </h:selectOneMenu>
-
-                            <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{pracownikController.adresController.adres.adresMiejscowosc}"/>
-
-                            <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{pracownikController.adresController.adres.adresUlica}"/>
-
-                            <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{pracownikController.adresController.adres.adresKodPocztowy}"/>
-
-                            <h:outputLabel  value="Poczta " />
-                            <h:inputText id="poczta" value="#{pracownikController.adresController.adres.adresPoczta}"/>
                         </h:panelGrid>
                         <br/>
-                        <h:commandButton value="Dodaj nowego pracownika" action="#{pracownikController.registerWorker()}"/>
+                        <h:commandButton value="Zapisz" action="#{uczestnikController.addNew()}"/>
                     </h:form>
+                    
                 </div>
             </ui:define>
         </ui:composition>

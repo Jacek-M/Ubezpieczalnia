@@ -50,6 +50,20 @@ $(document).ready(function () {
         content: "repCars",
         link: "repCars"
     });
+    
+    $('#tableParticipantContent').TableInfo({
+        tableName: "Uczestnicy",
+        tableId: "tableParticipant",
+        content: "participants",
+        link: "participants"
+    });
+    
+    $('#tableInsuranceContent').TableInfo({
+        tableName: "Ubezpieczenia",
+        tableId: "tableInsurance",
+        content: "insurances",
+        link: "insurances"
+    });
 
 });
 

@@ -13,8 +13,8 @@
             <ui:define name="contentAdmin">
                 <div class="repCars">
                     <h1> Samochód zastępczy dodanie</h1>
-
-                    <h:form id="panelAdd">
+                    
+                     <h:form id="panelAdd">
                         <h:panelGrid  columns="2">
 
 
@@ -29,8 +29,9 @@
 
                         </h:panelGrid>
                         <br/>
-                        <h:commandButton value="Zapisz" action="#{samochodZastController.registerRepCar()}"/>
+                        <h:commandButton value="Zapisz" action="#{samochodZastController.addNew()}"/>
                     </h:form>
+
                 </div>
             </ui:define>
         </ui:composition>
