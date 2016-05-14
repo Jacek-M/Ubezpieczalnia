@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import ubezpieczalnia.entities.Uczestnik;
 import ubezpieczalnia.model.UczestnikEJB;
@@ -20,6 +22,9 @@ import ubezpieczalnia.model.UczestnikEJB;
  *
  * @author Jacek
  */
+
+@ManagedBean
+@RequestScoped
 public class UczestnikController implements AbstractController<Uczestnik> {
 
     @EJB
@@ -61,20 +66,20 @@ public class UczestnikController implements AbstractController<Uczestnik> {
     @Override
     public String addNew() {
         uczestnikEJB.addNew(this.uczestnik);
-        return PageController.getPage("/adminPages/employees.xhtml");
+        return PageController.getPage("/adminPages/participants/participants.xhtml");
     }
 
     @Override
     public String update() {
         uczestnikEJB.update(this.uczestnik);
-        return PageController.getPage("/adminPages/employees.xhtml");
+        return PageController.getPage("/adminPages/participants/participants.xhtml");
 
     }
 
     @Override
     public String delete() {
         uczestnikEJB.delete(this.uczestnik);
-        return PageController.getPage("/adminPages/employees.xhtml");
+        return PageController.getPage("/adminPages/participants/participants.xhtml");
 
     }
 

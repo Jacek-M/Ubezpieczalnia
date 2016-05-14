@@ -24,7 +24,7 @@ import ubezpieczalnia.model.SamochodZastepczyEJB;
  *
  * @author Jacek
  */
-@Named(value = "samochodZastController")
+
 @ManagedBean
 @RequestScoped
 public class SamochodZastController implements AbstractController<SamochodZastepczy>{
@@ -77,6 +77,7 @@ public class SamochodZastController implements AbstractController<SamochodZastep
 
     @Override
     public String addNew() {
+        System.out.println("asd" + samochodZastepczy.getSamochodZastepczyMarka());
         samochodZastepczyEJB.addNew(this.samochodZastepczy);
         return PageController.getPage("/adminPages/repCars/repCars.xhtml");
     }
@@ -92,10 +93,7 @@ public class SamochodZastController implements AbstractController<SamochodZastep
         samochodZastepczyEJB.delete(this.samochodZastepczy);
         return PageController.getPage("/adminPages/repCars/repCars.xhtml");
     }
-    
-    public String registerRepCar() {
-    return "";
-    }
+
     
     @PostConstruct
     public void receivedPost() {
