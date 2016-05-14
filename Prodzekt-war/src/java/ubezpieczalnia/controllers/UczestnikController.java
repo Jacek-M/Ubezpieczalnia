@@ -15,6 +15,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import ubezpieczalnia.entities.Uczestnik;
 import ubezpieczalnia.model.UczestnikEJB;
 
@@ -32,6 +33,15 @@ public class UczestnikController implements AbstractController<Uczestnik> {
 
     private Uczestnik uczestnik = new Uczestnik();
     private List<Uczestnik> uczestnikList = new ArrayList<>();
+    private List<SelectItem> uczestnikSelectList = new ArrayList<>();
+
+    public List<SelectItem> getUczestnikSelectList() {
+        return uczestnikSelectList;
+    }
+
+    public void setUczestnikSelectList(List<SelectItem> uczestnikSelectList) {
+        this.uczestnikSelectList = uczestnikSelectList;
+    }
 
     public Uczestnik getUczestnik() {
         return uczestnik;

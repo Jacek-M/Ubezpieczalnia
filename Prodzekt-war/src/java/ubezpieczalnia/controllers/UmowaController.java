@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import ubezpieczalnia.entities.Umowa;
 import ubezpieczalnia.model.UmowaEJB;
 
@@ -44,7 +45,16 @@ public class UmowaController implements AbstractController<Umowa>{
     
     private Umowa umowa = new Umowa();
     private List<Umowa> umowaList = new ArrayList<>();
+    private List<SelectItem> umowaSelectList = new ArrayList<>();
 
+    public List<SelectItem> getUmowaSelectList() {
+        return umowaSelectList;
+    }
+
+    public void setUmowaSelectList(List<SelectItem> umowaSelectList) {
+        this.umowaSelectList = umowaSelectList;
+    }
+    
     public PracownikController getPracownikController() {
         return pracownikController;
     }

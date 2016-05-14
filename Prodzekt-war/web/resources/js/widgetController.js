@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    console.log("widgetController - START");
 
+    console.log("widgetController - START");
     $('#tableEmployeeContent').TableInfo({
         tableName: "Pracownicy",
         tableId: "tableALL",
@@ -8,8 +8,6 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "employees"
     });
-
-
     $('#tableClientContent').TableInfo({
         tableName: "Klienci",
         tableId: "tableClient",
@@ -17,7 +15,6 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "clients"
     });
-
     $('#tableServiceContent').TableInfo({
         tableName: "Serwisy",
         tableId: "tableService",
@@ -25,7 +22,6 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "services"
     });
-
     $('#tableServiceViewContent').TableInfo({
         tableName: "Pracownicy-serwisu",
         tableId: "tableServiceView",
@@ -33,7 +29,6 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "employees"
     });
-
     $('#tableBrancheContent').TableInfo({
         tableName: "Oddziały",
         tableId: "tableBranche",
@@ -41,7 +36,6 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "branches"
     });
-
     $('#tableBrancheViewContent').TableInfo({
         tableName: "Pracownicy-oddziału",
         tableId: "tableBrancheView",
@@ -49,7 +43,6 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "employees"
     });
-
     $('#tableRepCarContent').TableInfo({
         tableName: "Samochody-zastepcze",
         tableId: "tableRepCar",
@@ -57,7 +50,6 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "repCars"
     });
-
     $('#tableParticipantContent').TableInfo({
         tableName: "Uczestnicy",
         tableId: "tableParticipant",
@@ -65,7 +57,6 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "participants"
     });
-
     $('#tableInsuranceContent').TableInfo({
         tableName: "Ubezpieczenia",
         tableId: "tableInsurance",
@@ -73,7 +64,6 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "insurances"
     });
-
     $('#tableUmowaContent').TableInfo({
         tableName: "Moje umowy",
         tableId: "tableAgreements",
@@ -81,20 +71,48 @@ $(document).ready(function () {
         tableActions: "client",
         link: "agreements"
     });
-    
     $('#tableAgreementContent').TableInfo({
         tableName: "Umowy",
         tableId: "tableAgreement",
         content: "agreements",
+        tableActions: "admin",
         link: "agreements"
     });
-    
-        $('#tableAgreementViewContent').TableInfo({
+    $('#tableAgreementIncidentsView').TableInfo({
         tableName: "Szkody w umowie",
+        tableId: "tableIncidents",
+        content: "agreements",
+        tableActions: "client",
+        link: "agreements"
+    });
+    $('#tableAgreementViewContent').TableInfo({
+        tableName: "Szkody",
         tableId: "tableAgreementView",
         content: "agreements",
-        link: "agreements"
+        tableActions: "admin",
+        link: "incidents"
+    });
+    $('#tableIncidentContent').TableInfo({
+        tableName: "Szkody",
+        tableId: "tableIncident",
+        content: "incidents",
+        tableActions: "admin",
+        link: "incidents"
+    });
+    $('#tableIncidentViewContent').TableInfo({
+        tableName: "Wyceny",
+        tableId: "tableIncidentView",
+        content: "incidents",
+        tableActions: "admin",
+        link: "valuations"
     });
 
-});
+    $('#tableValuationContent').TableInfo({
+        tableName: "Wyceny",
+        tableId: "tableValuation",
+        content: "valuations",
+        tableActions: "admin",
+        link: "valuations"
 
+    });
+});

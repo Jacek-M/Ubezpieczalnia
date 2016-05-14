@@ -11,69 +11,51 @@
     <h:body>
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
-                <div class="employees">
-                    <h1> Pracownik edycja</h1>
+                <div class="incidents">
+                    <h1> Edycja szkody</h1>
 
-                    <h:form id="panelAdd">
-                        <h:panelGrid  columns="2">
+                    <f:view>
+                        <h:form id="panelAdd">
+                            <h:panelGrid  columns="2">
+                                <h:outputLabel value="SzkodaDataZdarzenia:" for="szkodaDataZdarzenia" />
+                                <h:inputText id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:inputText>
+                                <h:outputLabel value="SzkodaDataZakonczenia:" for="szkodaDataZakonczenia" />
+                                <h:inputText id="szkodaDataZakonczenia" value="#{szkodaController.szkoda.szkodaDataZakonczenia}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:inputText>
+                                <h:outputLabel value="SzkodaStatus:" for="szkodaStatus" />
+                                <h:inputText id="szkodaStatus" value="#{szkodaController.szkoda.szkodaStatus}"/>
+                                <h:outputLabel value="SzkodaTyp:" for="szkodaTyp" />
+                                <h:inputText id="szkodaTyp" value="#{szkodaController.szkoda.szkodaTyp}"/>
+                                <h:outputLabel value="SzkodaOpis:" for="szkodaOpis" />
+                                <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}"/>
 
+                                <h:outputLabel value="SzkodaSamochodZastepczyIdFk:" for="szkodaSamochodZastepczyIdFk" />
+                                <h:selectOneMenu value="#{szkodaController.samochodZastController.samochodZastepczy.samochodZastepczyId}">
+                                    <f:selectItems value="#{samochodZastController.samochodZastepczySelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
 
-                           <h:outputLabel  value="Login: " />
-                           <h:inputText id="kontoLogin" value="#{pracownikController.pracownik.pracownikKontoIdFk.kontoLogin}"/>
+                                <h:outputLabel value="SzkodaUczestnikIdFk:" for="szkodaUczestnikIdFk" />
+                                <h:selectOneMenu value="#{szkodaController.uczestnikController.uczestnik.uczestnikId}">
+                                    <f:selectItems value="#{uczestnikController.uczestnikSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
 
-                            <h:outputLabel  value="Hasło: " />
-                            <h:inputText id="kontoHaslo" value="#{pracownikController.pracownik.pracownikKontoIdFk.kontoHaslo}"/>
+                                <h:outputLabel value="SzkodaUmowaIdFk:" for="szkodaUmowaIdFk" />
+                                <h:selectOneMenu value="#{szkodaController.umowaController.umowa.umowaId}">
+                                    <f:selectItems value="#{umowaController.umowaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
 
-                            <h:outputLabel  value="Imię: " />
-                            <h:inputText id="imie" value="#{pracownikController.pracownik.pracownikImie}"/>
-
-                            <h:outputLabel  value="Nazwisko: " />
-                            <h:inputText id="nazwisko" value="#{pracownikController.pracownik.pracownikNazwisko}"/>
-
-                            <h:outputLabel  value="Wynagrodzenie " />
-                            <h:inputText id="wynagrodzenie" value="#{pracownikController.pracownik.pracownikWynagrodzenie}"/>
-
-                            <h:outputLabel  value="Data zatrudnienia: " />
-                            <h:inputText id="dataZatrudnienia" value="#{pracownikController.pracownik.pracownikDataZatrudnienia}">
-                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                            </h:inputText>
-                            <h:outputLabel  value="Uprawnienia: " />
-                            <h:selectOneMenu value="#{pracownikController.pracownik.pracownikTyp}">
-                                <f:selectItem itemValue="Rzeczoznawca" itemLabel="Rzeczoznawca" />
-                                <f:selectItem itemValue="Super" itemLabel="Administrator" />
-                                <f:selectItem itemValue="Konsultant" itemLabel="Konsultant" />
-                            </h:selectOneMenu>
-
-                            <h:outputLabel  value="Oddział " />
-                            <h:selectOneMenu value="#{pracownikController.pracownik.pracownikOddzialIdFk.oddzialId}">
-                                <f:selectItems value="#{oddzialController.oddzialSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                            </h:selectOneMenu>
-
-                            <h:outputLabel  value="Zakład " />
-                            <h:selectOneMenu value="#{pracownikController.pracownik.pracownikZakladIdFk.zakladId}">
-                                <f:selectItems value="#{zakladController.zakladSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                            </h:selectOneMenu>
-
-                            <h:outputLabel  value="Telefon: " />
-                            <h:inputText id="telefon" value="#{pracownikController.pracownik.pracownikAdresIdFk.adresTelefon}"/>
-                            
-                            <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{pracownikController.pracownik.pracownikAdresIdFk.adresUlica}"/>
-                            
-                            <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{pracownikController.pracownik.pracownikAdresIdFk.adresMiejscowosc}"/>
-
-                            <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{pracownikController.pracownik.pracownikAdresIdFk.adresKodPocztowy}"/>
-
-                            <h:outputLabel  value="Poczta " />
-                            <h:inputText id="poczta" value="#{pracownikController.pracownik.pracownikAdresIdFk.adresPoczta}"/>
-
-                        </h:panelGrid>
-                        <br/>
-                        <h:commandButton value="Dodaj nowego pracownika" action="#{pracownikController.update()}"/>
-                    </h:form>
-
+                                <h:outputLabel value="SzkodaZakladIdFk:" for="szkodaZakladIdFk" />
+                                <h:selectOneMenu value="#{szkodaController.zakladController.zaklad.zakladId}">
+                                    <f:selectItems value="#{zakladController.zakladSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <br/>
+                            <h:commandButton value="Zapisz" action="#{szkodaController.update()}"/>
+                        </h:form>
+                    </f:view>
 
 
                 </div>

@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import ubezpieczalnia.entities.Szkoda;
 import ubezpieczalnia.model.SzkodaEJB;
 
@@ -44,6 +45,17 @@ public class SzkodaController implements AbstractController<Szkoda> {
 
     private Szkoda szkoda = new Szkoda();
     private List<Szkoda> szkodaList = new ArrayList<>();
+    private List<SelectItem> szkodaSelectList = new ArrayList<>();
+
+    public List<SelectItem> getSzkodaSelectList() {
+        return szkodaSelectList;
+    }
+
+    public void setSzkodaSelectList(List<SelectItem> szkodaSelectList) {
+        this.szkodaSelectList = szkodaSelectList;
+    }
+    
+    
 
     public UmowaController getUmowaController() {
         return umowaController;
