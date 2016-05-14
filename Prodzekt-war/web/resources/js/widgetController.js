@@ -64,6 +64,13 @@ $(document).ready(function () {
         content: "insurances",
         link: "insurances"
     });
+    
+    $('#tableAgreementContent').TableInfo({
+        tableName: "Umowy",
+        tableId: "tableAgreement",
+        content: "agreements",
+        link: "agreements"
+    });
 
 });
 

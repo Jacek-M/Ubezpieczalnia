@@ -15,6 +15,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import ubezpieczalnia.entities.Pojazd;
 import ubezpieczalnia.model.PojazdEJB;
 
@@ -31,6 +32,17 @@ public class PojazdController implements AbstractController<Pojazd>{
     
     private Pojazd pojazd = new Pojazd();
     private List<Pojazd> pojazdList = new ArrayList<>();
+    private List<SelectItem> pojazdSelectList = new ArrayList<>();
+
+    public List<SelectItem> getPojazdSelectList() {
+        return pojazdSelectList;
+    }
+
+    public void setPojazdSelectList(List<SelectItem> pojazdSelectList) {
+        this.pojazdSelectList = pojazdSelectList;
+    }
+    
+    
 
     public Pojazd getPojazd() {
         return pojazd;

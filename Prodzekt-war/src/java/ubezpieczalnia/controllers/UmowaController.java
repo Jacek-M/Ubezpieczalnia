@@ -5,11 +5,19 @@
  */
 package ubezpieczalnia.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import ubezpieczalnia.entities.Umowa;
+import ubezpieczalnia.model.UmowaEJB;
 
 /**
  *
@@ -31,29 +39,118 @@ public class UmowaController implements AbstractController<Umowa>{
     @ManagedProperty(value = "#{rodzajUbezController}")
     private RodzajUbezController rodzajUbezController;
     
+    @EJB
+    private UmowaEJB umowaEJB;
+    
+    private Umowa umowa = new Umowa();
+    private List<Umowa> umowaList = new ArrayList<>();
+
+    public PracownikController getPracownikController() {
+        return pracownikController;
+    }
+
+    public void setPracownikController(PracownikController pracownikController) {
+        this.pracownikController = pracownikController;
+    }
+
+    public RegisterController getRegisterController() {
+        return registerController;
+    }
+
+    public void setRegisterController(RegisterController registerController) {
+        this.registerController = registerController;
+    }
+
+    public PojazdController getPojazdController() {
+        return pojazdController;
+    }
+
+    public void setPojazdController(PojazdController pojazdController) {
+        this.pojazdController = pojazdController;
+    }
+
+    public RodzajUbezController getRodzajUbezController() {
+        return rodzajUbezController;
+    }
+
+    public void setRodzajUbezController(RodzajUbezController rodzajUbezController) {
+        this.rodzajUbezController = rodzajUbezController;
+    }
+
+    public Umowa getUmowa() {
+        return umowa;
+    }
+
+    public void setUmowa(Umowa umowa) {
+        this.umowa = umowa;
+    }
+
+    public List<Umowa> getUmowaList() {
+        this.findAll();
+        return umowaList;
+    }
+
+    public void setUmowaList(List<Umowa> umowaList) {
+        this.umowaList = umowaList;
+    }
+    
+    public String registerAgreement() {
+        return "";
+    }
+    
     @Override
     public List<Umowa> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        umowaList = umowaEJB.findAll();
+        return umowaList;
     }
-
+    
     @Override
     public Umowa findById() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        umowa = umowaEJB.findById(this.umowa.getUmowaId());
+        return umowa;
     }
-
+    
     @Override
     public String addNew() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        umowaEJB.addNew(this.umowa);
+        return PageController.getPage("/adminPages/agreements/agreements.xhtml");
     }
-
+    
     @Override
     public String update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.umowa.setUmowaKlientIdFk(registerController.getKlient());
+        this.umowa.setUmowaPojazdIdFk(pojazdController.getPojazd());
+        this.umowa.setUmowaPracownikIdFk(pracownikController.getPracownik());
+        this.umowa.setUmowaRodzajUbezpieczeniaIdFk(rodzajUbezController.getRodzajUbez());
+        umowaEJB.update(this.umowa);
+        return PageController.getPage("/adminPages/agreements/agreements.xhtml");
+        
     }
-
+    
     @Override
     public String delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        umowaEJB.delete(this.umowa);
+        return PageController.getPage("/adminPages/agreements/agreements.xhtml");
+        
+    }
+    
+    @PostConstruct
+    public void receivedPost() {
+        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        
+        if (requestParams.get("post_id") != null) {
+            System.out.println(requestParams.get("post_id"));
+            this.umowa.setUmowaId(Integer.parseInt(requestParams.get("post_id")));
+            try {
+                this.findById();
+                registerController.setKlient(this.umowa.getUmowaKlientIdFk());
+                pojazdController.setPojazd(this.umowa.getUmowaPojazdIdFk());
+                pracownikController.setPracownik(this.umowa.getUmowaPracownikIdFk());
+                rodzajUbezController.setRodzajUbez(this.umowa.getUmowaRodzajUbezpieczeniaIdFk());
+            } catch (Exception ex) {
+                Logger.getLogger(UmowaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
 }
