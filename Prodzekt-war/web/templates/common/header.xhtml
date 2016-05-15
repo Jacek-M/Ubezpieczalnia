@@ -24,6 +24,7 @@
 
                         <c:if test="#{loginController.checkPermission() == 'Super'}">
                             <li><h:link value="Admin" outcome="#{pageController.getPage('/adminPages/employees/employees.xhtml')}"/></li>
+                            <li><h:link value="Zaklad" outcome="#{pageController.getPage('/workerPages/services/services.xhtml')}"/></li>
 
                         </c:if>
 

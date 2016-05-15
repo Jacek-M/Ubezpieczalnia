@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <h:outputStylesheet name="style.css" library="css" />
+        <h:outputStylesheet name="/bs/css/bootstrap.css" library="css" />
+        <h:outputScript library="js" name="jquery.js"></h:outputScript>
+        <h:outputScript library="js" name="jquery-ui/jquery-ui.js"></h:outputScript>
+        <h:outputScript library="js" name="tableInfo.js"></h:outputScript>
+        <h:outputScript library="js" name="widgetController.js"></h:outputScript>
+        <h:outputScript library="js" name="menu.js"></h:outputScript>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"/>
+        <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+
+
+
+        <h:panelGroup rendered="#{loginController.checkLogged() == false}">
+            #{pageController.redirect('/index.xhtml')}
+        </h:panelGroup>
+
+
+    </h:head>
+
+    <h:body>
+        <div id="container">
+            <div id="header">
+                <ui:insert name="header" >
+                    <ui:include src="common/header.xhtml" />
+                </ui:insert>
+            </div>
+
+            <div id="content">
+
+                <div class="menuWorker">
+                    <ui:insert name="menuWorker" >
+                        <ui:include src="common/worker/menuWorker.xhtml" />
+                    </ui:insert>
+                </div>
+                <div class="contentWorker">
+                    <ui:insert name="contentWorker" >
+                        <ui:include src="common/worker/contentWorker.xhtml" />
+                    </ui:insert>
+                </div>
+            </div>
+
+            <div id="footer">
+                <ui:insert name="footer" >
+                    <ui:include src="common/footer.xhtml" />
+                </ui:insert>
+            </div>
+        </div>
+    </h:body>
+</html>

@@ -135,7 +135,8 @@ public class RegisterController implements AbstractController<Klient> {
 
     @Override
     public String update() {
-        return PageController.getCurrentUrl();
+        klientEJB.update(this.klient);
+        return PageController.getPage("/adminPages/clients/clients.xhtml");
     }
 
     @Override

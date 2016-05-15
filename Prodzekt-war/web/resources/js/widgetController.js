@@ -15,6 +15,13 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "clients"
     });
+    $('#tableClientViewContent').TableInfo({
+        tableName: "Umowy",
+        tableId: "tableClientView",
+        content: "clients",
+        tableActions: "admin",
+        link: "agreements"
+    });
     $('#tableServiceContent').TableInfo({
         tableName: "Serwisy",
         tableId: "tableService",

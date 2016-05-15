@@ -26,29 +26,29 @@ import ubezpieczalnia.model.UmowaEJB;
  */
 @ManagedBean
 @RequestScoped
-public class UmowaController implements AbstractController<Umowa>{
+public class UmowaController implements AbstractController<Umowa> {
 
     @ManagedProperty(value = "#{pracownikController}")
     private PracownikController pracownikController;
-    
+
     @ManagedProperty(value = "#{registerController}")
     private RegisterController registerController;
-    
+
     @ManagedProperty(value = "#{pojazdController}")
     private PojazdController pojazdController;
-    
+
     @ManagedProperty(value = "#{rodzajUbezController}")
     private RodzajUbezController rodzajUbezController;
-    
+
     @EJB
     private UmowaEJB umowaEJB;
-    
+
     private Umowa umowa = new Umowa();
     private List<Umowa> umowaList = new ArrayList<>();
     private List<SelectItem> umowaSelectList = new ArrayList<>();
 
     public List<SelectItem> getUmowaSelectList() {
-         if (this.findAll().size() <= 0) {
+        if (this.findAll().size() <= 0) {
             this.umowaSelectList.add(new SelectItem(-1, "Brak umów"));
             return this.umowaSelectList;
         } else {
@@ -64,7 +64,7 @@ public class UmowaController implements AbstractController<Umowa>{
     public void setUmowaSelectList(List<SelectItem> umowaSelectList) {
         this.umowaSelectList = umowaSelectList;
     }
-    
+
     public PracownikController getPracownikController() {
         return pracownikController;
     }
@@ -113,29 +113,29 @@ public class UmowaController implements AbstractController<Umowa>{
     public void setUmowaList(List<Umowa> umowaList) {
         this.umowaList = umowaList;
     }
-    
+
     public String registerAgreement() {
         return "";
     }
-    
+
     @Override
     public List<Umowa> findAll() {
         umowaList = umowaEJB.findAll();
         return umowaList;
     }
-    
+
     @Override
     public Umowa findById() throws Exception {
         umowa = umowaEJB.findById(this.umowa.getUmowaId());
         return umowa;
     }
-    
+
     @Override
     public String addNew() {
         umowaEJB.addNew(this.umowa);
         return PageController.getPage("/adminPages/agreements/agreements.xhtml");
     }
-    
+
     @Override
     public String update() {
         this.umowa.setUmowaKlientIdFk(registerController.getKlient());
@@ -144,20 +144,20 @@ public class UmowaController implements AbstractController<Umowa>{
         this.umowa.setUmowaRodzajUbezpieczeniaIdFk(rodzajUbezController.getRodzajUbez());
         umowaEJB.update(this.umowa);
         return PageController.getPage("/adminPages/agreements/agreements.xhtml");
-        
+
     }
-    
+
     @Override
     public String delete() {
         umowaEJB.delete(this.umowa);
         return PageController.getPage("/adminPages/agreements/agreements.xhtml");
-        
+
     }
-    
+
     @PostConstruct
     public void receivedPost() {
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        
+
         if (requestParams.get("post_id") != null) {
             System.out.println(requestParams.get("post_id"));
             this.umowa.setUmowaId(Integer.parseInt(requestParams.get("post_id")));
@@ -171,6 +171,18 @@ public class UmowaController implements AbstractController<Umowa>{
                 Logger.getLogger(UmowaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if (requestParams.get("post_type") != null) {
+            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
+            acceptAgreement();
+        }
     }
-    
+
+    private void acceptAgreement() {
+        if (this.umowa.getUmowaStatus().equals("OCZEKUJE NA AKCEPTACJĘ")) {
+            System.out.println("(this.umowa.getUmowaStatus().equals(\"OCZEKUJE NA AKCEPTACJĘ\")  TRUE");
+            this.umowa.setUmowaStatus("ZAAKCEPTOWANA");
+            umowaEJB.update(this.umowa);
+        }
+    }
+
 }

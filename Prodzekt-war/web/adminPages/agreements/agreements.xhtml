@@ -39,6 +39,12 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
                                         <h:outputText value="Nazwa"/>
                                     </f:facet>
                                     <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaNazwa}"/>

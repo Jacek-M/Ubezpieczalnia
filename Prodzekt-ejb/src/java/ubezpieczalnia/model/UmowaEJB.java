@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -28,6 +30,13 @@ public class UmowaEJB extends AbstractModel<Umowa> {
 
     @Override
     public void update(Umowa object) {
-
+        //Tylko zmiana statusu
+        Umowa found = em.find(Umowa.class, object.getUmowaId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [UMOWA]");
+        if(found != null) {
+            Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
+            found.setUmowaStatus(object.getUmowaStatus());
+            em.flush();
+        }
     }
 }
