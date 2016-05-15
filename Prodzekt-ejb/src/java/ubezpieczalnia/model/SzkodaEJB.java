@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -28,6 +30,21 @@ public class SzkodaEJB extends AbstractModel<Szkoda> {
 
     @Override
     public void update(Szkoda object) {
-
+        Szkoda found = em.find(Szkoda.class, object.getSzkodaId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [SZKODA]");
+        if(found != null) {
+            Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
+            found.setSzkodaDataZakonczenia(object.getSzkodaDataZakonczenia());
+            found.setSzkodaDataZdarzenia(object.getSzkodaDataZdarzenia());
+            found.setSzkodaOpis(object.getSzkodaOpis());
+            found.setSzkodaStatus(object.getSzkodaStatus());
+            found.setSzkodaTyp(object.getSzkodaTyp());
+            
+            found.setSzkodaSamochodZastepczyIdFk(object.getSzkodaSamochodZastepczyIdFk());
+            found.setSzkodaUczestnikIdFk(object.getSzkodaUczestnikIdFk());
+            found.setSzkodaUmowaIdFk(object.getSzkodaUmowaIdFk());
+            found.setSzkodaZakladIdFk(object.getSzkodaZakladIdFk());
+            em.flush();
+        }
     }
 }

@@ -98,25 +98,27 @@ public class OddzialController implements AbstractController<Oddzial> {
     @Override
     public String addNew() {
         oddzialEJB.addNew(this.oddzial);
-        return PageController.getCurrentUrl();
+        return PageController.getPage("/adminPages/services/services.xhtml");
     }
 
     @Override
     public String update() {
         this.oddzial.setOddzialAdresIdFk(adresController.getAdres());
         oddzialEJB.update(this.oddzial);
-        return PageController.getCurrentUrl();
+        return PageController.getPage("/adminPages/services/services.xhtml");
     }
 
     @Override
     public String delete() {
         oddzialEJB.delete(this.oddzial);
-        return PageController.getCurrentUrl();
+        return PageController.getPage("/adminPages/services/services.xhtml");
     }
 
     public String registerBranche() {
-        //TODO
-        return "";
+        adresController.addNew();
+        this.oddzial.setOddzialAdresIdFk(this.adresController.getAdres());
+        this.addNew();
+        return PageController.getPage("/adminPages/services/services.xhtml");
     }
 
     @PostConstruct
@@ -128,7 +130,7 @@ public class OddzialController implements AbstractController<Oddzial> {
             this.oddzial.setOddzialId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();
-                adresController.setAdres(this.oddzial.getOddzialAdresIdFk());
+                this.adresController.setAdres(this.oddzial.getOddzialAdresIdFk());
             } catch (Exception ex) {
                 Logger.getLogger(OddzialController.class.getName()).log(Level.SEVERE, null, ex);
             }

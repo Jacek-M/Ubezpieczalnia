@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -29,7 +31,20 @@ public class ZakladEJB extends AbstractModel<Zaklad> {
 
     @Override
     public void update(Zaklad object) {
-        
+        Zaklad found = em.find(Zaklad.class, object.getZakladId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [ZAKLAD]");
+        if(found != null) {
+            Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
+            found.setZakladDataRozpoczeciaWsp(object.getZakladDataRozpoczeciaWsp());
+            found.setZakladDataZakonczeniaWsp(object.getZakladDataZakonczeniaWsp());
+            found.setZakladNazwa(object.getZakladNazwa());
+            found.getZakladAdresIdFk().setAdresKodPocztowy(object.getZakladAdresIdFk().getAdresKodPocztowy());
+            found.getZakladAdresIdFk().setAdresMiejscowosc(object.getZakladAdresIdFk().getAdresMiejscowosc());
+            found.getZakladAdresIdFk().setAdresPoczta(object.getZakladAdresIdFk().getAdresPoczta());
+            found.getZakladAdresIdFk().setAdresTelefon(object.getZakladAdresIdFk().getAdresTelefon());
+            found.getZakladAdresIdFk().setAdresUlica(object.getZakladAdresIdFk().getAdresUlica());
+            em.flush();
+        }
     }
     
 }

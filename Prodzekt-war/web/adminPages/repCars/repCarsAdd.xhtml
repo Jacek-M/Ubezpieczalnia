@@ -25,8 +25,11 @@
                             <h:inputText id="model" value="#{samochodZastController.samochodZastepczy.samochodZastepczyModel}"/>
 
                             <h:outputLabel  value="Czy dostępny: " />
-                            <h:inputText id="czyDostepny" value="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny}"/>
-
+                            <h:selectOneMenu value="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny}">
+                                <f:selectItem itemValue="0" itemLabel="Nie" />
+                                <f:selectItem itemValue="1" itemLabel="Tak" />
+                            </h:selectOneMenu>
+                            
                         </h:panelGrid>
                         <br/>
                         <h:commandButton value="Zapisz" action="#{samochodZastController.addNew()}"/>

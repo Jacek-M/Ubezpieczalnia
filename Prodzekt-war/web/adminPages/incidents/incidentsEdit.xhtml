@@ -26,9 +26,17 @@
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:inputText>
                                 <h:outputLabel value="SzkodaStatus:" for="szkodaStatus" />
-                                <h:inputText id="szkodaStatus" value="#{szkodaController.szkoda.szkodaStatus}"/>
+                                <h:selectOneMenu value="#{szkodaController.szkoda.szkodaStatus}">
+                                    <f:selectItem itemValue="Status1" itemLabel="Status1" />
+                                    <f:selectItem itemValue="Status2" itemLabel="Status2" />
+                                </h:selectOneMenu>
+
                                 <h:outputLabel value="SzkodaTyp:" for="szkodaTyp" />
-                                <h:inputText id="szkodaTyp" value="#{szkodaController.szkoda.szkodaTyp}"/>
+                                <h:selectOneMenu value="#{szkodaController.szkoda.szkodaTyp}">
+                                    <f:selectItem itemValue="Typ1" itemLabel="Typ1" />
+                                    <f:selectItem itemValue="Typ2" itemLabel="Typ2" />
+                                </h:selectOneMenu>
+                                
                                 <h:outputLabel value="SzkodaOpis:" for="szkodaOpis" />
                                 <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}"/>
 

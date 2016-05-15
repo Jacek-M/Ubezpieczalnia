@@ -48,6 +48,16 @@ public class UmowaController implements AbstractController<Umowa>{
     private List<SelectItem> umowaSelectList = new ArrayList<>();
 
     public List<SelectItem> getUmowaSelectList() {
+         if (this.findAll().size() <= 0) {
+            this.umowaSelectList.add(new SelectItem(-1, "Brak umów"));
+            return this.umowaSelectList;
+        } else {
+            this.umowaSelectList.add(new SelectItem(-1, "-- WYBIERZ UMOWE --"));
+            for (Umowa umowaList1 : this.umowaList) {
+                String text = umowaList1.getUmowaId().toString() + "| " + umowaList1.getUmowaKlientIdFk().getKlientImie() + " " + umowaList1.getUmowaKlientIdFk().getKlientNazwisko() + "| " + umowaList1.getUmowaDataWystawienia().toString();
+                this.umowaSelectList.add(new SelectItem(umowaList1.getUmowaId(), text));
+            }
+        }
         return umowaSelectList;
     }
 

@@ -57,6 +57,13 @@ $(document).ready(function () {
         tableActions: "admin",
         link: "participants"
     });
+    $('#tableParticipantViewContent').TableInfo({
+        tableName: "Szkody",
+        tableId: "tableParticipantView",
+        content: "participants",
+        tableActions: "admin",
+        link: "incidents"
+    });
     $('#tableInsuranceContent').TableInfo({
         tableName: "Ubezpieczenia",
         tableId: "tableInsurance",

@@ -37,7 +37,70 @@
                         </div>        
                     </div>
                     
-                    Tabela szkody
+                    <div id="tableSzkody" class="table-szkody">
+                        <div id="tableHeader" class="table-header">
+                            <p></p>
+                        </div>
+
+                        <div id="tableParticipantViewContent" class="table-content">
+                            <h:dataTable id="tableParticipantView" class="table-data" value="#{uczestnikController.uczestnik.szkodaCollection}" var="emp"  border="1" style="width:100%">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Lp"/>
+                                    </f:facet>
+                                    <h:outputText id="displayCell" class="display-cell" value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data zdarzenia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaDataZdarzenia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data zakończenia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaDataZakonczenia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Status"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaStatus}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Typ"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaTyp}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Umowa numer"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Samochód zastępczy"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Akcja"/>
+                                    </f:facet>
+                                    <h:outputText id="actionCell" class="action-cell" value=""/>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
                 </div>
             </ui:define>
         </ui:composition>

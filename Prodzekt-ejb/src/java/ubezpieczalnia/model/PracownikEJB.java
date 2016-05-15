@@ -30,12 +30,29 @@ public class PracownikEJB extends AbstractModel<Pracownik> {
 
     @Override
     public void update(Pracownik object) {
-            Logger.getLogger("INFO").log(Level.INFO, "EDYTUJE PRACOWNIKA");
-            Pracownik found = em.find(Pracownik.class, object.getPracownikId());
+        Pracownik found = em.find(Pracownik.class, object.getPracownikId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [PRACOWNIK]");
+        if (found != null) {
+            System.out.println("Not null");
             found.setPracownikImie(object.getPracownikImie());
             found.setPracownikNazwisko(object.getPracownikNazwisko());
+            found.setPracownikDataZatrudnienia(object.getPracownikDataZatrudnienia());
+            found.setPracownikTyp(object.getPracownikTyp());
+            found.setPracownikWynagrodzenie(object.getPracownikWynagrodzenie());
+            found.getPracownikAdresIdFk().setAdresKodPocztowy(object.getPracownikAdresIdFk().getAdresKodPocztowy());
             found.getPracownikAdresIdFk().setAdresMiejscowosc(object.getPracownikAdresIdFk().getAdresMiejscowosc());
+            found.getPracownikAdresIdFk().setAdresPoczta(object.getPracownikAdresIdFk().getAdresPoczta());
+            found.getPracownikAdresIdFk().setAdresTelefon(object.getPracownikAdresIdFk().getAdresTelefon());
+            found.getPracownikAdresIdFk().setAdresUlica(object.getPracownikAdresIdFk().getAdresUlica());
+
+            if (object.getPracownikOddzialIdFk().getOddzialId() != null) {
+                found.setPracownikOddzialIdFk(object.getPracownikOddzialIdFk());
+            }
+            if (object.getPracownikZakladIdFk().getZakladId() != null) {
+                found.setPracownikZakladIdFk(object.getPracownikZakladIdFk());
+            }
             em.flush();
+        }
     }
 
 }

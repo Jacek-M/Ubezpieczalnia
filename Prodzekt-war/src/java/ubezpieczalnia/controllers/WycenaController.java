@@ -73,7 +73,16 @@ public class WycenaController implements AbstractController<Wycena>{
     }
     
     public String registerValuation() {
-        return "";
+       try {
+            pracownikController.findById();
+            this.wycena.setWycenaPracownikIdFk(pracownikController.getPracownik());
+            szkodaController.findById();
+            this.wycena.setWycenaSzkodaIdFk(szkodaController.getSzkoda());
+            this.addNew();
+        } catch (Exception ex) {
+            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return PageController.getPage("/adminPages/valuations/valuations.xhtml");
     }
 
     @Override

@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -28,7 +30,17 @@ public class RodzajUbezpieczeniaEJB extends AbstractModel<RodzajUbezpieczenia> {
 
     @Override
     public void update(RodzajUbezpieczenia object) {
-
+        RodzajUbezpieczenia found = em.find(RodzajUbezpieczenia.class, object.getRodzajUbezpieczeniaId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [UBEZPIECZENIE]");
+        if (found != null) {
+            Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
+            found.setRodzajUbezpieczeniaCena(object.getRodzajUbezpieczeniaCena());
+            found.setRodzajUbezpieczeniaCzyZastepczy(object.getRodzajUbezpieczeniaCzyZastepczy());
+            found.setRodzajUbezpieczeniaNazwa(object.getRodzajUbezpieczeniaNazwa());
+            found.setRodzajUbezpieczeniaOpis(object.getRodzajUbezpieczeniaOpis());
+            found.setRodzajUbezpieczeniaRodzaj(object.getRodzajUbezpieczeniaRodzaj());
+            em.flush();
+        }
     }
 
 }

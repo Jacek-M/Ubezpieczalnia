@@ -54,6 +54,21 @@ public class SamochodZastController implements AbstractController<SamochodZastep
     }
 
     public List<SelectItem> getSamochodZastepczySelectList() {
+         if (this.findAll().size() <= 0) {
+            this.samochodZastepczySelectList.add(new SelectItem(-1, "Brak samochodów"));
+            return this.samochodZastepczySelectList;
+        } else {
+            this.samochodZastepczySelectList.add(new SelectItem(-1, "-- WYBIERZ SAMOCHOD ZASTĘPCZY --"));
+            for (SamochodZastepczy samochodZastepczyList1 : this.samochodZastepczyList) {
+                String text1 = "";
+                if(samochodZastepczyList1.getSamochodZastepczyCzyDostepny() == 0)
+                    text1 = "NIE";
+                else
+                    text1 = "TAK";
+                String text = samochodZastepczyList1.getSamochodZastepczyMarka() + " " + samochodZastepczyList1.getSamochodZastepczyModel() + "| " + text1;
+                this.samochodZastepczySelectList.add(new SelectItem(samochodZastepczyList1.getSamochodZastepczyId(), text));
+            }
+        }
         return samochodZastepczySelectList;
     }
 
@@ -77,7 +92,6 @@ public class SamochodZastController implements AbstractController<SamochodZastep
 
     @Override
     public String addNew() {
-        System.out.println("asd" + samochodZastepczy.getSamochodZastepczyMarka());
         samochodZastepczyEJB.addNew(this.samochodZastepczy);
         return PageController.getPage("/adminPages/repCars/repCars.xhtml");
     }
