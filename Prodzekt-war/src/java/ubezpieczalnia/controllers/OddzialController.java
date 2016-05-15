@@ -25,7 +25,6 @@ import ubezpieczalnia.model.OddzialEJB;
  *
  * @author layfl
  */
-@Named(value = "oddzialController")
 @ManagedBean
 @RequestScoped
 public class OddzialController implements AbstractController<Oddzial> {

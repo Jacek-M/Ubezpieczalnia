@@ -398,7 +398,8 @@
     border: solid 1px;
     position: relative;
     border-color: rgb(59, 89, 152);
-    padding: 10px 0px 10px 0px;
+    padding: 0px 0px 10px 0px;
+    margin-top: 20px;
     width: 100%;
 }
 
@@ -586,12 +587,19 @@
 
 
 
+.insurance-title {
+    font-size: 30px;
+    border-bottom: 1px solid;
+}
+
+
+
 
 
 /* DATATABLES */
 
 .dataTables_length, .dataTables_filter {
-    padding: 0px 5px 5px 5px;
+    padding: 10px 5px 0px 5px;
 }
 
 .dataTables_info {

@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/customerTemplate.xhtml">
+            <ui:define name="contentCustomer">
+                <div class="incidents">
+                    <h1> Informacje o szkodzie</h1>
+
+                    <div class="data-view">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Dane szkody </h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Data zakończenia: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaDataZakonczenia}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Data zdarzenia: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaDataZdarzenia}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Status: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaStatus}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Typ: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaTyp}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Opis: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaOpis}"/>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <div class="col-md-3">
+
+                                <h4>Umowa</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Status: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaUmowaIdFk.umowaStatus}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Data wystawienia: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaUmowaIdFk.umowaDataWystawienia}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Data zakończenia: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaUmowaIdFk.umowaDataZakonczenia}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Kwota: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaUmowaIdFk.umowaKwota}"/>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Uczestnik</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Imię: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaUczestnikIdFk.uczestnikImie}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Nazwisko: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaUczestnikIdFk.uczestnikNazwisko}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Numer konta: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaUczestnikIdFk.uczestnikNumerKonta}"/>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Serwis</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Nazwa: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaZakladIdFk.zakladNazwa}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Współpraca od: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaZakladIdFk.zakladDataRozpoczeciaWsp}"/>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Samochód zastępczy:</h4>
+                                <br/>
+                                <ul>
+
+                                    <li>
+                                        <h:outputLabel  value="Marka: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaSamochodZastepczyIdFk.samochodZastepczyMarka}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Model: " />
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaSamochodZastepczyIdFk.samochodZastepczyModel}"/>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div id="tableWyceny" class="table-wyceny">
+                        <div id="tableHeader" class="table-header">
+                            <p></p>
+                        </div>
+
+                        <div id="tableIncidentViewContent" class="table-content">
+                            <h:dataTable id="tableIncidentView" class="table-data" value="#{szkodaController.szkoda.wycenaCollection}" var="emp"  border="1" style="width:100%">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Lp"/>
+                                    </f:facet>
+                                    <h:outputText id="displayCell" class="display-cell" value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.wycenaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.wycenaData}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Kwota"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.wycenaKwota}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Imię"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.wycenaPracownikIdFk.pracownikImie}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nazwisko"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.wycenaPracownikIdFk.pracownikNazwisko}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Typ"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.wycenaSzkodaIdFk.szkodaTyp}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Status"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.wycenaSzkodaIdFk.szkodaStatus}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Akcja"/>
+                                    </f:facet>
+                                    <h:outputText id="actionCell" class="action-cell" value=""/>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

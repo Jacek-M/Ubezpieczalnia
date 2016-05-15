@@ -25,7 +25,6 @@ import ubezpieczalnia.model.ZakladEJB;
  *
  * @author layfl
  */
-@Named(value = "zakladController")
 @ManagedBean
 @RequestScoped
 public class ZakladController implements AbstractController<Zaklad> {

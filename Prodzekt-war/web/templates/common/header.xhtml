@@ -37,6 +37,29 @@
                                 </a>
                             </div>
                         </c:if> 
+
+                        <c:if test="#{loginController.pracownikAccount != null}">
+
+                            <div class="client-name-header">
+                                <a href="/Prodzekt-war/faces/index.xhtml">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <h:outputLabel value="#{loginController.pracownikAccount.pracownikImie}"/>
+                                    <h:outputLabel value="#{loginController.pracownikAccount.pracownikNazwisko}"/>
+                                </a>
+                            </div>
+                        </c:if> 
+
+                        <c:if test="#{(loginController.pracownikAccount == null)}">
+                            <c:if test="#{(loginController.klientAccount == null)}">
+                                <div class="client-name-header">
+                                    <a href="/Prodzekt-war/faces/customerPages/index.xhtml">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <h:outputLabel value="Administrator"/>
+                                    </a>
+                                </div>
+                            </c:if>
+                        </c:if> 
+
                         <li style="float:right">
                             <h:link value ="Wyloguj" outcome="#{pageController.getPageParams('/login.xhtml', 'faces-redirect=true&amp;logout=true')}"/>
                         </li>

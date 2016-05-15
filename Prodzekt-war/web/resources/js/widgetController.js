@@ -115,4 +115,24 @@ $(document).ready(function () {
         link: "valuations"
 
     });
+
+
+    $('#tablePlatnosciContent').TableInfo({
+        tableName: "Nieopłacone umowy",
+        tableId: "tablePaymentsInsurances",
+        content: "agreements",
+        tableActions: "client",
+        link: "agreements"
+
+    });
+    
+        $('#tablePlatnosciSzkodaContent').TableInfo({
+        tableName: "Nieopłacone szkody",
+        tableId: "tablePaymentsIncidents",
+        content: "incidents",
+        tableActions: "client",
+        link: "incidents"
+
+    });
+
 });

@@ -54,7 +54,7 @@
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.link + "View.xhtml");
                 var pagesContent = self.tableActions === "admin" ? "adminPages" : "customerPages";
-                var url = "/Prodzekt-war/faces/"+ pagesContent +"/" + self.link + "/" + self.link + "View.xhtml";
+                var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + "View.xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
@@ -93,10 +93,9 @@
             $("." + this.content + ' .table-header').html(this.tableName);
         },
         _initActionCell: function () {
-            $('.action-cell').append(this._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły"));
+            $('.' + this.content + ' .action-cell').append(this._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły"));
             if (this.tableActions === "admin")
-                $('.action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
-//            $('.action-cell').append(this._createOsomIcon("trashIcon", "trash-icon", "fa fa-trash", "Usuń"));
+                $('.' + this.content + ' .action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
         },
         _createOsomIcon: function (id, className, osomClass, tooltip) {
             var html = "<a href='javascript:void(0);' id='" + id + "' class='" + className + "' title='" + tooltip + "'><i class='" + osomClass + "' aria-hidden=\"true\"></i> </a>";

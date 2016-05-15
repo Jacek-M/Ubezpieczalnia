@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -12,93 +13,41 @@
             <ui:define name="content">
                 <div class="offer">
                     <div class="listed_products">
-                        <h1 id="aaa">Ubezpieczenia podstawowe</h1>
+                        <h1 id="aaa">Ubezpieczenia</h1>
                         <hr/>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="#offer_1">
+                                
                                     <img class="img-thumbnail" src="resources/images/ubez_1.jpg" alt="last_m oferta"/>
                                     <h2>Pakiet OC</h2>
                                     <p> Z Samochodem Zastępczym i Assistance Opony. Zyskaj dodatkową ochronę w cenie podstawowego ubezpieczenia.  </p>
-                                </a>
+                                
                             </div>
                             <div class="col-md-6">
-                                <a href="#offer_2">
+                               
                                     <img class="img-thumbnail" src="resources/images/ubez_1.jpg" alt="last_m oferta"/>
                                     <h2>Pakiet AC</h2>
                                     <p> Chroni Twój samochód przed uszkodzeniami i kradzieżą. Szybko zlikwidujesz szkodę. Sprawdź online cenę polisy.  </p>
-                                </a>
+                                    
                             </div>
                         </div>
                         <br/><br/>
-                        <h1>Ubezpieczenia dodatkowe</h1>
+                        <h1>Wybierz ubezpieczenie</h1>
                         <hr/>
                         <div class="row">
-                            <div class="col-md-3">
-                                <a href="#offer_3">
-                                    <img class="img-thumbnail" src="resources/images/vehicle.png" alt="last_m oferta"/>
-                                    <h2>Super Assistance</h2>
-                                    <p> Chroni Twój samochód przed uszkodzeniami i kradzieżą. Szybko zlikwidujesz szkodę. Sprawdź online cenę polisy.  </p>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="#offer_4">
-                                    <img class="img-thumbnail" src="resources/images/transport-2.png" alt="last_m oferta"/> 
-                                    <h2>Wsparcie Dziecka</h2>
-                                    <p> Chroni Twój samochód przed uszkodzeniami i kradzieżą. Szybko zlikwidujesz szkodę. Sprawdź online cenę polisy.  </p>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="#offer_5">
-                                    <img class="img-thumbnail" src="resources/images/transport-1.png" alt="last_m oferta"/>
-                                    <h2>Midi Assistance</h2>
-                                    <p> Chroni Twój samochód przed uszkodzeniami i kradzieżą. Szybko zlikwidujesz szkodę. Sprawdź online cenę polisy.  </p>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="#offer_6">
-                                    <img class="img-thumbnail" src="resources/images/man.png" alt="last_m oferta"/>
-                                    <h2>Ubezpieczenie od Utraty Pracy</h2>
-                                    <p> Chroni Twój samochód przed uszkodzeniami i kradzieżą. Szybko zlikwidujesz szkodę. Sprawdź online cenę polisy.  </p>
-                                </a>
-                            </div>
+                            <c:forEach items="#{rodzajUbezController.rodzajUbezList}" var="emp">
+                                <div class="col-md-3">
+                                    <a href="javascript:void(0);">
+                                        <img class="img-thumbnail" src="resources/images/vehicle.png" alt="last_m oferta"/>
+                                        <h2><h:outputLabel value="#{emp.rodzajUbezpieczeniaNazwa}"/></h2>
+                                        <p> <h:outputLabel value="#{emp.rodzajUbezpieczeniaOpis}"/></p>
+                                        <p> Cena: <h:outputLabel value="#{emp.rodzajUbezpieczeniaCena}"/></p>
+                                    </a>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <hr/>
-                    <div class="offer">
-                        <div id="offer_1">
-                            <h2> nazwa</h2>
-                            OPIS
-                        </div>
-
-                        <div id="offer_2">
-                            <h2> nazwa</h2>
-                            OPIS
-                        </div>
-
-
-                        <div id="offer_3">
-                            <h2> nazwa</h2>
-                            OPIS
-                        </div>
-
-
-                        <div id="offer_4">
-                            <h2> nazwa</h2>
-                            OPIS
-                        </div>
-
-                        <div id="offer_5">
-                            <h2> nazwa</h2>
-                            OPIS
-                        </div>
-
-
-                        <div id="offer_6">
-                            <h2> nazwa</h2>
-                            OPIS
-                        </div>
-                    </div>
                 </div>
             </ui:define>
         </ui:composition>

@@ -12,15 +12,14 @@
         <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentCustomer">
                 <div class="agreements">
-                    <h1> Moje umowy </h1>
-                    <div id="tableUmowa" class="table-umowa">
+                    <h1> Moje płatności </h1>
+                    <div id="tablePlatnosci" class="table-platnosci">
 
-
-                        <div id="tableUmowaContent" class="table-content">
+                        <div id="tablePlatnosciContent" class="table-content">
                             <div id="tableHeader" class="table-header">
                                 <p></p>
                             </div>
-                            <h:dataTable id="tableAgreements" class="table-data" value="#{loginController.klientAccount.umowaCollection}" var="emp"  border="1" style="width:100%">
+                            <h:dataTable id="tablePaymentsInsurances" class="table-data" value="#{loginController.umowaPayments}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Lp"/>
@@ -41,12 +40,6 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Opis"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaOpis}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
                                         <h:outputText value="Rodzaj"/>
                                     </f:facet>
                                     <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaRodzaj}"/>
@@ -59,28 +52,11 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Samochód zastępczy"/>
+                                        <h:outputText value="Data zakupu"/>
                                     </f:facet>
-                                    <c:if test="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy == 0}">
-                                        <h:outputText value="NIE"/>
-                                    </c:if>
-                                    <c:if test="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy != 0}">
-                                        <h:outputText value="TAK"/>
-                                    </c:if>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Data zakończenia"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.umowaDataZakonczenia}"> 
+                                    <h:outputText value="#{emp.umowaDataWystawienia}"> 
                                         <f:convertDateTime pattern="dd.MM.yyyy" />
                                     </h:outputText>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Cena"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.umowaKwota}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
@@ -102,9 +78,67 @@
                                     </f:facet>
                                     <h:outputText id="actionCell" class="action-cell" value=""/>
                                 </h:column>
+
                             </h:dataTable>
                         </div>
+
                     </div>
+                </div>
+
+                <div class="incidents">
+                    <div id="tablePlatnosciSzkodaContent" class="table-content">
+                        <div id="tableHeader" class="table-header">
+                            <p></p>
+                        </div>
+                        <h:dataTable id="tablePaymentsIncidents" class="table-data" value="#{loginController.szkodaPayments}" var="emp"  border="1" style="width:100%">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Lp"/>
+                                </f:facet>
+                                <h:outputText id="displayCell" class="display-cell" value=""/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ID"/>
+                                </f:facet>
+                                <h:outputText value="#{emp.szkodaId}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Opis"/>
+                                </f:facet>
+                                <h:outputText value="#{emp.szkodaOpis}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Status"/>
+                                </f:facet>
+                                <h:outputText value="#{emp.szkodaStatus}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Status winy"/>
+                                </f:facet>
+                                <h:outputText value="#{emp.szkodaTyp}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Data zakupu"/>
+                                </f:facet>
+                                <h:outputText value="#{emp.szkodaDataZdarzenia}"> 
+                                    <f:convertDateTime pattern="dd.MM.yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Akcja"/>
+                                </f:facet>
+                                <h:outputText id="actionCell" class="action-cell" value=""/>
+                            </h:column>
+
+                        </h:dataTable>
+                    </div>
+
                 </div>
             </ui:define>
         </ui:composition>
