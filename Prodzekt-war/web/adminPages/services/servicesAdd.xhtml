@@ -22,10 +22,14 @@
                            <h:inputText id="kontoLogin" value="#{zakladController.zaklad.zakladNazwa}"/>
 
                             <h:outputLabel  value="Data rozpoczęcia: " />
-                            <h:inputText id="kontoHaslo" value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}"/>
+                            <h:inputText id="kontoHaslo" value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                            </h:inputText>
 
                             <h:outputLabel  value="Data zakończenia: " />
-                            <h:inputText id="imie" value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}"/>
+                            <h:inputText id="imie" value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                            </h:inputText>
 
                             <h:outputLabel  value="Telefon: " />
                             <h:inputText id="telefon" value="#{zakladController.adresController.adres.adresTelefon}"/>

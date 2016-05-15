@@ -12,7 +12,7 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="branches">
-                    <h1> Oddział edycja</h1>
+                    <h1> Dodaj oddział</h1>
 
                     <h:form id="panelAdd">
                         <h:panelGrid  columns="2">
@@ -20,7 +20,7 @@
 
                             <h:outputLabel  value="Telefon: " />
                             <h:inputText id="telefon1" value="#{oddzialController.oddzial.oddzialTelefon}"/>
-                            ]
+                            
                             <h:outputLabel  value="Telefon: " />
                             <h:inputText id="telefon" value="#{oddzialController.adresController.adres.adresTelefon}"/>
 

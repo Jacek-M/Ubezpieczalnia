@@ -48,14 +48,22 @@ public class SzkodaController implements AbstractController<Szkoda> {
     private List<SelectItem> szkodaSelectList = new ArrayList<>();
 
     public List<SelectItem> getSzkodaSelectList() {
+        if (this.findAll().size() <= 0) {
+            this.szkodaSelectList.add(new SelectItem(-1, "Brak szkód"));
+            return this.szkodaSelectList;
+        } else {
+            this.szkodaSelectList.add(new SelectItem(-1, "-- WYBIERZ SZKODĘ --"));
+            for (Szkoda szkodaList1 : this.szkodaList) {
+                String text = szkodaList1.getSzkodaId() + "| " + szkodaList1.getSzkodaTyp() + " " + szkodaList1.getSzkodaStatus();
+                this.szkodaSelectList.add(new SelectItem(szkodaList1.getSzkodaId(), text));
+            }
+        }
         return szkodaSelectList;
     }
 
     public void setSzkodaSelectList(List<SelectItem> szkodaSelectList) {
         this.szkodaSelectList = szkodaSelectList;
     }
-    
-    
 
     public UmowaController getUmowaController() {
         return umowaController;
@@ -107,7 +115,21 @@ public class SzkodaController implements AbstractController<Szkoda> {
     }
 
     public String registerIncident() {
-        return "";
+        try {
+            samochodZastController.findById();
+            this.szkoda.setSzkodaSamochodZastepczyIdFk(samochodZastController.getSamochodZastepczy());
+            uczestnikController.findById();
+            this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
+            umowaController.findById();
+            this.szkoda.setSzkodaUmowaIdFk(umowaController.getUmowa());
+            zakladController.findById();
+            this.szkoda.setSzkodaZakladIdFk(zakladController.getZaklad());
+            System.out.println("uczestnikController " + uczestnikController.getUczestnik().getUczestnikId());
+            this.addNew();
+        } catch (Exception ex) {
+            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return PageController.getPage("/adminPages/incidents/incidents.xhtml");
     }
 
     @Override
@@ -130,11 +152,19 @@ public class SzkodaController implements AbstractController<Szkoda> {
 
     @Override
     public String update() {
-        this.szkoda.setSzkodaUmowaIdFk(umowaController.getUmowa());
-        this.szkoda.setSzkodaSamochodZastepczyIdFk(samochodZastController.getSamochodZastepczy());
-        this.szkoda.setSzkodaZakladIdFk(zakladController.getZaklad());
-        this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
-        szkodaEJB.update(this.szkoda);
+        try {
+            umowaController.findById();
+            this.szkoda.setSzkodaUmowaIdFk(umowaController.getUmowa());
+            samochodZastController.findById();
+            this.szkoda.setSzkodaSamochodZastepczyIdFk(samochodZastController.getSamochodZastepczy());
+            zakladController.findById();
+            this.szkoda.setSzkodaZakladIdFk(zakladController.getZaklad());
+            uczestnikController.findById();
+            this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
+            szkodaEJB.update(this.szkoda);
+        } catch (Exception ex) {
+            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return PageController.getPage("/adminPages/incidents/incidents.xhtml");
 
     }
@@ -155,10 +185,10 @@ public class SzkodaController implements AbstractController<Szkoda> {
             this.szkoda.setSzkodaId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();
-                umowaController.setUmowa(this.szkoda.getSzkodaUmowaIdFk());
-                samochodZastController.setSamochodZastepczy(this.szkoda.getSzkodaSamochodZastepczyIdFk());
-                zakladController.setZaklad(this.szkoda.getSzkodaZakladIdFk());
-                uczestnikController.setUczestnik(this.szkoda.getSzkodaUczestnikIdFk());
+//                umowaController.setUmowa(this.szkoda.getSzkodaUmowaIdFk());
+//                samochodZastController.setSamochodZastepczy(this.szkoda.getSzkodaSamochodZastepczyIdFk());
+//                zakladController.setZaklad(this.szkoda.getSzkodaZakladIdFk());
+//                uczestnikController.setUczestnik(this.szkoda.getSzkodaUczestnikIdFk());
             } catch (Exception ex) {
                 Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
             }

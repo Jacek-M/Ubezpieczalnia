@@ -25,7 +25,6 @@ import ubezpieczalnia.model.ZakladEJB;
  *
  * @author layfl
  */
-@Named(value = "zakladController")
 @ManagedBean
 @RequestScoped
 public class ZakladController implements AbstractController<Zaklad> {
@@ -99,27 +98,29 @@ public class ZakladController implements AbstractController<Zaklad> {
     @Override
     public String addNew() {
         zakladEJB.addNew(zaklad);
-        return PageController.getPage("/adminPages/employees.xhtml"); // zmienic na liste zakladow :d
+        return PageController.getPage("/adminPages/services/services.xhtml");
     }
 
     @Override
     public String update() {
         this.zaklad.setZakladAdresIdFk(adresController.getAdres());
         zakladEJB.update(this.zaklad);
-        return PageController.getPage("/adminPages/employees.xhtml"); // zmienic na liste zakladow :d
+        return PageController.getPage("/adminPages/services/services.xhtml");
 
     }
 
     @Override
     public String delete() {
         zakladEJB.delete(zaklad);
-        return PageController.getPage("/adminPages/employees.xhtml"); // zmienic na liste zakladow :d
+        return PageController.getPage("/adminPages/services/services.xhtml");
 
     }
     
     public String registerService(){
-        //TODO
-        return "";
+        adresController.addNew();
+        this.zaklad.setZakladAdresIdFk(this.adresController.getAdres());
+        this.addNew();
+        return PageController.getPage("/adminPages/services/services.xhtml");
     }
     
     @PostConstruct

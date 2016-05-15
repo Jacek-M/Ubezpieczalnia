@@ -36,6 +36,16 @@ public class UczestnikController implements AbstractController<Uczestnik> {
     private List<SelectItem> uczestnikSelectList = new ArrayList<>();
 
     public List<SelectItem> getUczestnikSelectList() {
+        if (this.findAll().size() <= 0) {
+            this.uczestnikSelectList.add(new SelectItem(-1, "Brak uczestników"));
+            return this.uczestnikSelectList;
+        } else {
+            this.uczestnikSelectList.add(new SelectItem(-1, "-- WYBIERZ UCZESTNIKA --"));
+            for (Uczestnik uczestnikList1 : this.uczestnikList) {
+                String text = uczestnikList1.getUczestnikImie() + " " + uczestnikList1.getUczestnikNazwisko();
+                this.uczestnikSelectList.add(new SelectItem(uczestnikList1.getUczestnikId(), text));
+            }
+        }
         return uczestnikSelectList;
     }
 
@@ -62,7 +72,6 @@ public class UczestnikController implements AbstractController<Uczestnik> {
 
     @Override
     public List<Uczestnik> findAll() {
-
         uczestnikList = uczestnikEJB.findAll();
         return uczestnikList;
     }

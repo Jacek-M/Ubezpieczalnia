@@ -12,7 +12,7 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="insurances">
-                    <h1> Ubezpieczenie dodanie</h1>
+                    <h1> Dodanie ubezpieczenia</h1>
                     
                     <h:form id="panelAdd">
                         <h:panelGrid  columns="2">
@@ -20,8 +20,12 @@
                             <h:inputText id="rodzajUbezpieczeniaRodzaj" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaRodzaj}"/>
                             <h:outputLabel value="Cena:" />
                             <h:inputText id="rodzajUbezpieczeniaCena" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCena}"/>
-                            <h:outputLabel value="Czy zastępczy:"/>
-                            <h:inputText id="rodzajUbezpieczeniaCzyZastepczy" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy}"/>
+                            <h:outputLabel  value="Czy samochód zastępczy: " />
+                            <h:selectOneMenu value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy}">
+                                <f:selectItem itemValue="0" itemLabel="Nie" />
+                                <f:selectItem itemValue="1" itemLabel="Tak" />
+                            </h:selectOneMenu>
+                            
                             <h:outputLabel value="Nazwa: " />
                             <h:inputText id="rodzajUbezpieczeniaNazwa" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaNazwa}"/>
                             <h:outputLabel value="Opis:" />

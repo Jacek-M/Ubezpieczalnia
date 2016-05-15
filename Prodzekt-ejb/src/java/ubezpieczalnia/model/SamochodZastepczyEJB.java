@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -28,6 +30,14 @@ public class SamochodZastepczyEJB extends AbstractModel<SamochodZastepczy> {
 
     @Override
     public void update(SamochodZastepczy object) {
-
+        SamochodZastepczy found = em.find(SamochodZastepczy.class, object.getSamochodZastepczyId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [SAMOCHOD]");
+        if (found != null) {
+            Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
+            found.setSamochodZastepczyCzyDostepny(object.getSamochodZastepczyCzyDostepny());
+            found.setSamochodZastepczyMarka(object.getSamochodZastepczyMarka());
+            found.setSamochodZastepczyModel(object.getSamochodZastepczyModel());
+            em.flush();
+        }
     }
 }

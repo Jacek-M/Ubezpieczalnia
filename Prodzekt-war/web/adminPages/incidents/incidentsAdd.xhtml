@@ -31,9 +31,17 @@
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                 </h:inputText>
                                 <h:outputLabel value="SzkodaStatus:" for="szkodaStatus" />
-                                <h:inputText id="szkodaStatus" value="#{szkodaController.szkoda.szkodaStatus}"/>
+                                <h:selectOneMenu value="#{szkodaController.szkoda.szkodaStatus}">
+                                    <f:selectItem itemValue="Status1" itemLabel="Status1" />
+                                    <f:selectItem itemValue="Status2" itemLabel="Status2" />
+                                </h:selectOneMenu>
+
                                 <h:outputLabel value="SzkodaTyp:" for="szkodaTyp" />
-                                <h:inputText id="szkodaTyp" value="#{szkodaController.szkoda.szkodaTyp}"/>
+                                <h:selectOneMenu value="#{szkodaController.szkoda.szkodaTyp}">
+                                    <f:selectItem itemValue="Typ1" itemLabel="Typ1" />
+                                    <f:selectItem itemValue="Typ2" itemLabel="Typ2" />
+                                </h:selectOneMenu>
+
                                 <h:outputLabel value="SzkodaOpis:" for="szkodaOpis" />
                                 <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}"/>
 
@@ -46,17 +54,20 @@
                                 <h:selectOneMenu value="#{szkodaController.uczestnikController.uczestnik.uczestnikId}">
                                     <f:selectItems value="#{uczestnikController.uczestnikSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                                 </h:selectOneMenu>
-                                
+
                                 <h:outputLabel value="SzkodaUmowaIdFk:" for="szkodaUmowaIdFk" />
                                 <h:selectOneMenu value="#{szkodaController.umowaController.umowa.umowaId}">
                                     <f:selectItems value="#{umowaController.umowaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                                 </h:selectOneMenu>
-                                
+
                                 <h:outputLabel value="SzkodaZakladIdFk:" for="szkodaZakladIdFk" />
                                 <h:selectOneMenu value="#{szkodaController.zakladController.zaklad.zakladId}">
                                     <f:selectItems value="#{zakladController.zakladSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                                 </h:selectOneMenu>
                             </h:panelGrid>
+                            <br/>
+                            <h:commandButton value="Zapisz" action="#{szkodaController.registerIncident()}"/>
+
                         </h:form>
                     </f:view>
                 </div>

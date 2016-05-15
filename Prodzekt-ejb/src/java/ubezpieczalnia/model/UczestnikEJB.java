@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -28,6 +30,14 @@ public class UczestnikEJB extends AbstractModel<Uczestnik> {
 
     @Override
     public void update(Uczestnik object) {
-
+        Uczestnik found = em.find(Uczestnik.class, object.getUczestnikId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [UCZESTNIK]");
+        if (found != null) {
+            Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
+            found.setUczestnikImie(object.getUczestnikImie());
+            found.setUczestnikNazwisko(object.getUczestnikNazwisko());
+            found.setUczestnikNumerKonta(object.getUczestnikNumerKonta());
+            em.flush();
+        }
     }
 }
