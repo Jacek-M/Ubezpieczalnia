@@ -18,9 +18,13 @@
                         <h:form id="panelAdd">
                             <h:panelGrid  columns="2">
                                 <h:outputLabel value="SzkodaDataZdarzenia:" for="szkodaDataZdarzenia" />
-                                <h:inputText id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:inputText>
+                                <h:panelGroup>
+                                    <h:inputText id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    </h:inputText>
+                                    <h:inputHidden value="#{szkodaController.szkoda.szkodaId}"/>
+
+                                </h:panelGroup>
                                 <h:outputLabel value="SzkodaDataZakonczenia:" for="szkodaDataZakonczenia" />
                                 <h:inputText id="szkodaDataZakonczenia" value="#{szkodaController.szkoda.szkodaDataZakonczenia}">
                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -36,7 +40,7 @@
                                     <f:selectItem itemValue="Typ1" itemLabel="Typ1" />
                                     <f:selectItem itemValue="Typ2" itemLabel="Typ2" />
                                 </h:selectOneMenu>
-                                
+
                                 <h:outputLabel value="SzkodaOpis:" for="szkodaOpis" />
                                 <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}"/>
 
