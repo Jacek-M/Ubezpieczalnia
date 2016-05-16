@@ -139,14 +139,28 @@ $(document).ready(function () {
         link: "agreements"
 
     });
-    
-        $('#tablePlatnosciSzkodaContent').TableInfo({
+
+    $('#tablePlatnosciSzkodaContent').TableInfo({
         tableName: "Nieopłacone szkody",
         tableId: "tablePaymentsIncidents",
         content: "incidents",
         tableActions: "client",
         link: "incidents"
-
+    });
+    
+    $('#tableIncidentWorkerContent').TableInfo({
+        tableName: "Szkody",
+        tableId: "tableIncidentWorker",
+        content: "order",
+        tableActions: "admin",
+        link: "order"
+    });
+    $('#tableIncidentWorkerAddContent').TableInfo({
+        tableName: "Szkody",
+        tableId: "tableIncidentWorkerAdd",
+        content: "order",
+        tableActions: "admin",
+        link: "order"
     });
 
 });

@@ -20,13 +20,17 @@
                         <li style="float:right"><h:link value="Zaloguj" outcome="#{pageController.getPage('/login.xhtml')}"/></li>
                     </c:if>
                     <c:if test="#{loginController.checkLogged() == true}">
-                        <li><h:link value="Klient" outcome="#{pageController.getPage('/customerPages/customer/customerView.xhtml')}"/></li>
+                        <c:if test="#{loginController.checkPermission() == 'KLIENT'}">
+                            <li><h:link value="Klient" outcome="#{pageController.getPage('/customerPages/customer/customerView.xhtml')}"/></li>
+                        </c:if>
 
                         <c:if test="#{loginController.checkPermission() == 'Super'}">
                             <li><h:link value="Admin" outcome="#{pageController.getPage('/adminPages/employees/employees.xhtml')}"/></li>
-                            <li><h:link value="Zaklad" outcome="#{pageController.getPage('/workerPages/services/services.xhtml')}"/></li>
-
                         </c:if>
+                        <c:if test="#{loginController.checkPermission() == 'PRACOWNIK'}">
+                            <li><h:link value="Pracownik" outcome="#{pageController.getPage('/why/order/order.xhtml')}"/></li>
+                        </c:if>
+
 
                         <c:if test="#{loginController.klientAccount != null}">
 

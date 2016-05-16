@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/workerTemplate.xhtml">
+            <ui:define name="contentWorker">
+                <div class="order">
+                    <h1> Szkody </h1>
+                    <div class="actions">
+                        <ul>
+                            <li><h:link id="addWorker" class="add-worker" value="Pobierz zlecenie" outcome="#{pageController.getPage('/why/order/orderAdd.xhtml')}"/></li>
+                        </ul>
+                    </div>
+                    <div id="tableSzkody" class="table-szkody">
+                        <div id="tableHeader" class="table-header">
+                            <p></p>
+                        </div>
+
+                        <div id="tableIncidentWorkerContent" class="table-content">
+                            <h:dataTable id="tableIncidentWorker" class="table-data" value="#{loginController.szkodaWorkerPayments}" var="emp"  border="1" style="width:100%">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Lp"/>
+                                    </f:facet>
+                                    <h:outputText id="displayCell" class="display-cell" value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data zdarzenia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaDataZdarzenia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data zakończenia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaDataZakonczenia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Status"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaStatus}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Typ"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaTyp}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Umowa numer"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Samochód zastępczy"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Akcja"/>
+                                    </f:facet>
+                                    <h:outputText id="actionCell" class="action-cell" value=""/>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

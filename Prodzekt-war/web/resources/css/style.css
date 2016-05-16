@@ -613,3 +613,81 @@
 
 
 /* END OF DATATABLES */
+
+/*************menuWorker***************/
+
+.menuWorker{
+    position: relative;
+}
+
+.menuWorker {
+    float: left;
+    margin-top: 4%;
+}
+.contentWorker {
+    position: relative;
+    margin-left: 1%;
+    overflow: hidden;
+}
+#content .menuWorker {
+    width: 13%;
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+#content .menuWorker ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: #3b5998;
+    position: relative;
+}
+#content .menuWorker li a {
+    display: block;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+#content .menuWorker li:hover:not(.active) {
+    background-color: #8b9dc3;
+}
+#content .menuWorker .active {
+    background-color: #052059;
+}
+#content .menuWorker ul h2{
+    background-color: #001E5C;
+    color: white;
+    text-align: center;
+    font-family: sansation-light;
+    border-bottom: rgb(235, 235, 235)solid;
+    border-width: 8px;
+    margin-bottom: 0;
+}
+
+/*************contentWorker***************/
+.contentWorker h1{
+    text-align: center;
+    font-family: sansation-light;
+    padding-bottom: 2%;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: rgb(214, 217, 211);
+}
+.contentWorker .table-data {
+    padding-top: 10px;
+    border: 0;
+    border-collapse: collapse;
+    border-width: 0px;
+    border-color: rgb(214, 217, 211);
+
+}
+.contentWorker .table-data td{
+    font-size: 14px;
+    padding: 3px;
+}
+.contentWorker .table-data tr:nth-child(even){background-color: #f2f2f2}
+.table-data th {
+    background-color: #3b5998;
+    color: white;
+    padding: 3px;
+
+}
+/***********/

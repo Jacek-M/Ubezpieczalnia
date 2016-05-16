@@ -217,22 +217,4 @@ public class PracownikController implements AbstractController<Pracownik> {
             }
         }
     }
-    
-    public ArrayList<Szkoda> getSzkodaPayments() {
-        ArrayList<Szkoda> temp = new ArrayList<>();
-        
-        return (ArrayList<Szkoda>) zakladController.getZaklad().getSzkodaCollection();
-        
-//        for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
-//            if (umowa != null) {
-//                for (Szkoda szkoda : umowa.getSzkodaCollection()) {
-//                    if (szkoda != null && szkoda.getSzkodaTyp().equals("WINNY")) {
-//                        temp.add(szkoda);
-//                    }
-//                }
-//            }
-//        }
-//        return temp;
-    }
-
 }

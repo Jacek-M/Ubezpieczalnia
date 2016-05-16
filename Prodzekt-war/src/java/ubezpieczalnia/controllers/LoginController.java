@@ -147,6 +147,36 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         return temp;
     }
     
+    public ArrayList<Szkoda> getSzkodaWorkerPayments() {
+        ArrayList<Szkoda> temp = new ArrayList<>();
+        
+        for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
+            if (umowa != null) {
+                for (Szkoda szkoda : umowa.getSzkodaCollection()) {
+                    if (szkoda != null && szkoda.getSzkodaZakladIdFk().getZakladId() == this.getPracownikAccount().getPracownikZakladIdFk().getZakladId()) {
+                        temp.add(szkoda);
+                    }
+                }
+            }
+        }
+        return temp;
+    }
+    
+    public ArrayList<Szkoda> getSzkodaToRepair() {
+        ArrayList<Szkoda> temp = new ArrayList<>();
+        
+        for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
+            if (umowa != null) {
+                for (Szkoda szkoda : umowa.getSzkodaCollection()) {
+                    if (szkoda != null && szkoda.getSzkodaStatus().equals("DO NAPRAWY")) {
+                        temp.add(szkoda);
+                    }
+                }
+            }
+        }
+        return temp;
+    }
+    
     @Override
     public List<Konto> findAll() {
         kontaList = kontoEJB.findAll();
