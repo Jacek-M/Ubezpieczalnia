@@ -97,7 +97,7 @@ $(document).ready(function () {
         tableId: "tableIncidents",
         content: "agreements",
         tableActions: "client",
-        link: "agreements"
+        link: "incidents"
     });
     $('#tableAgreementViewContent').TableInfo({
         tableName: "Szkody",

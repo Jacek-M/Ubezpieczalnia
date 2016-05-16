@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/customerTemplate.xhtml">
+            <ui:define name="contentCustomer">
+                <div class="incidents">
+                    <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
+                        <br/>
+                        <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
+                    </h:panelGroup>
+
+                    <h1>Dodaj szkodę</h1>
+
+                    <f:view>
+                        <h:form id="panelAdd">
+                            <h:panelGrid  columns="2">
+                                <h:outputLabel value="Data zdarzenia:" for="szkodaDataZdarzenia" />
+                                <h:inputText id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:inputText>
+                                <h:outputLabel value="Przewidywana data zakończenia:" for="szkodaDataZakonczenia" />
+                                <h:inputText id="szkodaDataZakonczenia" value="#{szkodaController.szkoda.szkodaDataZakonczenia}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:inputText>
+
+                                <h:outputLabel value="Typ:" for="szkodaTyp" />
+                                <h:selectOneMenu value="#{szkodaController.szkoda.szkodaTyp}">
+                                    <f:selectItem itemValue="NIEOCENIONE" itemLabel="Do oceny przez pracownika" />
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Opis:" for="szkodaOpis" />
+                                <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}"/>
+
+                                <h:outputLabel value="SzkodaUmowaIdFk:" for="szkodaUmowaIdFk" />
+                                <h:selectOneMenu value="#{szkodaController.umowaController.umowa.umowaId}" required="true">
+                                    <f:selectItems value="#{umowaController.umowaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Imię uczestnika:" />
+                                <h:inputText id="imieUczestnika" value="#{uczestnikController.uczestnik.uczestnikImie}"/>
+                                <h:outputLabel value="Nazwisko uczestnika:" />
+                                <h:inputText id="nazwiskoUczestnika" value="#{uczestnikController.uczestnik.uczestnikNazwisko}"/>
+                                <h:outputLabel value="Numer konta bankowego:" />
+                                <h:inputText id="nrKontaUczestnika" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}"/>
+
+
+                            </h:panelGrid>
+                            <br/>
+                            <h:commandButton value="Zapisz" action="#{szkodaController.registerIncident()}"/>
+
+                        </h:form>
+                    </f:view>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

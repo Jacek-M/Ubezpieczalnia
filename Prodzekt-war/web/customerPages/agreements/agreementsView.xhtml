@@ -137,11 +137,12 @@
 
 
                     <div id="tableSzkody" class="table-szkody">
-                        <div id="tableHeader" class="table-header">
-                            <p></p>
-                        </div>
+
 
                         <div id="tableAgreementIncidentsView" class="table-content">
+                            <div id="tableHeader" class="table-header">
+                                <p></p>
+                            </div>
                             <h:dataTable id="tableIncidents" class="table-data" value="#{umowaController.umowa.szkodaCollection}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">

@@ -124,11 +124,10 @@
 
 
                     <div id="tableWyceny" class="table-wyceny">
-                        <div id="tableHeader" class="table-header">
-                            <p></p>
-                        </div>
-
                         <div id="tableIncidentViewContent" class="table-content">
+                            <div id="tableHeader" class="table-header">
+                                <p></p>
+                            </div>
                             <h:dataTable id="tableIncidentView" class="table-data" value="#{szkodaController.szkoda.wycenaCollection}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
