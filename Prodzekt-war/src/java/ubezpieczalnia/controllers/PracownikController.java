@@ -6,6 +6,7 @@
 package ubezpieczalnia.controllers;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -20,6 +21,7 @@ import javax.faces.model.SelectItem;
 
 import ubezpieczalnia.entities.Konto;
 import ubezpieczalnia.entities.Pracownik;
+import ubezpieczalnia.entities.Szkoda;
 import ubezpieczalnia.model.AdresEJB;
 import ubezpieczalnia.model.PracownikEJB;
 import ubezpieczalnia.utils.SessionManager;
@@ -214,6 +216,23 @@ public class PracownikController implements AbstractController<Pracownik> {
                 Logger.getLogger(PracownikController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    
+    public ArrayList<Szkoda> getSzkodaPayments() {
+        ArrayList<Szkoda> temp = new ArrayList<>();
+        
+        return (ArrayList<Szkoda>) zakladController.getZaklad().getSzkodaCollection();
+        
+//        for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
+//            if (umowa != null) {
+//                for (Szkoda szkoda : umowa.getSzkodaCollection()) {
+//                    if (szkoda != null && szkoda.getSzkodaTyp().equals("WINNY")) {
+//                        temp.add(szkoda);
+//                    }
+//                }
+//            }
+//        }
+//        return temp;
     }
 
 }

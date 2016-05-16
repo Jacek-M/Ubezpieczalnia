@@ -82,6 +82,96 @@
                         </div>
 
                     </div>
+                    
+                    <div id="tableUmowy" class="table-umowy">
+                        <div id="tableHeader" class="table-header">
+                            <p></p>
+                        </div>
+
+                        <div id="tableClientViewContent" class="table-content">
+                            <h:dataTable id="tableClientView" class="table-data" value="#{registerController.klient.umowaCollection}" var="emp"  border="1" style="width:100%">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Lp"/>
+                                    </f:facet>
+                                    <h:outputText id="displayCell" class="display-cell" value=""/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="ID"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nazwa"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaNazwa}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data rozpoczęcia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaDataWystawienia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data zakończenia"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaDataZakonczenia}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Status"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaStatus}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Kwota"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaKwota}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Imię"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaKlientIdFk.klientImie}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Nazwisko"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaKlientIdFk.klientNazwisko}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Marka"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaPojazdIdFk.pojazdMarka}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Model"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.umowaPojazdIdFk.pojazdModel}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Akcja"/>
+                                    </f:facet>
+                                    <h:outputText id="actionCell" class="action-cell" value=""/>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                    
                 </div>
             </ui:define>
         </ui:composition>

@@ -5,6 +5,8 @@
  */
 package ubezpieczalnia.model;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -29,7 +31,14 @@ public class KlientEJB extends AbstractModel<Klient>  {
 
     @Override
     public void update(Klient object) {
-        
+        //update tylko znizki
+        Klient found = em.find(Klient.class, object.getKlientId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [KLIENT]");
+        if(found != null) {
+            Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
+            found.setKlientProcentZnizki(object.getKlientProcentZnizki());
+            em.flush();
+        }
     }
 
 }

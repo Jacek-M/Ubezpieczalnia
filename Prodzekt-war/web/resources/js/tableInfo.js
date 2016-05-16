@@ -45,6 +45,7 @@
             this._onClickShowListener();
             this._onClickEditListener();
             this._onClickDeleteListener();
+            this._onClickCustomListener();
         },
         _onClickShowListener: function () {
             var self = this;
@@ -80,6 +81,24 @@
 
             });
         },
+        _onClickCustomListener: function () {
+            var self = this;
+            $('.' + this.content + ' .action-cell #checkIcon').on("click", function () {
+                var tr = $(this).closest("tr");
+                var rowData = self.table.row(tr).data();
+                console.log(rowData);
+                console.log("_onClickShowListener() go to ->" + self.link + ".xhtml");
+                var url = "/Prodzekt-war/faces/adminPages/" + self.link + "/" + self.link + ".xhtml";
+
+                var form = $('<form action="' + url + '" method="post">' +
+                        '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
+                        '<input type="text" name="post_type" value="' + "1" + '" />' +
+                        '</form>');
+                $('body').append(form);
+                form.submit();
+
+            });
+        },
         _onClickDeleteListener: function () {
             var self = this;
             $('.' + this.content + ' .action-cell #trashIcon').on("click", function () {
@@ -94,8 +113,12 @@
         },
         _initActionCell: function () {
             $('.' + this.content + ' .action-cell').append(this._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły"));
-            if (this.tableActions === "admin")
-                $('.' + this.content + ' .action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
+            if (this.tableActions === "admin") {
+                if (this.tableName === "Umowy")
+                    $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź"));
+                else
+                    $('.' + this.content + ' .action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
+            }
         },
         _createOsomIcon: function (id, className, osomClass, tooltip) {
             var html = "<a href='javascript:void(0);' id='" + id + "' class='" + className + "' title='" + tooltip + "'><i class='" + osomClass + "' aria-hidden=\"true\"></i> </a>";

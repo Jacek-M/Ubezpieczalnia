@@ -11,7 +11,34 @@
     <h:body>
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
-                Chyba niebedzie :D
+                <div class="clients">
+                    <h4>Dane pracownika </h4>
+                    <br/>
+                    <ul>
+                        <li>
+                            <h:outputLabel  value="Imie: " />
+                            <h:outputText value="#{registerController.klient.klientImie}"/>
+                        </li>
+                        <li>
+                            <h:outputLabel  value="Nazwisko: " />
+                            <h:outputText value="#{registerController.klient.klientNazwisko}"/>
+                        </li>
+                    </ul>
+                </div>
+
+                <br/>
+                <h:form id="panelAdd">
+                    <h:panelGroup>
+                        <h:outputLabel  value="" />
+                        <h:inputHidden id="hidden_value1" value="#{registerController.klient.klientId}"/>
+                    </h:panelGroup>
+                    <h:outputLabel  value="Procent zniżki: " />
+                    <br/>
+                    <h:inputText id="nazwisko" value="#{registerController.klient.klientProcentZnizki}"/>
+
+                    <br/>
+                    <h:commandButton value="Zapisz" action="#{registerController.update()}"/>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

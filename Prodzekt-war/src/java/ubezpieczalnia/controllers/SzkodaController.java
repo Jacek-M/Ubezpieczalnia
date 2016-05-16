@@ -116,14 +116,17 @@ public class SzkodaController implements AbstractController<Szkoda> {
 
     public String registerIncident() {
         try {
-            samochodZastController.findById();
-            this.szkoda.setSzkodaSamochodZastepczyIdFk(samochodZastController.getSamochodZastepczy());
-            uczestnikController.findById();
-            this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
+//            samochodZastController.findById();
+//            this.szkoda.setSzkodaSamochodZastepczyIdFk(samochodZastController.getSamochodZastepczy());
             umowaController.findById();
             this.szkoda.setSzkodaUmowaIdFk(umowaController.getUmowa());
-            zakladController.findById();
-            this.szkoda.setSzkodaZakladIdFk(zakladController.getZaklad());
+            if (uczestnikController.getUczestnik().getUczestnikId() != null) {
+                uczestnikController.findById();
+                this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
+            }
+//            zakladController.findById();
+//            this.szkoda.setSzkodaZakladIdFk(zakladController.getZaklad());
+            this.szkoda.setSzkodaStatus("Nowa");
             System.out.println("uczestnikController " + uczestnikController.getUczestnik().getUczestnikId());
             this.addNew();
         } catch (Exception ex) {
@@ -194,5 +197,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
             }
         }
     }
+    
+    
 
 }
