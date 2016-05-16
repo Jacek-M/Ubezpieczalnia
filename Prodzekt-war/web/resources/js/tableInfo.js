@@ -5,7 +5,8 @@
             tableName: null,
             content: null,
             tableActions: null,
-            link: null
+            link: null,
+            action: null
         },
         _create: function () {
             this.tableId = this.options.tableId;
@@ -13,13 +14,12 @@
             this.content = this.options.content;
             this.link = this.options.link;
             this.tableActions = this.options.tableActions;
+            this.action = this.options.action;
             this.table = null;
             console.log("_create() TableInfo with OPTIONS[" + this.tableId + " " + this.tableName + " " + this.content + "]");
             this._initTableHeader();
-
             $(".table-content").hide();
             this._createTable();
-
             this._onCliclListener();
         },
         _createTable: function () {
@@ -30,17 +30,14 @@
                     $(".table-content").show();
                 }
             });
-
             this.table.on('order.dt search.dt', function () {
                 self.table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
                     self._initActionCell(i);
                 });
             }).draw();
-
             this.table.column(1).visible(false);
             this._validate();
-
         },
         _validate: function () {
             var tableData = this.table.rows().data();
@@ -69,14 +66,30 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.link + "View.xhtml");
-                var pagesContent = self.tableActions === "admin" ? "adminPages" : "customerPages";
+                switch (self.tableActions) {
+                    case "admin":
+                    {
+                        var pagesContent = "adminPages";
+                        break;
+                    }
+                    case "client":
+                    {
+                        var pagesContent = "customerPages";
+                        break;
+                    }
+                    case "worker":
+                    {
+                        var pagesContent = "why";
+                        break;
+                    }
+                }
+//                var pagesContent = self.tableActions === "admin" ? "adminPages" : "customerPages";
                 var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + "View.xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
-
             });
         },
         _onClickEditListener: function () {
@@ -86,14 +99,29 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.link + "Edit.xhtml");
-                var url = "/Prodzekt-war/faces/adminPages/" + self.link + "/" + self.link + "Edit.xhtml";
-
+                switch (self.tableActions) {
+                    case "admin":
+                    {
+                        var pagesContent = "adminPages";
+                        break;
+                    }
+                    case "client":
+                    {
+                        var pagesContent = "customerPages";
+                        break;
+                    }
+                    case "worker":
+                    {
+                        var pagesContent = "why";
+                        break;
+                    }
+                }
+                var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + "Edit.xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
-
             });
         },
         _onClickCustomListener: function () {
@@ -103,15 +131,30 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.link + ".xhtml");
-                var url = "/Prodzekt-war/faces/adminPages/" + self.link + "/" + self.link + ".xhtml";
-
+                switch (self.tableActions) {
+                    case "admin":
+                    {
+                        var pagesContent = "adminPages";
+                        break;
+                    }
+                    case "client":
+                    {
+                        var pagesContent = "customerPages";
+                        break;
+                    }
+                    case "worker":
+                    {
+                        var pagesContent = "why";
+                        break;
+                    }
+                }
+                var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + ".xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
-                        '<input type="text" name="post_type" value="' + "1" + '" />' +
+                        '<input type="text" name="post_type" value="' + self.action + '" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
-
             });
         },
         _onClickDeleteListener: function () {
@@ -134,6 +177,13 @@
                         $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź"));
                     else
                         $('.' + this.content + ' .action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
+                }
+                if (this.tableActions === "worker") {
+                    if (this.tableId === "tableIncidentWorkerAdd")
+                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź"));
+                    if (this.tableId === "tableIncidentWorker")
+                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
+
                 }
             }
         },

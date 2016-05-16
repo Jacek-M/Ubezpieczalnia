@@ -31,11 +31,12 @@
                                     </h:inputText>
                                     <h:outputLabel value="SzkodaStatus:" for="szkodaStatus" />
                                     <h:selectOneMenu value="#{szkodaController.szkoda.szkodaStatus}">
-                                        <f:selectItem itemValue="Nowa" itemLabel="Nowa" />
-                                        <f:selectItem itemValue="Oczekuje na wypłate" itemLabel="Oczekuje na wypłate" />
-                                        <f:selectItem itemValue="Oczekuje na naprawe" itemLabel="Oczekuje na naprawe" />
-                                        <f:selectItem itemValue="Naprawiono" itemLabel="Naprawiono" />
-                                        <f:selectItem itemValue="Wypłacono" itemLabel="Wypłacono" />
+                                        <f:selectItem itemValue="NOWA" itemLabel="Nowa" />
+                                        <f:selectItem itemValue="OCZEKUJE NA WYPŁATE" itemLabel="Oczekuje na wypłate" />
+                                        <f:selectItem itemValue="OCZEKUJE NA NAPRAWĘ" itemLabel="Oczekuje na naprawe" />
+                                        <f:selectItem itemValue="NAPRAWIONO" itemLabel="Naprawiono" />
+                                        <f:selectItem itemValue="WYPŁACONO" itemLabel="Wypłacono" />
+                                        <f:selectItem itemValue="DO NAPRAWY" itemLabel="Do naprawy" />
                                     </h:selectOneMenu>
 
                                     <h:outputLabel value="SzkodaTyp:" for="szkodaTyp" />
