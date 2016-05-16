@@ -14,12 +14,78 @@
                 <div class="agreements">
                     <h1> Moje płatności </h1>
                     <div id="tablePlatnosci" class="table-platnosci">
-
                         <div id="tablePlatnosciContent" class="table-content">
                             <div id="tableHeader" class="table-header">
                                 <p></p>
                             </div>
-                            <h:dataTable id="tablePaymentsInsurances" class="table-data" value="#{loginController.umowaPayments}" var="emp"  border="1" style="width:100%">
+                                <h:dataTable id="tablePaymentsInsurances" class="table-data" value="#{loginController.umowaPayments}" var="emp"  border="1" style="width:100%">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Lp"/>
+                                        </f:facet>
+                                        <h:outputText id="displayCell" class="display-cell" value=""/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ID"/>
+                                        </f:facet>
+                                        <h:outputText value="#{emp.umowaId}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Nazwa"/>
+                                        </f:facet>
+                                        <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaNazwa}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Rodzaj"/>
+                                        </f:facet>
+                                        <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaRodzaj}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Cena"/>
+                                        </f:facet>
+                                        <h:outputText value="#{emp.umowaKwota}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Data zakupu"/>
+                                        </f:facet>
+                                        <h:outputText value="#{emp.umowaDataWystawienia}"> 
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Pojazd"/>
+                                        </f:facet>
+                                        <h:outputText value="#{emp.umowaPojazdIdFk.pojazdMarka} "/>
+                                        <h:outputText value="#{emp.umowaPojazdIdFk.pojazdModel}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Status"/>
+                                        </f:facet>
+                                        <h:outputText value="#{emp.umowaStatus}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Akcja"/>
+                                        </f:facet>
+                                        <h:outputText id="actionCell" class="action-cell" value=""/>
+                                    </h:column>
+                                </h:dataTable>
+                        </div>
+                    </div>
+                </div>
+                <div class="incidents">
+                    <div id="tablePlatnosciSzkodaContent" class="table-content">
+                        <div id="tableHeader" class="table-header">
+                            <p></p>
+                        </div>
+                            <h:dataTable id="tablePaymentsIncidents" class="table-data" value="#{loginController.szkodaPayments}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Lp"/>
@@ -30,47 +96,33 @@
                                     <f:facet name="header">
                                         <h:outputText value="ID"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaId}"/>
+                                    <h:outputText value="#{emp.szkodaId}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Nazwa"/>
+                                        <h:outputText value="Opis"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaNazwa}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Rodzaj"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaRodzaj}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Cena"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.umowaKwota}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Data zakupu"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.umowaDataWystawienia}"> 
-                                        <f:convertDateTime pattern="dd.MM.yyyy" />
-                                    </h:outputText>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Pojazd"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.umowaPojazdIdFk.pojazdMarka} "/>
-                                    <h:outputText value="#{emp.umowaPojazdIdFk.pojazdModel}"/>
-
+                                    <h:outputText value="#{emp.szkodaOpis}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Status"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaStatus}"/>
+                                    <h:outputText value="#{emp.szkodaStatus}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Status winy"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaTyp}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data zakupu"/>
+                                    </f:facet>
+                                    <h:outputText value="#{emp.szkodaDataZdarzenia}"> 
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
@@ -80,65 +132,7 @@
                                 </h:column>
 
                             </h:dataTable>
-                        </div>
-
                     </div>
-                </div>
-
-                <div class="incidents">
-                    <div id="tablePlatnosciSzkodaContent" class="table-content">
-                        <div id="tableHeader" class="table-header">
-                            <p></p>
-                        </div>
-                        <h:dataTable id="tablePaymentsIncidents" class="table-data" value="#{loginController.szkodaPayments}" var="emp"  border="1" style="width:100%">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Lp"/>
-                                </f:facet>
-                                <h:outputText id="displayCell" class="display-cell" value=""/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="ID"/>
-                                </f:facet>
-                                <h:outputText value="#{emp.szkodaId}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Opis"/>
-                                </f:facet>
-                                <h:outputText value="#{emp.szkodaOpis}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Status"/>
-                                </f:facet>
-                                <h:outputText value="#{emp.szkodaStatus}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Status winy"/>
-                                </f:facet>
-                                <h:outputText value="#{emp.szkodaTyp}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Data zakupu"/>
-                                </f:facet>
-                                <h:outputText value="#{emp.szkodaDataZdarzenia}"> 
-                                    <f:convertDateTime pattern="dd.MM.yyyy" />
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Akcja"/>
-                                </f:facet>
-                                <h:outputText id="actionCell" class="action-cell" value=""/>
-                            </h:column>
-
-                        </h:dataTable>
-                    </div>
-
                 </div>
             </ui:define>
         </ui:composition>

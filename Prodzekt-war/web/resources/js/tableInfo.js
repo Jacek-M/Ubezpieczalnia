@@ -19,7 +19,6 @@
 
             $(".table-content").hide();
             this._createTable();
-            this._initActionCell();
 
             this._onCliclListener();
         },
@@ -35,11 +34,27 @@
             this.table.on('order.dt search.dt', function () {
                 self.table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
+                    self._initActionCell(i);
                 });
             }).draw();
 
             this.table.column(1).visible(false);
+            this._validate();
 
+        },
+        _validate: function () {
+            var tableData = this.table.rows().data();
+            if (tableData.length > 0) {
+                var x = 0;
+                for (var i = 0; i < tableData[0].length; i++) {
+                    if (tableData[0][i] === null || tableData[0][i].length <= 0) {
+                        x++;
+                    }
+                }
+                if (x > 3) {
+                    this.table.rows().remove().draw();
+                }
+            }
         },
         _onCliclListener: function () {
             this._onClickShowListener();
@@ -111,13 +126,15 @@
         _initTableHeader: function () {
             $("." + this.content + ' .table-header').html(this.tableName);
         },
-        _initActionCell: function () {
-            $('.' + this.content + ' .action-cell').append(this._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły"));
-            if (this.tableActions === "admin") {
-                if (this.tableName === "Umowy")
-                    $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź"));
-                else
-                    $('.' + this.content + ' .action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
+        _initActionCell: function (row) {
+            if ($('.' + this.content + ' .action-cell').length > 0 && $('.' + this.content + ' .action-cell')[row].innerHTML[0] !== "<") {
+                $('.' + this.content + ' .action-cell').append(this._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły"));
+                if (this.tableActions === "admin") {
+                    if (this.tableName === "Umowy")
+                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź"));
+                    else
+                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
+                }
             }
         },
         _createOsomIcon: function (id, className, osomClass, tooltip) {

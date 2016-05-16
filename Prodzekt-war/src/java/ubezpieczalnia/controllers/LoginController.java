@@ -125,7 +125,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
     public ArrayList<Umowa> getUmowaPayments() {
         ArrayList<Umowa> temp = new ArrayList<>();
         for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
-            if (umowa != null && !umowa.getUmowaStatus().equals("ZAAKCEPTOWANO")) {
+            if (umowa != null && !umowa.getUmowaStatus().equals("ZAAKCEPTOWANA")) {
                 temp.add(umowa);
             }
         }
