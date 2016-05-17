@@ -175,7 +175,8 @@ public class UmowaController implements AbstractController<Umowa> {
         }
         if (requestParams.get("post_type") != null) {
             System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
-            acceptAgreement();
+            if(requestParams.get("post_type").equals("1"))
+                acceptAgreement();
         }
     }
 

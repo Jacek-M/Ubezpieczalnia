@@ -180,9 +180,10 @@
                 }
                 if (this.tableActions === "worker") {
                     if (this.tableId === "tableIncidentWorkerAdd")
-                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź"));
+                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Pobierz"));
                     if (this.tableId === "tableIncidentWorker")
-                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
+                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zakończ"));
+                    
 
                 }
             }

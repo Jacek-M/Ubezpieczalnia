@@ -72,6 +72,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
                         this.konto = kontoEJB.refresh(this.konto);
                         SessionManager.addToSession("logged", true);
                         SessionManager.addToSession("permission", konto.getKontoUprawnienia());
+                        SessionManager.addToSession("id", this.getPracownikAccount().getPracownikId());
                     }
                     return PageController.getPage("/index.xhtml");
                 }
@@ -148,37 +149,38 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         return temp;
     }
 
-    public ArrayList<Szkoda> getSzkodaWorkerPayments() {
-        ArrayList<Szkoda> temp = new ArrayList<>();
-
-        if (this.getPracownikAccount() != null) {
-            for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
-                if (umowa != null) {
-                    for (Szkoda szkoda : umowa.getSzkodaCollection()) {
-                        if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == this.getPracownikAccount().getPracownikZakladIdFk().getZakladId()) {
-                            temp.add(szkoda);
-                        }
-                    }
-                }
-            }
-        }
-        return temp;
-    }
-
-    public ArrayList<Szkoda> getSzkodaToRepair() {
-        ArrayList<Szkoda> temp = new ArrayList<>();
-
-        for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
-            if (umowa != null) {
-                for (Szkoda szkoda : umowa.getSzkodaCollection()) {
-                    if (szkoda != null && szkoda.getSzkodaStatus().equals("DO NAPRAWY")) {
-                        temp.add(szkoda);
-                    }
-                }
-            }
-        }
-        return temp;
-    }
+//    public ArrayList<Szkoda> getSzkodaWorkerPayments() {
+//        ArrayList<Szkoda> temp = new ArrayList<>();
+//
+//        if (this.getPracownikAccount() != null) {
+//            for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
+//                if (umowa != null) {
+//                    for (Szkoda szkoda : umowa.getSzkodaCollection()) {
+//                        if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == this.getPracownikAccount().getPracownikZakladIdFk().getZakladId()) {
+//                            temp.add(szkoda);
+//                            szkoda.
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return temp;
+//    }
+//
+//    public ArrayList<Szkoda> getSzkodaToRepair() {
+//        ArrayList<Szkoda> temp = new ArrayList<>();
+//
+//        for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
+//            if (umowa != null) {
+//                for (Szkoda szkoda : umowa.getSzkodaCollection()) {
+//                    if (szkoda != null && szkoda.getSzkodaStatus().equals("DO NAPRAWY")) {
+//                        temp.add(szkoda);
+//                    }
+//                }
+//            }
+//        }
+//        return temp;
+//    }
 
     @Override
     public List<Konto> findAll() {
@@ -209,17 +211,17 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         return PageController.getCurrentUrl();
     }
     
-    @PostConstruct
-    public void receivedPost() {
-        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
-            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
-            takeRepair(requestParams.get("post_type"));
-        }
-    }
-    
-    private void takeRepair(String szkodaId){
-
-    }
+//    @PostConstruct
+//    public void receivedPost() {
+//        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+//        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
+//            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
+//            takeRepair(requestParams.get("post_id"));
+//        }
+//    }
+//    
+//    private void takeRepair(String szkodaId){
+//        
+//    }
 }

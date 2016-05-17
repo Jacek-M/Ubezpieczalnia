@@ -157,7 +157,7 @@ $(document).ready(function () {
         content: "order",
         tableActions: "worker",
         link: "order",
-        action: "1"
+        action: "3"
     });
     $('#tableIncidentWorkerAddContent').TableInfo({
         tableName: "Szkody",
@@ -165,7 +165,7 @@ $(document).ready(function () {
         content: "order",
         tableActions: "worker",
         link: "order",
-        action: "1"
+        action: "2"
     });
     $('#tableOrderViewContent').TableInfo({
         tableName: "Wyceny",
@@ -173,7 +173,7 @@ $(document).ready(function () {
         content: "order",
         tableActions: "worker",
         link: "valuations",
-        action: "1"
+        action: "2"
     });
 
 });

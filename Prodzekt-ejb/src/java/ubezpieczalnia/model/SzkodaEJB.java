@@ -47,4 +47,16 @@ public class SzkodaEJB extends AbstractModel<Szkoda> {
             em.flush();
         }
     }
+    
+    public void addZaklad(Szkoda object) {
+        Szkoda found = em.find(Szkoda.class, object.getSzkodaId());
+        Logger.getLogger("INFO").log(Level.INFO, "UPDATE [SZKODA]");
+        if(found != null) {
+            Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
+            found.setSzkodaStatus(object.getSzkodaStatus());
+            found.setSzkodaZakladIdFk(object.getSzkodaZakladIdFk());
+            
+            em.flush();
+        }
+    }
 }
