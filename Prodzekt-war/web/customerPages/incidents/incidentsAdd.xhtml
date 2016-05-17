@@ -16,7 +16,7 @@
                         <br/>
                         <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
                     </h:panelGroup>
-
+                    
                     <h1>Dodaj szkodę</h1>
 
                     <f:view>
@@ -24,12 +24,9 @@
                             <h:panelGrid  columns="2">
                                 <h:outputLabel value="Data zdarzenia:" for="szkodaDataZdarzenia" />
                                 <h:inputText id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    <f:convertDateTime pattern="dd-mm-yyyy" />
                                 </h:inputText>
-                                <h:outputLabel value="Przewidywana data zakończenia:" for="szkodaDataZakonczenia" />
-                                <h:inputText id="szkodaDataZakonczenia" value="#{szkodaController.szkoda.szkodaDataZakonczenia}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                </h:inputText>
+                                
 
                                 <h:outputLabel value="Typ:" for="szkodaTyp" />
                                 <h:selectOneMenu value="#{szkodaController.szkoda.szkodaTyp}">
@@ -41,21 +38,18 @@
 
                                 <h:outputLabel value="SzkodaUmowaIdFk:" for="szkodaUmowaIdFk" />
                                 <h:selectOneMenu value="#{szkodaController.umowaController.umowa.umowaId}" required="true">
-                                    <f:selectItems value="#{umowaController.umowaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-
+                                    <f:selectItems value="#{loginController.umowaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                                 </h:selectOneMenu>
-
                                 <h:outputLabel value="Imię uczestnika:" />
-                                <h:inputText id="imieUczestnika" value="#{uczestnikController.uczestnik.uczestnikImie}"/>
+                                <h:inputText id="imieUczestnika" value="#{uczestnikController.uczestnik.uczestnikImie}" required="false"/>
                                 <h:outputLabel value="Nazwisko uczestnika:" />
-                                <h:inputText id="nazwiskoUczestnika" value="#{uczestnikController.uczestnik.uczestnikNazwisko}"/>
+                                <h:inputText id="nazwiskoUczestnika" value="#{uczestnikController.uczestnik.uczestnikNazwisko}" required="false"/>
                                 <h:outputLabel value="Numer konta bankowego:" />
-                                <h:inputText id="nrKontaUczestnika" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}"/>
-
+                                <h:inputText id="nrKontaUczestnika" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}" required="false"/>
 
                             </h:panelGrid>
                             <br/>
-                            <h:commandButton value="Zapisz" action="#{szkodaController.registerIncident()}"/>
+                            <h:commandButton value="Dodaj szkodę" action="#{szkodaController.registerIncidentByClient()}"/>
 
                         </h:form>
                     </f:view>

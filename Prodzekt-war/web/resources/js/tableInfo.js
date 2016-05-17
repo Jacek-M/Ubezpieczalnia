@@ -20,7 +20,7 @@
             this._initTableHeader();
             $(".table-content").hide();
             this._createTable();
-            this._onCliclListener();
+            this._onClickListener();
         },
         _createTable: function () {
             var self = this;
@@ -30,10 +30,25 @@
                     $(".table-content").show();
                 }
             });
+            var colIndex = this._getTableColumnIndex("Akcja", self.table.row(0).data().length);
             this.table.on('order.dt search.dt', function () {
                 self.table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
-                    self._initActionCell(i);
+                });
+                self.table.column(colIndex, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                    cell.innerHTML = self._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły");
+                    if (self.tableActions === "admin") {
+                        if (self.tableName === "Umowy")
+                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź");
+                        else
+                            cell.innerHTML += self._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj");
+                    }
+                    if (self.tableActions === "worker") {
+                        if (self.tableId === "tableIncidentWorkerAdd")
+                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Pobierz");
+                        if (self.tableId === "tableIncidentWorker")
+                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zakończ");
+                    }
                 });
             }).draw();
             this.table.column(1).visible(false);
@@ -53,7 +68,7 @@
                 }
             }
         },
-        _onCliclListener: function () {
+        _onClickListener: function () {
             this._onClickShowListener();
             this._onClickEditListener();
             this._onClickDeleteListener();
@@ -61,7 +76,7 @@
         },
         _onClickShowListener: function () {
             var self = this;
-            $('.' + this.content + ' .action-cell #eyeIcon').on("click", function () {
+            $('.' + this.content).on("click", " tbody td .eye-icon", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
@@ -94,7 +109,7 @@
         },
         _onClickEditListener: function () {
             var self = this;
-            $('.' + this.content + ' .action-cell #pencilIcon').on("click", function () {
+            $('.' + this.content).on("click", " tbody td .pencil-icon", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
@@ -126,7 +141,7 @@
         },
         _onClickCustomListener: function () {
             var self = this;
-            $('.' + this.content + ' .action-cell #checkIcon').on("click", function () {
+            $('.' + this.content).on("click", " tbody td .pencil-check", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
@@ -159,7 +174,7 @@
         },
         _onClickDeleteListener: function () {
             var self = this;
-            $('.' + this.content + ' .action-cell #trashIcon').on("click", function () {
+            $('.' + this.content).on("click", " tbody td .trash-icon", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
@@ -169,23 +184,12 @@
         _initTableHeader: function () {
             $("." + this.content + ' .table-header').html(this.tableName);
         },
-        _initActionCell: function (row) {
-            if ($('.' + this.content + ' .action-cell').length > 0 && $('.' + this.content + ' .action-cell')[row].innerHTML[0] !== "<") {
-                $('.' + this.content + ' .action-cell').append(this._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły"));
-                if (this.tableActions === "admin") {
-                    if (this.tableName === "Umowy")
-                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź"));
-                    else
-                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj"));
-                }
-                if (this.tableActions === "worker") {
-                    if (this.tableId === "tableIncidentWorkerAdd")
-                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Pobierz"));
-                    if (this.tableId === "tableIncidentWorker")
-                        $('.' + this.content + ' .action-cell').append(this._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zakończ"));
-                    
-
-                }
+        _getTableColumnIndex: function (columnName, length) {
+            for (var i = 0; i < length; i++) {
+                var header = $(this.table.column(i).header()).text();
+                if (header === columnName)
+                    return i;
+                return -1;
             }
         },
         _createOsomIcon: function (id, className, osomClass, tooltip) {

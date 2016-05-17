@@ -146,6 +146,25 @@ public class SzkodaController implements AbstractController<Szkoda> {
         }
         return PageController.getPage("/adminPages/incidents/incidents.xhtml");
     }
+    
+    public String registerIncidentByClient() {
+        try {
+            umowaController.findById();
+            this.szkoda.setSzkodaUmowaIdFk(umowaController.getUmowa());
+            
+            if(uczestnikController.getUczestnik().getUczestnikImie().length() > 0 && uczestnikController.getUczestnik().getUczestnikNazwisko().length() > 0) {
+                uczestnikController.addNew();
+                this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
+            }
+            this.szkoda.setSzkodaStatus("Nowa");
+            this.addNew();
+            
+        } catch (Exception e) {
+            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return PageController.getPage("/customerPages/customer/customerView.xhtml");
+    }
+    
 
     @Override
     public List<Szkoda> findAll() {

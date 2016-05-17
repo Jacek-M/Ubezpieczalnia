@@ -403,18 +403,18 @@
     width: 100%;
 }
 
-.action-cell i {
-    padding: 0px 5px 0px 5px;
+.table-data td {
+    text-align: center;
 }
 
-.action-cell a, .action-cell a:active, .action-cell a:visited, .action-cell a:focus {
-    text-decoration: none;
+.table-data td a {
     color: black;
+    margin-right: 5px;
+    text-align: center;
 }
 
-.action-cell a:hover {
+.table-data td a:hover {
     text-decoration: none;
-    color : #66afe9;
 }
 .table-data {
     overflow: hidden;

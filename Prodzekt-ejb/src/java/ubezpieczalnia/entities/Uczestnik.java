@@ -44,12 +44,12 @@ public class Uczestnik implements Serializable {
     private Integer uczestnikId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "uczestnik_imie")
     private String uczestnikImie;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "uczestnik_nazwisko")
     private String uczestnikNazwisko;
     @Size(max = 45)

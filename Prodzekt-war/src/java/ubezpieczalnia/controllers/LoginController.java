@@ -7,6 +7,7 @@ package ubezpieczalnia.controllers;
 
 import ubezpieczalnia.utils.SessionManager;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import ubezpieczalnia.entities.Klient;
 import ubezpieczalnia.entities.Konto;
 import ubezpieczalnia.entities.Pracownik;
@@ -102,6 +104,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         if (this.konto.getKlientCollection() == null) {
             return null;
         }
+        this.konto = kontoEJB.refresh(this.konto);
         for (Klient klient : this.konto.getKlientCollection()) {
             if (klient != null) {
                 System.out.println("IN NULL");
@@ -116,6 +119,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         if (this.konto.getPracownikCollection() == null) {
             return null;
         }
+        this.konto = kontoEJB.refresh(this.konto);
         for (Pracownik pracownik : this.konto.getPracownikCollection()) {
             if (pracownik != null) {
                 return pracownik;
@@ -126,6 +130,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
 
     public ArrayList<Umowa> getUmowaPayments() {
         ArrayList<Umowa> temp = new ArrayList<>();
+        this.konto = kontoEJB.refresh(this.konto);
         for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
             if (umowa != null && !umowa.getUmowaStatus().equals("ZAAKCEPTOWANA")) {
                 temp.add(umowa);
@@ -136,6 +141,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
 
     public ArrayList<Szkoda> getSzkodaPayments() {
         ArrayList<Szkoda> temp = new ArrayList<>();
+        this.konto = kontoEJB.refresh(this.konto);
 
         for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
             if (umowa != null) {
@@ -149,38 +155,18 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         return temp;
     }
 
-//    public ArrayList<Szkoda> getSzkodaWorkerPayments() {
-//        ArrayList<Szkoda> temp = new ArrayList<>();
-//
-//        if (this.getPracownikAccount() != null) {
-//            for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
-//                if (umowa != null) {
-//                    for (Szkoda szkoda : umowa.getSzkodaCollection()) {
-//                        if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == this.getPracownikAccount().getPracownikZakladIdFk().getZakladId()) {
-//                            temp.add(szkoda);
-//                            szkoda.
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return temp;
-//    }
-//
-//    public ArrayList<Szkoda> getSzkodaToRepair() {
-//        ArrayList<Szkoda> temp = new ArrayList<>();
-//
-//        for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
-//            if (umowa != null) {
-//                for (Szkoda szkoda : umowa.getSzkodaCollection()) {
-//                    if (szkoda != null && szkoda.getSzkodaStatus().equals("DO NAPRAWY")) {
-//                        temp.add(szkoda);
-//                    }
-//                }
-//            }
-//        }
-//        return temp;
-//    }
+
+    public List<SelectItem> getUmowaSelectList() {
+        this.konto = kontoEJB.refresh(this.konto);
+        List<SelectItem> umowaSelectList = new ArrayList<>();
+        for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
+            String label = umowa.getUmowaId() + " | " + umowa.getUmowaPojazdIdFk().getPojazdMarka() + " " + umowa.getUmowaPojazdIdFk().getPojazdModel();
+            umowaSelectList.add(new SelectItem(umowa.getUmowaId(), label));
+        }
+        return umowaSelectList;
+    }
+
+   
 
     @Override
     public List<Konto> findAll() {
@@ -210,6 +196,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         kontoEJB.delete(this.konto);
         return PageController.getCurrentUrl();
     }
+
     
 //    @PostConstruct
 //    public void receivedPost() {
@@ -224,4 +211,5 @@ public class LoginController implements Serializable, AbstractController<Konto> 
 //    private void takeRepair(String szkodaId){
 //        
 //    }
+
 }

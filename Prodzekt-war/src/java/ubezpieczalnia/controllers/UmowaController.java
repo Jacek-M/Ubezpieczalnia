@@ -55,7 +55,7 @@ public class UmowaController implements AbstractController<Umowa> {
         } else {
             this.umowaSelectList.add(new SelectItem(-1, "-- WYBIERZ UMOWE --"));
             for (Umowa umowaList1 : this.umowaList) {
-                String date = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(umowaList1.getUmowaDataWystawienia());
+                String date = new SimpleDateFormat("dd-MM-yyyy").format(umowaList1.getUmowaDataWystawienia());
                 String text = umowaList1.getUmowaId().toString() + "| " + umowaList1.getUmowaKlientIdFk().getKlientImie() + " " + umowaList1.getUmowaKlientIdFk().getKlientNazwisko() + " | " + date; 
                 this.umowaSelectList.add(new SelectItem(umowaList1.getUmowaId(), text));
             }
