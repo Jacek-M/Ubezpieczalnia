@@ -5,7 +5,8 @@
             tableName: null,
             content: null,
             tableActions: null,
-            link: null
+            link: null,
+            action: null
         },
         _create: function () {
             this.tableId = this.options.tableId;
@@ -13,10 +14,10 @@
             this.content = this.options.content;
             this.link = this.options.link;
             this.tableActions = this.options.tableActions;
+            this.action = this.options.action;
             this.table = null;
             console.log("_create() TableInfo with OPTIONS[" + this.tableId + " " + this.tableName + " " + this.content + "]");
             this._initTableHeader();
-
             $(".table-content").hide();
             this._createTable();
             this._onClickListener();
@@ -34,10 +35,8 @@
                 self.table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
                 });
-
                 self.table.column(colIndex, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                     cell.innerHTML = self._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły");
-
                     if (self.tableActions === "admin") {
                         if (self.tableName === "Umowy")
                             cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź");
@@ -46,10 +45,8 @@
                     }
                 });
             }).draw();
-
             this.table.column(1).visible(false);
             this._validate();
-
         },
         _validate: function () {
             var tableData = this.table.rows().data();
@@ -78,14 +75,30 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.link + "View.xhtml");
-                var pagesContent = self.tableActions === "admin" ? "adminPages" : "customerPages";
+                switch (self.tableActions) {
+                    case "admin":
+                    {
+                        var pagesContent = "adminPages";
+                        break;
+                    }
+                    case "client":
+                    {
+                        var pagesContent = "customerPages";
+                        break;
+                    }
+                    case "worker":
+                    {
+                        var pagesContent = "why";
+                        break;
+                    }
+                }
+//                var pagesContent = self.tableActions === "admin" ? "adminPages" : "customerPages";
                 var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + "View.xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
-
             });
         },
         _onClickEditListener: function () {
@@ -95,14 +108,29 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.link + "Edit.xhtml");
-                var url = "/Prodzekt-war/faces/adminPages/" + self.link + "/" + self.link + "Edit.xhtml";
-
+                switch (self.tableActions) {
+                    case "admin":
+                    {
+                        var pagesContent = "adminPages";
+                        break;
+                    }
+                    case "client":
+                    {
+                        var pagesContent = "customerPages";
+                        break;
+                    }
+                    case "worker":
+                    {
+                        var pagesContent = "why";
+                        break;
+                    }
+                }
+                var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + "Edit.xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
-
             });
         },
         _onClickCustomListener: function () {
@@ -112,15 +140,30 @@
                 var rowData = self.table.row(tr).data();
                 console.log(rowData);
                 console.log("_onClickShowListener() go to ->" + self.link + ".xhtml");
-                var url = "/Prodzekt-war/faces/adminPages/" + self.link + "/" + self.link + ".xhtml";
-
+                switch (self.tableActions) {
+                    case "admin":
+                    {
+                        var pagesContent = "adminPages";
+                        break;
+                    }
+                    case "client":
+                    {
+                        var pagesContent = "customerPages";
+                        break;
+                    }
+                    case "worker":
+                    {
+                        var pagesContent = "why";
+                        break;
+                    }
+                }
+                var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + ".xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
-                        '<input type="text" name="post_type" value="' + "1" + '" />' +
+                        '<input type="text" name="post_type" value="' + self.action + '" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
-
             });
         },
         _onClickDeleteListener: function () {
@@ -140,8 +183,9 @@
                 var header = $(this.table.column(i).header()).text();
                 if (header === columnName)
                     return i;
+
+                return -1;
             }
-            return -1;
         },
         _createOsomIcon: function (id, className, osomClass, tooltip) {
             var html = "<a href='javascript:void(0);' id='" + id + "' class='" + className + "' title='" + tooltip + "'><i class='" + osomClass + "' aria-hidden=\"true\"></i> </a>";

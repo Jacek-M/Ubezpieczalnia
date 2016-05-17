@@ -126,7 +126,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
             }
 //            zakladController.findById();
 //            this.szkoda.setSzkodaZakladIdFk(zakladController.getZaklad());
-            this.szkoda.setSzkodaStatus("Nowa");
+            this.szkoda.setSzkodaStatus("DO NAPRAWY");
             System.out.println("uczestnikController " + uczestnikController.getUczestnik().getUczestnikId());
             this.addNew();
         } catch (Exception ex) {

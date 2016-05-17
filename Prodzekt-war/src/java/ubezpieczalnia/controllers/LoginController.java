@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -140,6 +141,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
     public ArrayList<Szkoda> getSzkodaPayments() {
         ArrayList<Szkoda> temp = new ArrayList<>();
         this.konto = kontoEJB.refresh(this.konto);
+
         for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
             if (umowa != null) {
                 for (Szkoda szkoda : umowa.getSzkodaCollection()) {
@@ -160,6 +162,38 @@ public class LoginController implements Serializable, AbstractController<Konto> 
             umowaSelectList.add(new SelectItem(umowa.getUmowaId(), label));
         }
         return umowaSelectList;
+    }
+
+    public ArrayList<Szkoda> getSzkodaWorkerPayments() {
+        ArrayList<Szkoda> temp = new ArrayList<>();
+
+        if (this.getPracownikAccount() != null) {
+            for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
+                if (umowa != null) {
+                    for (Szkoda szkoda : umowa.getSzkodaCollection()) {
+                        if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == this.getPracownikAccount().getPracownikZakladIdFk().getZakladId()) {
+                            temp.add(szkoda);
+                        }
+                    }
+                }
+            }
+        }
+        return temp;
+    }
+
+    public ArrayList<Szkoda> getSzkodaToRepair() {
+        ArrayList<Szkoda> temp = new ArrayList<>();
+
+        for (Umowa umowa : this.getPracownikAccount().getUmowaCollection()) {
+            if (umowa != null) {
+                for (Szkoda szkoda : umowa.getSzkodaCollection()) {
+                    if (szkoda != null && szkoda.getSzkodaStatus().equals("DO NAPRAWY")) {
+                        temp.add(szkoda);
+                    }
+                }
+            }
+        }
+        return temp;
     }
 
     @Override
@@ -189,5 +223,19 @@ public class LoginController implements Serializable, AbstractController<Konto> 
     public String delete() {
         kontoEJB.delete(this.konto);
         return PageController.getCurrentUrl();
+    }
+
+    @PostConstruct
+    public void receivedPost() {
+        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
+            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
+            takeRepair(requestParams.get("post_type"));
+        }
+    }
+
+    private void takeRepair(String szkodaId) {
+
     }
 }

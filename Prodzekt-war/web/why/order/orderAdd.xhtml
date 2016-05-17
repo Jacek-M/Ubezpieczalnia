@@ -11,16 +11,20 @@
     <h:body>
         <ui:composition template="/templates/workerTemplate.xhtml">
             <ui:define name="contentWorker">
-                <div class="incidents">
-                    <h1> Szkody </h1>
-                    
+                <div class="order">
+                    <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
+                        <br/>
+                        <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
+                    </h:panelGroup>
+
+                    <h1>Szkody do pobrania</h1>
                     <div id="tableSzkody" class="table-szkody">
                         <div id="tableHeader" class="table-header">
                             <p></p>
                         </div>
 
-                        <div id="tableIncidentWorkerContent" class="table-content">
-                            <h:dataTable id="tableIncidentWorker" class="table-data" value="#{pracownikController.szkodaPayments}" var="emp"  border="1" style="width:100%">
+                        <div id="tableIncidentWorkerAddContent" class="table-content">
+                            <h:dataTable id="tableIncidentWorkerAdd" class="table-data" value="#{loginController.szkodaToRepair}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Lp"/>
@@ -41,34 +45,23 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Data zakończenia"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.szkodaDataZakonczenia}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
                                         <h:outputText value="Status"/>
                                     </f:facet>
                                     <h:outputText value="#{emp.szkodaStatus}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Typ"/>
+                                        <h:outputText value="Marka"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.szkodaTyp}"/>
+                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaPojazdIdFk.pojazdMarka}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Umowa numer"/>
+                                        <h:outputText value="Model"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaId}"/>
+                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaPojazdIdFk.pojazdModel}"/>
                                 </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Samochód zastępczy"/>
-                                    </f:facet>
-                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
-                                </h:column>
+                      
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Akcja"/>
@@ -78,7 +71,6 @@
                             </h:dataTable>
                         </div>
                     </div>
-                    
                 </div>
             </ui:define>
         </ui:composition>

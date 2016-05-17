@@ -36,7 +36,9 @@ public class PageController {
         "/adminPages/agreements/agreements.xhtml", "/adminPages/agreements/agreementsAdd.xhtml", "/adminPages/agreements/agreementsEdit.xhtml", "/adminPages/agreements/agreementsView.xhtml",
         "/adminPages/incidents/incidents.xhtml", "/adminPages/incidents/incidentsAdd.xhtml", "/adminPages/incidents/incidentsEdit.xhtml", "/adminPages/incidents/incidentsView.xhtml",
         "/adminPages/valuations/valuations.xhtml", "/adminPages/valuations/valuationsAdd.xhtml", "/adminPages/valuations/valuationsEdit.xhtml", "/adminPages/valuations/valuationsView.xhtml",
-        "/workerPages/services/services.xhtml", "/workerPages/incidents/incidents.xhtml"
+        "/why/services/services.xhtml", 
+        "/why/order/order.xhtml", "/why/order/orderAdd.xhtml","/why/order/orderEdit.xhtml","/why/order/orderView.xhtml",
+        "/why/valuations/valuationsView.xhtml"
 
     };
 

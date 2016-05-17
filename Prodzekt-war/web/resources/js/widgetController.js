@@ -90,21 +90,24 @@ $(document).ready(function () {
         tableId: "tableAgreement",
         content: "agreements",
         tableActions: "admin",
-        link: "agreements"
+        link: "agreements",
+        action: "1"
     });
     $('#tableAgreementIncidentsView').TableInfo({
         tableName: "Szkody w umowie",
         tableId: "tableIncidents",
         content: "agreements",
         tableActions: "client",
-        link: "incidents"
+        link: "incidents",
+        action: "1"
     });
     $('#tableAgreementViewContent').TableInfo({
         tableName: "Szkody",
         tableId: "tableAgreementView",
         content: "agreements",
         tableActions: "admin",
-        link: "incidents"
+        link: "incidents",
+        action: "1"
     });
     $('#tableIncidentContent').TableInfo({
         tableName: "Szkody",
@@ -139,14 +142,38 @@ $(document).ready(function () {
         link: "agreements"
 
     });
-    
-        $('#tablePlatnosciSzkodaContent').TableInfo({
+
+    $('#tablePlatnosciSzkodaContent').TableInfo({
         tableName: "Nieopłacone szkody",
         tableId: "tablePaymentsIncidents",
         content: "incidents",
         tableActions: "client",
         link: "incidents"
-
+    });
+    
+    $('#tableIncidentWorkerContent').TableInfo({
+        tableName: "Szkody",
+        tableId: "tableIncidentWorker",
+        content: "order",
+        tableActions: "worker",
+        link: "order",
+        action: "1"
+    });
+    $('#tableIncidentWorkerAddContent').TableInfo({
+        tableName: "Szkody",
+        tableId: "tableIncidentWorkerAdd",
+        content: "order",
+        tableActions: "worker",
+        link: "order",
+        action: "1"
+    });
+    $('#tableOrderViewContent').TableInfo({
+        tableName: "Wyceny",
+        tableId: "tableOrderView",
+        content: "order",
+        tableActions: "worker",
+        link: "valuations",
+        action: "1"
     });
 
 });
