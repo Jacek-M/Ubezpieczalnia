@@ -196,7 +196,7 @@ public class PracownikController implements AbstractController<Pracownik> {
     @Override
     public String delete() {
         pracownikEJB.delete(this.pracownik);
-        return PageController.getPage("/adminPages/employeesemployees.xhtml");
+        return PageController.getPage("/adminPages/employees/employees.xhtml");
 
     }
 

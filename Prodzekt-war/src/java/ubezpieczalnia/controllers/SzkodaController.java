@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import ubezpieczalnia.entities.Szkoda;
 import ubezpieczalnia.model.SzkodaEJB;
+import ubezpieczalnia.utils.SessionManager;
 
 /**
  *
@@ -28,7 +29,7 @@ import ubezpieczalnia.model.SzkodaEJB;
 @RequestScoped
 public class SzkodaController implements AbstractController<Szkoda> {
 
-    @ManagedProperty(value = "#{umowaController}")
+    @ManagedProperty("#{umowaController}")
     private UmowaController umowaController;
 
     @ManagedProperty(value = "#{samochodZastController}")
@@ -40,12 +41,23 @@ public class SzkodaController implements AbstractController<Szkoda> {
     @ManagedProperty(value = "#{uczestnikController}")
     private UczestnikController uczestnikController;
 
+    @ManagedProperty(value = "#{pracownikController}")
+    private PracownikController pracownikController;
+
     @EJB
     private SzkodaEJB szkodaEJB;
 
     private Szkoda szkoda = new Szkoda();
     private List<Szkoda> szkodaList = new ArrayList<>();
     private List<SelectItem> szkodaSelectList = new ArrayList<>();
+
+    public PracownikController getPracownikController() {
+        return pracownikController;
+    }
+
+    public void setPracownikController(PracownikController pracownikController) {
+        this.pracownikController = pracownikController;
+    }
 
     public List<SelectItem> getSzkodaSelectList() {
         if (this.findAll().size() <= 0) {
@@ -207,16 +219,72 @@ public class SzkodaController implements AbstractController<Szkoda> {
             this.szkoda.setSzkodaId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();
-//                umowaController.setUmowa(this.szkoda.getSzkodaUmowaIdFk());
-//                samochodZastController.setSamochodZastepczy(this.szkoda.getSzkodaSamochodZastepczyIdFk());
-//                zakladController.setZaklad(this.szkoda.getSzkodaZakladIdFk());
-//                uczestnikController.setUczestnik(this.szkoda.getSzkodaUczestnikIdFk());
             } catch (Exception ex) {
                 Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        try {
+            int id = (Integer) SessionManager.getObjectFromSession("id");
+            if (id > 0) {
+                pracownikController.getPracownik().setPracownikId(id);
+                pracownikController.findById();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
+            if (requestParams.get("post_type").equals("2")) {
+                getRepair();
+            }else if(requestParams.get("post_type").equals("3")){
+                endRepair();
+            }
+        }
+    }
+
+    public ArrayList<Szkoda> getSzkodaWorkerPayments() {
+        ArrayList<Szkoda> temp = new ArrayList<>();
+
+        if (pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId() != null) {
+            for (Szkoda szkoda : this.getSzkodaList()) {
+                if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId()) {
+                    temp.add(szkoda);
+                }
+            }
+        }
+        return temp;
+    }
+
+    public ArrayList<Szkoda> getSzkodaToRepair() {
+        ArrayList<Szkoda> temp = new ArrayList<>();
+
+        for (Szkoda szkoda : this.getSzkodaList()) {
+            if (szkoda != null && szkoda.getSzkodaStatus().equals("DO NAPRAWY")) {
+                temp.add(szkoda);
+            }
+        }
+        return temp;
+    }
+
+    private void getRepair() {
+        try {
+            this.szkoda.setSzkodaZakladIdFk(pracownikController.getPracownik().getPracownikZakladIdFk());
+            this.szkoda.setSzkodaStatus("W NAPRAWIE");
+            szkodaEJB.addZaklad(szkoda);
+        } catch (Exception ex) {
+            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    
-
+    //zmienic!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private void endRepair() {
+        try {
+            this.szkoda.setSzkodaZakladIdFk(pracownikController.getPracownik().getPracownikZakladIdFk());
+            this.szkoda.setSzkodaStatus("NAPRAWIONO");
+            szkodaEJB.addZaklad(szkoda);
+        } catch (Exception ex) {
+            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

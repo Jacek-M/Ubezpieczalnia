@@ -43,6 +43,12 @@
                         else
                             cell.innerHTML += self._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj");
                     }
+                    if (self.tableActions === "worker") {
+                        if (self.tableId === "tableIncidentWorkerAdd")
+                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Pobierz");
+                        if (self.tableId === "tableIncidentWorker")
+                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zakończ");
+                    }
                 });
             }).draw();
             this.table.column(1).visible(false);
@@ -175,7 +181,6 @@
                 var header = $(this.table.column(i).header()).text();
                 if (header === columnName)
                     return i;
-
                 return -1;
             }
         },

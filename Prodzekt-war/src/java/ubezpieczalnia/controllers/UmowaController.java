@@ -228,8 +228,16 @@ public class UmowaController implements AbstractController<Umowa> {
                     acceptAgreement();
                 }
             }
+
         } catch (Exception ex) {
             Logger.getLogger(UmowaController.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        if (requestParams.get("post_type") != null) {
+            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
+            if(requestParams.get("post_type").equals("1"))
+                acceptAgreement();
+
         }
     }
 
