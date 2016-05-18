@@ -12,6 +12,7 @@
         <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentCustomer">
                 <div class="incidents">
+                    #{szkodaController.receivedPost()}
                     <h1> Informacje o szkodzie</h1>
 
                     <div class="data-view">

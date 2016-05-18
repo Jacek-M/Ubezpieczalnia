@@ -10,6 +10,7 @@
     <h:body>
         <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentCustomer">
+                #{registerController.receivedPost()}
                 <h1>Edytuj mój profil</h1>
                 <h:form id="customerEditForm">
                     <div class="customerEdit">

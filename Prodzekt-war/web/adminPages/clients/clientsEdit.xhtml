@@ -12,6 +12,7 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="clients">
+                    #{registerController.receivedPost()}
                     <h4>Dane pracownika </h4>
                     <br/>
                     <ul>

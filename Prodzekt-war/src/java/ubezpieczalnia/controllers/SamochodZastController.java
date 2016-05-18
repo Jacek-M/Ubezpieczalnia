@@ -109,8 +109,9 @@ public class SamochodZastController implements AbstractController<SamochodZastep
     }
 
     
-    @PostConstruct
+//    @PostConstruct
     public void receivedPost() {
+        samochodZastepczyEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         
         if (requestParams.get("post_id") != null) {

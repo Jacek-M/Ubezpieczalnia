@@ -12,6 +12,7 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="branches">
+                    #{oddzialController.receivedPost()}
                     <h1> Oddział edycja</h1>
 
                     <h:form id="panelAdd">

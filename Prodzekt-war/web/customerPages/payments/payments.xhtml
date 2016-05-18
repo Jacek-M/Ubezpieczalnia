@@ -12,6 +12,7 @@
         <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentCustomer">
                 <div class="agreements">
+                    #{registerController.receivedPost()}
                     <h1> Moje płatności </h1>
                     <div id="tablePlatnosci" class="table-platnosci">
                         <div id="tablePlatnosciContent" class="table-content">

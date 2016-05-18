@@ -196,29 +196,4 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         kontoEJB.delete(this.konto);
         return PageController.getCurrentUrl();
     }
-
-
-    @PostConstruct
-    public void receivedPost() {
-        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
-            
-        }
-    }
-
-    
-//    @PostConstruct
-//    public void receivedPost() {
-//        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-//        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-//        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
-//            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
-//            takeRepair(requestParams.get("post_id"));
-//        }
-//    }
-//    
-//    private void takeRepair(String szkodaId){
-//        
-//    }
-
 }

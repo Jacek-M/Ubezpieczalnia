@@ -106,8 +106,9 @@ public class UczestnikController implements AbstractController<Uczestnik> {
         return "";
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void receivedPost() {
+        uczestnikEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
         if (requestParams.get("post_id") != null) {

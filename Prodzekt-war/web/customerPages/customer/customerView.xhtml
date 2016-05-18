@@ -9,6 +9,7 @@
     <h:body>
         <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentCustomer">
+                #{registerController.receivedPost()}
                 <h1>Mój profil</h1>
                 <div class="customerView">
 

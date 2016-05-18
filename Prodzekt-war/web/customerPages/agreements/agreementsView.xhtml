@@ -11,6 +11,7 @@
         <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentCustomer">
                 <div class="agreements">
+                    #{umowaController.receivedPost()}
                     <h1> Podgląd umowy nr  <h:outputText value="#{umowaController.umowa.umowaId}"/> </h1>
 
 

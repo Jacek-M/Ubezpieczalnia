@@ -12,6 +12,7 @@
         <ui:composition template="/templates/workerTemplate.xhtml">
             <ui:define name="contentWorker">
                 <div class="order">
+                    #{szkodaController.receivedPost()}
                     <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
                         <br/>
                         <h2><h:outputLabel value="#{errorController.getError()}"/></h2>

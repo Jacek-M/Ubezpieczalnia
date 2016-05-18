@@ -12,6 +12,7 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="repCars">
+                    #{samochodZastController.receivedPost()}
                     <h1> Samochód zastępczy dodanie</h1>
                     
                      <h:form id="panelAdd">

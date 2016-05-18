@@ -210,8 +210,9 @@ public class SzkodaController implements AbstractController<Szkoda> {
 
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void receivedPost() {
+        szkodaEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
         if (requestParams.get("post_id") != null) {
@@ -219,6 +220,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
             this.szkoda.setSzkodaId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();
+                
             } catch (Exception ex) {
                 Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -246,13 +248,13 @@ public class SzkodaController implements AbstractController<Szkoda> {
     public ArrayList<Szkoda> getSzkodaWorkerPayments() {
         ArrayList<Szkoda> temp = new ArrayList<>();
 
-        if (pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId() != null) {
+//        if (pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId() != null) {
             for (Szkoda szkoda : this.getSzkodaList()) {
                 if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId()) {
                     temp.add(szkoda);
                 }
             }
-        }
+//        }
         return temp;
     }
 

@@ -194,8 +194,9 @@ public class UmowaController implements AbstractController<Umowa> {
 
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void receivedPost() {
+        umowaEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
         String postIdParam = requestParams.get("post_id");

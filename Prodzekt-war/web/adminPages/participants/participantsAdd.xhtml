@@ -12,6 +12,7 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="participants">
+                    #{uczestnikController.receivedPost()}
                     <h1> Dodanie uczestnika</h1>
 
                     <h:form id="panelAdd">
