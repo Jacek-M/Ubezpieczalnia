@@ -104,7 +104,7 @@ public class RegisterController implements AbstractController<Klient> {
                 
                 klient.setKlientAdresIdFk(adresController.getAdres());
                 klient.setKlientKontoIdFk(loginController.getKonto());
-
+                this.klient.setKlientProcentZnizki(0);
                 this.klient = klientEJB.addNew(klient);
                 return PageController.getPage("/login.xhtml");
 

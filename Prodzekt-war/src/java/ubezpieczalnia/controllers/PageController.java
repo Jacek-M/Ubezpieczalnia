@@ -43,8 +43,6 @@ public class PageController {
     };
 
     public static boolean isPageExist(String page) {
-
-        Logger.getLogger("INFO").log(Level.INFO, "RECIVED PAGE[isPageExist] = " + page);
         for (String tmp : pages) {
             if (tmp.equals(page)) {
                 return true;
@@ -78,7 +76,6 @@ public class PageController {
     }
 
     public static void redirect(String url) {
-        Logger.getLogger("INFO").log(Level.INFO, url);
         FacesContext facesContext = FacesContext.getCurrentInstance();
         NavigationHandler myNav = facesContext.getApplication().getNavigationHandler();
         myNav.handleNavigation(facesContext, null, getPage(url));

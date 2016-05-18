@@ -20,13 +20,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import ubezpieczalnia.entities.Klient;
-import ubezpieczalnia.entities.Konto;
 import ubezpieczalnia.entities.Pracownik;
 import ubezpieczalnia.entities.RodzajUbezpieczenia;
 import ubezpieczalnia.entities.Umowa;
 import ubezpieczalnia.model.UmowaEJB;
-import ubezpieczalnia.utils.SessionManager;
 
 /**
  *
@@ -153,10 +150,10 @@ public class UmowaController implements AbstractController<Umowa> {
     @Override
     public String addNew() {
 
+//        int znizka = loginController.getKlientAccount().getKlientProcentZnizki();
+        loginController.getKlientAccount().setKlientProcentZnizki(loginController.getKlientAccount().getKlientProcentZnizki()+2);
         this.umowa.setUmowaKlientIdFk(loginController.getKlientAccount());
-
-        System.out.println("DODAJE UMOWE : " + this.umowa.getUmowaKlientIdFk().getKlientImie() + " "
-                + pojazdController.getPojazd().getPojazdModel());
+        
         this.umowa.setUmowaDataWystawienia(new Date());
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
@@ -164,8 +161,15 @@ public class UmowaController implements AbstractController<Umowa> {
         this.umowa.setUmowaDataZakonczenia(c.getTime());
 
         this.umowa.setUmowaKlientIdFk(loginController.getKlientAccount());
-//        int val = Integer.valueOf(rodzajUbezController.getRodzajUbez().getRodzajUbezpieczeniaCena()) - ((loginController.getKlientAccount().getKlientProcentZnizki() / 100) * Integer.valueOf(rodzajUbezController.getRodzajUbez().getRodzajUbezpieczeniaCena()));
-        this.umowa.setUmowaKwota(1333);
+
+//        int kwotaUbezpieczenia = Integer.parseInt(rodzajUbezController.getRodzajUbez().getRodzajUbezpieczeniaCena());
+//        
+//        System.out.println("KWOTA UBEZPIECZENIA: " + kwotaUbezpieczenia);
+//        System.out.println("KWOTA ZNIZKA: " + znizka);
+        
+//        int kwota = kwotaUbezpieczenia - ((znizka / 100) * kwotaUbezpieczenia);
+//        System.out.println("Wyszla kwota: " + kwota);
+        this.umowa.setUmowaKwota(1222);
         pojazdController.addNew();
         this.umowa.setUmowaPojazdIdFk(pojazdController.getPojazd());
         this.umowa.setUmowaPracownikIdFk(pracownikController.getPracownik());
@@ -202,7 +206,6 @@ public class UmowaController implements AbstractController<Umowa> {
         String postTypeParam = requestParams.get("post_type");
         try {
             if (postIdParam != null && postTypeParam != null && postTypeParam.equals("buyInsurance")) {
-                System.out.println("KUPUJE UMOWE SIALALALALAL");
                 RodzajUbezpieczenia ru = new RodzajUbezpieczenia();
                 ru.setRodzajUbezpieczeniaId(Integer.valueOf(postIdParam));
                 rodzajUbezController.setRodzajUbez(ru);
@@ -224,7 +227,6 @@ public class UmowaController implements AbstractController<Umowa> {
                 rodzajUbezController.setRodzajUbez(this.umowa.getUmowaRodzajUbezpieczeniaIdFk());
 
                 if (postTypeParam != null) {
-                    System.out.println("requestParams.get(\"post_type\") " + postTypeParam);
                     acceptAgreement();
                 }
             }
@@ -234,7 +236,6 @@ public class UmowaController implements AbstractController<Umowa> {
 
         }
         if (requestParams.get("post_type") != null) {
-            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
             if(requestParams.get("post_type").equals("1"))
                 acceptAgreement();
 

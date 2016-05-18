@@ -198,7 +198,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
     }
 
 
-    @PostConstruct
+    
     public void receivedPost() {
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
