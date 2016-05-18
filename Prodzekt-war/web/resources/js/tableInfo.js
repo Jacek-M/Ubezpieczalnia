@@ -73,8 +73,6 @@
             $('.' + this.content).on("click", " tbody td .eye-icon", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
-                console.log(rowData);
-                console.log("_onClickShowListener() go to ->" + self.link + "View.xhtml");
                 switch (self.tableActions) {
                     case "admin":
                     {
@@ -106,8 +104,6 @@
             $('.' + this.content).on("click", " tbody td .pencil-icon", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
-                console.log(rowData);
-                console.log("_onClickShowListener() go to ->" + self.link + "Edit.xhtml");
                 switch (self.tableActions) {
                     case "admin":
                     {
@@ -138,8 +134,6 @@
             $('.' + this.content).on("click", " tbody td .pencil-check", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
-                console.log(rowData);
-                console.log("_onClickShowListener() go to ->" + self.link + ".xhtml");
                 switch (self.tableActions) {
                     case "admin":
                     {
@@ -171,8 +165,6 @@
             $('.' + this.content).on("click", " tbody td .trash-icon", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
-                console.log(rowData);
-                console.log("_onClickShowListener() go to ->" + self.content + "Delete.xhtml");
             });
         },
         _initTableHeader: function () {

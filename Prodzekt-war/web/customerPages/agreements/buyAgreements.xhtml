@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/customerTemplate.xhtml">
+            <ui:define name="contentCustomer">
+                <div class="agreements">
+                    <h1> Zakup umowy  </h1>
+                    #{umowaController.receivedPost()}
+                    <div class="buy-insurance-box">
+                        <h:form id="buyInsuranceForm">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel  value="Ubezpieczenie: "  />
+                                <h:panelGroup>
+                                    <h:inputText disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaNazwa}"/>
+                                    <h:inputHidden value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaId}"/>
+                                    <h:inputHidden value="#{umowaController.registerController.klient.klientId}"/>
+                                    <h:inputHidden value="#{umowaController.pracownikController.pracownik.pracownikId}"/>
+                                </h:panelGroup>
+                                <h:outputLabel  value="Opis: " />
+                                <h:inputTextarea rows="5" cols="35" disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaOpis}"/>
+                                <h:outputLabel  value="Auto zastępcze: " />
+                                <h:inputText disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                <h:outputLabel  value="Rodzaj ubezpieczenia: " />
+                                <h:inputText  disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaRodzaj}"/>
+                                <h:outputLabel  value="Cena ubezpieczenia: " />
+                                <h:inputText  disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCena}"/>
+
+
+                                <h:outputLabel  value="Marka: " />
+                                <h:inputText   value="#{umowaController.pojazdController.pojazd.pojazdMarka}"/>
+                                <h:outputLabel  value="Model: " />
+                                <h:inputText   value="#{umowaController.pojazdController.pojazd.pojazdModel}"/>
+                                <h:outputLabel  value="Rok produkcji: " />
+                                <h:inputText   value="#{umowaController.pojazdController.pojazd.pojazdRokProdukcji}"/>
+                                <h:outputLabel  value="Nr vin: " />
+                                <h:inputText   value="#{umowaController.pojazdController.pojazd.pojazdNrVin}"/>
+                                <h:outputLabel  value="Pojemność silnika: " />
+                                <h:inputText   value="#{umowaController.pojazdController.pojazd.pojazdPojemnosc}"/>
+                                <h:outputLabel  value="Paliwo: " />
+                                <h:inputText   value="#{umowaController.pojazdController.pojazd.pojazdPaliwo}"/>
+
+
+                                <h:commandButton value="Kup ubezpieczenie" action="#{umowaController.addNew()}"/>
+                            </h:panelGrid>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

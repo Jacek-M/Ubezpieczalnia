@@ -7,7 +7,6 @@ package ubezpieczalnia.controllers;
 
 import ubezpieczalnia.utils.SessionManager;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +71,7 @@ public class LoginController implements Serializable, AbstractController<Konto> 
                 if (konto != null) {
                     if (checkLogged() == false) {
                         this.konto = kontoEJB.refresh(this.konto);
+                        SessionManager.addToSession("id_konta", konto.getKontoId());
                         SessionManager.addToSession("logged", true);
                         SessionManager.addToSession("permission", konto.getKontoUprawnienia());
                     }
@@ -228,14 +228,8 @@ public class LoginController implements Serializable, AbstractController<Konto> 
     @PostConstruct
     public void receivedPost() {
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
-            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
-            takeRepair(requestParams.get("post_type"));
+            
         }
-    }
-
-    private void takeRepair(String szkodaId) {
-
     }
 }

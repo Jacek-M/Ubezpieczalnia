@@ -7,6 +7,8 @@ package ubezpieczalnia.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -18,8 +20,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import ubezpieczalnia.entities.Klient;
+import ubezpieczalnia.entities.Konto;
+import ubezpieczalnia.entities.Pracownik;
+import ubezpieczalnia.entities.RodzajUbezpieczenia;
 import ubezpieczalnia.entities.Umowa;
 import ubezpieczalnia.model.UmowaEJB;
+import ubezpieczalnia.utils.SessionManager;
 
 /**
  *
@@ -41,6 +48,9 @@ public class UmowaController implements AbstractController<Umowa> {
     @ManagedProperty(value = "#{rodzajUbezController}")
     private RodzajUbezController rodzajUbezController;
 
+    @ManagedProperty(value = "#{loginController}")
+    private LoginController loginController;
+
     @EJB
     private UmowaEJB umowaEJB;
 
@@ -56,7 +66,7 @@ public class UmowaController implements AbstractController<Umowa> {
             this.umowaSelectList.add(new SelectItem(-1, "-- WYBIERZ UMOWE --"));
             for (Umowa umowaList1 : this.umowaList) {
                 String date = new SimpleDateFormat("dd-MM-yyyy").format(umowaList1.getUmowaDataWystawienia());
-                String text = umowaList1.getUmowaId().toString() + "| " + umowaList1.getUmowaKlientIdFk().getKlientImie() + " " + umowaList1.getUmowaKlientIdFk().getKlientNazwisko() + " | " + date; 
+                String text = umowaList1.getUmowaId().toString() + "| " + umowaList1.getUmowaKlientIdFk().getKlientImie() + " " + umowaList1.getUmowaKlientIdFk().getKlientNazwisko() + " | " + date;
                 this.umowaSelectList.add(new SelectItem(umowaList1.getUmowaId(), text));
             }
         }
@@ -99,6 +109,14 @@ public class UmowaController implements AbstractController<Umowa> {
         this.rodzajUbezController = rodzajUbezController;
     }
 
+    public LoginController getLoginController() {
+        return loginController;
+    }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+
     public Umowa getUmowa() {
         return umowa;
     }
@@ -134,6 +152,26 @@ public class UmowaController implements AbstractController<Umowa> {
 
     @Override
     public String addNew() {
+
+        this.umowa.setUmowaKlientIdFk(loginController.getKlientAccount());
+
+        System.out.println("DODAJE UMOWE : " + this.umowa.getUmowaKlientIdFk().getKlientImie() + " "
+                + pojazdController.getPojazd().getPojazdModel());
+        this.umowa.setUmowaDataWystawienia(new Date());
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.YEAR, 1);
+        this.umowa.setUmowaDataZakonczenia(c.getTime());
+
+        this.umowa.setUmowaKlientIdFk(loginController.getKlientAccount());
+//        int val = Integer.valueOf(rodzajUbezController.getRodzajUbez().getRodzajUbezpieczeniaCena()) - ((loginController.getKlientAccount().getKlientProcentZnizki() / 100) * Integer.valueOf(rodzajUbezController.getRodzajUbez().getRodzajUbezpieczeniaCena()));
+        this.umowa.setUmowaKwota(1333);
+        pojazdController.addNew();
+        this.umowa.setUmowaPojazdIdFk(pojazdController.getPojazd());
+        this.umowa.setUmowaPracownikIdFk(pracownikController.getPracownik());
+        this.umowa.setUmowaRodzajUbezpieczeniaIdFk(rodzajUbezController.getRodzajUbez());
+        this.umowa.setUmowaStatus("NOWA");
+
         umowaEJB.addNew(this.umowa);
         return PageController.getPage("/adminPages/agreements/agreements.xhtml");
     }
@@ -160,22 +198,38 @@ public class UmowaController implements AbstractController<Umowa> {
     public void receivedPost() {
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
-        if (requestParams.get("post_id") != null) {
-            System.out.println(requestParams.get("post_id"));
-            this.umowa.setUmowaId(Integer.parseInt(requestParams.get("post_id")));
-            try {
+        String postIdParam = requestParams.get("post_id");
+        String postTypeParam = requestParams.get("post_type");
+        try {
+            if (postIdParam != null && postTypeParam != null && postTypeParam.equals("buyInsurance")) {
+                System.out.println("KUPUJE UMOWE SIALALALALAL");
+                RodzajUbezpieczenia ru = new RodzajUbezpieczenia();
+                ru.setRodzajUbezpieczeniaId(Integer.valueOf(postIdParam));
+                rodzajUbezController.setRodzajUbez(ru);
+                rodzajUbezController.findById();
+              
+                Pracownik pracownik = new Pracownik();
+                pracownik.setPracownikId(1);
+                pracownikController.setPracownik(pracownik);
+                pracownikController.findById();
+
+
+            } else if (postIdParam != null) {
+                this.umowa.setUmowaId(Integer.parseInt(postIdParam));
+
                 this.findById();
                 registerController.setKlient(this.umowa.getUmowaKlientIdFk());
                 pojazdController.setPojazd(this.umowa.getUmowaPojazdIdFk());
                 pracownikController.setPracownik(this.umowa.getUmowaPracownikIdFk());
                 rodzajUbezController.setRodzajUbez(this.umowa.getUmowaRodzajUbezpieczeniaIdFk());
-            } catch (Exception ex) {
-                Logger.getLogger(UmowaController.class.getName()).log(Level.SEVERE, null, ex);
+
+                if (postTypeParam != null) {
+                    System.out.println("requestParams.get(\"post_type\") " + postTypeParam);
+                    acceptAgreement();
+                }
             }
-        }
-        if (requestParams.get("post_type") != null) {
-            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
-            acceptAgreement();
+        } catch (Exception ex) {
+            Logger.getLogger(UmowaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -186,5 +240,4 @@ public class UmowaController implements AbstractController<Umowa> {
             umowaEJB.update(this.umowa);
         }
     }
-
 }
