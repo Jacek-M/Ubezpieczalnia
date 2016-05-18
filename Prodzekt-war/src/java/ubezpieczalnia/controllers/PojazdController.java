@@ -95,7 +95,7 @@ public class PojazdController implements AbstractController<Pojazd>{
         
     }
     
-    @PostConstruct
+//    @PostConstruct
     public void receivedPost() {
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         
