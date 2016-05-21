@@ -80,12 +80,12 @@ public class SzkodaController implements AbstractController<Szkoda> {
 
         for (Wycena wycena : this.szkoda.getWycenaCollection()) {
             if (this.szkoda.getSzkodaUmowaIdFk().getUmowaRodzajUbezpieczeniaIdFk().getRodzajUbezpieczeniaRodzaj().contains("AC")) {
-                if (this.szkoda.getSzkodaStatus().equals("WYCENIONE")) {
+                if (!this.szkoda.getSzkodaStatus().equals("NOWA") && !this.szkoda.getSzkodaStatus().equals("DO WYCENY")) {
                     wycenaList.add(wycena);
                 }
             } else {
                 if (!this.szkoda.getSzkodaTyp().equals("WINNY")) {
-                    if (this.szkoda.getSzkodaStatus().equals("WYCENIONE")) {
+                    if (!this.szkoda.getSzkodaStatus().equals("NOWA") && !this.szkoda.getSzkodaStatus().equals("DO WYCENY")) {
                         wycenaList.add(wycena);
                     }
                 }
