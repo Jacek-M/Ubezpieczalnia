@@ -49,6 +49,12 @@
                         if (self.tableId === "tableIncidentWorker")
                             cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zakończ");
                     }
+                    else if (self.tableActions === "client") {
+                        if (self.tableId === "tableValuationsCustomerView") {
+                            cell.innerHTML += self._createOsomIcon("repairIcon", "repair-check", "fa fa-wrench", "Napraw samochód");
+                            cell.innerHTML += self._createOsomIcon("moneyIcon", "money-check", "fa fa-money", "Wypłać gotówkę");
+                        }
+                    }
                 });
             }).draw();
             this.table.column(1).visible(false);
@@ -73,6 +79,8 @@
             this._onClickEditListener();
             this._onClickDeleteListener();
             this._onClickCustomListener();
+            this._onClickRepairListener();
+            this._onClickWithdrawListener();
         },
         _onClickShowListener: function () {
             var self = this;
@@ -171,6 +179,45 @@
             $('.' + this.content).on("click", " tbody td .trash-icon", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
+                
+                
+                var url = "/Prodzekt-war/faces/" + "customerPages" + "/" + self.link + "/" + self.link + ".xhtml";
+                var form = $('<form action="' + url + '" method="post">' +
+                        '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
+                        '<input type="text" name="post_type" value="---????---" />' +
+                        '</form>');
+                $('body').append(form);
+                form.submit();
+            });
+        },
+        _onClickRepairListener: function () {
+            var self = this;
+            $('.' + this.content).on("click", " tbody td .repair-check", function () {
+                var tr = $(this).closest("tr");
+                var rowData = self.table.row(tr).data();
+                
+                var url = "/Prodzekt-war/faces/" + "customerPages" + "/" + "incidents" + "/" + "incidentsView" + ".xhtml";
+                var form = $('<form action="' + url + '" method="post">' +
+                        '<input type="text" name="post_id" value="' + rowData[6] + '" />' +
+                        '<input type="text" name="post_type" value="10" />' +
+                        '</form>');
+                $('body').append(form);
+                form.submit();
+            });
+        },
+        _onClickWithdrawListener : function () {
+            var self = this;
+            $('.' + this.content).on("click", " tbody td .money-check", function () {
+                var tr = $(this).closest("tr");
+                var rowData = self.table.row(tr).data();
+                var id = rowData[6] === null ? rowData[1] : rowData[6];
+                var url = "/Prodzekt-war/faces/" + "customerPages" + "/" + "incidents" + "/" + "incidentsView" + ".xhtml";
+                var form = $('<form action="' + url + '" method="post">' +
+                        '<input type="text" name="post_id" value="' + rowData[6] + '" />' +
+                        '<input type="text" name="post_type" value="11" />' +
+                        '</form>');
+                $('body').append(form);
+                form.submit();
             });
         },
         _initTableHeader: function () {
