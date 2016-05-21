@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -104,7 +103,7 @@ public class RegisterController implements AbstractController<Klient> {
                 
                 klient.setKlientAdresIdFk(adresController.getAdres());
                 klient.setKlientKontoIdFk(loginController.getKonto());
-
+                this.klient.setKlientProcentZnizki(0);
                 this.klient = klientEJB.addNew(klient);
                 return PageController.getPage("/login.xhtml");
 

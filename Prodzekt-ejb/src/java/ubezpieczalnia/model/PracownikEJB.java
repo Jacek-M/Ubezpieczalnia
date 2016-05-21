@@ -45,11 +45,13 @@ public class PracownikEJB extends AbstractModel<Pracownik> {
             found.getPracownikAdresIdFk().setAdresTelefon(object.getPracownikAdresIdFk().getAdresTelefon());
             found.getPracownikAdresIdFk().setAdresUlica(object.getPracownikAdresIdFk().getAdresUlica());
 
-            if (object.getPracownikOddzialIdFk().getOddzialId() != null) {
+            if (object.getPracownikOddzialIdFk() != null && object.getPracownikOddzialIdFk().getOddzialId() != null) {
                 found.setPracownikOddzialIdFk(object.getPracownikOddzialIdFk());
+                found.setPracownikZakladIdFk(null);
             }
-            if (object.getPracownikZakladIdFk().getZakladId() != null) {
+            if (object.getPracownikZakladIdFk() != null && object.getPracownikZakladIdFk().getZakladId() != null) {
                 found.setPracownikZakladIdFk(object.getPracownikZakladIdFk());
+                found.setPracownikOddzialIdFk(null);
             }
             em.flush();
         }

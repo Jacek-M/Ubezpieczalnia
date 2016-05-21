@@ -8,11 +8,11 @@ package ubezpieczalnia.controllers;
 import ubezpieczalnia.utils.SessionManager;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -155,18 +155,19 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         return temp;
     }
 
-
     public List<SelectItem> getUmowaSelectList() {
         this.konto = kontoEJB.refresh(this.konto);
         List<SelectItem> umowaSelectList = new ArrayList<>();
         for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
-            String label = umowa.getUmowaId() + " | " + umowa.getUmowaPojazdIdFk().getPojazdMarka() + " " + umowa.getUmowaPojazdIdFk().getPojazdModel();
-            umowaSelectList.add(new SelectItem(umowa.getUmowaId(), label));
+            if (!umowa.getUmowaStatus().equals("NOWA") && umowa.getUmowaDataZakonczenia().after(new Date())) {
+                String label = umowa.getUmowaId() + " | " + umowa.getUmowaPojazdIdFk().getPojazdMarka() + " " + umowa.getUmowaPojazdIdFk().getPojazdModel();
+                umowaSelectList.add(new SelectItem(umowa.getUmowaId(), label));
+            }
         }
+        
+        if(umowaSelectList.size() <= 0) umowaSelectList.add(new SelectItem(-1, "Brak opłaconych umów"));
         return umowaSelectList;
     }
-
-   
 
     @Override
     public List<Konto> findAll() {
@@ -196,4 +197,25 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         kontoEJB.delete(this.konto);
         return PageController.getCurrentUrl();
     }
+
+    public void receivedPost() {
+        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
+
+        }
+    }
+
+//    @PostConstruct
+//    public void receivedPost() {
+//        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+//        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
+//            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
+//            takeRepair(requestParams.get("post_id"));
+//        }
+//    }
+//    
+//    private void takeRepair(String szkodaId){
+//        
+//    }
 }

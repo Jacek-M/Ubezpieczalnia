@@ -58,14 +58,10 @@ public class SamochodZastController implements AbstractController<SamochodZastep
             this.samochodZastepczySelectList.add(new SelectItem(-1, "Brak samochodów"));
             return this.samochodZastepczySelectList;
         } else {
-            this.samochodZastepczySelectList.add(new SelectItem(-1, "-- WYBIERZ SAMOCHOD ZASTĘPCZY --"));
+            this.samochodZastepczySelectList.add(new SelectItem(-1, "-- WYBIERZ --"));
             for (SamochodZastepczy samochodZastepczyList1 : this.samochodZastepczyList) {
-                String text1 = "";
-                if(samochodZastepczyList1.getSamochodZastepczyCzyDostepny() == 0)
-                    text1 = "NIE";
-                else
-                    text1 = "TAK";
-                String text = samochodZastepczyList1.getSamochodZastepczyMarka() + " " + samochodZastepczyList1.getSamochodZastepczyModel() + "| " + text1;
+                if(samochodZastepczyList1.getSamochodZastepczyCzyDostepny() == 0) continue;
+                String text = samochodZastepczyList1.getSamochodZastepczyMarka() + " " + samochodZastepczyList1.getSamochodZastepczyModel();
                 this.samochodZastepczySelectList.add(new SelectItem(samochodZastepczyList1.getSamochodZastepczyId(), text));
             }
         }

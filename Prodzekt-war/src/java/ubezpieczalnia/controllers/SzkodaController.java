@@ -150,8 +150,16 @@ public class SzkodaController implements AbstractController<Szkoda> {
     public String registerIncidentByClient() {
         try {
             umowaController.findById();
-            this.szkoda.setSzkodaUmowaIdFk(umowaController.getUmowa());
+            if(samochodZastController.getSamochodZastepczy().getSamochodZastepczyId()  > 0 ) { 
+                if(umowaController.getUmowa().getUmowaRodzajUbezpieczeniaIdFk().getRodzajUbezpieczeniaCzyZastepczy() != 1) {
+                    SessionManager.addToSession("REGISTER_ERROR", "W Twoim ubezpieczeniu nie można wybrać auta zastępczego!");
+                    return PageController.getPage("/customerPages/incidents/incidentsAdd.xhtml");
+                }
+                samochodZastController.findById();
+                this.szkoda.setSzkodaSamochodZastepczyIdFk(samochodZastController.getSamochodZastepczy());
+            } else this.szkoda.setSzkodaSamochodZastepczyIdFk(null);
             
+            this.szkoda.setSzkodaUmowaIdFk(umowaController.getUmowa());
             if(uczestnikController.getUczestnik().getUczestnikImie().length() > 0 && uczestnikController.getUczestnik().getUczestnikNazwisko().length() > 0) {
                 uczestnikController.addNew();
                 this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
