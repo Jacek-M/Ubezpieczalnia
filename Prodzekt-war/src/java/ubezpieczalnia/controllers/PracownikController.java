@@ -51,10 +51,10 @@ public class PracownikController implements AbstractController<Pracownik> {
 
     public List<SelectItem> getPracownikSelectList() {
         if (this.findAll().size() <= 0) {
-            this.pracownikSelectList.add(new SelectItem(-1, "Brak pracowników"));
+            this.pracownikSelectList.add(new SelectItem(-1, "BRAK PRACOWNIKÓW"));
             return this.pracownikSelectList;
         } else {
-            this.pracownikSelectList.add(new SelectItem(-1, "-- WYBIERZ PRACOWNIKA --"));
+            this.pracownikSelectList.add(new SelectItem(-1, "WYBIERZ PRACOWNIKA"));
             for (Pracownik pracownikList1 : this.pracownikList) {
                 String text = pracownikList1.getPracownikImie() + " " + pracownikList1.getPracownikNazwisko() + " " + pracownikList1.getPracownikTyp();
                 this.pracownikSelectList.add(new SelectItem(pracownikList1.getPracownikId(), text));
@@ -176,10 +176,12 @@ public class PracownikController implements AbstractController<Pracownik> {
             if (oddzialController.getOddzial().getOddzialId() > 0) {
                 oddzialController.findById();
                 this.pracownik.setPracownikOddzialIdFk(oddzialController.getOddzial());
+                this.pracownik.setPracownikZakladIdFk(null);
             }
             if (zakladController.getZaklad().getZakladId() > 0) {
                 zakladController.findById();
                 this.pracownik.setPracownikZakladIdFk(zakladController.getZaklad());
+                this.pracownik.setPracownikOddzialIdFk(null);
             }
             pracownikEJB.update(this.pracownik);
             return PageController.getPage("/adminPages/employees/employees.xhtml");

@@ -66,10 +66,10 @@ public class OddzialController implements AbstractController<Oddzial> {
 
     public List<SelectItem> getOddzialSelectList() {
         if (this.findAll().size() <= 0) {
-            this.oddzialSelectList.add(new SelectItem(-1, "Brak oddziałów"));
+            this.oddzialSelectList.add(new SelectItem(-1, "BRAK ODDZIAŁÓW"));
             return this.oddzialSelectList;
         } else {
-            this.oddzialSelectList.add(new SelectItem(-1, "-- WYBIERZ ODDZIAŁ --"));
+            this.oddzialSelectList.add(new SelectItem(-1, "WYBIERZ ODDZIAŁ"));
             for (Oddzial oddzialList1 : this.oddzialList) {
                 String miejscowosc = oddzialList1.getOddzialAdresIdFk().getAdresMiejscowosc() + " " + oddzialList1.getOddzialAdresIdFk().getAdresUlica();
                 this.oddzialSelectList.add(new SelectItem(oddzialList1.getOddzialId(), miejscowosc));

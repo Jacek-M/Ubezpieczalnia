@@ -71,10 +71,10 @@ public class ZakladController implements AbstractController<Zaklad> {
 
     public List<SelectItem> getZakladSelectList() {
         if (this.findAll().size() <= 0) {
-            this.zakladSelectList.add(new SelectItem(-1, "Brak zakładów"));
+            this.zakladSelectList.add(new SelectItem(-1, "BRAK ZAKŁADÓW"));
             return this.zakladSelectList;
         } else {
-            this.zakladSelectList.add(new SelectItem(-1, "-- WYBIERZ ZAKŁAD --"));
+            this.zakladSelectList.add(new SelectItem(-1, "WYBIERZ ZAKŁAD"));
             for (Zaklad zakladList1 : this.zakladList) {
                 String miejscowosc = zakladList1.getZakladAdresIdFk().getAdresMiejscowosc() + " " + zakladList1.getZakladAdresIdFk().getAdresUlica();
                 this.zakladSelectList.add(new SelectItem(zakladList1.getZakladId(), miejscowosc));
