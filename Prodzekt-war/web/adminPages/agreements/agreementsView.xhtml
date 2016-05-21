@@ -23,11 +23,15 @@
                                 <ul>
                                     <li>
                                         <h:outputLabel  value="Data wrozpoczęcia: " />
-                                        <h:outputText value="#{umowaController.umowa.umowaDataWystawienia}"/>
+                                        <h:outputText value="#{umowaController.umowa.umowaDataWystawienia}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data zakończenia: " />
-                                        <h:outputText value="#{umowaController.umowa.umowaDataZakonczenia}"/>
+                                        <h:outputText value="#{umowaController.umowa.umowaDataZakonczenia}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Kwota: " />
@@ -160,13 +164,17 @@
                                     <f:facet name="header">
                                         <h:outputText value="Data zdarzenia"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.szkodaDataZdarzenia}"/>
+                                    <h:outputText value="#{emp.szkodaDataZdarzenia}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Data zakończenia"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.szkodaDataZakonczenia}"/>
+                                    <h:outputText value="#{emp.szkodaDataZakonczenia}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

@@ -115,6 +115,7 @@ $(document).ready(function () {
         content: "incidents",
         tableActions: "admin",
         link: "incidents"
+        
     });
     $('#tableIncidentViewContent').TableInfo({
         tableName: "Wyceny",

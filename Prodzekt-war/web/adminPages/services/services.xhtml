@@ -48,13 +48,17 @@
                                     <f:facet name="header">
                                         <h:outputText value="Data rozpoczęcia współpracy"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.zakladDataRozpoczeciaWsp}"/>
+                                    <h:outputText value="#{emp.zakladDataRozpoczeciaWsp}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Data zakończenia współpracy"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.zakladDataZakonczeniaWsp}"/>
+                                    <h:outputText value="#{emp.zakladDataZakonczeniaWsp}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

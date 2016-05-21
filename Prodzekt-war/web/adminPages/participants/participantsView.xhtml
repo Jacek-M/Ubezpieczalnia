@@ -37,7 +37,7 @@
                             </div>
                         </div>        
                     </div>
-                    
+
                     <div id="tableSzkody" class="table-szkody">
                         <div id="tableHeader" class="table-header">
                             <p></p>
@@ -91,7 +91,12 @@
                                     <f:facet name="header">
                                         <h:outputText value="Samochód zastępczy"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                    <c:if test="#{emp.szkodaUmowaIdFk.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy == 0}">
+                                        <h:outputText value="NIE"/>
+                                    </c:if>
+                                    <c:if test="#{emp.szkodaUmowaIdFk.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy != 0}">
+                                        <h:outputText value="TAK"/>
+                                    </c:if> 
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

@@ -12,28 +12,25 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="valuations">
-                    #{wycenaController.receivedPost()}
                     <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
                         <br/>
                         <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
                     </h:panelGroup>
 
                     <h1>Dodaj wycene</h1>
-
+                    #{wycenaController.receivedPost()}
                     <f:view>
                         <h:form id="panelAdd">
                             <h:panelGrid  columns="2">
                                 <h:outputLabel value="WycenaKwota:" for="wycenaKwota" />
-                                <h:inputText id="wycenaKwota" value="#{wycenaController.wycena.wycenaKwota}" />
+                                <h:panelGroup>
+                                    <h:inputText id="wycenaKwota" value="#{wycenaController.wycena.wycenaKwota}" />
+                                    <h:inputHidden id="www" value="#{szkodaController.pracownikController.pracownik.pracownikId}"/>
+                                </h:panelGroup>
                                 <h:outputLabel value="WycenaData:" for="wycenaData" />
                                 <h:inputText id="wycenaData" value="#{wycenaController.wycena.wycenaData}" >
-                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                    <f:convertDateTime pattern="dd-MM-yyyy" />
                                 </h:inputText>
-
-                                <h:outputLabel value="WycenaPracownikIdFk:" for="wycenaPracownikIdFk" />
-                                <h:selectOneMenu value="#{wycenaController.pracownikController.pracownik.pracownikId}">
-                                    <f:selectItems value="#{pracownikController.pracownikSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                </h:selectOneMenu>
 
                                 <h:outputLabel value="WycenaSzkodaIdFk:" for="wycenaSzkodaIdFk" />
                                 <h:selectOneMenu value="#{wycenaController.szkodaController.szkoda.szkodaId}">

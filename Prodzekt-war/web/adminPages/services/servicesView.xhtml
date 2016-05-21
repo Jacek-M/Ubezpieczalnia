@@ -27,17 +27,21 @@
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data rozpoczęcia: " />
-                                        <h:outputText value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}"/>
+                                        <h:outputText value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data zakończenia: " />
-                                        <h:outputText value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}"/>
+                                        <h:outputText value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                                        </h:outputText>
                                     </li>
-                                    
+
                                 </ul>
 
                             </div>
-                           
+
                             <div class="col-md-3">
                                 <h4>Adres</h4>
                                 <br/>
@@ -66,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div id="tablePracownicy" class="table-pracownicy">
                         <div id="tableHeader" class="table-header">
                             <p></p>
@@ -120,7 +124,9 @@
                                     <f:facet name="header">
                                         <h:outputText value="Data zatrudnienia"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.pracownikDataZatrudnienia}"/>
+                                    <h:outputText value="#{emp.pracownikDataZatrudnienia}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
@@ -143,9 +149,9 @@
                             </h:dataTable>
                         </div>
                     </div>
-                    
-                    
-                    
+
+
+
                 </div>
             </ui:define>
         </ui:composition>

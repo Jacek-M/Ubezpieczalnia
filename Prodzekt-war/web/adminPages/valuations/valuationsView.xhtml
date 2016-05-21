@@ -23,7 +23,9 @@
                                 <ul>
                                     <li>
                                         <h:outputLabel  value="Data: " />
-                                        <h:outputText value="#{wycenaController.wycena.wycenaData}"/>
+                                        <h:outputText value="#{wycenaController.wycena.wycenaData}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Kwota: " />
@@ -56,12 +58,16 @@
                                 <br/>
                                 <ul>
                                     <li>
-                                        <h:outputLabel  value="data zdarzenia: " />
-                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZdarzenia}"/>
+                                        <h:outputLabel  value="Data zdarzenia: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZdarzenia}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data zakonczenia: " />
-                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZakonczenia}"/>
+                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZakonczenia}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Status: " />

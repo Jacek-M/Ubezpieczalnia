@@ -15,65 +15,30 @@
                     #{szkodaController.receivedPost()}
                     <h1> Edycja szkody</h1>
 
-                        <f:view>
-                            <h:form id="panelAdd">
-                                <h:panelGrid  columns="2">
-                                    <h:outputLabel value="SzkodaDataZdarzenia:" for="szkodaDataZdarzenia" />
-                                    <h:panelGroup>
-                                        <h:inputText id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                        </h:inputText>
-                                        <h:inputHidden value="#{szkodaController.szkoda.szkodaId}"/>
-
-                                    </h:panelGroup>
-                                    <h:outputLabel value="SzkodaDataZakonczenia:" for="szkodaDataZakonczenia" />
-                                    <h:inputText id="szkodaDataZakonczenia" value="#{szkodaController.szkoda.szkodaDataZakonczenia}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    <f:view>
+                        <h:form id="panelAdd">
+                            <h:panelGrid  columns="2">
+                                <h:outputLabel value="Data Zdarzenia:" for="szkodaDataZdarzenia" />
+                                <h:panelGroup>
+                                    <h:inputText id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" disabled="true">
+                                        <f:convertDateTime pattern="dd-MM-yyyy"/>
                                     </h:inputText>
-                                    <h:outputLabel value="SzkodaStatus:" for="szkodaStatus" />
-                                    <h:selectOneMenu value="#{szkodaController.szkoda.szkodaStatus}">
-                                        <f:selectItem itemValue="NOWA" itemLabel="Nowa" />
-                                        <f:selectItem itemValue="OCZEKUJE NA WYPŁATE" itemLabel="Oczekuje na wypłate" />
-                                        <f:selectItem itemValue="OCZEKUJE NA NAPRAWĘ" itemLabel="Oczekuje na naprawe" />
-                                        <f:selectItem itemValue="NAPRAWIONO" itemLabel="Naprawiono" />
-                                        <f:selectItem itemValue="WYPŁACONO" itemLabel="Wypłacono" />
-                                        <f:selectItem itemValue="DO NAPRAWY" itemLabel="Do naprawy" />
-                                        <f:selectItem itemValue="W NAPRAWIE" itemLabel="W naprawie" />
-                                    </h:selectOneMenu>
+                                    <h:inputHidden value="#{szkodaController.szkoda.szkodaId}"/>
+                                </h:panelGroup>
 
-                                    <h:outputLabel value="SzkodaTyp:" for="szkodaTyp" />
-                                    <h:selectOneMenu value="#{szkodaController.szkoda.szkodaTyp}">
-                                        <f:selectItem itemValue="Winny" itemLabel="Winny" />
-                                        <f:selectItem itemValue="Niewinny" itemLabel="Niewinny" />
-                                    </h:selectOneMenu>
+                                <h:outputLabel value="Opis:" for="szkodaOpis" />
+                                <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}" disabled="true"/>
 
-                                    <h:outputLabel value="SzkodaOpis:" for="szkodaOpis" />
-                                    <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}"/>
-
-                                    <h:outputLabel value="SzkodaSamochodZastepczyIdFk:" for="szkodaSamochodZastepczyIdFk" />
-                                    <h:selectOneMenu value="#{szkodaController.samochodZastController.samochodZastepczy.samochodZastepczyId}">
-                                        <f:selectItems value="#{samochodZastController.samochodZastepczySelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                    </h:selectOneMenu>
-
-                                    <h:outputLabel value="SzkodaUczestnikIdFk:" for="szkodaUczestnikIdFk" />
-                                    <h:selectOneMenu value="#{szkodaController.uczestnikController.uczestnik.uczestnikId}">
-                                        <f:selectItems value="#{uczestnikController.uczestnikSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                    </h:selectOneMenu>
-
-                                    <h:outputLabel value="SzkodaUmowaIdFk:" for="szkodaUmowaIdFk" />
-                                    <h:selectOneMenu value="#{szkodaController.umowaController.umowa.umowaId}">
-                                        <f:selectItems value="#{umowaController.umowaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                    </h:selectOneMenu>
-
-                                    <h:outputLabel value="SzkodaZakladIdFk:" for="szkodaZakladIdFk" />
-                                    <h:selectOneMenu value="#{szkodaController.zakladController.zaklad.zakladId}">
-                                        <f:selectItems value="#{zakladController.zakladSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                    </h:selectOneMenu>
-                                </h:panelGrid>
-                                <br/>
-                                <h:commandButton value="Zapisz" action="#{szkodaController.update()}"/>
-                            </h:form>
-                        </f:view>
+                                <h:outputLabel value="Typ:" for="szkodaTyp" />
+                                <h:selectOneMenu value="#{szkodaController.szkoda.szkodaTyp}">
+                                    <f:selectItem itemValue="WINNY" itemLabel="Winny" />
+                                    <f:selectItem itemValue="NIEWINNY" itemLabel="Niewinny" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <br/>
+                            <h:commandButton value="Zapisz" action="#{szkodaController.acceptIncident()}"/>
+                        </h:form>
+                    </f:view>
 
                 </div>
             </ui:define>

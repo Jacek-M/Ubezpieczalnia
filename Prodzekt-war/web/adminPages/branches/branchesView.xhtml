@@ -111,7 +111,9 @@
                                     <f:facet name="header">
                                         <h:outputText value="Data zatrudnienia"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.pracownikDataZatrudnienia}"/>
+                                    <h:outputText value="#{emp.pracownikDataZatrudnienia}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

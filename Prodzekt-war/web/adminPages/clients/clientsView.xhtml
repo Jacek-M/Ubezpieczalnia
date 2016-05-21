@@ -119,13 +119,17 @@
                                     <f:facet name="header">
                                         <h:outputText value="Data rozpoczęcia"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaDataWystawienia}"/>
+                                    <h:outputText value="#{emp.umowaDataWystawienia}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Data zakończenia"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.umowaDataZakonczenia}"/>
+                                    <h:outputText value="#{emp.umowaDataZakonczenia}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

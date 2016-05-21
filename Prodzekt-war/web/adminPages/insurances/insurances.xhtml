@@ -60,7 +60,12 @@
                                     <f:facet name="header">
                                         <h:outputText value="Czy zastępczy"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                    <c:if test="#{emp.rodzajUbezpieczeniaCzyZastepczy == 0}">
+                                        <h:outputText value="NIE"/>
+                                    </c:if>
+                                    <c:if test="#{emp.rodzajUbezpieczeniaCzyZastepczy != 0}">
+                                        <h:outputText value="TAK"/>
+                                    </c:if> 
                                 </h:column>
                                 
                                 <h:column>

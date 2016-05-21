@@ -23,11 +23,15 @@
                                 <ul>
                                     <li>
                                         <h:outputLabel  value="Data zakończenia: " />
-                                        <h:outputText value="#{szkodaController.szkoda.szkodaDataZakonczenia}"/>
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaDataZakonczenia}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data zdarzenia: " />
-                                        <h:outputText value="#{szkodaController.szkoda.szkodaDataZdarzenia}"/>
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaDataZdarzenia}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Status: " />
@@ -56,11 +60,15 @@
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data wystawienia: " />
-                                        <h:outputText value="#{szkodaController.szkoda.szkodaUmowaIdFk.umowaDataWystawienia}"/>
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaUmowaIdFk.umowaDataWystawienia}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data zakończenia: " />
-                                        <h:outputText value="#{szkodaController.szkoda.szkodaUmowaIdFk.umowaDataZakonczenia}"/>
+                                        <h:outputText value="#{szkodaController.szkoda.szkodaUmowaIdFk.umowaDataZakonczenia}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Kwota: " />

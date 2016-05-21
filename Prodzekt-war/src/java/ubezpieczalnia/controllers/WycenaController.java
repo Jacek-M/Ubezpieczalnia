@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -18,6 +17,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import ubezpieczalnia.entities.Wycena;
 import ubezpieczalnia.model.WycenaEJB;
+import ubezpieczalnia.utils.SessionManager;
 
 /**
  *
@@ -25,14 +25,14 @@ import ubezpieczalnia.model.WycenaEJB;
  */
 @ManagedBean
 @RequestScoped
-public class WycenaController implements AbstractController<Wycena>{
-    
+public class WycenaController implements AbstractController<Wycena> {
+
     @ManagedProperty(value = "#{pracownikController}")
     private PracownikController pracownikController;
-    
+
     @ManagedProperty(value = "#{szkodaController}")
     private SzkodaController szkodaController;
-    
+
     @EJB
     private WycenaEJB wycenaEJB;
 
@@ -71,12 +71,13 @@ public class WycenaController implements AbstractController<Wycena>{
     public void setWycenaList(List<Wycena> wycenaList) {
         this.wycenaList = wycenaList;
     }
-    
+
     public String registerValuation() {
-       try {
-            pracownikController.findById();
+        try {
             this.wycena.setWycenaPracownikIdFk(pracownikController.getPracownik());
             szkodaController.findById();
+            szkodaController.getSzkoda().setSzkodaStatus("WYCENIONE");
+            szkodaController.update();
             this.wycena.setWycenaSzkodaIdFk(szkodaController.getSzkoda());
             this.addNew();
         } catch (Exception ex) {
@@ -125,7 +126,6 @@ public class WycenaController implements AbstractController<Wycena>{
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
         if (requestParams.get("post_id") != null) {
-            System.out.println(requestParams.get("post_id"));
             this.wycena.setWycenaId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();
@@ -135,6 +135,17 @@ public class WycenaController implements AbstractController<Wycena>{
                 Logger.getLogger(WycenaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if (SessionManager.getObjectFromSession("id") != null) {
+            try {
+                int id = (Integer) SessionManager.getObjectFromSession("id");
+                if (id > 0) {
+                    pracownikController.getPracownik().setPracownikId(id);
+                    pracownikController.findById();
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
-    
+
 }

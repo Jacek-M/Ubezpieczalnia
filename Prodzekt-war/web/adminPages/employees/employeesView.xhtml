@@ -133,11 +133,15 @@
                                         </li>
                                         <li>
                                             <h:outputLabel  value="Data rozpoczęcia współpracy: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikZakladIdFk.zakladDataRozpoczeciaWsp}"/>
+                                            <h:outputText value="#{pracownikController.pracownik.pracownikZakladIdFk.zakladDataRozpoczeciaWsp}">
+                                                <f:convertDateTime pattern="dd.MM.yyyy" />
+                                            </h:outputText>
                                         </li>
                                         <li>
                                             <h:outputLabel  value="Data zakończenia współpracy: " />
-                                            <h:outputText value="#{pracownikController.pracownik.pracownikZakladIdFk.zakladDataZakonczeniaWsp}"/>
+                                            <h:outputText value="#{pracownikController.pracownik.pracownikZakladIdFk.zakladDataZakonczeniaWsp}">
+                                                <f:convertDateTime pattern="dd.MM.yyyy" />
+                                            </h:outputText>
                                         </li>
                                         <li>
                                             <h:outputLabel  value="Adres: " />

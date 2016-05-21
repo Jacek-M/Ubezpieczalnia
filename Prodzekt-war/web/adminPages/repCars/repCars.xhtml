@@ -54,7 +54,12 @@
                                     <f:facet name="header">
                                         <h:outputText value="Czy dostępny"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.samochodZastepczyCzyDostepny}"/>
+                                    <c:if test="#{emp.samochodZastepczyCzyDostepny == 0}">
+                                        <h:outputText value="NIE"/>
+                                    </c:if>
+                                    <c:if test="#{emp.samochodZastepczyCzyDostepny != 0}">
+                                        <h:outputText value="TAK"/>
+                                    </c:if> 
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
