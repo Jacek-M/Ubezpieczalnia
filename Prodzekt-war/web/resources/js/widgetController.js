@@ -175,5 +175,13 @@ $(document).ready(function () {
         link: "valuations",
         action: "2"
     });
+    $('#tableIncidentWorkerHistoryContent').TableInfo({
+        tableName: "Szkody",
+        tableId: "tableIncidentWorkerHistory",
+        content: "order",
+        tableActions: "worker",
+        link: "valuations",
+        action: "2"
+    });
 
 });

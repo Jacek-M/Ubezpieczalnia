@@ -18,7 +18,7 @@
                         <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
                     </h:panelGroup>
 
-                    <h1>Szkody do pobrania</h1>
+                    <h1>Zlecenia do pobrania</h1>
                     <div id="tableSzkody" class="table-szkody">
                         <div id="tableHeader" class="table-header">
                             <p></p>
@@ -42,7 +42,9 @@
                                     <f:facet name="header">
                                         <h:outputText value="Data zdarzenia"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.szkodaDataZdarzenia}"/>
+                                    <h:outputText value="#{emp.szkodaDataZdarzenia}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
@@ -62,7 +64,7 @@
                                     </f:facet>
                                     <h:outputText value="#{emp.szkodaUmowaIdFk.umowaPojazdIdFk.pojazdModel}"/>
                                 </h:column>
-                      
+
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Akcja"/>

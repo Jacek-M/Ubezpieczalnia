@@ -7,8 +7,8 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="/templates/workerTemplate.xhtml">
-            <ui:define name="contentWorker">
+        <ui:composition template="/templates/adminTemplate.xhtml">
+            <ui:define name="contentAdmin">
                 #{zakladController.receivedPost()}
                 <h1>Profil</h1>
                 <div class="customerView">
@@ -51,16 +51,14 @@
                     </div>
 
 
-                    <div class="box-zaklad-wrapper">
-                        <div class="zaklad-details">
+                    <div class="box-oddzial-wrapper">
+                        <div class="oddzial-details">
                             <h2> Zakład </h2>
                             <h:panelGrid columns="2">
-                                <h:outputLabel value="Nazwa: "/>
-                                <h:outputLabel value="#{loginController.pracownikAccount.pracownikZakladIdFk.zakladNazwa}"/>
                                 <h:outputLabel value="Miejscowość: "/>
-                                <h:outputLabel value="#{loginController.pracownikAccount.pracownikZakladIdFk.zakladAdresIdFk.adresMiejscowosc}"/>
+                                <h:outputLabel value="#{loginController.pracownikAccount.pracownikOddzialIdFk.oddzialAdresIdFk.adresMiejscowosc}"/>
                                 <h:outputLabel value="Telefon: "/>
-                                <h:outputLabel value="#{loginController.pracownikAccount.pracownikZakladIdFk.zakladAdresIdFk.adresTelefon}"/>
+                                <h:outputLabel value="#{loginController.pracownikAccount.pracownikOddzialIdFk.oddzialTelefon}"/>
                             
                             </h:panelGrid>
                             <!--<h:link value="Edytuj profil" outcome="#{pageController.getPage('/why/services/servicesEdit.xhtml')}"/>-->

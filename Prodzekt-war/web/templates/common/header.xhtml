@@ -44,13 +44,22 @@
                         </c:if> 
 
                         <c:if test="#{loginController.pracownikAccount != null}">
-
                             <div class="client-name-header">
-                                <a href="/Prodzekt-war/faces/index.xhtml">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <h:outputLabel value="#{loginController.pracownikAccount.pracownikImie}"/>
-                                    <h:outputLabel value="#{loginController.pracownikAccount.pracownikNazwisko}"/>
-                                </a>
+                                <c:if test="#{loginController.pracownikAccount.pracownikZakladIdFk != null}">
+                                    <a href="/Prodzekt-war/faces/why/services/services.xhtml">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <h:outputLabel value="#{loginController.pracownikAccount.pracownikImie}"/>
+                                        <h:outputLabel value="#{loginController.pracownikAccount.pracownikNazwisko}"/>
+                                    </a>
+                                </c:if>
+                                <c:if test="#{loginController.pracownikAccount.pracownikOddzialIdFk != null}">
+                                    <a href="/Prodzekt-war/faces/adminPages/admin/admin.xhtml">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <h:outputLabel value="#{loginController.pracownikAccount.pracownikImie}"/>
+                                        <h:outputLabel value="#{loginController.pracownikAccount.pracownikNazwisko}"/>
+                                    </a>
+                                </c:if>
+
                             </div>
                         </c:if> 
 
