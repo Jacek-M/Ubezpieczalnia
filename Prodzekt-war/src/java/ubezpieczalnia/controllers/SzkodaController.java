@@ -276,16 +276,25 @@ public class SzkodaController implements AbstractController<Szkoda> {
 //        }
     }
 
-    public ArrayList<Szkoda> getSzkodaWorkerPayments() {
+    public ArrayList<Szkoda> getSzkodaZakladZlecenia() {
         ArrayList<Szkoda> temp = new ArrayList<>();
-
-//        if (pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId() != null) {
         for (Szkoda szkoda : this.getSzkodaList()) {
-            if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId()) {
+            if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId() && szkoda.getSzkodaStatus().equals("W NAPRAWIE")) {
                 temp.add(szkoda);
             }
         }
-//        }
+        return temp;
+    }
+
+    public ArrayList<Szkoda> getSzkodaZakladZakonczone() {
+        ArrayList<Szkoda> temp = new ArrayList<>();
+
+        for (Szkoda szkoda : this.getSzkodaList()) {
+            if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId() && szkoda.getSzkodaStatus().equals("NAPRAWIONO")) {
+                temp.add(szkoda);
+            }
+        }
+
         return temp;
     }
 

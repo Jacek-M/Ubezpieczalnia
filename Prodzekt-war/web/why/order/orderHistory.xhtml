@@ -13,21 +13,15 @@
             <ui:define name="contentWorker">
                 <div class="order">
                     #{szkodaController.receivedPost()}
-                    <h1> Zlecenia </h1>
-                    <div class="actions">
-                        <ul>
-                            <li><h:link id="addWorker" class="add-worker" value="Pobierz zlecenie" outcome="#{pageController.getPage('/why/order/orderAdd.xhtml')}"/></li>
-                            <li><h:link id="addWorker" class="add-worker" value="Zlecenia zakończone" outcome="#{pageController.getPage('/why/order/orderHistory.xhtml')}"/></li>
+                    <h1> Zelcenia zakończone</h1>
 
-                        </ul>
-                    </div>
                     <div id="tableSzkody" class="table-szkody">
                         <div id="tableHeader" class="table-header">
                             <p></p>
                         </div>
 
-                        <div id="tableIncidentWorkerContent" class="table-content">
-                            <h:dataTable id="tableIncidentWorker" class="table-data" value="#{szkodaController.szkodaZakladZlecenia}" var="emp"  border="1" style="width:100%">
+                        <div id="tableIncidentWorkerHistoryContent" class="table-content">
+                            <h:dataTable id="tableIncidentWorkerHistory" class="table-data" value="#{szkodaController.szkodaZakladZakonczone}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Lp"/>
