@@ -66,7 +66,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
         } else {
             this.szkodaSelectList.add(new SelectItem(-1, "-- WYBIERZ SZKODĘ --"));
             for (Szkoda szkodaList1 : this.szkodaList) {
-                if (szkodaList1.getSzkodaStatus().equals("DO OCENY")) {
+                if (szkodaList1.getSzkodaStatus().equals("DO WYCENY")) {
                     String text = szkodaList1.getSzkodaId() + "| " + szkodaList1.getSzkodaUmowaIdFk().getUmowaKlientIdFk().getKlientImie() + " " + szkodaList1.getSzkodaUmowaIdFk().getUmowaKlientIdFk().getKlientNazwisko();
                     this.szkodaSelectList.add(new SelectItem(szkodaList1.getSzkodaId(), text));
                 }
@@ -183,7 +183,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
                 uczestnikController.addNew();
                 this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
             }
-            this.szkoda.setSzkodaStatus("DO OCENY");
+            this.szkoda.setSzkodaStatus("NOWA");
             this.addNew();
 
         } catch (Exception e) {
@@ -221,8 +221,9 @@ public class SzkodaController implements AbstractController<Szkoda> {
     }
 
     public String acceptIncident() {
+        System.out.println("this.szkoda.getSzkodaTyp() " + this.szkoda.getSzkodaTyp());
         if (this.szkoda.getSzkodaStatus().equals("NOWA")) {
-            this.szkoda.setSzkodaStatus("DO OCENY");
+            this.szkoda.setSzkodaStatus("DO WYCENY");
             return this.update();
         }
         return PageController.getPage("/adminPages/incidents/incidents.xhtml");
@@ -257,29 +258,28 @@ public class SzkodaController implements AbstractController<Szkoda> {
                         }
                     }
                 }
-
-                if (SessionManager.getObjectFromSession("id") != null) {
-                    try {
-                        int id = (Integer) SessionManager.getObjectFromSession("id");
-                        if (id > 0) {
-                            pracownikController.getPracownik().setPracownikId(id);
-                            pracownikController.findById();
-                        }
-                    } catch (Exception ex) {
-                        Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-
-                if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
-                    if (requestParams.get("post_type").equals("2")) {
-                        getRepair();
-                    } else if (requestParams.get("post_type").equals("3")) {
-                        endRepair();
-                    }
-                }
-
             } catch (Exception ex) {
                 Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (SessionManager.getObjectFromSession("id") != null) {
+            try {
+                int id = (Integer) SessionManager.getObjectFromSession("id");
+                if (id > 0) {
+                    pracownikController.getPracownik().setPracownikId(id);
+                    pracownikController.findById();
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
+            if (requestParams.get("post_type").equals("2")) {
+                getRepair();
+            } else if (requestParams.get("post_type").equals("3")) {
+                endRepair();
             }
         }
     }
@@ -320,8 +320,10 @@ public class SzkodaController implements AbstractController<Szkoda> {
             this.szkoda.setSzkodaZakladIdFk(pracownikController.getPracownik().getPracownikZakladIdFk());
             this.szkoda.setSzkodaStatus("W NAPRAWIE");
             szkodaEJB.addZaklad(szkoda);
+
         } catch (Exception ex) {
-            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SzkodaController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -330,8 +332,10 @@ public class SzkodaController implements AbstractController<Szkoda> {
             this.szkoda.setSzkodaZakladIdFk(pracownikController.getPracownik().getPracownikZakladIdFk());
             this.szkoda.setSzkodaStatus("NAPRAWIONO");
             szkodaEJB.addZaklad(szkoda);
+
         } catch (Exception ex) {
-            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SzkodaController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
