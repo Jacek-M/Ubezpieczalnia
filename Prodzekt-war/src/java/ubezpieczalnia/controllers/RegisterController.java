@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -151,8 +150,9 @@ public class RegisterController implements AbstractController<Klient> {
         return PageController.getCurrentUrl();
     }
     
-    @PostConstruct
+//    @PostConstruct
     public void receivedPost() {
+        klientEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         
         if (requestParams.get("post_id") != null) {

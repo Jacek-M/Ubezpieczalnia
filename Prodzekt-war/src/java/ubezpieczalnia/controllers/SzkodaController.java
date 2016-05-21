@@ -150,8 +150,16 @@ public class SzkodaController implements AbstractController<Szkoda> {
     public String registerIncidentByClient() {
         try {
             umowaController.findById();
-            this.szkoda.setSzkodaUmowaIdFk(umowaController.getUmowa());
+            if(samochodZastController.getSamochodZastepczy().getSamochodZastepczyId()  > 0 ) { 
+                if(umowaController.getUmowa().getUmowaRodzajUbezpieczeniaIdFk().getRodzajUbezpieczeniaCzyZastepczy() != 1) {
+                    SessionManager.addToSession("REGISTER_ERROR", "W Twoim ubezpieczeniu nie można wybrać auta zastępczego!");
+                    return PageController.getPage("/customerPages/incidents/incidentsAdd.xhtml");
+                }
+                samochodZastController.findById();
+                this.szkoda.setSzkodaSamochodZastepczyIdFk(samochodZastController.getSamochodZastepczy());
+            } else this.szkoda.setSzkodaSamochodZastepczyIdFk(null);
             
+            this.szkoda.setSzkodaUmowaIdFk(umowaController.getUmowa());
             if(uczestnikController.getUczestnik().getUczestnikImie().length() > 0 && uczestnikController.getUczestnik().getUczestnikNazwisko().length() > 0) {
                 uczestnikController.addNew();
                 this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
@@ -210,8 +218,9 @@ public class SzkodaController implements AbstractController<Szkoda> {
 
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void receivedPost() {
+        szkodaEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
         if (requestParams.get("post_id") != null) {
@@ -219,6 +228,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
             this.szkoda.setSzkodaId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();
+                
             } catch (Exception ex) {
                 Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -246,13 +256,13 @@ public class SzkodaController implements AbstractController<Szkoda> {
     public ArrayList<Szkoda> getSzkodaWorkerPayments() {
         ArrayList<Szkoda> temp = new ArrayList<>();
 
-        if (pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId() != null) {
+//        if (pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId() != null) {
             for (Szkoda szkoda : this.getSzkodaList()) {
                 if (szkoda != null && szkoda.getSzkodaZakladIdFk() != null && szkoda.getSzkodaZakladIdFk().getZakladId() == pracownikController.getPracownik().getPracownikZakladIdFk().getZakladId()) {
                     temp.add(szkoda);
                 }
             }
-        }
+//        }
         return temp;
     }
 

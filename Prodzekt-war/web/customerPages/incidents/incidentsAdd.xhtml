@@ -12,6 +12,7 @@
         <ui:composition template="/templates/customerTemplate.xhtml">
             <ui:define name="contentCustomer">
                 <div class="incidents">
+                    #{szkodaController.receivedPost()}
                     <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
                         <br/>
                         <h2><h:outputLabel value="#{errorController.getError()}"/></h2>
@@ -36,10 +37,20 @@
                                 <h:outputLabel value="Opis:" for="szkodaOpis" />
                                 <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}"/>
 
-                                <h:outputLabel value="SzkodaUmowaIdFk:" for="szkodaUmowaIdFk" />
+                                <h:outputLabel value="SzkodaUmowaIdFk:" />
                                 <h:selectOneMenu value="#{szkodaController.umowaController.umowa.umowaId}" required="true">
                                     <f:selectItems value="#{loginController.umowaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                                 </h:selectOneMenu>
+                                
+                                
+                                 <h:outputLabel value="Samochód zastępczy" />
+                                 <h:selectOneMenu value="#{szkodaController.samochodZastController.samochodZastepczy.samochodZastepczyId}">
+                                     <f:selectItems value="#{samochodZastController.samochodZastepczySelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
+                                 
+                                 
+                                 
+                                 
                                 <h:outputLabel value="Imię uczestnika:" />
                                 <h:inputText id="imieUczestnika" value="#{uczestnikController.uczestnik.uczestnikImie}" required="false"/>
                                 <h:outputLabel value="Nazwisko uczestnika:" />

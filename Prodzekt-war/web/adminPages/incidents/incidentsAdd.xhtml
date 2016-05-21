@@ -12,6 +12,7 @@
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
                 <div class="incidents">
+                    #{szkodaController.receivedPost()}
                     <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
                         <br/>
                         <h2><h:outputLabel value="#{errorController.getError()}"/></h2>

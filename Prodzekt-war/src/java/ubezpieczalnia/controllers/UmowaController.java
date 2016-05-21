@@ -149,34 +149,39 @@ public class UmowaController implements AbstractController<Umowa> {
 
     @Override
     public String addNew() {
+        try {
+            int znizka = loginController.getKlientAccount().getKlientProcentZnizki();
 
-//        int znizka = loginController.getKlientAccount().getKlientProcentZnizki();
-        loginController.getKlientAccount().setKlientProcentZnizki(loginController.getKlientAccount().getKlientProcentZnizki()+2);
-        this.umowa.setUmowaKlientIdFk(loginController.getKlientAccount());
-        
-        this.umowa.setUmowaDataWystawienia(new Date());
-        Calendar c = Calendar.getInstance();
-        c.setTime(new Date());
-        c.add(Calendar.YEAR, 1);
-        this.umowa.setUmowaDataZakonczenia(c.getTime());
+            rodzajUbezController.findById();
+            Pracownik pracownik = new Pracownik();
+            pracownik.setPracownikId(1);
+            pracownikController.setPracownik(pracownik);
+            pracownikController.findById();
+            pracownikController.findById();
+            registerController.setKlient(loginController.getKlientAccount());
+            registerController.getKlient().setKlientProcentZnizki(registerController.getKlient().getKlientProcentZnizki() + 2);
+            registerController.update();
+            this.umowa.setUmowaKlientIdFk(loginController.getKlientAccount());
+            this.umowa.setUmowaDataWystawienia(new Date());
+            Calendar c = Calendar.getInstance();
+            c.setTime(new Date());
+            c.add(Calendar.YEAR, 1);
+            this.umowa.setUmowaDataZakonczenia(c.getTime());
+            this.umowa.setUmowaKlientIdFk(loginController.getKlientAccount());
+            int kwotaUbezpieczenia = Integer.parseInt(rodzajUbezController.getRodzajUbez().getRodzajUbezpieczeniaCena());
+            int kwota = kwotaUbezpieczenia - ((znizka / 100) * kwotaUbezpieczenia);
+            this.umowa.setUmowaKwota(kwota);
+            pojazdController.addNew();
+            this.umowa.setUmowaPojazdIdFk(pojazdController.getPojazd());
+            this.umowa.setUmowaPracownikIdFk(pracownikController.getPracownik());
+            this.umowa.setUmowaRodzajUbezpieczeniaIdFk(rodzajUbezController.getRodzajUbez());
+            this.umowa.setUmowaStatus("NOWA");
+            umowaEJB.addNew(this.umowa);
 
-        this.umowa.setUmowaKlientIdFk(loginController.getKlientAccount());
+        } catch (Exception ex) {
+            Logger.getLogger(UmowaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-//        int kwotaUbezpieczenia = Integer.parseInt(rodzajUbezController.getRodzajUbez().getRodzajUbezpieczeniaCena());
-//        
-//        System.out.println("KWOTA UBEZPIECZENIA: " + kwotaUbezpieczenia);
-//        System.out.println("KWOTA ZNIZKA: " + znizka);
-        
-//        int kwota = kwotaUbezpieczenia - ((znizka / 100) * kwotaUbezpieczenia);
-//        System.out.println("Wyszla kwota: " + kwota);
-        this.umowa.setUmowaKwota(1222);
-        pojazdController.addNew();
-        this.umowa.setUmowaPojazdIdFk(pojazdController.getPojazd());
-        this.umowa.setUmowaPracownikIdFk(pracownikController.getPracownik());
-        this.umowa.setUmowaRodzajUbezpieczeniaIdFk(rodzajUbezController.getRodzajUbez());
-        this.umowa.setUmowaStatus("NOWA");
-
-        umowaEJB.addNew(this.umowa);
         return PageController.getPage("/adminPages/agreements/agreements.xhtml");
     }
 
@@ -198,8 +203,9 @@ public class UmowaController implements AbstractController<Umowa> {
 
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void receivedPost() {
+        umowaEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
         String postIdParam = requestParams.get("post_id");
@@ -210,12 +216,6 @@ public class UmowaController implements AbstractController<Umowa> {
                 ru.setRodzajUbezpieczeniaId(Integer.valueOf(postIdParam));
                 rodzajUbezController.setRodzajUbez(ru);
                 rodzajUbezController.findById();
-              
-                Pracownik pracownik = new Pracownik();
-                pracownik.setPracownikId(1);
-                pracownikController.setPracownik(pracownik);
-                pracownikController.findById();
-
 
             } else if (postIdParam != null) {
                 this.umowa.setUmowaId(Integer.parseInt(postIdParam));
@@ -236,8 +236,9 @@ public class UmowaController implements AbstractController<Umowa> {
 
         }
         if (requestParams.get("post_type") != null) {
-            if(requestParams.get("post_type").equals("1"))
+            if (requestParams.get("post_type").equals("1")) {
                 acceptAgreement();
+            }
 
         }
     }

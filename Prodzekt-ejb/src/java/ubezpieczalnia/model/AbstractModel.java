@@ -90,6 +90,8 @@ public abstract class AbstractModel<T> {
         em.remove(object);
     }
     
-
+    public void clearCache(){
+        em.getEntityManagerFactory().getCache().evictAll();
+    }
 
 }

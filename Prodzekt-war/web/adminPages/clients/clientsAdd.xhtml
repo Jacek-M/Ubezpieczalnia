@@ -11,6 +11,7 @@
     <h:body>
         <ui:composition template="/templates/adminTemplate.xhtml">
             <ui:define name="contentAdmin">
+                #{registerController.receivedPost()}
                 <div class="employees">
                     <h:panelGroup rendered="#{errorController.hasError('REGISTER_ERROR') == true}">
                         <br/>
