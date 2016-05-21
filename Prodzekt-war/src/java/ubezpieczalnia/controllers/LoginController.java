@@ -128,21 +128,9 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         return null;
     }
 
-    public ArrayList<Umowa> getUmowaPayments() {
-        ArrayList<Umowa> temp = new ArrayList<>();
-        this.konto = kontoEJB.refresh(this.konto);
-        for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
-            if (umowa != null && !umowa.getUmowaStatus().equals("ZAAKCEPTOWANA")) {
-                temp.add(umowa);
-            }
-        }
-        return temp;
-    }
-
     public ArrayList<Szkoda> getSzkodaPayments() {
         ArrayList<Szkoda> temp = new ArrayList<>();
         this.konto = kontoEJB.refresh(this.konto);
-
         for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
             if (umowa != null) {
                 for (Szkoda szkoda : umowa.getSzkodaCollection()) {
@@ -150,6 +138,29 @@ public class LoginController implements Serializable, AbstractController<Konto> 
                         temp.add(szkoda);
                     }
                 }
+            }
+        }
+        return temp;
+    }
+
+    public ArrayList<Umowa> getUmowaActived() {
+        ArrayList<Umowa> temp = new ArrayList<>();
+        this.konto = kontoEJB.refresh(this.konto);
+        for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
+            if (umowa != null && umowa.getUmowaDataZakonczenia().after(new Date())) {
+                temp.add(umowa);
+            }
+        }
+        return temp;
+    }
+
+    public ArrayList<Umowa> getUmowaHistory() {
+        ArrayList<Umowa> temp = new ArrayList<>();
+        this.konto = kontoEJB.refresh(this.konto);
+        for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
+            if (umowa != null && !umowa.getUmowaDataZakonczenia().after(new Date())) {
+                umowa.setUmowaStatus("ZAKOŃCZONA");
+                temp.add(umowa);
             }
         }
         return temp;
@@ -164,8 +175,9 @@ public class LoginController implements Serializable, AbstractController<Konto> 
                 umowaSelectList.add(new SelectItem(umowa.getUmowaId(), label));
             }
         }
-        
-        if(umowaSelectList.size() <= 0) umowaSelectList.add(new SelectItem(-1, "Brak opłaconych umów"));
+        if (umowaSelectList.size() <= 0) {
+            umowaSelectList.add(new SelectItem(-1, "Brak opłaconych umów"));
+        }
         return umowaSelectList;
     }
 

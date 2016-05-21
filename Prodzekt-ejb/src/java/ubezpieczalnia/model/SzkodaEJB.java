@@ -32,30 +32,47 @@ public class SzkodaEJB extends AbstractModel<Szkoda> {
     public void update(Szkoda object) {
         Szkoda found = em.find(Szkoda.class, object.getSzkodaId());
         Logger.getLogger("INFO").log(Level.INFO, "UPDATE [SZKODA]");
-        if(found != null) {
+        if (found != null) {
             Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
-            found.setSzkodaDataZakonczenia(object.getSzkodaDataZakonczenia());
-            found.setSzkodaDataZdarzenia(object.getSzkodaDataZdarzenia());
-            found.setSzkodaOpis(object.getSzkodaOpis());
-            found.setSzkodaStatus(object.getSzkodaStatus());
-            found.setSzkodaTyp(object.getSzkodaTyp());
-            
-            found.setSzkodaSamochodZastepczyIdFk(object.getSzkodaSamochodZastepczyIdFk());
-            found.setSzkodaUczestnikIdFk(object.getSzkodaUczestnikIdFk());
-            found.setSzkodaUmowaIdFk(object.getSzkodaUmowaIdFk());
-            found.setSzkodaZakladIdFk(object.getSzkodaZakladIdFk());
+            if (object.getSzkodaDataZakonczenia() != null) {
+                found.setSzkodaDataZakonczenia(object.getSzkodaDataZakonczenia());
+            }
+            if (object.getSzkodaDataZdarzenia() != null) {
+                found.setSzkodaDataZdarzenia(object.getSzkodaDataZdarzenia());
+            }
+            if (object.getSzkodaOpis() != null) {
+                found.setSzkodaOpis(object.getSzkodaOpis());
+            }
+            if (object.getSzkodaStatus() != null) {
+                found.setSzkodaStatus(object.getSzkodaStatus());
+            }
+            if (object.getSzkodaTyp() != null) {
+                found.setSzkodaTyp(object.getSzkodaTyp());
+            }
+            if (object.getSzkodaSamochodZastepczyIdFk() != null) {
+                found.setSzkodaSamochodZastepczyIdFk(object.getSzkodaSamochodZastepczyIdFk());
+            }
+            if (object.getSzkodaUczestnikIdFk() != null) {
+                found.setSzkodaUczestnikIdFk(object.getSzkodaUczestnikIdFk());
+            }
+            if (object.getSzkodaUmowaIdFk() != null) {
+                found.setSzkodaUmowaIdFk(object.getSzkodaUmowaIdFk());
+            }
+            if (object.getSzkodaZakladIdFk() != null) {
+                found.setSzkodaZakladIdFk(object.getSzkodaZakladIdFk());
+            }
             em.flush();
         }
     }
-    
+
     public void addZaklad(Szkoda object) {
         Szkoda found = em.find(Szkoda.class, object.getSzkodaId());
         Logger.getLogger("INFO").log(Level.INFO, "UPDATE [SZKODA]");
-        if(found != null) {
+        if (found != null) {
             Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
             found.setSzkodaStatus(object.getSzkodaStatus());
             found.setSzkodaZakladIdFk(object.getSzkodaZakladIdFk());
-            
+
             em.flush();
         }
     }

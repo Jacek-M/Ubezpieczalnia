@@ -101,6 +101,16 @@ $(document).ready(function () {
         link: "incidents",
         action: "1"
     });
+
+    $('#tableValuationsCustomerViewContent').TableInfo({
+        tableName: "Wyceny",
+        tableId: "tableValuationsCustomerView",
+        content: "incidents",
+        tableActions: "client",
+        link: "valuations"
+    });
+
+
     $('#tableAgreementViewContent').TableInfo({
         tableName: "Szkody",
         tableId: "tableAgreementView",
@@ -150,7 +160,7 @@ $(document).ready(function () {
         tableActions: "client",
         link: "incidents"
     });
-    
+
     $('#tableIncidentWorkerContent').TableInfo({
         tableName: "Szkody",
         tableId: "tableIncidentWorker",
