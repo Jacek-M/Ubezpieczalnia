@@ -22,7 +22,7 @@ public class KontoEJB extends AbstractModel<Konto> {
 
     @PersistenceContext(unitName = "Prodzekt-ejbPU")
     private EntityManager em;
-    
+
     public KontoEJB() {
         super(Konto.class);
     }
@@ -36,19 +36,23 @@ public class KontoEJB extends AbstractModel<Konto> {
                 setParameter("kontoHaslo", pass).getResultList();
         if (query != null && query.size() > 0 && query.get(0) != null) {
             return query.get(0);
-        } 
+        }
         throw new Exception("Cannot find login");
     }
 
     @Override
     public void update(Konto object) {
-        
+        Konto found = em.find(Konto.class, object.getKontoId());
+        if (object.getKontoUprawnienia() != null && object.getKontoUprawnienia().length() > 0) {
+            found.setKontoUprawnienia(object.getKontoUprawnienia());
+        }
+        em.flush();
     }
-    
+
     public Konto refresh(Konto konto) {
-        konto  = em.find(Konto.class, konto.getKontoId());
+        konto = em.find(Konto.class, konto.getKontoId());
         em.refresh(konto);
-        em.flush();    
+        em.flush();
         return konto;
     }
 

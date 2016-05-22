@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -128,7 +129,12 @@
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Czy zastępczy: " />
-                                        <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                        <c:if test="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy == 0}">
+                                            <h:outputText value="NIE"/>
+                                        </c:if>
+                                        <c:if test="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy != 0}">
+                                            <h:outputText value="TAK"/>
+                                        </c:if>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Opis: " />
@@ -199,7 +205,12 @@
                                     <f:facet name="header">
                                         <h:outputText value="Samochód zastępczy"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.szkodaUmowaIdFk.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                    <c:if test="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy == 0}">
+                                        <h:outputText value="NIE"/>
+                                    </c:if>
+                                    <c:if test="#{emp.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy != 0}">
+                                        <h:outputText value="TAK"/>
+                                    </c:if>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

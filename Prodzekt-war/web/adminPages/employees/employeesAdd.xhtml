@@ -25,12 +25,13 @@
 
 
                             <h:outputLabel  value="Login: " />
-                            <h:inputText id="kontoLogin" value="#{pracownikController.loginController.konto.kontoLogin}" validator="VarcharValidator" />
+                            <h:inputText id="kontoLogin" value="#{pracownikController.kontoController.konto.kontoLogin}" validator="VarcharValidator" />
                             <h:message for="kontoLogin" style="color:red" />
                             
                             <h:outputLabel  value="Hasło: " />
-                            <h:inputText id="kontoHaslo" value="#{pracownikController.loginController.konto.kontoHaslo}" validator="VarcharValidator"/>
+                            <h:inputText id="kontoHaslo" value="#{pracownikController.kontoController.konto.kontoHaslo}" validator="VarcharValidator"/>
                             <h:message for="kontoHaslo" style="color:red" />
+
 
                             <h:outputLabel  value="Imię: " />
                             <h:inputText id="imie" value="#{pracownikController.pracownik.pracownikImie}" validator="VarcharValidator"/>
