@@ -6,6 +6,7 @@
 package ubezpieczalnia.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -16,8 +17,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-
 import ubezpieczalnia.entities.Konto;
+
 import ubezpieczalnia.entities.Pracownik;
 import ubezpieczalnia.model.PracownikEJB;
 import ubezpieczalnia.utils.SessionManager;
@@ -33,8 +34,8 @@ public class PracownikController implements AbstractController<Pracownik> {
     @ManagedProperty(value = "#{adresController}")
     private AdresController adresController;
 
-    @ManagedProperty(value = "#{loginController}")
-    private LoginController loginController;
+    @ManagedProperty(value = "#{kontoController}")
+    private KontoController kontoController;
 
     @ManagedProperty(value = "#{oddzialController}")
     private OddzialController oddzialController;
@@ -108,47 +109,42 @@ public class PracownikController implements AbstractController<Pracownik> {
         this.adresController = adresController;
     }
 
-    public LoginController getLoginController() {
-        return loginController;
+    public KontoController getKontoController() {
+        return kontoController;
     }
 
-    public void setLoginController(LoginController loginController) {
-        this.loginController = loginController;
+    public void setKontoController(KontoController kontoController) {
+        this.kontoController = kontoController;
     }
 
     public String registerWorker() {
-        Konto konto = loginController.getKonto();
-        try {
-            loginController.findKontoByLoginAndPassword();
-            SessionManager.addToSession("REGISTER_ERROR", "Błędny login");
-            return PageController.getCurrentUrl();
-        } catch (Exception ex) {
-            loginController.setKonto(konto);
-            loginController.getKonto().setKontoUprawnienia(this.pracownik.getPracownikTyp());
+        Konto konto = kontoController.getKonto();
+        if (kontoController.checkLogin(konto.getKontoLogin(), konto.getKontoHaslo()) == null) {
+            konto.setKontoUprawnienia(this.pracownik.getPracownikTyp());
+            kontoController.setKonto(konto);
+            kontoController.addNew();
             adresController.addNew();
-            loginController.addNew();
-            try {
 
-                if (this.oddzialController.getOddzial().getOddzialId() != null && this.oddzialController.getOddzial().getOddzialId() != -1) {
-                    pracownik.setPracownikOddzialIdFk(this.oddzialController.getOddzial());
-                    pracownik.setPracownikZakladIdFk(null);
-                } else if (this.zakladController.getZaklad().getZakladId() != null && this.zakladController.getZaklad().getZakladId() != -1) {
-                    pracownik.setPracownikZakladIdFk(this.zakladController.getZaklad());
-                    pracownik.setPracownikOddzialIdFk(null);
-                }
+            pracownik.setPracownikAdresIdFk(adresController.getAdres());
+            pracownik.setPracownikKontoIdFk(kontoController.getKonto());
 
-                pracownik.setPracownikAdresIdFk(adresController.getAdres());
-                pracownik.setPracownikKontoIdFk(loginController.getKonto());
-
-                this.pracownik = pracownikEJB.addNew(this.pracownik);
-                return PageController.getPage("/adminPages/employees.xhtml");
-
-            } catch (Exception ex1) {
-                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex1);
+            if (oddzialController.getOddzial() != null && oddzialController.getOddzial().getOddzialId() > 0) {
+                pracownik.setPracownikOddzialIdFk(oddzialController.getOddzial());
+                pracownik.setPracownikZakladIdFk(null);
+            } else if (zakladController.getZaklad() != null && zakladController.getZaklad().getZakladId() > 0) {
+                pracownik.setPracownikOddzialIdFk(null);
+                pracownik.setPracownikZakladIdFk(zakladController.getZaklad());
+            } else {
+                pracownik.setPracownikOddzialIdFk(null);
+                pracownik.setPracownikZakladIdFk(null);
             }
+            pracownik = pracownikEJB.addNew(this.pracownik);
+        } else {
+            SessionManager.addToSession("REGISTER_ERROR", "Taki login już istnieje!");
+            return PageController.getPage("/adminPages/employees/employeesAdd.xhtml");
         }
-        SessionManager.addToSession("REGISTER_ERROR", "Błąd podczas rejestracji");
-        return PageController.getPage("/adminPages/employees/employeesAdd.xhtml");
+
+        return PageController.getPage("/adminPages/employees/employees.xhtml");
     }
 
     @Override
@@ -184,11 +180,20 @@ public class PracownikController implements AbstractController<Pracownik> {
                 this.pracownik.setPracownikOddzialIdFk(null);
             }
             pracownikEJB.update(this.pracownik);
-            return PageController.getPage("/adminPages/employees/employees.xhtml");
+            this.findById();
+
+            Konto konto = new Konto();
+            konto.setKontoId(this.pracownik.getPracownikKontoIdFk().getKontoId());
+            kontoController.setKonto(konto);
+            kontoController.findById();
+            kontoController.getKonto().setKontoUprawnienia(this.pracownik.getPracownikTyp());
+            kontoController.update();
+
+            return PageController.getPage("/Prodzekt-war/faces/adminPages/employees/employees.xhtml");
         } catch (Exception ex) {
             Logger.getLogger(PracownikController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return PageController.getPage("/adminPages/employees/employees.xhtml");
+        return PageController.getPage("/Prodzekt-war/faces/adminPages/employees/employees.xhtml");
     }
 
     @Override

@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -169,7 +168,7 @@ public class UmowaController implements AbstractController<Umowa> {
             this.umowa.setUmowaDataZakonczenia(c.getTime());
             this.umowa.setUmowaKlientIdFk(loginController.getKlientAccount());
             int kwotaUbezpieczenia = Integer.parseInt(rodzajUbezController.getRodzajUbez().getRodzajUbezpieczeniaCena());
-            int kwota = kwotaUbezpieczenia - ((znizka / 100) * kwotaUbezpieczenia);
+            int kwota = kwotaUbezpieczenia - ((znizka * kwotaUbezpieczenia) / 100);
             this.umowa.setUmowaKwota(kwota);
             pojazdController.addNew();
             this.umowa.setUmowaPojazdIdFk(pojazdController.getPojazd());
@@ -182,7 +181,7 @@ public class UmowaController implements AbstractController<Umowa> {
             Logger.getLogger(UmowaController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return PageController.getPage("/adminPages/agreements/agreements.xhtml");
+        return PageController.getPage("/customerPages/agreements/agreements.xhtml");
     }
 
     @Override

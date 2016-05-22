@@ -10,7 +10,7 @@
     <h:body>
         <ui:composition template="templates/pageTemplate.xhtml">
             <ui:define name="content">
-                <div class="contact">
+                <div class="index">
                     <h2> SKONTAKTUJ SIĘ Z NAMI </h2>
                     <div class="contacBox">
                         
@@ -19,19 +19,19 @@
                                 <table id="contactGrid">
                                     <tr>
                                         <td><label>Podaj imię: </label></td>
-                                        <td><input type="text" name="name" id="iname" class="inputs" size="40" placeholder="Podaj imię"/><br/></td>
+                                        <td><input type="text" name="name" id="iname" class="inputs"  placeholder="Podaj imię"/><br/></td>
                                     </tr>
                                     <tr>
                                         <td><label>Podaj nazwisko: </label></td>
-                                        <td><input type="text" name="surname" id="isurname" class="inputs" size="40" placeholder="Podaj nazwisko"/> </td>
+                                        <td><input type="text" name="surname" id="isurname" class="inputs"  placeholder="Podaj nazwisko"/> </td>
                                     </tr>
                                     <tr>
                                         <td><label>Podaj mail: </label></td>
-                                        <td><input type="text" name="mail" id="imail" class="inputs" size="40" placeholder="Podaj email"/></td>
+                                        <td><input type="text" name="mail" id="imail" class="inputs"  placeholder="Podaj email"/></td>
                                     </tr>
                                     <tr>
                                         <td><label>Wiadomość: </label></td>
-                                        <br/><td><textarea id="imsg" rows="5" cols="40" class="inputs" placeholder="Wiadomość do właściciela"></textarea></td>
+                                        <br/><td><textarea id="imsg" class="inputs" placeholder="Wiadomość do właściciela"></textarea></td>
                                     </tr>
                                     <tr><td></td><td><input type="button" id="valButton" value="Wyślij" onclick="validate()"/></td></tr>
                                 </table>

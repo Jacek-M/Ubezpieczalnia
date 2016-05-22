@@ -7,16 +7,11 @@
     src: url("fonts/railway.woff");
 }
 
-/*************container***************/
-#container{
-    background-color: rgb(235, 235, 235);
-}
-/*************header***************/
+/* HEADER SECTION */
 
 #header{
     margin: 0 3% 0 3%;
-    border-bottom: groove;
-    border-width: 1px;
+    border-bottom: 1px groove ghostwhite;
     border-color: rgb(214, 217, 211);
 }
 #header .menu{
@@ -52,69 +47,90 @@
     background-color: #052059;
 }
 
-/*************footer***************/
-#footer {
-    clear: both;
-    position: relative;
-    margin: 2em 3% 0em 3%;
+.client-name-header {
+    display: inline;
+    padding: 5px;
+    margin-left: 45%;
 }
 
-#footer p {
-    text-align: center;
-    padding: 1em;
-    font-size: 1.1em;
-    color: black;
-    font-family: sansation-light;
-    border-top: groove;
-    border-width: 1px;
-    border-color: rgb(214, 217, 211);
+.client-name-header label {
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    padding-right: 5px;
+    margin-top: 17px;
 }
 
-/*************content***************/
-#content{
-    margin: 10px 3% 0 3%;
+.client-name-header i {
+    padding-right: 10px;
+    color: whitesmoke;
 }
 
-/*************index***************/
-.index {
-    text-align: center;
-    font-family: sansation-light;
+
+
+/* END OF HEADER SECTION */
+
+
+#content, #footer  {
+    margin: 0 3% 0 3%;
 }
+/* BODY AS A INDEX SECTION */
+
+
 .index h2 {
-    color: rgb(84, 84, 84);
-    font-weight: bolder;
-    font-size: 2.5em;
-    border-bottom: groove;
-    border-width: 1px;
-    border-color: rgb(214, 217, 211);
-    padding-bottom: 0.5em;
-}
-.index p {
-    font-size: 1.5em;
-}
-.index .row {
-    border: groove;
-    border-width: 1px;
-    border-color: rgb(245, 245, 245);
-    background-color:  rgb(245, 245, 245);
-    margin: 2em 2em 2em 2em;
-}
-.index .row .col-sm-3 {
     text-align: center;
-    font-size: 1.2em;
-    padding: 1em 1em 1em 1em;
-}
-.index .social a {
-    padding: 1em 0em 1em 0em;
-}
-
-.index .social p {
-    padding: 2em 0em 0em 2em;
-}
-.index .social a:hover {
-    text-decoration: none;
+    font-family: sansation-light;
+    font-size: 40px;
+    border-bottom: 1px groove;
+    padding-bottom: 10px;
 }
 
+.index p {
+    text-align: center;
+    font-size: 18px;
+}
+
+.index .row {
+    display: inline-block;
+    margin-left: 8%;
+    border: 1px groove;
+    background-color: #F9F9F9;
+}
+
+.index .row .col-sm-3  {
+    text-align: center;
+    padding: 5px;
+}
+
+.social {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+/* END OF INDEX SECTION */
+
+#footer {
+
+    text-align: center;
+    margin-top: 23px;
+    padding-top: 10px;
+    border-top: 1px groove ghostwhite;
+}
+
+/* CONTACT */
+.contacBox {
+    margin-left: 33%
+}
+
+.contacBox td {
+    padding: 5px 40px 5px 0px;
+}
+
+.inputs {
+    min-width: 300px;
+}
+
+/* END OF CONTACT */
 
 /*************offer***************/
 .offer {
@@ -154,97 +170,7 @@
     border-width: 1px;
     border-color: rgb(214, 217, 211);
 }
-
-/*************contact***************/
-.contact{
-    text-align: center;
-    font-family: sansation-light;
-}
-.contact h2 {
-    color: rgb(84, 84, 84);
-    font-weight: bolder;
-    font-size: 2.5em;
-    border-bottom: groove;
-    border-width: 1px;
-    border-color: rgb(214, 217, 211);
-    padding-bottom: 0.5em;
-}
-.contact .contacBox, .social{
-    display: inline-table;
-    position: relative;
-}
-.contact .social {
-    float:left;
-    font-size: 2em;
-}
-.contact .social a {
-    padding: 1em 0em 1em 0em;
-}
-.contact .social p {
-    padding: 2em 0em 0em 2em;
-}
-.contact .contacBox textarea {
-    resize: none;
-}
-.contact .contacBox table td {
-    padding: 0.4em;
-}
-.contact .contacBox table tr {
-    text-align: left;
-}
-
-/*************contact***************/
-
-
-/*************register*************/
-
-
-.registeBox {
-    margin-left: 40%;
-}
-.registeBox label {
-    padding: 5px 10px 5px 0px;
-}
-
-
-
-.register {
-    text-align: center;
-    font-family: sansation-light;
-}
-.register h2 {
-    color: rgb(84, 84, 84);
-    font-weight: bolder;
-    font-size: 2.5em;
-    border-bottom: groove;
-    border-width: 1px;
-    border-color: rgb(214, 217, 211);
-    padding-bottom: 0.5em;
-}
-
-
-/*************END register*************/
-
-
-.login{
-    font-family: sansation-light;
-    font-size: 1.5em;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-.login h1{
-    color: rgb(84, 84, 84);
-    font-weight: bolder;
-    font-size: 2em;
-    border-bottom: groove;
-    border-width: 1px;
-    border-color: rgb(214, 217, 211);
-    padding-bottom: 0.5em;
-}
-.login h2{
-    color: red;
-}
+/* END OF OFFER */
 
 /*************admin***************/
 
@@ -401,10 +327,21 @@
     padding: 0px 0px 10px 0px;
     margin-top: 20px;
     width: 100%;
+    background-color: white;
+}
+
+table.dataTable {
+    border-collapse: collapse;
+}
+
+.table-data th {
+    font-size: 14px;
+    text-align: center;
 }
 
 .table-data td {
     text-align: center;
+    font-size: 13px;
 }
 
 .table-data td a {
@@ -475,36 +412,12 @@
     text-align: center;
     font-family: sansation-light;
     padding-bottom: 2%;
-    border-bottom: groove;
-    border-width: 1px;
-    border-color: black;
-
-}
-
-.client-name-header {
-    display: inline;
-    padding: 5px;
-    margin-left: 45%;
-}
-
-.client-name-header label {
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
-    padding-right: 5px;
-    padding-top: 17px;
-}
-
-.client-name-header i {
-    padding-right: 10px;
-    color: whitesmoke;
 }
 
 .box-client-wrapper {
     padding: 25px;
     float : left;
 }
-
 
 .profile-image {
     text-align: center;

@@ -60,8 +60,8 @@ public class LoginController implements Serializable, AbstractController<Konto> 
     }
 
     public Konto findKontoByLoginAndPassword() throws Exception {
-        konto = kontoEJB.checkoutLogin(this.konto.getKontoLogin(), this.konto.getKontoHaslo());
-        return konto;
+        Konto kontoToReturn = kontoEJB.checkoutLogin(this.konto.getKontoLogin(), this.konto.getKontoHaslo());
+        return kontoToReturn;
     }
 
     public String login() {
