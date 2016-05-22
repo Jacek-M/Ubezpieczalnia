@@ -16,56 +16,72 @@
                     <h1> Pracownik edycja</h1>
 
                     <h:form id="panelAdd">
-                        <h:panelGrid  columns="2">
+                        <h:panelGrid  columns="3">
                             <h:panelGroup>
                                 <h:outputLabel  value="" />
                                 <h:inputHidden id="hidden_value1" value="#{pracownikController.pracownik.pracownikId}"/>
                                 <h:outputLabel  value="Imię: " />
                             </h:panelGroup>
-                            <h:inputText id="imie" value="#{pracownikController.pracownik.pracownikImie}"/>
+                            <h:inputText id="imie" value="#{pracownikController.pracownik.pracownikImie}" validator="VarcharValidator"/>
+                            <h:message for="imie" style="color:red" />
+                            
                             <h:outputLabel  value="Nazwisko: " />
-                            <h:inputText id="nazwisko" value="#{pracownikController.pracownik.pracownikNazwisko}"/>
+                            <h:inputText id="nazwisko" value="#{pracownikController.pracownik.pracownikNazwisko}" validator="VarcharValidator"/>
+                            <h:message for="nazwisko" style="color:red" />
+                            
                             <h:outputLabel  value="Wynagrodzenie " />
-                            <h:inputText id="wynagrodzenie" value="#{pracownikController.pracownik.pracownikWynagrodzenie}"/>
+                            <h:inputText id="wynagrodzenie" value="#{pracownikController.pracownik.pracownikWynagrodzenie}" validator="NumberValidator"/>
+                            <h:message for="wynagrodzenie" style="color:red" />
+                            
                             <h:outputLabel  value="Data zatrudnienia: " />
-                            <h:inputText id="dataZatrudnienia" value="#{pracownikController.pracownik.pracownikDataZatrudnienia}">
-                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                            <h:inputText id="dataZatrudnienia" value="#{pracownikController.pracownik.pracownikDataZatrudnienia}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
                             </h:inputText>
+                            <h:message for="dataZatrudnienia" style="color:red" />
+                            
                             <h:outputLabel  value="Uprawnienia: " />
                             <h:selectOneMenu value="#{pracownikController.pracownik.pracownikTyp}">
                                 <f:selectItem itemValue="Rzeczoznawca" itemLabel="Rzeczoznawca" />
                                 <f:selectItem itemValue="Super" itemLabel="Administrator" />
                                 <f:selectItem itemValue="Konsultant" itemLabel="Konsultant" />
                             </h:selectOneMenu>
+                            <h:message for="" style="color:red" />
 
                             <h:outputLabel  value="Oddział " />
                             <h:selectOneMenu value="#{pracownikController.oddzialController.oddzial.oddzialId}">
                                 <f:selectItems value="#{oddzialController.oddzialSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                             </h:selectOneMenu>
+                            <h:message for="" style="color:red" />
 
                             <h:outputLabel  value="Zakład " />
                             <h:selectOneMenu value="#{pracownikController.zakladController.zaklad.zakladId}">
                                 <f:selectItems value="#{zakladController.zakladSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                             </h:selectOneMenu>
+                            <h:message for="" style="color:red" />
 
                             <h:panelGroup>
                                 <h:outputLabel value="" />    
                                 <h:inputHidden id="hidden_value2" value="#{pracownikController.adresController.adres.adresId}"/>
                                 <h:outputLabel  value="Telefon: " />
                             </h:panelGroup>
-                            <h:inputText id="telefon" value="#{pracownikController.adresController.adres.adresTelefon}"/>
+                            <h:inputText id="telefon" value="#{pracownikController.adresController.adres.adresTelefon}" validator="TelephoneValidator"/>
+                            <h:message for="telefon" style="color:red" />
 
                             <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{pracownikController.adresController.adres.adresUlica}"/>
+                            <h:inputText id="ulica" value="#{pracownikController.adresController.adres.adresUlica}" validator="VarcharNullValidator"/>
+                            <h:message for="ulica" style="color:red" />
 
                             <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{pracownikController.adresController.adres.adresMiejscowosc}"/>
+                            <h:inputText id="miasto" value="#{pracownikController.adresController.adres.adresMiejscowosc}" validator="VarcharValidator"/>
+                            <h:message for="miasto" style="color:red" />
 
                             <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{pracownikController.adresController.adres.adresKodPocztowy}"/>
+                            <h:inputText id="kodPocztowy" value="#{pracownikController.adresController.adres.adresKodPocztowy}" validator="VarcharValidator"/>
+                            <h:message for="kodPocztowy" style="color:red" />
 
                             <h:outputLabel  value="Poczta: " />
-                            <h:inputText id="poczta" value="#{pracownikController.adresController.adres.adresPoczta}"/>
+                            <h:inputText id="poczta" value="#{pracownikController.adresController.adres.adresPoczta}" validator="VarcharValidator"/>
+                            <h:message for="poczta" style="color:red" />
 
                         </h:panelGrid>
                         <br/>

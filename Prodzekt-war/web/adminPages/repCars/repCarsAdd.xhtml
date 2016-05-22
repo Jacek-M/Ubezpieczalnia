@@ -14,23 +14,26 @@
                 <div class="repCars">
                     #{samochodZastController.receivedPost()}
                     <h1> Samochód zastępczy dodanie</h1>
-                    
-                     <h:form id="panelAdd">
-                        <h:panelGrid  columns="2">
+
+                    <h:form id="panelAdd">
+                        <h:panelGrid  columns="3">
 
 
-                           <h:outputLabel  value="Marka: " />
-                           <h:inputText id="marka" value="#{samochodZastController.samochodZastepczy.samochodZastepczyMarka}"/>
+                            <h:outputLabel  value="Marka: " />
+                            <h:inputText id="marka" value="#{samochodZastController.samochodZastepczy.samochodZastepczyMarka}" validator="VarcharValidator"/>
+                            <h:message for="marka" style="color:red" />
 
                             <h:outputLabel  value="Model: " />
-                            <h:inputText id="model" value="#{samochodZastController.samochodZastepczy.samochodZastepczyModel}"/>
-
+                            <h:inputText id="model" value="#{samochodZastController.samochodZastepczy.samochodZastepczyModel}" validator="VarcharValidator" />
+                            <h:message for="model" style="color:red" />
+                            
                             <h:outputLabel  value="Czy dostępny: " />
-                            <h:selectOneMenu value="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny}">
+                            <h:selectOneMenu id="dostepny" value="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny}">
                                 <f:selectItem itemValue="0" itemLabel="Nie" />
                                 <f:selectItem itemValue="1" itemLabel="Tak" />
                             </h:selectOneMenu>
-                            
+                            <h:message for="dostepny" style="color:red" />
+
                         </h:panelGrid>
                         <br/>
                         <h:commandButton value="Zapisz" action="#{samochodZastController.addNew()}"/>

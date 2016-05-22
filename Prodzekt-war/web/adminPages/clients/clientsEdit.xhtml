@@ -35,7 +35,8 @@
                     </h:panelGroup>
                     <h:outputLabel  value="Procent zniżki: " />
                     <br/>
-                    <h:inputText id="nazwisko" value="#{registerController.klient.klientProcentZnizki}"/>
+                    <h:inputText id="nazwisko" value="#{registerController.klient.klientProcentZnizki}" validator="DiscountValidator"/>
+                    <h:message for="nazwisko" style="color:red" />
 
                     <br/>
                     <h:commandButton value="Zapisz" action="#{registerController.update()}"/>

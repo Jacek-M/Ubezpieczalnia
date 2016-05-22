@@ -16,32 +16,38 @@
                     <h1> Oddział edycja</h1>
 
                     <h:form id="panelAdd">
-                        <h:panelGrid  columns="2">
+                        <h:panelGrid  columns="3">
                             <h:panelGroup>
                                 <h:outputLabel  value="" />
                                 <h:inputHidden id="hidden_value1" value="#{oddzialController.oddzial.oddzialId}"/>
                                 <h:outputLabel  value="Telefon: " />
                             </h:panelGroup>
-                            <h:inputText id="Telefon" value="#{oddzialController.oddzial.oddzialTelefon}"/>
+                            <h:inputText id="Telefon" value="#{oddzialController.oddzial.oddzialTelefon}" validator="TelephoneValidator"/>
+                            <h:message for="Telefon" style="color:red" />
 
                             <h:panelGroup>
                                 <h:outputLabel value="" />    
                                 <h:inputHidden id="hidden_value2" value="#{oddzialController.adresController.adres.adresId}"/>
                                 <h:outputLabel  value="Telefon: " />
                             </h:panelGroup>
-                            <h:inputText id="telefon" value="#{oddzialController.adresController.adres.adresTelefon}"/>
+                            <h:inputText id="telefon" value="#{oddzialController.adresController.adres.adresTelefon}" validator="TelephoneValidator"/>
+                            <h:message for="telefon" style="color:red" />
 
                             <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{oddzialController.adresController.adres.adresUlica}"/>
+                            <h:inputText id="ulica" value="#{oddzialController.adresController.adres.adresUlica}" validator="VarcharNullValidator"/>
+                            <h:message for="ulica" style="color:red" />
 
                             <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{oddzialController.adresController.adres.adresMiejscowosc}"/>
+                            <h:inputText id="miasto" value="#{oddzialController.adresController.adres.adresMiejscowosc}" validator="VarcharValidator"/>
+                            <h:message for="miasto" style="color:red" />
 
                             <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{oddzialController.adresController.adres.adresKodPocztowy}"/>
+                            <h:inputText id="kodPocztowy" value="#{oddzialController.adresController.adres.adresKodPocztowy}" validator="VarcharValidator"/>
+                            <h:message for="kodPocztowy" style="color:red" />
 
                             <h:outputLabel  value="Poczta " />
-                            <h:inputText id="poczta" value="#{oddzialController.adresController.adres.adresPoczta}"/>
+                            <h:inputText id="poczta" value="#{oddzialController.adresController.adres.adresPoczta}" validator="VarcharValidator"/>
+                            <h:message for="poczta" style="color:red" />
 
                         </h:panelGrid>
                         <br/>
