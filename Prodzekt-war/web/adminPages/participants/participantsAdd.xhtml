@@ -16,17 +16,20 @@
                     <h1> Dodanie uczestnika</h1>
 
                     <h:form id="panelAdd">
-                        <h:panelGrid  columns="2">
+                        <h:panelGrid  columns="3">
 
 
                            <h:outputLabel  value="Imię: " />
-                           <h:inputText id="marka" value="#{uczestnikController.uczestnik.uczestnikImie}"/>
+                           <h:inputText id="marka" value="#{uczestnikController.uczestnik.uczestnikImie}" validator="VarcharValidator"/>
+                            <h:message for="marka" style="color:red" />
 
                             <h:outputLabel  value="Nazwisko: " />
-                            <h:inputText id="model" value="#{uczestnikController.uczestnik.uczestnikNazwisko}"/>
+                            <h:inputText id="model" value="#{uczestnikController.uczestnik.uczestnikNazwisko}" validator="VarcharValidator"/>
+                            <h:message for="model" style="color:red" />
 
                             <h:outputLabel  value="Numer konta: " />
-                            <h:inputText id="czyDostepny" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}"/>
+                            <h:inputText id="czyDostepny" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}" validator="BankValidator"/>
+                            <h:message for="czyDostepny" style="color:red" />
 
                         </h:panelGrid>
                         <br/>

@@ -18,24 +18,19 @@
                     <f:view>
                         <h:form id="panelAdd">
                             <h:panelGrid  columns="2">
-                                <h:outputLabel value="WycenaId:" for="wycenaId" />
-                                <h:inputText id="wycenaId" value="#{wycenaController.wycena.wycenaId}"/>
-                                <h:outputLabel value="WycenaKwota:" for="wycenaKwota" />
-                                <h:inputText id="wycenaKwota" value="#{wycenaController.wycena.wycenaKwota}" />
-                                <h:outputLabel value="WycenaData:" for="wycenaData" />
-                                <h:inputText id="wycenaData" value="#{wycenaController.wycena.wycenaData}" >
-                                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                                <h:panelGroup>
+                                    <h:inputHidden id="wycenaId" value="#{wycenaController.wycena.wycenaId}"/>
+                                    <h:outputLabel value="WycenaKwota:" for="wycenaKwota" />
+                                </h:panelGroup>
+                                <h:inputText id="Kwota" value="#{wycenaController.wycena.wycenaKwota}" validator="NumberValidator"/>
+                                <h:message for="Kwota" style="color:red" />
+                                
+                                <h:outputLabel value="Data: " for="wycenaData" />
+                                <h:inputText id="wycenaData" value="#{wycenaController.wycena.wycenaData}"  disabled="true">
+                                    <f:convertDateTime pattern="dd.MM.yyyy" />
                                 </h:inputText>
-
-                                <h:outputLabel value="WycenaPracownikIdFk:" for="wycenaPracownikIdFk" />
-                                <h:selectOneMenu value="#{wycenaController.pracownikController.pracownik.pracownikId}">
-                                    <f:selectItems value="#{pracownikController.pracownikSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                </h:selectOneMenu>
-
-                                <h:outputLabel value="WycenaSzkodaIdFk:" for="wycenaSzkodaIdFk" />
-                                <h:selectOneMenu value="#{wycenaController.szkodaController.szkoda.szkodaId}">
-                                    <f:selectItems value="#{szkodaController.szkodaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
-                                </h:selectOneMenu>
+                                <h:message for="" style="color:red" />
+                                
                             </h:panelGrid>
                             <br/>
                             <h:commandButton value="Dodaj nową wycene" action="#{wycenaController.update()}"/>

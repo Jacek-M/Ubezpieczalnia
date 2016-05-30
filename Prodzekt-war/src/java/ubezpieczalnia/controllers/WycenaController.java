@@ -106,8 +106,8 @@ public class WycenaController implements AbstractController<Wycena> {
 
     @Override
     public String update() {
-        this.wycena.setWycenaPracownikIdFk(pracownikController.getPracownik());
-        this.wycena.setWycenaSzkodaIdFk(szkodaController.getSzkoda());
+//        this.wycena.setWycenaPracownikIdFk(pracownikController.getPracownik());
+//        this.wycena.setWycenaSzkodaIdFk(szkodaController.getSzkoda());
         wycenaEJB.update(this.wycena);
         return PageController.getPage("/adminPages/valuations/valuations.xhtml");
 

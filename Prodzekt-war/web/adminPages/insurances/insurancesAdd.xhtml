@@ -14,23 +14,32 @@
                 <div class="insurances">
                     #{rodzajUbezController.receivedPost()}
                     <h1> Dodanie ubezpieczenia</h1>
-                    
+
                     <h:form id="panelAdd">
-                        <h:panelGrid  columns="2">
+                        <h:panelGrid  columns="3">
                             <h:outputLabel value="Rodzaj:" />
-                            <h:inputText id="rodzajUbezpieczeniaRodzaj" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaRodzaj}"/>
+                            <h:inputText id="rodzajUbezpieczeniaRodzaj" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaRodzaj}" validator="VarcharValidator"/>
+                            <h:message for="rodzajUbezpieczeniaRodzaj" style="color:red" />
+
                             <h:outputLabel value="Cena:" />
-                            <h:inputText id="rodzajUbezpieczeniaCena" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCena}"/>
+                            <h:inputText id="rodzajUbezpieczeniaCena" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCena}" validator="NumberValidator"/>
+                            <h:message for="rodzajUbezpieczeniaCena" style="color:red" />
+                            
                             <h:outputLabel  value="Czy samochód zastępczy: " />
                             <h:selectOneMenu value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy}">
                                 <f:selectItem itemValue="0" itemLabel="Nie" />
                                 <f:selectItem itemValue="1" itemLabel="Tak" />
                             </h:selectOneMenu>
+                            <h:message for="" style="color:red" />
                             
                             <h:outputLabel value="Nazwa: " />
-                            <h:inputText id="rodzajUbezpieczeniaNazwa" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaNazwa}"/>
+                            <h:inputText id="rodzajUbezpieczeniaNazwa" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaNazwa}" validator="VarcharValidator"/>
+                            <h:message for="rodzajUbezpieczeniaNazwa" style="color:red" />
+                            
                             <h:outputLabel value="Opis:" />
-                            <h:inputText id="rodzajUbezpieczeniaOpis" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaOpis}"/>
+                            <h:inputText id="rodzajUbezpieczeniaOpis" value="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaOpis}" validator="VarcharValidator"/>
+                            <h:message for="rodzajUbezpieczeniaOpis" style="color:red" />
+                            
                         </h:panelGrid>
                         <br/>
                         <h:commandButton value="Zapisz" action="#{rodzajUbezController.addNew()}"/>
