@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
@@ -21,20 +22,17 @@
                     </c:if>
                 </h:panelGroup>
 
-
                 <div class="login">
                     <h1>Logowanie</h1>
-                    <br/>
-
                     <h:panelGroup rendered="#{loginController.checkLogged() == false}">
                         <h:form id="loginForm">
                             <h:outputLabel style="margin-right: 20px" value="Login:" />
-                            <h:inputText id="kontoLogin" value="#{loginController.konto.kontoLogin}"/>
+                            <h:inputText id="kontoLogin" value="#{loginController.konto.kontoLogin}" class="form-control" a:placeholder="Podaj login"/>
                             <br />
                             <h:outputLabel style="margin-right: 20px" value="Hasło:" />
-                            <h:inputText id="kontoHaslo" value="#{loginController.konto.kontoHaslo}"/>
+                            <h:inputSecret  id="kontoHaslo" value="#{loginController.konto.kontoHaslo}" class="form-control" a:placeholder="Podaj hasło"/>
                             <br /><br />
-                            <h:commandButton value="Wyślij" action="#{loginController.login()}"/>
+                            <h:commandButton value="Wyślij"  action="#{loginController.login()}" class="btn btn-primary"/>
                         </h:form>
                         <h:panelGroup rendered="#{errorController.hasError('LOGIN_ERROR') == true}">
                             <br/>
