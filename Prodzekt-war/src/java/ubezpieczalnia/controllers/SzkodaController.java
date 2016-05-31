@@ -6,6 +6,7 @@
 package ubezpieczalnia.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -331,6 +332,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
         try {
             this.szkoda.setSzkodaZakladIdFk(pracownikController.getPracownik().getPracownikZakladIdFk());
             this.szkoda.setSzkodaStatus("NAPRAWIONO");
+            this.szkoda.setSzkodaDataZakonczenia(new Date());
             szkodaEJB.addZaklad(szkoda);
 
         } catch (Exception ex) {

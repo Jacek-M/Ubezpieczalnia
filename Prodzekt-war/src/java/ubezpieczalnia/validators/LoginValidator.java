@@ -16,13 +16,8 @@ import javax.faces.validator.ValidatorException;
  *
  * @author Jacek
  */
-@FacesValidator("TelephoneValidator")
-public class TelephoneValidator implements Validator {
-
-    private static final String NUMER_REGEX_1 = "\\d{9}";
-    private static final String NUMER_REGEX_2 = "\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{3}";
-    private static final String NUMER_REGEX_3 = "\\d{3}[\\s]\\d{7}";
-    
+@FacesValidator("LoginValidator")
+public class LoginValidator implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
@@ -30,11 +25,10 @@ public class TelephoneValidator implements Validator {
             FacesMessage msg = new FacesMessage("Pole wymagane");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
-        } else if (!value.toString().matches(NUMER_REGEX_1) && !value.toString().matches(NUMER_REGEX_2) && !value.toString().matches(NUMER_REGEX_3)) {
-            FacesMessage msg = new FacesMessage("Błędny format");
+        } else if (value.toString().length() > 45) {
+            FacesMessage msg = new FacesMessage("Max ilość to 45 znaków");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
     }
-
 }

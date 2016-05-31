@@ -72,6 +72,7 @@ public class SzkodaEJB extends AbstractModel<Szkoda> {
             Logger.getLogger("INFO").log(Level.INFO, "ZNALAZLO, NADPISUJE!");
             found.setSzkodaStatus(object.getSzkodaStatus());
             found.setSzkodaZakladIdFk(object.getSzkodaZakladIdFk());
+            found.setSzkodaDataZakonczenia(object.getSzkodaDataZakonczenia());
 
             em.flush();
         }

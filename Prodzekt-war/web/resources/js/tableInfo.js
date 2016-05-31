@@ -37,23 +37,102 @@
                 });
                 self.table.column(colIndex, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                     cell.innerHTML = self._createOsomIcon("eyeIcon", "eye-icon", "fa fa-eye", "Szczegóły");
-                    if (self.tableActions === "admin") {
-                        if (self.tableName === "Umowy")
-                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź");
-                        else
-                            cell.innerHTML += self._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj");
-                    }
-                    if (self.tableActions === "worker") {
-                        if (self.tableId === "tableIncidentWorkerAdd")
-                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Pobierz");
-                        if (self.tableId === "tableIncidentWorker")
-                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zakończ");
-                    }
-                    else if (self.tableActions === "client") {
-                        if (self.tableId === "tableValuationsCustomerView") {
-                            cell.innerHTML += self._createOsomIcon("repairIcon", "repair-check", "fa fa-wrench", "Napraw samochód");
-                            cell.innerHTML += self._createOsomIcon("moneyIcon", "money-check", "fa fa-money", "Wypłać gotówkę");
+                    switch (self.tableId) {
+                        case "tableAgreement":
+                        {
+                            var columnIndex = self._getTableColumnIndex("Status", self.table.row(0).data().length);
+                            var rowData = self.table.row(i).data();
+                            if (rowData[columnIndex] === "NOWA") {
+                                cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź umowe");
+                            }
+                            break;
                         }
+                        case "tableAgreementView":
+                        {
+                            var columnIndex = self._getTableColumnIndex("Status", self.table.row(0).data().length);
+                            var rowData = self.table.row(i).data();
+                            if (rowData[columnIndex] === "NOWA") {
+                                cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zatwierdź umowe");
+                            }
+                            break;
+                        }
+                        case "tableIncident":
+                        {
+                            var columnIndex = self._getTableColumnIndex("Status", self.table.row(0).data().length);
+                            var rowData = self.table.row(i).data();
+                            if (rowData[columnIndex] === "NOWA") {
+                                cell.innerHTML += self._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj");
+                            }
+                            break;
+                        }
+                        case "tableIncidentView":
+                        {
+                            var columnIndex = self._getTableColumnIndex("Status", self.table.row(0).data().length);
+                            var rowData = self.table.row(i).data();
+                            if (rowData[columnIndex] === "NOWA") {
+                                cell.innerHTML += self._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj");
+                            }
+                            break;
+                        }
+                        case "tableValuation":
+                        {
+                            var columnIndex = self._getTableColumnIndex("Status", self.table.row(0).data().length);
+                            var rowData = self.table.row(i).data();
+                            if (rowData[columnIndex] === "DO WYCENY") {
+                                cell.innerHTML += self._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj");
+                            }
+                            break;
+                        }
+                        case "tableValuationView":
+                        {
+                            var columnIndex = self._getTableColumnIndex("Status", self.table.row(0).data().length);
+                            var rowData = self.table.row(i).data();
+                            if (rowData[columnIndex] === "DO WYCENY") {
+                                cell.innerHTML += self._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj");
+                            }
+                            break;
+                        }
+                        case "tableIncidentWorkerHistory":
+                        {
+                            break;
+                        }
+                        case "tableIncidentWorker":
+                        {
+                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Zakończ zlecenie");
+                            break;
+                        }
+                        case "tableIncidentWorkerAdd":
+                        {
+                            cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Pobierz zlecenie");
+                            break;
+                        }
+                        case "tableIncidents":
+                        {
+                            var columnIndex = self._getTableColumnIndex("Status", self.table.row(0).data().length);
+                            var rowData = self.table.row(i).data();
+                            if (rowData[columnIndex] === "WYCENIONA") {
+                                cell.innerHTML += self._createOsomIcon("repairIcon", "repair-check", "fa fa-wrench", "Napraw samochód");
+                                cell.innerHTML += self._createOsomIcon("moneyIcon", "money-check", "fa fa-money", "Wypłać gotówkę");
+                            }
+                            break;
+                        }
+                        case "tableAgreements":
+                        {
+                            break;
+                        }
+                        case "tableValuationsCustomerView":
+                        {
+                            break;
+                        }
+                        case "tablePaymentsInsurances":
+                        {
+                            break;
+                        }
+                        default:
+                        {
+                            cell.innerHTML += self._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj");
+                        }
+
                     }
                 });
             }).draw();
@@ -107,7 +186,7 @@
 //                var pagesContent = self.tableActions === "admin" ? "adminPages" : "customerPages";
                 var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + "View.xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
-                        '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
+                        '<input type="hidden" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
@@ -137,7 +216,7 @@
                 }
                 var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + "Edit.xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
-                        '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
+                        '<input type="hidden" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
@@ -167,8 +246,8 @@
                 }
                 var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + ".xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
-                        '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
-                        '<input type="text" name="post_type" value="' + self.action + '" />' +
+                        '<input type="hidden" name="post_id" value="' + rowData[1] + '" />' +
+                        '<input type="hidden" name="post_type" value="' + self.action + '" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
@@ -179,12 +258,12 @@
             $('.' + this.content).on("click", " tbody td .trash-icon", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
-                
-                
+
+
                 var url = "/Prodzekt-war/faces/" + "customerPages" + "/" + self.link + "/" + self.link + ".xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
-                        '<input type="text" name="post_id" value="' + rowData[1] + '" />' +
-                        '<input type="text" name="post_type" value="---????---" />' +
+                        '<input type="hidden" name="post_id" value="' + rowData[1] + '" />' +
+                        '<input type="hidden" name="post_type" value="---????---" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
@@ -195,17 +274,17 @@
             $('.' + this.content).on("click", " tbody td .repair-check", function () {
                 var tr = $(this).closest("tr");
                 var rowData = self.table.row(tr).data();
-                
+
                 var url = "/Prodzekt-war/faces/" + "customerPages" + "/" + "incidents" + "/" + "incidentsView" + ".xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
-                        '<input type="text" name="post_id" value="' + rowData[6] + '" />' +
-                        '<input type="text" name="post_type" value="10" />' +
+                        '<input type="hidden" name="post_id" value="' + rowData[6] + '" />' +
+                        '<input type="hidden" name="post_type" value="10" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
             });
         },
-        _onClickWithdrawListener : function () {
+        _onClickWithdrawListener: function () {
             var self = this;
             $('.' + this.content).on("click", " tbody td .money-check", function () {
                 var tr = $(this).closest("tr");
@@ -213,8 +292,8 @@
                 var id = rowData[6] === null ? rowData[1] : rowData[6];
                 var url = "/Prodzekt-war/faces/" + "customerPages" + "/" + "incidents" + "/" + "incidentsView" + ".xhtml";
                 var form = $('<form action="' + url + '" method="post">' +
-                        '<input type="text" name="post_id" value="' + rowData[6] + '" />' +
-                        '<input type="text" name="post_type" value="11" />' +
+                        '<input type="hidden" name="post_id" value="' + rowData[6] + '" />' +
+                        '<input type="hidden" name="post_type" value="11" />' +
                         '</form>');
                 $('body').append(form);
                 form.submit();
@@ -228,8 +307,8 @@
                 var header = $(this.table.column(i).header()).text();
                 if (header === columnName)
                     return i;
-                return -1;
             }
+            return -1;
         },
         _createOsomIcon: function (id, className, osomClass, tooltip) {
             var html = "<a href='javascript:void(0);' id='" + id + "' class='" + className + "' title='" + tooltip + "'><i class='" + osomClass + "' aria-hidden=\"true\"></i> </a>";

@@ -27,10 +27,12 @@
                     <h:panelGroup rendered="#{loginController.checkLogged() == false}">
                         <h:form id="loginForm">
                             <h:outputLabel style="margin-right: 20px" value="Login:" />
-                            <h:inputText id="kontoLogin" value="#{loginController.konto.kontoLogin}" class="form-control" a:placeholder="Podaj login"/>
+                            <h:inputText id="kontoLogin" value="#{loginController.konto.kontoLogin}" class="form-control" a:placeholder="Podaj login" validator="LoginValidator"/>
+                            <h:message for="kontoLogin" style="color:red" />
                             <br />
                             <h:outputLabel style="margin-right: 20px" value="Hasło:" />
-                            <h:inputSecret  id="kontoHaslo" value="#{loginController.konto.kontoHaslo}" class="form-control" a:placeholder="Podaj hasło"/>
+                            <h:inputSecret  id="kontoHaslo" value="#{loginController.konto.kontoHaslo}" class="form-control" a:placeholder="Podaj hasło" validator="LoginValidator"/>
+                            <h:message for="kontoHaslo" style="color:red" />
                             <br /><br />
                             <h:commandButton value="Wyślij"  action="#{loginController.login()}" class="btn btn-primary"/>
                         </h:form>
