@@ -31,11 +31,16 @@
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data zatrudnienia: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikDataZatrudnienia}"/>
+                                        <h:outputText value="#{pracownikController.pracownik.pracownikDataZatrudnienia}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data zwolnienia: " />
-                                        <h:outputText value="#{pracownikController.pracownik.pracownikDataZwolnienia}"/>
+                                        <h:outputText value="#{pracownikController.pracownik.pracownikDataZwolnienia}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
+
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Typ: " />

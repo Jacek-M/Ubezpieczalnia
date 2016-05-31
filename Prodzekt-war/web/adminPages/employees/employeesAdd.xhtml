@@ -53,9 +53,7 @@
                             
                             <h:outputLabel  value="Uprawnienia: " />
                             <h:selectOneMenu id="Uprawnienia" value="#{pracownikController.pracownik.pracownikTyp}">
-                                <f:selectItem itemValue="Rzeczoznawca" itemLabel="Rzeczoznawca" />
                                 <f:selectItem itemValue="Super" itemLabel="Administrator" />
-                                <f:selectItem itemValue="Konsultant" itemLabel="Konsultant" />
                                 <f:selectItem itemValue="PRACOWNIK" itemLabel="Pracownik" />
                             </h:selectOneMenu>
                             <h:message for="Uprawnienia" style="color:red" />
