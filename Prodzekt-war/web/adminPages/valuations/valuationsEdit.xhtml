@@ -20,20 +20,20 @@
                             <h:panelGrid  columns="2">
                                 <h:panelGroup>
                                     <h:inputHidden id="wycenaId" value="#{wycenaController.wycena.wycenaId}"/>
-                                    <h:outputLabel value="WycenaKwota:" for="wycenaKwota" />
+                                    <h:outputLabel value="Kwota: " for="wycenaKwota" />
                                 </h:panelGroup>
-                                <h:inputText id="Kwota" value="#{wycenaController.wycena.wycenaKwota}" validator="NumberValidator"/>
+                                <h:inputText id="Kwota" class="form-control" value="#{wycenaController.wycena.wycenaKwota}" validator="NumberValidator"/>
                                 <h:message for="Kwota" style="color:red" />
                                 
                                 <h:outputLabel value="Data: " for="wycenaData" />
-                                <h:inputText id="wycenaData" value="#{wycenaController.wycena.wycenaData}"  disabled="true">
+                                <h:inputText id="wycenaData" class="data-picker-class form-control" value="#{wycenaController.wycena.wycenaData}"  disabled="true">
                                     <f:convertDateTime pattern="dd.MM.yyyy" />
                                 </h:inputText>
                                 <h:message for="" style="color:red" />
                                 
                             </h:panelGrid>
                             <br/>
-                            <h:commandButton value="Dodaj nową wycene" action="#{wycenaController.update()}"/>
+                            <h:commandButton value="Dodaj nową wycene" class="btn btn-primary" action="#{wycenaController.update()}"/>
                         </h:form>
                     </f:view>
                 </div>

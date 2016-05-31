@@ -20,15 +20,15 @@
 
 
                             <h:outputLabel  value="Marka: " />
-                            <h:inputText id="marka" value="#{samochodZastController.samochodZastepczy.samochodZastepczyMarka}" validator="VarcharValidator"/>
+                            <h:inputText id="marka" class="form-control" value="#{samochodZastController.samochodZastepczy.samochodZastepczyMarka}" validator="VarcharValidator"/>
                             <h:message for="marka" style="color:red" />
 
                             <h:outputLabel  value="Model: " />
-                            <h:inputText id="model" value="#{samochodZastController.samochodZastepczy.samochodZastepczyModel}" validator="VarcharValidator" />
+                            <h:inputText id="model" class="form-control" value="#{samochodZastController.samochodZastepczy.samochodZastepczyModel}" validator="VarcharValidator" />
                             <h:message for="model" style="color:red" />
                             
                             <h:outputLabel  value="Czy dostępny: " />
-                            <h:selectOneMenu id="dostepny" value="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny}">
+                            <h:selectOneMenu id="dostepny" class="form-control" value="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny}">
                                 <f:selectItem itemValue="0" itemLabel="Nie" />
                                 <f:selectItem itemValue="1" itemLabel="Tak" />
                             </h:selectOneMenu>
@@ -36,7 +36,7 @@
 
                         </h:panelGrid>
                         <br/>
-                        <h:commandButton value="Zapisz" action="#{samochodZastController.addNew()}"/>
+                        <h:commandButton value="Zapisz" class="btn btn-primary" action="#{samochodZastController.addNew()}"/>
                     </h:form>
 
                 </div>

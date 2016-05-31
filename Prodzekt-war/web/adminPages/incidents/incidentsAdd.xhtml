@@ -24,43 +24,43 @@
                         <h:form id="panelAdd">
                             <h:panelGrid  columns="3">
                                 <h:outputLabel value="Data zdarzenia:" for="szkodaDataZdarzenia" />
-                                <h:inputText class="data-picker-class" id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
-                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                            </h:inputText>
-                            <h:message for="szkodaDataZdarzenia" style="color:red" />
+                                <h:inputText class="data-picker-class form-control" id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                </h:inputText>
+                                <h:message for="szkodaDataZdarzenia" style="color:red" />
 
                                 <h:outputLabel value="Typ:" for="szkodaTyp" />
-                                <h:selectOneMenu value="#{szkodaController.szkoda.szkodaTyp}">
+                                <h:selectOneMenu class="form-control" value="#{szkodaController.szkoda.szkodaTyp}">
                                     <f:selectItem itemValue="WINNY" itemLabel="Winny" />
                                     <f:selectItem itemValue="NIEWINNY" itemLabel="Niewinny" />
                                 </h:selectOneMenu>
                                 <h:message for="" style="color:red" />
 
                                 <h:outputLabel value="Opis:" for="szkodaOpis" />
-                                <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}" validator="VarcharValidator"/>
+                                <h:inputText id="szkodaOpis" class="form-control" value="#{szkodaController.szkoda.szkodaOpis}" validator="VarcharValidator"/>
                                 <h:message for="szkodaOpis" style="color:red" />
 
                                 <h:outputLabel value="Umowa:" />
-                                <h:selectOneMenu value="#{szkodaController.umowaController.umowa.umowaId}" required="true">
+                                <h:selectOneMenu class="form-control" value="#{szkodaController.umowaController.umowa.umowaId}" required="true">
                                     <f:selectItems value="#{umowaController.umowaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                                 </h:selectOneMenu>
                                 <h:message for="" style="color:red" />
-                                
+
                                 <h:outputLabel value="Imię uczestnika:" />
-                                <h:inputText id="imieUczestnika" value="#{uczestnikController.uczestnik.uczestnikImie}" validator="VarcharNullValidator"/>
+                                <h:inputText id="imieUczestnika" class="form-control" value="#{uczestnikController.uczestnik.uczestnikImie}" validator="VarcharNullValidator"/>
                                 <h:message for="imieUczestnika" style="color:red" />
 
                                 <h:outputLabel value="Nazwisko uczestnika:" />
-                                <h:inputText id="nazwiskoUczestnika" value="#{uczestnikController.uczestnik.uczestnikNazwisko}" validator="VarcharNullValidator"/>
+                                <h:inputText id="nazwiskoUczestnika" class="form-control" value="#{uczestnikController.uczestnik.uczestnikNazwisko}" validator="VarcharNullValidator"/>
                                 <h:message for="nazwiskoUczestnika" style="color:red" />
 
                                 <h:outputLabel value="Numer konta bankowego:" />
-                                <h:inputText id="nrKontaUczestnika" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}" validator="BankValidator"/>
+                                <h:inputText id="nrKontaUczestnika" class="form-control" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}" validator="BankValidator"/>
                                 <h:message for="nrKontaUczestnika" style="color:red" />
 
                             </h:panelGrid>
                             <br/>
-                            <h:commandButton value="Dodaj szkodę" action="#{szkodaController.registerIncident()}"/>
+                            <h:commandButton value="Dodaj szkodę" class="btn btn-primary" action="#{szkodaController.registerIncident()}"/>
 
                         </h:form>
                     </f:view>

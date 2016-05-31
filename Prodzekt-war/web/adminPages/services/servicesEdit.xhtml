@@ -18,52 +18,50 @@
                     <h:form id="panelAdd">
                         <h:panelGrid  columns="3">
                             <h:panelGroup>
-                                <h:outputLabel  value="" />
                                 <h:inputHidden id="hidden_value1" value="#{zakladController.zaklad.zakladId}"/>
                                 <h:outputLabel  value="Nazwa: " />
                             </h:panelGroup>
-                            <h:inputText id="kontoLogin" value="#{zakladController.zaklad.zakladNazwa}" validator="VarcharValidator"/>
+                            <h:inputText id="kontoLogin" class="form-control" value="#{zakladController.zaklad.zakladNazwa}" validator="VarcharValidator"/>
                             <h:message for="kontoLogin" style="color:red" />
 
                             <h:outputLabel  value="Data rozpoczęcia: " />
-                            <h:inputText class="data-picker-class" id="kontoHaslo" value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                            <h:inputText class="data-picker-class form-control" id="kontoHaslo" value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
                                 <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                             </h:inputText>
                             <h:message for="kontoHaslo" style="color:red" />
 
                             <h:outputLabel  value="Data zakończenia: " />
-                            <h:inputText class="data-picker-class" id="imie" value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                            <h:inputText class="data-picker-class form-control" id="imie" value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
                                 <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                             </h:inputText>
                             <h:message for="imie" style="color:red" />
 
-                            <h:panelGroup>
-                                <h:outputLabel value="" />    
+                            <h:panelGroup>   
                                 <h:inputHidden id="hidden_value2" value="#{zakladController.adresController.adres.adresId}"/>
                                 <h:outputLabel  value="Telefon: " />
                             </h:panelGroup>
-                            <h:inputText id="telefon" value="#{zakladController.adresController.adres.adresTelefon}" validator="TelephoneValidator"/>
+                            <h:inputText id="telefon" class="form-control" value="#{zakladController.adresController.adres.adresTelefon}" validator="TelephoneValidator"/>
                             <h:message for="telefon" style="color:red" />
 
                             <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{zakladController.adresController.adres.adresUlica}" validator="VarcharNullValidator"/>
+                            <h:inputText id="ulica" class="form-control" value="#{zakladController.adresController.adres.adresUlica}" validator="VarcharNullValidator"/>
                             <h:message for="ulica" style="color:red" />
 
                             <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{zakladController.adresController.adres.adresMiejscowosc}" validator="VarcharValidator"/>
+                            <h:inputText id="miasto" class="form-control" value="#{zakladController.adresController.adres.adresMiejscowosc}" validator="VarcharValidator"/>
                             <h:message for="miasto" style="color:red" />
 
                             <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{zakladController.adresController.adres.adresKodPocztowy}" validator="VarcharValidator"/>
+                            <h:inputText id="kodPocztowy" class="form-control" value="#{zakladController.adresController.adres.adresKodPocztowy}" validator="VarcharValidator"/>
                             <h:message for="kodPocztowy" style="color:red" />
 
-                            <h:outputLabel  value="Poczta " />
-                            <h:inputText id="poczta" value="#{zakladController.adresController.adres.adresPoczta}" validator="VarcharValidator"/>
+                            <h:outputLabel  value="Poczta: " />
+                            <h:inputText id="poczta" class="form-control" value="#{zakladController.adresController.adres.adresPoczta}" validator="VarcharValidator"/>
                             <h:message for="poczta" style="color:red" />
 
                         </h:panelGrid>
                         <br/>
-                        <h:commandButton value="Zapisz" action="#{zakladController.update()}"/>
+                        <h:commandButton value="Zapisz" class="btn btn-primary" action="#{zakladController.update()}"/>
                     </h:form>
 
 

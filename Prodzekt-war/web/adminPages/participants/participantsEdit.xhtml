@@ -23,20 +23,20 @@
                                 <h:outputLabel  value="Imię: " />
                             </h:panelGroup>
 
-                            <h:inputText id="marka" value="#{uczestnikController.uczestnik.uczestnikImie}" validator="VarcharValidator"/>
+                            <h:inputText id="marka" class="form-control" value="#{uczestnikController.uczestnik.uczestnikImie}" validator="VarcharValidator"/>
                             <h:message for="marka" style="color:red" />
 
                             <h:outputLabel  value="Nazwisko: " />
-                            <h:inputText id="model" value="#{uczestnikController.uczestnik.uczestnikNazwisko}" validator="VarcharValidator"/>
+                            <h:inputText id="model" class="form-control" value="#{uczestnikController.uczestnik.uczestnikNazwisko}" validator="VarcharValidator"/>
                             <h:message for="model" style="color:red" />
 
                             <h:outputLabel  value="Numer konta: " />
-                            <h:inputText id="czyDostepny" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}" validator="BankValidator"/>
+                            <h:inputText id="czyDostepny" class="form-control" value="#{uczestnikController.uczestnik.uczestnikNumerKonta}" validator="BankValidator"/>
                             <h:message for="czyDostepny" style="color:red" />
 
                         </h:panelGrid>
                         <br/>
-                        <h:commandButton value="Zapisz" action="#{uczestnikController.update()}"/>
+                        <h:commandButton value="Zapisz" class="btn btn-primary" action="#{uczestnikController.update()}"/>
                     </h:form>
 
 

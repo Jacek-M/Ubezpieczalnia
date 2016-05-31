@@ -18,20 +18,19 @@
                     <h:form id="panelAdd">
                         <h:panelGrid  columns="3">
                             <h:panelGroup>
-                                <h:outputLabel  value="" />
                                 <h:inputHidden id="hidden_value1" value="#{samochodZastController.samochodZastepczy.samochodZastepczyId}"/>
                                 <h:outputLabel  value="Marka: " />
                             </h:panelGroup>
 
-                            <h:inputText id="marka" value="#{samochodZastController.samochodZastepczy.samochodZastepczyMarka}" validator="VarcharValidator"/>
+                            <h:inputText id="marka" class="form-control" value="#{samochodZastController.samochodZastepczy.samochodZastepczyMarka}" validator="VarcharValidator"/>
                             <h:message for="marka" style="color:red" />
 
                             <h:outputLabel  value="Model: " />
-                            <h:inputText id="model" value="#{samochodZastController.samochodZastepczy.samochodZastepczyModel}" validator="VarcharValidator"/>
+                            <h:inputText id="model" class="form-control" value="#{samochodZastController.samochodZastepczy.samochodZastepczyModel}" validator="VarcharValidator"/>
                             <h:message for="model" style="color:red" />
 
                             <h:outputLabel  value="Czy dostępny: " />
-                            <h:selectOneMenu value="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny}">
+                            <h:selectOneMenu class="form-control" value="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny}">
                                 <f:selectItem itemValue="0" itemLabel="Nie" />
                                 <f:selectItem itemValue="1" itemLabel="Tak" />
                             </h:selectOneMenu>
@@ -39,7 +38,7 @@
 
                         </h:panelGrid>
                         <br/>
-                        <h:commandButton value="Zapisz" action="#{samochodZastController.update()}"/>
+                        <h:commandButton value="Zapisz" class="btn btn-primary" action="#{samochodZastController.update()}"/>
                     </h:form>
 
 

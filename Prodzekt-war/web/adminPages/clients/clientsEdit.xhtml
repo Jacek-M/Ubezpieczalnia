@@ -13,34 +13,35 @@
             <ui:define name="contentAdmin">
                 <div class="clients">
                     #{registerController.receivedPost()}
-                    <h4>Dane pracownika </h4>
-                    <br/>
-                    <ul>
-                        <li>
+                    <h1>Dane pracownika </h1>
+
+                    <h:form id="panelAdd">
+                        <h:panelGrid  columns="3">
+
                             <h:outputLabel  value="Imie: " />
-                            <h:outputText value="#{registerController.klient.klientImie}"/>
-                        </li>
-                        <li>
-                            <h:outputLabel  value="Nazwisko: " />
-                            <h:outputText value="#{registerController.klient.klientNazwisko}"/>
-                        </li>
-                    </ul>
+                            <h:outputText class="form-control" value="#{registerController.klient.klientImie}"/>
+                            <h:message for="" style="color:red" />
+
+                            <h:outputLabel value="Nazwisko: " />
+                            <h:outputText class="form-control" value="#{registerController.klient.klientNazwisko}"/>
+                            <h:message for="" style="color:red" />
+
+                            <h:panelGroup>
+                                <h:outputLabel  value="" />
+                                <h:inputHidden id="hidden_value1" value="#{registerController.klient.klientId}"/>
+                            </h:panelGroup>
+                            <h:message for="" style="color:red" />
+                            <h:message for="" style="color:red" />
+
+                            <h:outputLabel  value="Procent zniżki: " />
+                            <h:inputText id="nazwisko" class="form-control" value="#{registerController.klient.klientProcentZnizki}" validator="DiscountValidator"/>
+                            <h:message for="nazwisko" style="color:red" />
+                        </h:panelGrid>
+                        <br/>
+                        <h:commandButton class="btn btn-primary" value="Zapisz" action="#{registerController.update()}"/>
+
+                    </h:form>
                 </div>
-
-                <br/>
-                <h:form id="panelAdd">
-                    <h:panelGroup>
-                        <h:outputLabel  value="" />
-                        <h:inputHidden id="hidden_value1" value="#{registerController.klient.klientId}"/>
-                    </h:panelGroup>
-                    <h:outputLabel  value="Procent zniżki: " />
-                    <br/>
-                    <h:inputText id="nazwisko" value="#{registerController.klient.klientProcentZnizki}" validator="DiscountValidator"/>
-                    <h:message for="nazwisko" style="color:red" />
-
-                    <br/>
-                    <h:commandButton value="Zapisz" action="#{registerController.update()}"/>
-                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

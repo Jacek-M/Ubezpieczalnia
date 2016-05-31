@@ -20,32 +20,32 @@
 
 
                             <h:outputLabel  value="Telefon: " />
-                            <h:inputText id="telefon1" value="#{oddzialController.oddzial.oddzialTelefon}" validator="TelephoneValidator"/>
+                            <h:inputText id="telefon1" class="form-control" value="#{oddzialController.oddzial.oddzialTelefon}" validator="TelephoneValidator"/>
                             <h:message for="telefon1" style="color:red" />
                             
                             <h:outputLabel  value="Telefon: " />
-                            <h:inputText id="telefon" value="#{oddzialController.adresController.adres.adresTelefon}" validator="TelephoneValidator"/>
+                            <h:inputText id="telefon" class="form-control" value="#{oddzialController.adresController.adres.adresTelefon}" validator="TelephoneValidator"/>
                             <h:message for="telefon" style="color:red" />
 
                             <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{oddzialController.adresController.adres.adresUlica}" validator="VarcharNullValidator"/>
+                            <h:inputText id="ulica" class="form-control" value="#{oddzialController.adresController.adres.adresUlica}" validator="VarcharNullValidator"/>
                             <h:message for="ulica" style="color:red" />
 
                             <h:outputLabel  value="Miejscowość: " />
-                            <h:inputText id="miasto" value="#{oddzialController.adresController.adres.adresMiejscowosc}" validator="VarcharValidator"/>
+                            <h:inputText id="miasto" class="form-control" value="#{oddzialController.adresController.adres.adresMiejscowosc}" validator="VarcharValidator"/>
                             <h:message for="miasto" style="color:red" />
 
                             <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{oddzialController.adresController.adres.adresKodPocztowy}" validator="VarcharValidator"/>
+                            <h:inputText id="kodPocztowy" class="form-control" value="#{oddzialController.adresController.adres.adresKodPocztowy}" validator="VarcharValidator"/>
                             <h:message for="kodPocztowy" style="color:red" />
 
                             <h:outputLabel  value="Poczta: " />
-                            <h:inputText id="poczta" value="#{oddzialController.adresController.adres.adresPoczta}" validator="VarcharValidator"/>
+                            <h:inputText id="poczta" class="form-control" value="#{oddzialController.adresController.adres.adresPoczta}" validator="VarcharValidator"/>
                             <h:message for="poczta" style="color:red" />
 
                         </h:panelGrid>
                         <br/>
-                        <h:commandButton value="Zapisz" action="#{oddzialController.registerBranche()}"/>
+                        <h:commandButton value="Zapisz" class="btn btn-primary" action="#{oddzialController.registerBranche()}"/>
                     </h:form>
                 </div>
             </ui:define>

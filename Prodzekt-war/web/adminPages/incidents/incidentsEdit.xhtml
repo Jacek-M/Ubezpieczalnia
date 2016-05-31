@@ -20,7 +20,7 @@
                             <h:panelGrid  columns="2">
                                 <h:outputLabel value="Data Zdarzenia:" for="szkodaDataZdarzenia" />
                                 <h:panelGroup>
-                                    <h:inputText class="data-picker-class" id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" disabled="true">
+                                    <h:inputText class="data-picker-class form-control" id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" disabled="true">
                                         <f:convertDateTime pattern="dd-MM-yyyy"/>
                                     </h:inputText>
                                     <h:inputHidden value="#{szkodaController.szkoda.szkodaId}"/>
@@ -28,16 +28,16 @@
                                 </h:panelGroup>
 
                                 <h:outputLabel value="Opis:" for="szkodaOpis" />
-                                <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}" disabled="true"/>
+                                <h:inputText id="szkodaOpis" class="form-control" value="#{szkodaController.szkoda.szkodaOpis}" disabled="true"/>
 
                                 <h:outputLabel value="Typ:" for="szkodaTyp" />
-                                <h:selectOneMenu value="#{szkodaController.szkoda.szkodaTyp}">
+                                <h:selectOneMenu class="form-control" value="#{szkodaController.szkoda.szkodaTyp}">
                                     <f:selectItem itemValue="WINNY" itemLabel="Winny" />
                                     <f:selectItem itemValue="NIEWINNY" itemLabel="Niewinny" />
                                 </h:selectOneMenu>
                             </h:panelGrid>
                             <br/>
-                            <h:commandButton value="Zapisz" action="#{szkodaController.acceptIncident()}"/>
+                            <h:commandButton class="btn btn-primary" value="Zapisz" action="#{szkodaController.acceptIncident()}"/>
                         </h:form>
                     </f:view>
 

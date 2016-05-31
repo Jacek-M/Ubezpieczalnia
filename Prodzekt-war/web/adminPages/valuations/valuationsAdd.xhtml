@@ -23,27 +23,27 @@
                         <h:form id="panelAdd">
                             <h:panelGrid  columns="3">
                                 <h:panelGroup>
-                                    <h:outputLabel value="WycenaKwota:" for="wycenaKwota" />
+                                    <h:outputLabel value="Kwota: " for="wycenaKwota" />
                                     <h:inputHidden id="www" value="#{szkodaController.pracownikController.pracownik.pracownikId}"/>
                                 </h:panelGroup>
-                                <h:inputText id="wycenaKwota" value="#{wycenaController.wycena.wycenaKwota}" validator="NumberValidator"/>
+                                <h:inputText id="wycenaKwota" class="form-control" value="#{wycenaController.wycena.wycenaKwota}" validator="NumberValidator"/>
                                 <h:message for="wycenaKwota" style="color:red" />
 
-                                <h:outputLabel value="WycenaData:" for="wycenaData" />
-                                <h:inputText id="wycenaData" value="#{wycenaController.wycena.wycenaData}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                                <h:outputLabel value="Data:" for="wycenaData" />
+                                <h:inputText id="wycenaData" class="data-picker-class form-control" value="#{wycenaController.wycena.wycenaData}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
                                     <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
                                 </h:inputText>
                                 <h:message for="wycenaData" style="color:red" />
 
-                                <h:outputLabel value="WycenaSzkodaIdFk:" for="wycenaSzkodaIdFk" />
-                                <h:selectOneMenu value="#{wycenaController.szkodaController.szkoda.szkodaId}">
+                                <h:outputLabel value="Szkoda: " for="wycenaSzkodaIdFk" />
+                                <h:selectOneMenu class="form-control" value="#{wycenaController.szkodaController.szkoda.szkodaId}">
                                     <f:selectItems value="#{szkodaController.szkodaSelectList}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                                 </h:selectOneMenu>
                                 <h:message for="" style="color:red" />
 
                             </h:panelGrid>
                             <br/>
-                            <h:commandButton value="Dodaj nową wycene" action="#{wycenaController.registerValuation()}"/>
+                            <h:commandButton value="Dodaj nową wycene" class="btn btn-primary" action="#{wycenaController.registerValuation()}"/>
                         </h:form>
                     </f:view>
 
