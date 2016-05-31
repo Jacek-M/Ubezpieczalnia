@@ -185,6 +185,7 @@
                 }
 //                var pagesContent = self.tableActions === "admin" ? "adminPages" : "customerPages";
                 var url = "/Prodzekt-war/faces/" + pagesContent + "/" + self.link + "/" + self.link + "View.xhtml";
+                console.log(url);
                 var form = $('<form action="' + url + '" method="post">' +
                         '<input type="hidden" name="post_id" value="' + rowData[1] + '" />' +
                         '</form>');

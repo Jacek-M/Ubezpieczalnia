@@ -24,7 +24,7 @@
                         <h:form id="panelAdd">
                             <h:panelGrid  columns="3">
                                 <h:outputLabel value="Data zdarzenia:" for="szkodaDataZdarzenia" />
-                                <h:inputText class="szkoda-dataZdarzenia" id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                                <h:inputText class="data-picker-class" id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
                                     <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                                 </h:inputText>
                                 <h:message for="szkodaDataZdarzenia" style="color:red" />

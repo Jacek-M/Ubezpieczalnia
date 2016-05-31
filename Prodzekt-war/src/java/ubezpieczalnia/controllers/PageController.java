@@ -37,7 +37,7 @@ public class PageController {
         "/why/services/services.xhtml",
         "/why/order/order.xhtml", "/why/order/orderAdd.xhtml", "/why/order/orderEdit.xhtml", "/why/order/orderView.xhtml", "/why/order/orderHistory.xhtml",
         "/why/valuations/valuationsView.xhtml",
-        "/adminPages/admin/admin.xhtml"
+        "/adminPages/admin/admin.xhtml", "/customerPages/valuations/valuationsView.xhtml"
 
     };
 
