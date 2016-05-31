@@ -20,11 +20,11 @@
                         </ul>
                     </div>
                     <div id="tableUbezpieczenia" class="table-ubezpieczenia">
-                        <div id="tableHeader" class="table-header">
-                            <p></p>
-                        </div>
 
                         <div id="tableInsuranceContent" class="table-content">
+                            <div id="tableHeader" class="table-header">
+                                <p></p>
+                            </div>
                             <h:dataTable id="tableInsurance" class="table-data" value="#{rodzajUbezController.rodzajUbezList}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
@@ -67,7 +67,7 @@
                                         <h:outputText value="TAK"/>
                                     </c:if> 
                                 </h:column>
-                                
+
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Akcja"/>

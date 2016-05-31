@@ -28,7 +28,7 @@
                                 </ul>
 
                             </div>
-                           
+
                             <div class="col-md-3">
                                 <h4>Adres</h4>
                                 <br/>
@@ -57,13 +57,13 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div id="tablePracownicy" class="table-pracownicy">
-                        <div id="tableHeader" class="table-header">
-                            <p></p>
-                        </div>
 
                         <div id="tableBrancheViewContent" class="table-content">
+                            <div id="tableHeader" class="table-header">
+                                <p></p>
+                            </div>
                             <h:dataTable id="tableBrancheView" class="table-data" value="#{oddzialController.oddzial.pracownikCollection}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
@@ -136,9 +136,9 @@
                             </h:dataTable>
                         </div>
                     </div>
-                    
-                    
-                    
+
+
+
                 </div>
             </ui:define>
         </ui:composition>
