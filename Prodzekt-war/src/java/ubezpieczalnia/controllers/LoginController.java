@@ -20,6 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import ubezpieczalnia.entities.Klient;
 import ubezpieczalnia.entities.Konto;
+import ubezpieczalnia.entities.Pojazd;
 import ubezpieczalnia.entities.Pracownik;
 import ubezpieczalnia.entities.Szkoda;
 import ubezpieczalnia.entities.Umowa;
@@ -152,6 +153,37 @@ public class LoginController implements Serializable, AbstractController<Konto> 
             }
         }
         return temp;
+    }
+
+    public List<SelectItem> getMojePojazdy() {
+        this.konto = kontoEJB.refresh(this.konto);
+        ArrayList<SelectItem> pojazdSelectItem = new ArrayList<>();
+        ArrayList<Integer> added = new ArrayList<>();
+        for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
+            boolean flag = false;
+            int pojazdId = umowa.getUmowaPojazdIdFk().getPojazdId();
+            for (Integer x : added) {
+                if (x == pojazdId) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                continue;
+            }
+            if (added.size() == 0) {
+                pojazdSelectItem.add(new SelectItem(-1, "WYBIERZ POJAZD"));
+            }
+            added.add(pojazdId);
+            String label = umowa.getUmowaPojazdIdFk().getPojazdMarka() + umowa.getUmowaPojazdIdFk().getPojazdModel();
+            pojazdSelectItem.add(new SelectItem(pojazdId, label));
+        }
+
+        if (added.size() == 0) {
+            pojazdSelectItem.add(new SelectItem(-1, "BRAK POJAZDÓW"));
+        }
+
+        return pojazdSelectItem;
     }
 
     public ArrayList<Umowa> getUmowaHistory() {
