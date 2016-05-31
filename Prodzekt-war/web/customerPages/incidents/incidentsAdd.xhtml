@@ -24,17 +24,13 @@
                         <h:form id="panelAdd">
                             <h:panelGrid  columns="3">
                                 <h:outputLabel value="Data zdarzenia:" for="szkodaDataZdarzenia" />
-                                <h:inputText id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
-                                    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                <h:inputText class="szkoda-dataZdarzenia" id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                                 </h:inputText>
                                 <h:message for="szkodaDataZdarzenia" style="color:red" />
 
 
-                                <h:outputLabel value="Typ:" for="szkodaTyp" />
-                                <h:selectOneMenu value="#{szkodaController.szkoda.szkodaTyp}">
-                                    <f:selectItem itemValue="NIEOCENIONE" itemLabel="Do oceny przez pracownika" />
-                                </h:selectOneMenu>
-                                <h:message for="" style="color:red" />
+
 
                                 <h:outputLabel value="Opis:" for="szkodaOpis" />
                                 <h:inputText id="szkodaOpis" value="#{szkodaController.szkoda.szkodaOpis}" validator="VarcharValidator"/>

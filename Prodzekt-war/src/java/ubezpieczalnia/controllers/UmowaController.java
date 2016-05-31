@@ -59,7 +59,7 @@ public class UmowaController implements AbstractController<Umowa> {
             this.umowaSelectList.add(new SelectItem(-1, "Brak umów"));
             return this.umowaSelectList;
         } else {
-            this.umowaSelectList.add(new SelectItem(-1, "-- WYBIERZ UMOWE --"));
+            this.umowaSelectList.add(new SelectItem(-1, "WYBIERZ UMOWĘ"));
             for (Umowa umowaList1 : this.umowaList) {
                 String date = new SimpleDateFormat("dd-MM-yyyy").format(umowaList1.getUmowaDataWystawienia());
                 String text = umowaList1.getUmowaId().toString() + "| " + umowaList1.getUmowaKlientIdFk().getKlientImie() + " " + umowaList1.getUmowaKlientIdFk().getKlientNazwisko() + " | " + date;
@@ -170,7 +170,13 @@ public class UmowaController implements AbstractController<Umowa> {
             int kwotaUbezpieczenia = Integer.parseInt(rodzajUbezController.getRodzajUbez().getRodzajUbezpieczeniaCena());
             int kwota = kwotaUbezpieczenia - ((znizka * kwotaUbezpieczenia) / 100);
             this.umowa.setUmowaKwota(kwota);
-            pojazdController.addNew();
+
+            if (pojazdController.getPojazd() != null && pojazdController.getPojazd().getPojazdId() != null && pojazdController.getPojazd().getPojazdId() != -1) {
+                this.pojazdController.findById();
+            } else {
+                pojazdController.addNew();
+            }
+
             this.umowa.setUmowaPojazdIdFk(pojazdController.getPojazd());
             this.umowa.setUmowaPracownikIdFk(pracownikController.getPracownik());
             this.umowa.setUmowaRodzajUbezpieczeniaIdFk(rodzajUbezController.getRodzajUbez());
@@ -178,7 +184,8 @@ public class UmowaController implements AbstractController<Umowa> {
             umowaEJB.addNew(this.umowa);
 
         } catch (Exception ex) {
-            Logger.getLogger(UmowaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UmowaController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         return PageController.getPage("/customerPages/agreements/agreements.xhtml");
@@ -227,11 +234,13 @@ public class UmowaController implements AbstractController<Umowa> {
 
                 if (postTypeParam != null) {
                     acceptAgreement();
+
                 }
             }
 
         } catch (Exception ex) {
-            Logger.getLogger(UmowaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UmowaController.class
+                    .getName()).log(Level.SEVERE, null, ex);
 
         }
         if (requestParams.get("post_type") != null) {

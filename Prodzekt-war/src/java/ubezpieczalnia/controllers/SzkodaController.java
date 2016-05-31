@@ -185,6 +185,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
                 this.szkoda.setSzkodaUczestnikIdFk(uczestnikController.getUczestnik());
             }
             this.szkoda.setSzkodaStatus("NOWA");
+            this.szkoda.setSzkodaTyp("NIEOCENIONE");
             this.addNew();
 
         } catch (Exception e) {

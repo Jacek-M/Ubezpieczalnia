@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -17,7 +19,7 @@
                             <h:panelGrid columns="3">
                                 <h:outputLabel  value="Ubezpieczenie: "  />
                                 <h:panelGroup>
-                                    <h:inputText disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaNazwa}"/>
+                                    <h:outputLabel  value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaNazwa}"/>
                                     <h:inputHidden value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaId}"/>
                                     <h:inputHidden value="#{umowaController.registerController.klient.klientId}"/>
                                     <h:inputHidden value="#{umowaController.pracownikController.pracownik.pracownikId}"/>
@@ -25,20 +27,39 @@
                                 <h:message for="" style="color:red" />
 
                                 <h:outputLabel  value="Opis: " />
-                                <h:inputTextarea rows="5" cols="35" disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaOpis}"/>
+                                <h:outputLabel value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaOpis}"/>
                                 <h:message for="" style="color:red" />
 
                                 <h:outputLabel  value="Auto zastępcze: " />
-                                <h:inputText disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                <h:panelGroup>
+                                    <c:if test="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy == 1}">
+                                        <h:outputLabel  value="Tak" />
+                                    </c:if>
+                                    <c:if test="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy == 0}">
+                                        <h:outputLabel  value="Nie" />
+                                    </c:if>
+                                </h:panelGroup>
                                 <h:message for="" style="color:red" />
 
                                 <h:outputLabel  value="Rodzaj ubezpieczenia: " />
-                                <h:inputText  disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaRodzaj}"/>
+                                <h:outputLabel value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaRodzaj}"/>
                                 <h:message for="" style="color:red" />
 
                                 <h:outputLabel  value="Cena ubezpieczenia: " />
-                                <h:inputText  disabled="true" value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCena}"/>
+                                <h:outputLabel value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCena}"/>
                                 <h:message for="" style="color:red" />
+
+                                <h:outputLabel  value="Wybierz auto z listy: "/>
+                                <h:selectOneMenu  class="car-select" id="carSelect" value="#{umowaController.pojazdController.pojazd.pojazdId}">
+                                    <f:selectItems value="#{umowaController.loginController.mojePojazdy}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                </h:selectOneMenu>
+                                <h:message for="carSelect" style="color:red" />
+
+
+                                <h:outputLabel  value="Dodaj nowe auto do umowy: " />
+                                <input id="umowaCar" type="checkbox" name="vehicle" value="Dodaj nowe auto"/>
+
+                                <h:message for="marka" style="color:red" /> 
 
                                 <h:outputLabel  value="Marka: " />
                                 <h:inputText  id="marka" value="#{umowaController.pojazdController.pojazd.pojazdMarka}" validator="VarcharValidator"/>
@@ -61,7 +82,13 @@
                                 <h:message for="silnik" style="color:red" />
 
                                 <h:outputLabel  value="Paliwo: " />
-                                <h:inputText  id="paliwo" value="#{umowaController.pojazdController.pojazd.pojazdPaliwo}" validator="VarcharValidator"/>
+
+                                <h:selectOneMenu value="#{umowaController.pojazdController.pojazd.pojazdPaliwo}">
+                                    <f:selectItem itemValue="Diesel" itemLabel="Diesel" />
+                                    <f:selectItem itemValue="Benzyna" itemLabel="Benzyna" />
+                                    <f:selectItem itemValue="Benzyna + Gaz" itemLabel="Benzyna + Gaz" />
+                                </h:selectOneMenu>
+
                                 <h:message for="paliwo" style="color:red" />
 
 
