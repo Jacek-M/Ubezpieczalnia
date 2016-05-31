@@ -34,8 +34,8 @@
                             <h:message for="wynagrodzenie" style="color:red" />
                             
                             <h:outputLabel  value="Data zatrudnienia: " />
-                            <h:inputText id="dataZatrudnienia" value="#{pracownikController.pracownik.pracownikDataZatrudnienia}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
-                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                            <h:inputText class ="data-picker-class" id="dataZatrudnienia" value="#{pracownikController.pracownik.pracownikDataZatrudnienia}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                             </h:inputText>
                             <h:message for="dataZatrudnienia" style="color:red" />
                             

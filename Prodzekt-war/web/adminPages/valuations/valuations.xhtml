@@ -43,7 +43,9 @@
                                     <f:facet name="header">
                                         <h:outputText value="Data"/>
                                     </f:facet>
-                                    <h:outputText value="#{emp.wycenaData}"/>
+                                    <h:outputText value="#{emp.wycenaData}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">

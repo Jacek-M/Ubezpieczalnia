@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/customerTemplate.xhtml">
+            <ui:define name="contentCustomer">
+                <div class="valuations">
+                    #{wycenaController.receivedPost()}
+                    <h1> Wycena info</h1>
+
+                    <div class="data-view">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4>Dane wyceny </h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Data: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaData}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                                        </h:outputText>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Kwota: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaKwota}"/>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="col-md-3">
+
+                                <h4>Pracownik</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Imię: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaPracownikIdFk.pracownikImie}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Nazwisko: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaPracownikIdFk.pracownikNazwisko}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Typ:: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaPracownikIdFk.pracownikTyp}"/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Szkoda</h4>
+                                <br/>
+                                <ul>
+                                    <li>
+                                        <h:outputLabel  value="Data zdarzenia: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZdarzenia}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                                        </h:outputText>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Data zakonczenia: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZakonczenia}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                                        </h:outputText>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Status: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaStatus}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Typ: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaTyp}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Opis: " />
+                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaOpis}"/>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

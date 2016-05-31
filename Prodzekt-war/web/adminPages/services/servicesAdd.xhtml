@@ -24,14 +24,14 @@
                             <h:message for="kontoLogin" style="color:red" />
 
                             <h:outputLabel  value="Data rozpoczęcia: " />
-                            <h:inputText id="zxc" value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
-                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                            <h:inputText class="data-picker-class" id="zxc" value="#{zakladController.zaklad.zakladDataRozpoczeciaWsp}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                             </h:inputText>
                             <h:message for="zxc" style="color:red" />
 
                             <h:outputLabel  value="Data zakończenia: " />
-                            <h:inputText id="imie" value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
-                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                            <h:inputText class="data-picker-class" id="imie" value="#{zakladController.zaklad.zakladDataZakonczeniaWsp}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                             </h:inputText>
                             <h:message for="imie" style="color:red" />
 
