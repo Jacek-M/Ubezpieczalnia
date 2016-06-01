@@ -19,7 +19,7 @@
                             <h:panelGrid columns="3">
                                 <h:outputLabel  value="Ubezpieczenie: "  />
                                 <h:panelGroup>
-                                    <h:outputLabel  value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaNazwa}"/>
+                                    <h:outputLabel value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaNazwa}"/>
                                     <h:inputHidden value="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaId}"/>
                                     <h:inputHidden value="#{umowaController.registerController.klient.klientId}"/>
                                     <h:inputHidden value="#{umowaController.pracownikController.pracownik.pracownikId}"/>
@@ -50,40 +50,40 @@
                                 <h:message for="" style="color:red" />
 
                                 <h:outputLabel  value="Wybierz auto z listy: "/>
-                                <h:selectOneMenu  class="car-select" id="carSelect" value="#{umowaController.pojazdController.pojazd.pojazdId}">
+                                <h:selectOneMenu  class="car-select form-control" id="carSelect" value="#{umowaController.pojazdController.pojazd.pojazdId}">
                                     <f:selectItems value="#{umowaController.loginController.mojePojazdy}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                                 </h:selectOneMenu>
                                 <h:message for="carSelect" style="color:red" />
 
 
                                 <h:outputLabel  value="Dodaj nowe auto do umowy: " />
-                                <input id="umowaCar" type="checkbox" name="vehicle" value="Dodaj nowe auto"/>
+                                <input id="umowaCar"  class="checkbox" type="checkbox" name="vehicle" value="Dodaj nowe auto"/>
 
                                 <h:message for="marka" style="color:red" /> 
 
                                 <h:outputLabel  value="Marka: " />
-                                <h:inputText  id="marka" value="#{umowaController.pojazdController.pojazd.pojazdMarka}" validator="VarcharValidator"/>
+                                <h:inputText class="form-control" id="marka" value="#{umowaController.pojazdController.pojazd.pojazdMarka}" validator="VarcharValidator"/>
                                 <h:message for="marka" style="color:red" />
 
                                 <h:outputLabel  value="Model: " />
-                                <h:inputText id="model"  value="#{umowaController.pojazdController.pojazd.pojazdModel}" validator="VarcharValidator"/>
+                                <h:inputText id="model" class="form-control"   value="#{umowaController.pojazdController.pojazd.pojazdModel}" validator="VarcharValidator"/>
                                 <h:message for="model" style="color:red" />
 
                                 <h:outputLabel  value="Rok produkcji: " />
-                                <h:inputText id="rok"  value="#{umowaController.pojazdController.pojazd.pojazdRokProdukcji}" validator="YearValidator"/>
+                                <h:inputText id="rok" class="form-control"   value="#{umowaController.pojazdController.pojazd.pojazdRokProdukcji}" validator="YearValidator"/>
                                 <h:message for="rok" style="color:red" />
 
                                 <h:outputLabel  value="Nr vin: " />
-                                <h:inputText id="vin"  value="#{umowaController.pojazdController.pojazd.pojazdNrVin}" validator="VinValidator"/>
+                                <h:inputText id="vin" class="form-control"  value="#{umowaController.pojazdController.pojazd.pojazdNrVin}" validator="VinValidator"/>
                                 <h:message for="vin" style="color:red" />
 
                                 <h:outputLabel  value="Pojemność silnika: " />
-                                <h:inputText  id="silnik" value="#{umowaController.pojazdController.pojazd.pojazdPojemnosc}" validator="NumberValidator"/>
+                                <h:inputText  id="silnik" class="form-control"  value="#{umowaController.pojazdController.pojazd.pojazdPojemnosc}" validator="NumberValidator"/>
                                 <h:message for="silnik" style="color:red" />
 
                                 <h:outputLabel  value="Paliwo: " />
 
-                                <h:selectOneMenu value="#{umowaController.pojazdController.pojazd.pojazdPaliwo}">
+                                <h:selectOneMenu class="form-control" value="#{umowaController.pojazdController.pojazd.pojazdPaliwo}">
                                     <f:selectItem itemValue="Diesel" itemLabel="Diesel" />
                                     <f:selectItem itemValue="Benzyna" itemLabel="Benzyna" />
                                     <f:selectItem itemValue="Benzyna + Gaz" itemLabel="Benzyna + Gaz" />
@@ -92,7 +92,7 @@
                                 <h:message for="paliwo" style="color:red" />
 
 
-                                <h:commandButton value="Kup ubezpieczenie" action="#{umowaController.addNew()}"/>
+                                <h:commandButton class="btn btn-primary" value="Kup ubezpieczenie" action="#{umowaController.addNew()}"/>
                             </h:panelGrid>
                         </h:form>
                     </div>

@@ -103,20 +103,20 @@ public class OddzialController implements AbstractController<Oddzial> {
     public String update() {
         this.oddzial.setOddzialAdresIdFk(adresController.getAdres());
         oddzialEJB.update(this.oddzial);
-        return PageController.getPage("/adminPages/services/services.xhtml");
+        return PageController.getPage("/adminPages/branches/branches.xhtml");
     }
 
     @Override
     public String delete() {
         oddzialEJB.delete(this.oddzial);
-        return PageController.getPage("/adminPages/services/services.xhtml");
+        return PageController.getPage("/adminPages/branches/branches.xhtml");
     }
 
     public String registerBranche() {
         adresController.addNew();
         this.oddzial.setOddzialAdresIdFk(this.adresController.getAdres());
         this.addNew();
-        return PageController.getPage("/adminPages/services/services.xhtml");
+        return PageController.getPage("/adminPages/branches/branches.xhtml");
     }
 
 //    @PostConstruct

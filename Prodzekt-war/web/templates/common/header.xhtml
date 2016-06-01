@@ -25,10 +25,10 @@
                         </c:if>
 
                         <c:if test="#{loginController.checkPermission() == 'Super'}">
-                            <li><h:link value="Admin" outcome="#{pageController.getPage('/adminPages/employees/employees.xhtml')}"/></li>
+                            <li><h:link value="Pracownik" outcome="#{pageController.getPage('/adminPages/employees/employees.xhtml')}"/></li>
                         </c:if>
                         <c:if test="#{loginController.checkPermission() == 'PRACOWNIK'}">
-                            <li><h:link value="Pracownik" outcome="#{pageController.getPage('/why/order/order.xhtml')}"/></li>
+                            <li><h:link value="Zakład" outcome="#{pageController.getPage('/why/order/order.xhtml')}"/></li>
                         </c:if>
 
 

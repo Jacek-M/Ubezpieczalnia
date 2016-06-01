@@ -19,29 +19,29 @@
                             <h:panelGroup>
                                 <c:set value="#{loginController.klientAccount.klientAdresIdFk}" target="#{adresController}" property="adres" />
                                 <h:inputHidden id="hidden_value1" value="#{adresController.adres.adresId}"/>
-                                <h:inputText id="miasto" value="#{adresController.adres.adresMiejscowosc}" validator="VarcharValidator"/>
+                                <h:inputText id="miasto" class="form-control" value="#{adresController.adres.adresMiejscowosc}" validator="VarcharValidator"/>
                             </h:panelGroup>
                             <h:message for="miasto" style="color:red" />
                             
                             <h:outputLabel  value="Ulica: " />
-                            <h:inputText id="ulica" value="#{adresController.adres.adresUlica}" validator="VarcharNullValidator"/>
+                            <h:inputText id="ulica" class="form-control" value="#{adresController.adres.adresUlica}" validator="VarcharNullValidator"/>
                             <h:message for="ulica" style="color:red" />
 
                             <h:outputLabel  value="Kod pocztowy: " />
-                            <h:inputText id="kodPocztowy" value="#{adresController.adres.adresKodPocztowy}" validator="VarcharValidator"/>
+                            <h:inputText id="kodPocztowy" class="form-control" value="#{adresController.adres.adresKodPocztowy}" validator="VarcharValidator"/>
                             <h:message for="kodPocztowy" style="color:red" />
 
                             <h:outputLabel  value="Poczta " />
-                            <h:inputText id="poczta" value="#{adresController.adres.adresPoczta}" validator="VarcharValidator"/>
+                            <h:inputText id="poczta" class="form-control" value="#{adresController.adres.adresPoczta}" validator="VarcharValidator"/>
                             <h:message for="poczta" style="color:red" />
                             
                             <h:outputLabel  value="Telefon " />
-                            <h:inputText id="telefon" value="#{adresController.adres.adresTelefon}" validator="TelephoneValidator"/>
+                            <h:inputText id="telefon" class="form-control" value="#{adresController.adres.adresTelefon}" validator="TelephoneValidator"/>
                             <h:message for="telefon" style="color:red" />
 
 
                         </h:panelGrid>
-                        <h:commandButton value="Zapisz" action="#{adresController.update()}"/>
+                        <h:commandButton value="Zapisz" class="btn btn-primary" action="#{adresController.update()}"/>
                     </div>
                 </h:form>
             </ui:define>

@@ -355,17 +355,17 @@
 
 }
 /***********/
-.contentAdmin #panelAdd table, #panelAdd {
+/*.contentAdmin*/ #panelAdd table, #panelAdd{
     padding-top: 2%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
-.contentAdmin #panelAdd table tr.spaceUnder > td
+/*.contentAdmin*/ #panelAdd table tr.spaceUnder > td
 {
     padding-bottom: 5em;
 }
-.contentAdmin #panelAdd table td{
+/*.contentAdmin*/ #panelAdd table td{
     text-align: left;
 }
 
