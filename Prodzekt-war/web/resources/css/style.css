@@ -518,8 +518,8 @@ table.dataTable {
 
 .customerView {
     min-height: 200px;
-    margin-left: 12%;
-    margin-right: 12%;
+    margin-left: 10%;
+    margin-right: 10%;
     border: 1px solid rgb(200, 219, 244);
     background-color: whitesmoke;
 }
@@ -744,4 +744,52 @@ table.dataTable {
 
 .listed_products .col-md-3 {
     height:auto;
+}
+
+.menuCustomer{
+    position: relative;
+    margin-right: 20px;
+}
+
+.menuAdmin {
+    float: left;
+    margin-top: 4%;
+}
+/*.contentAdmin {
+    position: relative;
+    margin-left: 1%;
+    overflow: hidden;
+}*/
+#content .menuCustomer {
+    width: 13%;
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+#content .menuCustomer ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: #3b5998;
+    position: relative;
+}
+
+#content .menuCustomer li a {
+    display: block;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+#content .menuCustomer li:hover:not(.active) {
+    background-color: #8b9dc3;
+}
+#content .menuCustomer .active {
+    background-color: #052059;
+}
+#content .menuCustomer ul h2{
+    background-color: #001E5C;
+    color: white;
+    text-align: center;
+    font-family: sansation-light;
+    border-bottom: rgb(235, 235, 235)solid;
+    border-width: 8px;
+    margin-bottom: 0;
 }
