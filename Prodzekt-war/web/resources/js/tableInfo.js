@@ -106,32 +106,30 @@
                             cell.innerHTML += self._createOsomIcon("checkIcon", "pencil-check", "fa fa-check", "Pobierz zlecenie");
                             break;
                         }
-                        case "tableIncidents":
+                        case "tableValuationsCustomerView":
                         {
                             var columnIndex = self._getTableColumnIndex("Status", self.table.row(0).data().length);
                             var rowData = self.table.row(i).data();
-                            if (rowData[columnIndex] === "WYCENIONA") {
+                            if (rowData[columnIndex] === "WYCENIONE") {
                                 cell.innerHTML += self._createOsomIcon("repairIcon", "repair-check", "fa fa-wrench", "Napraw samochód");
                                 cell.innerHTML += self._createOsomIcon("moneyIcon", "money-check", "fa fa-money", "Wypłać gotówkę");
                             }
                             break;
                         }
                         case "tableAgreements":
-                        {
                             break;
-                        }
+
+                        case "tableIncidents":
+                            break;
                         case "tableValuationsCustomerView":
-                        {
                             break;
-                        }
+
                         case "tablePaymentsInsurances":
-                        {
                             break;
-                        }
+
                         default:
-                        {
                             cell.innerHTML += self._createOsomIcon("pencilIcon", "pencil-icon", "fa fa-pencil", "Edytuj");
-                        }
+
 
                     }
                 });

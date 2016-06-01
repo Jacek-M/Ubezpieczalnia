@@ -173,8 +173,11 @@ public class UmowaController implements AbstractController<Umowa> {
 
             if (pojazdController.getPojazd() != null && pojazdController.getPojazd().getPojazdId() != null && pojazdController.getPojazd().getPojazdId() != -1) {
                 this.pojazdController.findById();
+                System.out.println("FIND BY ID ");
+           
             } else {
                 pojazdController.addNew();
+                System.out.println("ADD NEW");
             }
 
             this.umowa.setUmowaPojazdIdFk(pojazdController.getPojazd());

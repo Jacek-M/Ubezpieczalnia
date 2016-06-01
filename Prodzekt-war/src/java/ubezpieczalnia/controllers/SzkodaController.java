@@ -65,10 +65,13 @@ public class SzkodaController implements AbstractController<Szkoda> {
             this.szkodaSelectList.add(new SelectItem(-1, "Brak szkód"));
             return this.szkodaSelectList;
         } else {
-            this.szkodaSelectList.add(new SelectItem(-1, "-- WYBIERZ SZKODĘ --"));
+            this.szkodaSelectList.add(new SelectItem(-1, "WYBIERZ SZKODĘ"));
             for (Szkoda szkodaList1 : this.szkodaList) {
                 if (szkodaList1.getSzkodaStatus().equals("DO WYCENY")) {
-                    String text = szkodaList1.getSzkodaId() + "| " + szkodaList1.getSzkodaUmowaIdFk().getUmowaKlientIdFk().getKlientImie() + " " + szkodaList1.getSzkodaUmowaIdFk().getUmowaKlientIdFk().getKlientNazwisko();
+                    String text = szkodaList1.getSzkodaId() + " | "
+                            + szkodaList1.getSzkodaUmowaIdFk().getUmowaKlientIdFk().getKlientImie() + " "
+                            + szkodaList1.getSzkodaUmowaIdFk().getUmowaKlientIdFk().getKlientNazwisko() + " | "
+                            + szkodaList1.getSzkodaUmowaIdFk().getUmowaRodzajUbezpieczeniaIdFk().getRodzajUbezpieczeniaNazwa();
                     this.szkodaSelectList.add(new SelectItem(szkodaList1.getSzkodaId(), text));
                 }
             }

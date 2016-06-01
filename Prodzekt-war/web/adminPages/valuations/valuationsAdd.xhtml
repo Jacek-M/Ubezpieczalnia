@@ -31,7 +31,7 @@
 
                                 <h:outputLabel value="Data:" for="wycenaData" />
                                 <h:inputText id="wycenaData" class="data-picker-class form-control" value="#{wycenaController.wycena.wycenaData}" required="true" requiredMessage="Pole wymagane" converterMessage="Błędny format 11.11.2000">
-                                    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
                                 </h:inputText>
                                 <h:message for="wycenaData" style="color:red" />
 

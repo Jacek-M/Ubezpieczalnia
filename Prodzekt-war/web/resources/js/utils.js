@@ -18,6 +18,7 @@ function isClicked() {
         var value = $("#umowaCar").prop("checked");
         if(value === false) {
             $("#buyInsuranceForm input[type='text']").text("2000");
+            $("#buyInsuranceForm .paliwo-select").val("Diesel");
         }
     });
 }
