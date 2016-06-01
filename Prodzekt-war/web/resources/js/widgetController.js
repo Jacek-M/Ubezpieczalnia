@@ -146,7 +146,7 @@ $(document).ready(function () {
 
 
     $('#tablePlatnosciContent').TableInfo({
-        tableName: "Nieopłacone umowy",
+        tableName: "Umowy zakończone",
         tableId: "tablePaymentsInsurances",
         content: "agreements",
         tableActions: "client",

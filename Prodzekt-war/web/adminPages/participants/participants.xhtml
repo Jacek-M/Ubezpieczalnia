@@ -20,11 +20,11 @@
                         </ul>
                     </div>
                     <div id="tableUczestnicy" class="table-uczestnicy">
-                        <div id="tableHeader" class="table-header">
-                            <p></p>
-                        </div>
 
                         <div id="tableParticipantContent" class="table-content">
+                            <div id="tableHeader" class="table-header">
+                                <p></p>
+                            </div>
                             <h:dataTable id="tableParticipant" class="table-data" value="#{uczestnikController.uczestnikList}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
@@ -56,7 +56,7 @@
                                     </f:facet>
                                     <h:outputText value="#{emp.uczestnikNumerKonta}"/>
                                 </h:column>
-                                
+
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Akcja"/>

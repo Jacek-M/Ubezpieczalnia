@@ -14,13 +14,14 @@
                 <div class="agreements">
                     #{umowaController.receivedPost()}
                     <h1> Umowy </h1>
-                   
+
                     <div id="tableUmowy" class="table-umowy">
-                        <div id="tableHeader" class="table-header">
-                            <p></p>
-                        </div>
+
 
                         <div id="tableAgreementContent" class="table-content">
+                            <div id="tableHeader" class="table-header">
+                                <p></p>
+                            </div>
                             <h:dataTable id="tableAgreement" class="table-data" value="#{umowaController.umowaList}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">

@@ -151,7 +151,7 @@
 .main-title {
     padding: 15px 0px 15px 0px;
     font-family:  sansation-light;
-    
+
 }
 
 .index .row {
@@ -240,6 +240,7 @@
 
 .menuAdmin{
     position: relative;
+    margin-right: 20px;
 }
 
 .menuAdmin {
@@ -726,8 +727,21 @@ table.dataTable {
     border-bottom: 1px solid;
 }
 
-#panelAdd label {
-    margin-right: 20px;
-    margin-top: 10px;
+
+.col-md-3 {
+    margin: 5px 5px 10px 5px;
+    border: 2px groove;
+    height: 250px;   
 }
 
+.col-md-3 label {
+    margin-right: 10px;
+}
+
+.data-view {
+    margin-left: 20px;
+}
+
+.listed_products .col-md-3 {
+    height:auto;
+}

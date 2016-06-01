@@ -24,14 +24,14 @@
                                     <li>
                                         <h:outputLabel  value="Data wrozpoczęcia: " />
                                         <h:outputText value="#{umowaController.umowa.umowaDataWystawienia}">
-                                        <f:convertDateTime pattern="dd.MM.yyyy" />
-                                    </h:outputText>
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data zakończenia: " />
                                         <h:outputText value="#{umowaController.umowa.umowaDataZakonczenia}">
-                                        <f:convertDateTime pattern="dd.MM.yyyy" />
-                                    </h:outputText>
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Kwota: " />
@@ -106,47 +106,47 @@
                                         <h:outputLabel  value="Typ: " />
                                         <h:outputText value="#{umowaController.umowa.umowaPracownikIdFk.pracownikTyp}"/>
                                     </li>
-                                   
+
                                 </ul>
                             </div>
-                                <div class="col-md-3">
-                                    <h4>Ubezpieczenie:</h4>
-                                    <br/>
-                                    <ul>
+                            <div class="col-md-3">
+                                <h4>Ubezpieczenie:</h4>
+                                <br/>
+                                <ul>
 
-                                        <li>
-                                            <h:outputLabel  value="Nazwa: " />
-                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaNazwa}"/>
-                                        </li>
-                                        <li>
-                                            <h:outputLabel  value="Cena: " />
-                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCena}"/>
-                                        </li>
-                                        <li>
-                                            <h:outputLabel  value="Rodzaj: " />
-                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaRodzaj}"/>
-                                        </li>
-                                        <li>
-                                            <h:outputLabel  value="Czy zastępczy: " />
-                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
-                                        </li>
-                                        <li>
-                                            <h:outputLabel  value="Opis: " />
-                                            <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaOpis}"/>
-                                        </li>
-                                    </ul>
-                                </div>
+                                    <li>
+                                        <h:outputLabel  value="Nazwa: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaNazwa}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Cena: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCena}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Rodzaj: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaRodzaj}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Czy zastępczy: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaCzyZastepczy}"/>
+                                    </li>
+                                    <li>
+                                        <h:outputLabel  value="Opis: " />
+                                        <h:outputText value="#{umowaController.umowa.umowaRodzajUbezpieczeniaIdFk.rodzajUbezpieczeniaOpis}"/>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
                     </div>
-                    
-                    
+
+
                     <div id="tableSzkody" class="table-szkody">
-                        <div id="tableHeader" class="table-header">
-                            <p></p>
-                        </div>
 
                         <div id="tableAgreementViewContent" class="table-content">
+                            <div id="tableHeader" class="table-header">
+                                <p></p>
+                            </div>
                             <h:dataTable id="tableAgreementView" class="table-data" value="#{umowaController.umowa.szkodaCollection}" var="emp"  border="1" style="width:100%">
                                 <h:column>
                                     <f:facet name="header">
@@ -209,7 +209,7 @@
                             </h:dataTable>
                         </div>
                     </div>
-                    
+
                 </div>
             </ui:define>
         </ui:composition>
