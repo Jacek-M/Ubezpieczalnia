@@ -226,13 +226,23 @@ public class SzkodaController implements AbstractController<Szkoda> {
     }
 
     public String acceptIncident() {
-        System.out.println("this.szkoda.getSzkodaTyp() " + this.szkoda.getSzkodaTyp());
-        if (this.szkoda.getSzkodaStatus().equals("NOWA")) {
-            this.szkoda.setSzkodaStatus("DO WYCENY");
-            this.szkoda.getSzkodaSamochodZastepczyIdFk().setSamochodZastepczyCzyDostepny(0);
-            return this.update();
+        try {
+            System.out.println("this.szkoda.getSzkodaTyp() " + this.szkoda.getSzkodaTyp());
+            String czyWinny = this.szkoda.getSzkodaTyp();
+            this.findById();
+            if (this.szkoda.getSzkodaStatus().equals("NOWA")) {
+                this.szkoda.setSzkodaStatus("DO WYCENY");
+                this.szkoda.setSzkodaTyp(czyWinny);
+                this.samochodZastController.setSamochodZastepczy(this.szkoda.getSzkodaSamochodZastepczyIdFk());
+                this.samochodZastController.getSamochodZastepczy().setSamochodZastepczyCzyDostepny(0);
+                this.samochodZastController.update();
+                return this.update();
+            }
+            return PageController.getPage("/adminPages/incidents/incidents.xhtml");
+        } catch (Exception ex) {
+            Logger.getLogger(SzkodaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return PageController.getPage("/adminPages/incidents/incidents.xhtml");
+        return null;
     }
 
     @Override
@@ -248,7 +258,6 @@ public class SzkodaController implements AbstractController<Szkoda> {
             this.szkoda.setSzkodaId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();
-
                 if (requestParams.get("post_type") != null) {
                     if (this.szkoda.getSzkodaStatus().equals("WYCENIONE")) {
                         if (Integer.parseInt(requestParams.get("post_type")) == 10) {
@@ -257,7 +266,9 @@ public class SzkodaController implements AbstractController<Szkoda> {
                             this.update();
                         } else if (Integer.parseInt(requestParams.get("post_type")) == 11) {
                             this.szkoda.setSzkodaStatus("DO WYPŁATY");
-                            System.out.println("ZMIENIAM DO WYPŁATYYYYYYYY");
+                            this.samochodZastController.setSamochodZastepczy(this.szkoda.getSzkodaSamochodZastepczyIdFk());
+                            this.samochodZastController.getSamochodZastepczy().setSamochodZastepczyCzyDostepny(1);
+                            this.samochodZastController.update();
                             this.update();
                         }
                     }
@@ -333,10 +344,15 @@ public class SzkodaController implements AbstractController<Szkoda> {
 
     private void endRepair() {
         try {
+            this.findById();
             this.szkoda.setSzkodaZakladIdFk(pracownikController.getPracownik().getPracownikZakladIdFk());
             this.szkoda.setSzkodaStatus("NAPRAWIONO");
             this.szkoda.setSzkodaDataZakonczenia(new Date());
-            this.szkoda.getSzkodaSamochodZastepczyIdFk().setSamochodZastepczyCzyDostepny(1);
+
+            this.samochodZastController.setSamochodZastepczy(this.szkoda.getSzkodaSamochodZastepczyIdFk());
+            this.samochodZastController.getSamochodZastepczy().setSamochodZastepczyCzyDostepny(1);
+            this.samochodZastController.update();
+
             szkodaEJB.addZaklad(szkoda);
 
         } catch (Exception ex) {
