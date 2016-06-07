@@ -112,6 +112,10 @@ public class RodzajUbezpieczenia implements Serializable {
     public int getRodzajUbezpieczeniaCzyZastepczy() {
         return rodzajUbezpieczeniaCzyZastepczy;
     }
+    
+    public String getZastepczyStatus() {
+        return rodzajUbezpieczeniaCzyZastepczy == 1 ? "TAK" : "NIE";
+    }
 
     public void setRodzajUbezpieczeniaCzyZastepczy(int rodzajUbezpieczeniaCzyZastepczy) {
         this.rodzajUbezpieczeniaCzyZastepczy = rodzajUbezpieczeniaCzyZastepczy;

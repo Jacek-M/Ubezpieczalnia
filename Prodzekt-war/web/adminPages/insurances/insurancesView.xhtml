@@ -39,12 +39,7 @@
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Czy zastępczy: " />
-                                        <c:if test="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy == 0}">
-                                            <h:outputText value="NIE"/>
-                                        </c:if>
-                                        <c:if test="#{rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy != 0}">
-                                            <h:outputText value="TAK"/>
-                                        </c:if> 
+                                        <h:outputText value="#{rodzajUbezController.rodzajUbez.zastepczyStatus}"/>
                                     </li>
 
                                 </ul>

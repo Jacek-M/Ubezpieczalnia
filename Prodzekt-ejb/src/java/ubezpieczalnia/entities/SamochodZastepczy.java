@@ -100,6 +100,10 @@ public class SamochodZastepczy implements Serializable {
     public int getSamochodZastepczyCzyDostepny() {
         return samochodZastepczyCzyDostepny;
     }
+    
+    public String getSamochodStatus() {
+        return samochodZastepczyCzyDostepny == 1 ? "TAK" : "NIE";
+    }
 
     public void setSamochodZastepczyCzyDostepny(int samochodZastepczyCzyDostepny) {
         this.samochodZastepczyCzyDostepny = samochodZastepczyCzyDostepny;

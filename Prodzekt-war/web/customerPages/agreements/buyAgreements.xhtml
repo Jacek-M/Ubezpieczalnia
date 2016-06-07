@@ -32,12 +32,7 @@
 
                                 <h:outputLabel  value="Auto zastępcze: " />
                                 <h:panelGroup>
-                                    <c:if test="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy == 1}">
-                                        <h:outputLabel  value="Tak" />
-                                    </c:if>
-                                    <c:if test="#{umowaController.rodzajUbezController.rodzajUbez.rodzajUbezpieczeniaCzyZastepczy == 0}">
-                                        <h:outputLabel  value="Nie" />
-                                    </c:if>
+                                    <h:outputText value="#{umowaController.rodzajUbezController.rodzajUbez.zastepczyStatus}"/>
                                 </h:panelGroup>
                                 <h:message for="" style="color:red" />
 

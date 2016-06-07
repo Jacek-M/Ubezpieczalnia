@@ -31,12 +31,7 @@
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Czy dostępny: " />
-                                        <c:if test="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny == 0}">
-                                            <h:outputText value="NIE"/>
-                                        </c:if>
-                                        <c:if test="#{samochodZastController.samochodZastepczy.samochodZastepczyCzyDostepny != 0}">
-                                            <h:outputText value="TAK"/>
-                                        </c:if> 
+                                        <h:outputText value="#{samochodZastController.samochodZastepczy.samochodStatus}"/>
                                     </li>
 
                                 </ul>

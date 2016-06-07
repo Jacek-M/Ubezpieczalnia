@@ -229,6 +229,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
         System.out.println("this.szkoda.getSzkodaTyp() " + this.szkoda.getSzkodaTyp());
         if (this.szkoda.getSzkodaStatus().equals("NOWA")) {
             this.szkoda.setSzkodaStatus("DO WYCENY");
+            this.szkoda.getSzkodaSamochodZastepczyIdFk().setSamochodZastepczyCzyDostepny(0);
             return this.update();
         }
         return PageController.getPage("/adminPages/incidents/incidents.xhtml");
@@ -337,6 +338,7 @@ public class SzkodaController implements AbstractController<Szkoda> {
             this.szkoda.setSzkodaZakladIdFk(pracownikController.getPracownik().getPracownikZakladIdFk());
             this.szkoda.setSzkodaStatus("NAPRAWIONO");
             this.szkoda.setSzkodaDataZakonczenia(new Date());
+            this.szkoda.getSzkodaSamochodZastepczyIdFk().setSamochodZastepczyCzyDostepny(1);
             szkodaEJB.addZaklad(szkoda);
 
         } catch (Exception ex) {
