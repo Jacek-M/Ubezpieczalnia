@@ -119,7 +119,6 @@ public class OddzialController implements AbstractController<Oddzial> {
         return PageController.getPage("/adminPages/branches/branches.xhtml");
     }
 
-//    @PostConstruct
     public void receivedPost() {
         oddzialEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

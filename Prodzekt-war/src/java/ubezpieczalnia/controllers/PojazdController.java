@@ -94,7 +94,6 @@ public class PojazdController implements AbstractController<Pojazd>{
         
     }
     
-//    @PostConstruct
     public void receivedPost() {
         pojazdEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

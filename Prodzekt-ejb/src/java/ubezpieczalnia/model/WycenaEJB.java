@@ -15,7 +15,7 @@ import ubezpieczalnia.entities.Wycena;
 
 /**
  *
- * @author layfl
+ * @author Filip
  */
 @Stateless
 @LocalBean

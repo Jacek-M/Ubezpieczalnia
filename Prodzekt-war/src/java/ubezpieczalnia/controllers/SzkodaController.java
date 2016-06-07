@@ -237,13 +237,11 @@ public class SzkodaController implements AbstractController<Szkoda> {
         return PageController.getPage("/adminPages/incidents/incidents.xhtml");
     }
 
-//    @PostConstruct
     public void receivedPost() {
         szkodaEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         if (requestParams.get("post_id") != null) {
             this.szkoda.setSzkodaId(Integer.parseInt(requestParams.get("post_id")));
-            System.out.println(requestParams.get("post_id"));
             try {
                 this.findById();
 

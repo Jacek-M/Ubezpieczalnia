@@ -13,7 +13,7 @@ import ubezpieczalnia.entities.Pojazd;
 
 /**
  *
- * @author layfl
+ * @author Filip
  */
 @Stateless
 @LocalBean

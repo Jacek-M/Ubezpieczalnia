@@ -16,7 +16,6 @@
             this.tableActions = this.options.tableActions;
             this.action = this.options.action;
             this.table = null;
-            console.log("_create() TableInfo with OPTIONS[" + this.tableId + " " + this.tableName + " " + this.content + "]");
             this._initTableHeader();
             $(".table-content").hide();
             this._createTable();

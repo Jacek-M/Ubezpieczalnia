@@ -123,13 +123,11 @@ public class ZakladController implements AbstractController<Zaklad> {
         return PageController.getPage("/adminPages/services/services.xhtml");
     }
     
-//    @PostConstruct
     public void receivedPost() {
         zakladEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         
         if (requestParams.get("post_id") != null) {
-            System.out.println(requestParams.get("post_id"));
             this.zaklad.setZakladId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();

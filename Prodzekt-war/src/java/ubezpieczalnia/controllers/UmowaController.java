@@ -209,7 +209,6 @@ public class UmowaController implements AbstractController<Umowa> {
 
     }
 
-//    @PostConstruct
     public void receivedPost() {
         umowaEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -253,7 +252,6 @@ public class UmowaController implements AbstractController<Umowa> {
 
     private void acceptAgreement() {
         if (this.umowa.getUmowaStatus().equals("NOWA")) {
-            System.out.println("(this.umowa.getUmowaStatus().equals(\"OCZEKUJE NA AKCEPTACJĘ\")  TRUE");
             this.umowa.setUmowaStatus("ZAAKCEPTOWANA");
             umowaEJB.update(this.umowa);
         }

@@ -15,7 +15,7 @@ import ubezpieczalnia.entities.Szkoda;
 
 /**
  *
- * @author layfl
+ * @author Filip
  */
 @Stateless
 @LocalBean

@@ -16,7 +16,7 @@ import ubezpieczalnia.entities.Adres;
 
 /**
  *
- * @author layfl
+ * @author Filip
  */
 @Stateless
 @LocalBean

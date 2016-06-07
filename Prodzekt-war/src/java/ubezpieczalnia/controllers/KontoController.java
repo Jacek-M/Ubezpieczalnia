@@ -52,7 +52,7 @@ public class KontoController implements AbstractController<Konto> {
 
     @Override
     public List<Konto> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Nope"); 
     }
 
     @Override
@@ -75,7 +75,7 @@ public class KontoController implements AbstractController<Konto> {
 
     @Override
     public String delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Nope");
     }
 
 }
