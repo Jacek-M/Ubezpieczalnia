@@ -106,8 +106,6 @@ public class WycenaController implements AbstractController<Wycena> {
 
     @Override
     public String update() {
-//        this.wycena.setWycenaPracownikIdFk(pracownikController.getPracownik());
-//        this.wycena.setWycenaSzkodaIdFk(szkodaController.getSzkoda());
         wycenaEJB.update(this.wycena);
         return PageController.getPage("/adminPages/valuations/valuations.xhtml");
 
@@ -120,7 +118,6 @@ public class WycenaController implements AbstractController<Wycena> {
 
     }
 
-//    @PostConstruct
     public void receivedPost() {
         wycenaEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

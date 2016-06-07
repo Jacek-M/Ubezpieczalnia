@@ -94,8 +94,7 @@ public class RodzajUbezController implements AbstractController<RodzajUbezpiecze
     }
     
   
-    
-//    @PostConstruct
+   
     public void receivedPost() {
         rodzajUbezpieczeniaEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

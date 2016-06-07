@@ -15,7 +15,7 @@ import ubezpieczalnia.entities.Umowa;
 
 /**
  *
- * @author layfl
+ * @author Filip
  */
 @Stateless
 @LocalBean

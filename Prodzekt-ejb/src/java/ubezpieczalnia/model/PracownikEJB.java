@@ -15,7 +15,7 @@ import ubezpieczalnia.entities.Pracownik;
 
 /**
  *
- * @author layfl
+ * @author Filip
  */
 @Stateless
 @LocalBean
@@ -33,7 +33,6 @@ public class PracownikEJB extends AbstractModel<Pracownik> {
         Pracownik found = em.find(Pracownik.class, object.getPracownikId());
         Logger.getLogger("INFO").log(Level.INFO, "UPDATE [PRACOWNIK]");
         if (found != null) {
-            System.out.println("Not null");
             found.setPracownikImie(object.getPracownikImie());
             found.setPracownikNazwisko(object.getPracownikNazwisko());
             found.setPracownikDataZatrudnienia(object.getPracownikDataZatrudnienia());

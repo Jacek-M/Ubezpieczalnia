@@ -15,7 +15,7 @@ import ubezpieczalnia.entities.SamochodZastepczy;
 
 /**
  *
- * @author layfl
+ * @author Filip
  */
 @Stateless
 @LocalBean

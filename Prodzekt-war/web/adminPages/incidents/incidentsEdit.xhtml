@@ -20,7 +20,7 @@
                             <h:panelGrid  columns="2">
                                 <h:outputLabel value="Data Zdarzenia:" for="szkodaDataZdarzenia" />
                                 <h:panelGroup>
-                                    <h:inputText class="data-picker-class form-control" id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" disabled="true">
+                                    <h:inputText class="form-control" id="szkodaDataZdarzenia" value="#{szkodaController.szkoda.szkodaDataZdarzenia}" disabled="true">
                                         <f:convertDateTime pattern="dd-MM-yyyy"/>
                                     </h:inputText>
                                     <h:inputHidden value="#{szkodaController.szkoda.szkodaId}"/>
@@ -28,7 +28,7 @@
                                 </h:panelGroup>
 
                                 <h:outputLabel value="Opis:" for="szkodaOpis" />
-                                <h:inputText id="szkodaOpis" class="form-control" value="#{szkodaController.szkoda.szkodaOpis}" disabled="true"/>
+                                <h:inputTextarea id="szkodaOpis" class="form-control" value="#{szkodaController.szkoda.szkodaOpis}" disabled="true"/>
 
                                 <h:outputLabel value="Typ:" for="szkodaTyp" />
                                 <h:selectOneMenu class="form-control" value="#{szkodaController.szkoda.szkodaTyp}">

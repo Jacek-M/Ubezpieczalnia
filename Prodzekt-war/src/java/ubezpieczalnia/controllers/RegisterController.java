@@ -150,7 +150,6 @@ public class RegisterController implements AbstractController<Klient> {
         return PageController.getCurrentUrl();
     }
     
-//    @PostConstruct
     public void receivedPost() {
         klientEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

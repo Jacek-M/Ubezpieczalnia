@@ -15,7 +15,7 @@ import ubezpieczalnia.entities.Zaklad;
 
 /**
  *
- * @author layfl
+ * @author Filip
  */
 @Stateless
 @LocalBean

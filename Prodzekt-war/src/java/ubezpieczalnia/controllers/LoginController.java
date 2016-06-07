@@ -108,7 +108,6 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         this.konto = kontoEJB.refresh(this.konto);
         for (Klient klient : this.konto.getKlientCollection()) {
             if (klient != null) {
-                System.out.println("IN NULL");
                 Logger.getLogger("INFO").log(Level.INFO, "CLIENT FROM ACCOUNT: {0}", klient.getKlientImie());
                 return klient;
             }
@@ -251,18 +250,4 @@ public class LoginController implements Serializable, AbstractController<Konto> 
 
         }
     }
-
-//    @PostConstruct
-//    public void receivedPost() {
-//        Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-//        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-//        if (requestParams.get("post_id") != null && requestParams.get("post_type") != null) {
-//            System.out.println("requestParams.get(\"post_type\") " + requestParams.get("post_type"));
-//            takeRepair(requestParams.get("post_id"));
-//        }
-//    }
-//    
-//    private void takeRepair(String szkodaId){
-//        
-//    }
 }

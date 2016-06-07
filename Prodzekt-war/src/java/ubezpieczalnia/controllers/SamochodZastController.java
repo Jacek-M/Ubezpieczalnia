@@ -104,8 +104,6 @@ public class SamochodZastController implements AbstractController<SamochodZastep
         return PageController.getPage("/adminPages/repCars/repCars.xhtml");
     }
 
-    
-//    @PostConstruct
     public void receivedPost() {
         samochodZastepczyEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

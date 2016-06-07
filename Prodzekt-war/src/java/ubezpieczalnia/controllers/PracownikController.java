@@ -203,13 +203,11 @@ public class PracownikController implements AbstractController<Pracownik> {
 
     }
 
-//    @PostConstruct
     public void receivedPost() {
         pracownikEJB.clearCache();
         Map<String, String> requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
         if (requestParams.get("post_id") != null) {
-            System.out.println(requestParams.get("post_id"));
             this.pracownik.setPracownikId(Integer.parseInt(requestParams.get("post_id")));
             try {
                 this.findById();

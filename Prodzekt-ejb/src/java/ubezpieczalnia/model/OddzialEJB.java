@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import ubezpieczalnia.entities.Oddzial;
 /**
  *
- * @author layfl
+ * @author Filip
  */
 @Stateless
 @LocalBean
