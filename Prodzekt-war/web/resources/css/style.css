@@ -793,3 +793,8 @@ table.dataTable {
     border-width: 8px;
     margin-bottom: 0;
 }
+
+.buy-insurance-box {
+    width: 50%;
+    margin: 0 auto;
+}

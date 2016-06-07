@@ -8,6 +8,7 @@
         <param-name>javax.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR</param-name>
         <param-value>true</param-value>
     </context-param>
+
     <filter>
         <filter-name>PageFilter</filter-name>
         <filter-class>ubezpieczalnia.filters.PageFilter</filter-class>

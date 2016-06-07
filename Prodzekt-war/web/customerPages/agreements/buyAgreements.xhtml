@@ -51,7 +51,7 @@
 
                                 <h:outputLabel  value="Wybierz auto z listy: "/>
                                 <h:selectOneMenu  class="car-select form-control" id="carSelect" value="#{umowaController.pojazdController.pojazd.pojazdId}">
-                                    <f:selectItems value="#{umowaController.loginController.mojePojazdy}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
+                                    <f:selectItems value="#{loginController.mojePojazdy}" var="c" itemLabel="#{c.label}" itemValue="#{c.value}" />
                                 </h:selectOneMenu>
                                 <h:message for="carSelect" style="color:red" />
 
@@ -83,7 +83,7 @@
 
                                 <h:outputLabel  value="Paliwo: " />
 
-                                <h:selectOneMenu class="form-control" value="#{umowaController.pojazdController.pojazd.pojazdPaliwo}">
+                                <h:selectOneMenu id="paliwo" class="paliwo-select form-control" value="#{umowaController.pojazdController.pojazd.pojazdPaliwo}">
                                     <f:selectItem itemValue="Diesel" itemLabel="Diesel" />
                                     <f:selectItem itemValue="Benzyna" itemLabel="Benzyna" />
                                     <f:selectItem itemValue="Benzyna + Gaz" itemLabel="Benzyna + Gaz" />

@@ -23,11 +23,15 @@
                                 <ul>
                                     <li>
                                         <h:outputLabel  value="Data: " />
-                                        <h:outputText value="#{wycenaController.wycena.wycenaData}"/>
+                                        <h:outputText value="#{wycenaController.wycena.wycenaData}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Kwota: " />
-                                        <h:outputText value="#{wycenaController.wycena.wycenaKwota}"/>
+                                        <h:outputText value="#{wycenaController.wycena.wycenaKwota}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                 </ul>
 
@@ -57,11 +61,15 @@
                                 <ul>
                                     <li>
                                         <h:outputLabel  value="data zdarzenia: " />
-                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZdarzenia}"/>
+                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZdarzenia}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Data zakonczenia: " />
-                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZakonczenia}"/>
+                                        <h:outputText value="#{wycenaController.wycena.wycenaSzkodaIdFk.szkodaDataZakonczenia}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
                                     </li>
                                     <li>
                                         <h:outputLabel  value="Status: " />

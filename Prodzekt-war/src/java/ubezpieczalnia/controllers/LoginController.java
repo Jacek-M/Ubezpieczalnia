@@ -202,7 +202,10 @@ public class LoginController implements Serializable, AbstractController<Konto> 
         List<SelectItem> umowaSelectList = new ArrayList<>();
         for (Umowa umowa : this.getKlientAccount().getUmowaCollection()) {
             if (!umowa.getUmowaStatus().equals("NOWA") && umowa.getUmowaDataZakonczenia().after(new Date())) {
-                String label = umowa.getUmowaId() + " | " + umowa.getUmowaPojazdIdFk().getPojazdMarka() + " " + umowa.getUmowaPojazdIdFk().getPojazdModel();
+                String label = umowa.getUmowaId() + " | "
+                        + umowa.getUmowaPojazdIdFk().getPojazdMarka() + " "
+                        + umowa.getUmowaPojazdIdFk().getPojazdModel() + " | "
+                        + umowa.getUmowaRodzajUbezpieczeniaIdFk().getRodzajUbezpieczeniaNazwa();
                 umowaSelectList.add(new SelectItem(umowa.getUmowaId(), label));
             }
         }
